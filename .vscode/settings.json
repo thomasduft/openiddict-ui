@@ -1,0 +1,5 @@
+{
+  "editor.tabSize": 2,
+  "editor.rulers": [100],
+  "dotnet-test-explorer.testProjectPath": "tests"
+}

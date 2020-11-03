@@ -1,0 +1,8 @@
+﻿@page
+@model ConfirmEmailModel
+@inject IdentityLocalizationService IdentityLocalizer
+@{
+  ViewData["Title"] = @IdentityLocalizer.GetLocalizedHtmlString("CONFIRM_EMAIL");
+}
+
+<partial name="_StatusMessage" model="Model.StatusMessage" />

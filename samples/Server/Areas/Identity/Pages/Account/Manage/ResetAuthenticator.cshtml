@@ -1,0 +1,29 @@
+@page
+@model ResetAuthenticatorModel
+@inject IdentityLocalizationService IdentityLocalizer
+@{
+  ViewData["Title"] = @IdentityLocalizer.GetLocalizedHtmlString("RESET_AUTHENTICATOR_KEY");
+  ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<div>
+  <p>
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    <strong>
+      @IdentityLocalizer.GetLocalizedHtmlString("RESET_AUTHENTICATOR_INFO")
+    </strong>
+  </p>
+  <br>
+  <p>
+    @IdentityLocalizer.GetLocalizedHtmlString("RESET_AUTHENTICATOR_TEXT")
+  </p>
+</div>
+<div>
+  <form id="reset-authenticator-form" method="post" class="form__group">
+    <button id="reset-authenticator-button" class="btn btn-danger" type="submit">
+      @IdentityLocalizer.GetLocalizedHtmlString("RESET_AUTHENTICATOR_KEY")
+    </button>
+  </form>
+</div>

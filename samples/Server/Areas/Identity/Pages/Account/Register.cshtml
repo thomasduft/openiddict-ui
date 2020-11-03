@@ -1,0 +1,59 @@
+﻿@page
+@model RegisterModel
+@inject IdentityLocalizationService IdentityLocalizer
+@{
+  ViewData["Title"] = @IdentityLocalizer.GetLocalizedHtmlString("REGISTER");
+}
+
+<div class="pane">
+  <div class="pane__content" >
+    <form class="form" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+      <h4>@IdentityLocalizer.GetLocalizedHtmlString("CREATE_A_NEW_ACCOUNT")</h4>
+      <div class="form__validation-summary" asp-validation-summary="All"></div>
+      <div class="form__group">
+        <label asp-for="Input.Email">@IdentityLocalizer.GetLocalizedHtmlString("EMAIL")</label>
+        <input asp-for="Input.Email" />
+        <span asp-validation-for="Input.Email"></span>
+      </div>
+      <div class="form__group">
+        <label asp-for="Input.Password">@IdentityLocalizer.GetLocalizedHtmlString("PASSWORD")</label>
+        <input asp-for="Input.Password" />
+        <span asp-validation-for="Input.Password"></span>
+      </div>
+      <div class="form__group">
+        <label asp-for="Input.ConfirmPassword">@IdentityLocalizer.GetLocalizedHtmlString("CONFIRM_PASSWORD")</label>
+        <input asp-for="Input.ConfirmPassword" />
+        <span asp-validation-for="Input.ConfirmPassword"></span>
+      </div>
+      <button type="submit" class="btn btn-primary">@IdentityLocalizer.GetLocalizedHtmlString("REGISTER")</button>
+    </form>
+  </div>
+  <div class="pane__aside">
+    <h4>@IdentityLocalizer.GetLocalizedHtmlString("ACCOUNT_USE_ANOTHER_SERVICE_TO_REGISTER")</h4>
+    @{
+      if ((Model.ExternalLogins?.Count ?? 0) == 0)
+      {
+        <div>
+          <p>
+            @IdentityLocalizer.GetLocalizedHtmlString("ACCOUNT_NO_EXTERNAL_LOGINS")
+            @* There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+            for details on setting up this ASP.NET application to support logging in via external services. *@
+          </p>
+        </div>
+      }
+      else
+      {
+        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+          <div>
+            <p>
+              @foreach (var provider in Model.ExternalLogins)
+              {
+                <button type="submit" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+              }
+            </p>
+          </div>
+        </form>
+      }
+    }
+  </div>
+</div>

@@ -1,0 +1,25 @@
+@import '../shared/variables.less';
+
+.shell {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: @header-height 1fr @footer-height;
+	grid-template-areas:
+		'header'
+		'content'
+		'footer';
+	height: 100vh;
+	
+	width: 75%;
+
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media (max-width: @breakpoint-max-width) {
+  .shell {
+		padding: 0px;
+		
+		width: 90%;
+  }
+}

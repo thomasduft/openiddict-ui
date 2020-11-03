@@ -1,0 +1,10 @@
+﻿@page
+@model LockoutModel
+@inject IdentityLocalizationService IdentityLocalizer
+@{
+  ViewData["Title"] = @IdentityLocalizer.GetLocalizedHtmlString("LOCKED_OUT");
+}
+
+<header>
+  <p>@IdentityLocalizer.GetLocalizedHtmlString("LOCKED_OUT_TEXT")</p>
+</header>

@@ -1,0 +1,29 @@
+@using Microsoft.AspNetCore.Identity
+@using tomware.Microip.Web
+
+@inject SharedLocalizationService SharedLocalizer
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul>
+  @if (SignInManager.IsSignedIn(User))
+  {
+    <li>
+      <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
+    </li>
+    @* <li>
+      <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post">
+        <button id="logout" type="submit">Logout</button>
+      </form>
+    </li> *@
+  }
+  else
+  {
+    @*<li>
+      <a id="register" asp-area="Identity" asp-page="/Account/Register">@SharedLocalizer.GetLocalizedHtmlString("REGISTER")</a>
+    </li>*@
+    <li>
+      <a id="login" asp-area="Identity" asp-page="/Account/Login">@SharedLocalizer.GetLocalizedHtmlString("LOGIN")</a>
+    </li>
+  }
+</ul>

@@ -1,0 +1,42 @@
+@inject SignInManager<ApplicationUser> SignInManager
+@inject IdentityLocalizationService IdentityLocalizer
+
+@{
+  var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+<ul>
+  <li>
+    <a class="@ManageNavPages.IndexNavClass(ViewContext)" id="profile" asp-page="./Index">
+      @IdentityLocalizer.GetLocalizedHtmlString("PROFILE")
+    </a>
+  </li>
+  <li>
+    <a class="@ManageNavPages.EmailNavClass(ViewContext)" id="email" asp-page="./Email">
+     @IdentityLocalizer.GetLocalizedHtmlString("EMAIL")
+    </a>
+  </li>
+  <li>
+    <a class="@ManageNavPages.ChangePasswordNavClass(ViewContext)" id="change-password" asp-page="./ChangePassword">
+      @IdentityLocalizer.GetLocalizedHtmlString("PASSWORD")
+    </a>
+  </li>
+  @if (hasExternalLogins)
+  {
+    <li id="external-logins">
+      <a id="external-login" class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)" asp-page="./ExternalLogins">
+        @IdentityLocalizer.GetLocalizedHtmlString("EXTERNAL_LOGINS")
+      </a>
+    </li>
+  }
+  <li>
+    <a class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)" id="two-factor" asp-page="./TwoFactorAuthentication">
+      @IdentityLocalizer.GetLocalizedHtmlString("2FA")
+    </a>
+  </li>
+  <li>
+    <a class="@ManageNavPages.PersonalDataNavClass(ViewContext)" id="personal-data" asp-page="./PersonalData">
+      @IdentityLocalizer.GetLocalizedHtmlString("PERSONAL_DATA")
+    </a>
+  </li>
+</ul>

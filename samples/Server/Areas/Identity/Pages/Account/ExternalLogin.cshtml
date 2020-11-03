@@ -1,0 +1,27 @@
+﻿@page
+@model ExternalLoginModel
+@inject IdentityLocalizationService IdentityLocalizer
+@{
+  ViewData["Title"] = @IdentityLocalizer.GetLocalizedHtmlString("REGISTER");
+}
+
+<h4>@IdentityLocalizer.GetLocalizedHtmlString("EXTERNAL_LOGIN_ASSOCIATE_ACCOUNT", @Model.LoginProvider)</h4>
+<hr />
+
+<p>
+  @IdentityLocalizer.GetLocalizedHtmlString("EXTERNAL_LOGIN_TEXT", @Model.LoginProvider)
+</p>
+
+<div>
+  <div>
+    <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+      <div class="form__validation-summary" asp-validation-summary="All"></div>
+      <div class="form__group">
+        <label asp-for="Input.Email">@IdentityLocalizer.GetLocalizedHtmlString("EMAIL")</label>
+        <input asp-for="Input.Email" class="form-control" />
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+      </div>
+      <button type="submit">@IdentityLocalizer.GetLocalizedHtmlString("REGISTER")</button>
+    </form>
+  </div>
+</div>
