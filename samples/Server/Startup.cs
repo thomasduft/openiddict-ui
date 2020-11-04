@@ -17,7 +17,9 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using tomware.Microip.Web.Resources;
-using tomware.OpenIddict.UI;
+using tomware.OpenIddict.UI.Api;
+using tomware.OpenIddict.UI.Core;
+using tomware.OpenIddict.UI.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace tomware.Microip.Web
@@ -109,6 +111,8 @@ namespace tomware.Microip.Web
           options.Lockout.AllowedForNewUsers = true;
         });
 
+      // ---------------------------------------------------------------------------------------- //
+
       services.AddOpenIddict()
         // Register the OpenIddict core components.
         .AddCore(options =>
@@ -162,9 +166,16 @@ namespace tomware.Microip.Web
           options.UseAspNetCore();
         });
 
+         // OpenIddict.UI
+      services.AddOpenIddictUICoreServices();
+      services.AddOpenIddictUIInfrastructureServices();
+      services.AddOpenIddictUIApiServices<ApplicationUser>();
+
+
+      // ---------------------------------------------------------------------------------------- //
+
       // STS Services
       services.AddSTSServices(); // TODO: combine with above
-
 
       // localization
       services.AddSingleton<IdentityLocalizationService>();
@@ -183,9 +194,6 @@ namespace tomware.Microip.Web
         options.SupportedUICultures = supportedCultures;
         options.RequestCultureProviders.Insert(0, new CookieRequestCultureProvider());
       });
-
-      // OpenIddict.UI
-      services.AddOpenIddictUIServices<ApplicationUser>();
 
       // Swagger
       services.AddSwaggerDocumentation();

@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>tomware.OpenIddict.UI.Infrastructure</AssemblyName>
+    <RootNamespace>tomware.OpenIddict.UI.Infrastructure</RootNamespace>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Description>Infrastructure types for OpenIddict U.</Description>
+    <RepositoryUrl>https://github.com/thomasduft/microip</RepositoryUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <Authors>Thomas Duft</Authors>
+    <Company>tomWare SOLUTIONS</Company>
+    <PackageProjectUrl>https://github.com/thomasduft/microip</PackageProjectUrl>
+    <PackageTags>OpenIddict</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <Copyright>2020 tomWare SOLUTIONS</Copyright>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.9" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore.Models" Version="3.0.0-beta6.20527.75" />  
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\OpenIddict.UI.Core\tomware.OpenIddict.UI.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>

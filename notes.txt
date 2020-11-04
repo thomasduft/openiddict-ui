@@ -1,0 +1,11 @@
+TODO:
+
+
+----------------------------------------------------------------------------------------------------
+- interessant
+  OpenIddictEntityFrameworkCoreBuilder in (OpenIddict.EntityFrameworkCore)
+
+----------------------------------------------------------------------------------------------------
+EF:
+- Context: OpenIddictUIContext
+

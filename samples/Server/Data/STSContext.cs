@@ -5,8 +5,6 @@ namespace tomware.Microip.Web
 {
   public class STSContext : IdentityDbContext<ApplicationUser>
   {
-    public DbSet<ClaimType> ClaimTypes { get; set; }
-
     public STSContext(DbContextOptions options) : base(options)
     {
       this.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;

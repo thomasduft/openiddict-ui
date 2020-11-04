@@ -63,7 +63,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\OpenIddict.UI\OpenIddict.UI.csproj" />
+    <ProjectReference Include="..\..\src\OpenIddict.UI.Core\tomware.OpenIddict.UI.Core.csproj" />
+    <ProjectReference Include="..\..\src\OpenIddict.UI.Infrastructure\tomware.OpenIddict.UI.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\OpenIddict.UI.Api\tomware.OpenIddict.UI.Api.csproj" />
   </ItemGroup>
 
   <!-- <Target Name="BuildStyles" BeforeTargets="Build">
