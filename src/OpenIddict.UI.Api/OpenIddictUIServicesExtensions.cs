@@ -5,7 +5,16 @@ namespace tomware.OpenIddict.UI.Api
 {
   public static class OpenIddictUIServicesExtensions
   {
-    public static IServiceCollection AddOpenIddictUIApiServices<TApplicationUser>(
+    public static OpenIddictBuilder AddUIApis<TApplicationUser>(
+      this OpenIddictBuilder builder
+    ) where TApplicationUser : IdentityUser
+    {
+      builder.Services.AddOpenIddictUIApiServices<TApplicationUser>();
+
+      return builder;
+    }
+
+    private static IServiceCollection AddOpenIddictUIApiServices<TApplicationUser>(
       this IServiceCollection services
     ) where TApplicationUser : IdentityUser
     {

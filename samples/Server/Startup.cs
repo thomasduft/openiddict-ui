@@ -158,6 +158,7 @@ namespace tomware.Microip.Web
           // Register the ASP.NET Core host.
           options.UseAspNetCore();
         })
+        // Register the EF based UI Store
         .AddUIStore(options =>
         {
           options.OpenIddictUIContext = builder =>
@@ -167,10 +168,9 @@ namespace tomware.Microip.Web
                     .Assembly
                     .GetName()
                     .Name));
-        });
-
-      // OpenIddict.UI
-      services.AddOpenIddictUIApiServices<ApplicationUser>();
+        })
+        // Register the Api for the EF based UI Store
+        .AddUIApis<ApplicationUser>();
 
       // ---------------------------------------------------------------------------------------- //
 
