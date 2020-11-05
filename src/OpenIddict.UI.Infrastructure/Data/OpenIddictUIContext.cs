@@ -41,7 +41,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
     // further configs see
     // https://github.com/IdentityServer/IdentityServer4/blob/main/src/EntityFramework.Storage/src/DbContexts/ConfigurationDbContext.cs
 
-    private readonly OpenIddictUIStoreOptions storeOptions;
+    private readonly OpenIddictUIStoreOptions _storeOptions;
 
     public OpenIddictUIContext(
       DbContextOptions<TContext> options,
@@ -49,7 +49,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
     )
       : base(options)
     {
-      this.storeOptions = storeOptions
+      _storeOptions = storeOptions
         ?? throw new ArgumentNullException(nameof(storeOptions));
     }
 

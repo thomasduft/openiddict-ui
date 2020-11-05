@@ -7,50 +7,50 @@ namespace tomware.OpenIddict.UI.Core
 {
   public class ClaimTypeService : IClaimTypeService
   {
-    private readonly IClaimTypeRepository repository;
+    private readonly IClaimTypeRepository _repository;
 
     public ClaimTypeService(IClaimTypeRepository repository)
     {
-      this.repository = repository
+      _repository = repository
         ?? throw new ArgumentNullException(nameof(repository));
     }
 
-    public async Task<IEnumerable<ClaimeTypeInfo>> GetClaimTypesAsync()
+    public async Task<IEnumerable<ClaimTypeInfo>> GetClaimTypesAsync()
     {
-      var items = await this.repository.ListAsync(new AllClaimTypes());
+      var items = await _repository.ListAsync(new AllClaimTypes());
 
       return items.Select(x => ToInfo(x));
     }
 
-    public async Task<ClaimeTypeInfo> GetAsync(Guid id)
+    public async Task<ClaimTypeInfo> GetAsync(Guid id)
     {
       if (id == null) throw new ArgumentNullException(nameof(id));
 
-      var entity = await this.repository.GetByIdAsync(id);
+      var entity = await _repository.GetByIdAsync(id);
 
       return entity != null ? ToInfo(entity) : null;
     }
 
-    public async Task<Guid> CreateAsync(ClaimeTypeParam model)
+    public async Task<Guid> CreateAsync(ClaimTypeParam model)
     {
       if (model == null) throw new ArgumentNullException(nameof(model));
 
       var entity = ClaimType.Create(model.Name, model.Description);
 
-      await this.repository.AddAsync(entity);
+      await _repository.AddAsync(entity);
 
       return entity.Id;
     }
 
-    public async Task UpdateAsync(ClaimeTypeParam model)
+    public async Task UpdateAsync(ClaimTypeParam model)
     {
       if (!model.Id.HasValue) throw new ArgumentNullException(nameof(model.Id));
 
-      var entity = await this.repository.GetByIdAsync(model.Id.Value);
+      var entity = await _repository.GetByIdAsync(model.Id.Value);
 
-      SimpleMapper.Map<ClaimeTypeParam, ClaimType>(model, entity);
+      SimpleMapper.Map<ClaimTypeParam, ClaimType>(model, entity);
 
-      await this.repository.UpdateAsync(entity);
+      await _repository.UpdateAsync(entity);
     }
 
     public async Task DeleteAsync(Guid id)
@@ -59,14 +59,14 @@ namespace tomware.OpenIddict.UI.Core
 
       if (id == null) throw new ArgumentNullException(nameof(id));
 
-      var entity = await this.repository.GetByIdAsync(id);
+      var entity = await _repository.GetByIdAsync(id);
 
-      await this.repository.DeleteAsync(entity);
+      await _repository.DeleteAsync(entity);
     }
 
-    private ClaimeTypeInfo ToInfo(ClaimType entity)
+    private ClaimTypeInfo ToInfo(ClaimType entity)
     {
-      return SimpleMapper.From<ClaimType, ClaimeTypeInfo>(entity);
+      return SimpleMapper.From<ClaimType, ClaimTypeInfo>(entity);
     }
   }
 }

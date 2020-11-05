@@ -2,10 +2,10 @@ namespace tomware.OpenIddict.UI.Core
 {
   public sealed class AllClaimTypes : BaseSpecification<ClaimType>
   {
-    public AllClaimTypes() : base()
+    public AllClaimTypes()
     {
-      this.ApplyOrderBy(x => x.Name);
-      this.ApplyNoTracking();
+      ApplyOrderBy(x => x.Name);
+      ApplyNoTracking();
     }
   }
 }

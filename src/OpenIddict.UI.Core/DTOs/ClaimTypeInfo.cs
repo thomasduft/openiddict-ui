@@ -2,7 +2,7 @@ using System;
 
 namespace tomware.OpenIddict.UI.Core
 {
-  public class ClaimeTypeInfo
+  public class ClaimTypeInfo
   {
     public Guid Id { get; set; }
     public string Name { get; set; }

@@ -11,18 +11,18 @@ namespace tomware.OpenIddict.UI.Api
   [Authorize(Policies.ADMIN_POLICY)]
   public class ClaimTypeController : ControllerBase
   {
-    private readonly IClaimTypeService service;
+    private readonly IClaimTypeService _service;
 
     public ClaimTypeController(IClaimTypeService service)
     {
-      this.service = service;
+      _service = service;
     }
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<ClaimTypeViewModel>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetClaimTypesAsync()
     {
-      var result = await this.service.GetClaimTypesAsync();
+      var result = await _service.GetClaimTypesAsync();
 
       return Ok(result);
     }
@@ -33,7 +33,7 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (id == null) return BadRequest();
 
-      var result = await this.service.GetAsync(id);
+      var result = await _service.GetAsync(id);
       if (result == null) return NotFound();
 
       return Ok(result);
@@ -46,9 +46,9 @@ namespace tomware.OpenIddict.UI.Api
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
 
-      var result = await this.service.CreateAsync(model);
+      var result = await _service.CreateAsync(model);
 
-      return Created($"api/claimtypes/{result}", result); // this.Json(result)
+      return Created($"api/claimtypes/{result}", result); // Json(result)
     }
 
     [HttpPut]
@@ -58,7 +58,7 @@ namespace tomware.OpenIddict.UI.Api
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
 
-      await this.service.UpdateAsync(model);
+      await _service.UpdateAsync(model);
 
       return NoContent();
     }
@@ -69,7 +69,7 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (id == null) return BadRequest();
 
-      await this.service.DeleteAsync(id);
+      await _service.DeleteAsync(id);
 
       return NoContent();
     }

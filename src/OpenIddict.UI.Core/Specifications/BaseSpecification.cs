@@ -33,49 +33,49 @@ namespace tomware.OpenIddict.UI.Core
     /// </summary>
     protected BaseSpecification(Expression<Func<T, bool>> criteria)
     {
-      this.Criterias.Add(criteria);
+      Criterias.Add(criteria);
     }
 
     protected virtual void AddCriteria(Expression<Func<T, bool>> criteria)
     {
-      this.Criterias.Add(criteria);
+      Criterias.Add(criteria);
     }
 
     protected virtual void AddInclude(Expression<Func<T, object>> includeExpression)
     {
-      this.Includes.Add(includeExpression);
+      Includes.Add(includeExpression);
     }
 
     protected virtual void AddInclude(string includeString)
     {
-      this.IncludeStrings.Add(includeString);
+      IncludeStrings.Add(includeString);
     }
 
     protected virtual void ApplyPaging(int skip, int take)
     {
-      this.Skip = skip;
-      this.Take = take;
-      this.IsPagingEnabled = true;
+      Skip = skip;
+      Take = take;
+      IsPagingEnabled = true;
     }
 
     protected virtual void ApplyNoTracking()
     {
-      this.AsNoTracking = true;
+      AsNoTracking = true;
     }
 
     protected virtual void ApplyOrderBy(Expression<Func<T, object>> orderByExpression)
     {
-      this.OrderBy = orderByExpression;
+      OrderBy = orderByExpression;
     }
 
     protected virtual void ApplyOrderByDescending(Expression<Func<T, object>> orderByDescendingExpression)
     {
-      this.OrderByDescending = orderByDescendingExpression;
+      OrderByDescending = orderByDescendingExpression;
     }
 
     protected virtual void ApplyGroupBy(Expression<Func<T, object>> groupByExpression)
     {
-      this.GroupBy = groupByExpression;
+      GroupBy = groupByExpression;
     }
   }
 }

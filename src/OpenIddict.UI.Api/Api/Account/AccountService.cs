@@ -21,13 +21,13 @@ namespace tomware.OpenIddict.UI.Api
   public class AccountService<TIdentityUser> : IAccountService
     where TIdentityUser : IdentityUser
   {
-    private readonly UserManager<TIdentityUser> manager;
+    private readonly UserManager<TIdentityUser> _manager;
 
     public AccountService(
       UserManager<TIdentityUser> manager
     )
     {
-      this.manager = manager;
+      _manager = manager;
     }
 
     public IdentityUser CreateUser(
@@ -47,16 +47,16 @@ namespace tomware.OpenIddict.UI.Api
       string password
     )
     {
-      return await this.manager.CreateAsync((TIdentityUser)user, password);
+      return await _manager.CreateAsync((TIdentityUser)user, password);
     }
 
     public async Task<IdentityResult> ChangePasswordAsync(
       ChangePasswordViewModel model
     )
     {
-      var user = await this.manager.FindByNameAsync(model.UserName);
+      var user = await _manager.FindByNameAsync(model.UserName);
 
-      return await this.manager.ChangePasswordAsync(
+      return await _manager.ChangePasswordAsync(
         user,
         model.CurrentPassword,
         model.NewPassword
@@ -66,7 +66,7 @@ namespace tomware.OpenIddict.UI.Api
     public async Task<IEnumerable<UserViewModel>> GetUsersAsync()
     {
       // TODO: Paging
-      var items = await this.manager.Users
+      var items = await _manager.Users
         .OrderBy(u => u.UserName)
         .AsNoTracking()
         .ToListAsync();
@@ -82,11 +82,11 @@ namespace tomware.OpenIddict.UI.Api
 
     public async Task<UserViewModel> GetUserAsync(string id)
     {
-      var user = await this.manager.FindByIdAsync(id);
-      var roles = await this.manager.GetRolesAsync(user);
-      var claims = await this.manager.GetClaimsAsync(user);
+      var user = await _manager.FindByIdAsync(id);
+      var roles = await _manager.GetRolesAsync(user);
+      var claims = await _manager.GetClaimsAsync(user);
 
-      var isLockedOut = await this.manager.IsLockedOutAsync(user);
+      var isLockedOut = await _manager.IsLockedOutAsync(user);
 
       return new UserViewModel
       {
@@ -109,18 +109,18 @@ namespace tomware.OpenIddict.UI.Api
       if (model == null) throw new ArgumentNullException(nameof(model));
       if (string.IsNullOrWhiteSpace(model.Id)) throw new ArgumentNullException(nameof(model.Id));
 
-      var user = await this.manager.FindByIdAsync(model.Id);
+      var user = await _manager.FindByIdAsync(model.Id);
       user.UserName = model.UserName;
       user.Email = model.Email;
       user.LockoutEnabled = model.LockoutEnabled;
 
-      var result = await this.manager.UpdateAsync(user);
+      var result = await _manager.UpdateAsync(user);
       if (!result.Succeeded)
       {
         return result;
       }
 
-      result = await this.AssignClaimsAsync(
+      result = await AssignClaimsAsync(
         user,
         model.Claims.Select(x => new Claim(x.Type, x.Value)).ToList()
       );
@@ -129,7 +129,7 @@ namespace tomware.OpenIddict.UI.Api
         return result;
       }
 
-      result = await this.AssignRolesAsync(user, model.Roles);
+      result = await AssignRolesAsync(user, model.Roles);
       if (!result.Succeeded)
       {
         return result;
@@ -144,11 +144,11 @@ namespace tomware.OpenIddict.UI.Api
     )
     {
       // removing all claims
-      var existingClaims = await this.manager.GetClaimsAsync(user);
-      await this.manager.RemoveClaimsAsync(user, existingClaims);
+      var existingClaims = await _manager.GetClaimsAsync(user);
+      await _manager.RemoveClaimsAsync(user, existingClaims);
 
       // assigning claims
-      return await this.manager.AddClaimsAsync(
+      return await _manager.AddClaimsAsync(
         user,
         claims
       );
@@ -160,11 +160,11 @@ namespace tomware.OpenIddict.UI.Api
     )
     {
       // removing all roles
-      var existingRoles = await this.manager.GetRolesAsync(user);
-      await this.manager.RemoveFromRolesAsync(user, existingRoles);
+      var existingRoles = await _manager.GetRolesAsync(user);
+      await _manager.RemoveFromRolesAsync(user, existingRoles);
 
       // assigning roles
-      return await this.manager.AddToRolesAsync(
+      return await _manager.AddToRolesAsync(
         user,
         roles
       );

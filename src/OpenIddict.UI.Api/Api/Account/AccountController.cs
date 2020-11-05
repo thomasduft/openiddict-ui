@@ -12,16 +12,16 @@ namespace tomware.OpenIddict.UI.Api
   [Authorize(Policies.ADMIN_POLICY)]
   public class AccountController : ControllerBase
   {
-    private readonly ILogger<AccountController> logger;
-    private readonly IAccountService service;
+    private readonly ILogger<AccountController> _logger;
+    private readonly IAccountService _service;
 
     public AccountController(
       ILogger<AccountController> logger,
       IAccountService accountService
     )
     {
-      this.logger = logger;
-      this.service = accountService;
+      _logger = logger;
+      _service = accountService;
     }
 
     [HttpPost("register")]
@@ -30,11 +30,11 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (ModelState.IsValid)
       {
-        var user = this.service.CreateUser(model);
-        var result = await this.service.RegisterAsync(user, model.Password);
+        var user = _service.CreateUser(model);
+        var result = await _service.RegisterAsync(user, model.Password);
         if (result.Succeeded)
         {
-          this.logger.LogInformation(
+          _logger.LogInformation(
             "New user {Email} successfully registred!",
             user.Email
           );
@@ -54,10 +54,10 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (ModelState.IsValid)
       {
-        var result = await this.service.ChangePasswordAsync(model);
+        var result = await _service.ChangePasswordAsync(model);
         if (result.Succeeded)
         {
-          this.logger.LogInformation(
+          _logger.LogInformation(
             "The password for user {UserName} has been changed.",
             model.UserName
           );
@@ -75,7 +75,7 @@ namespace tomware.OpenIddict.UI.Api
     [ProducesResponseType(typeof(IEnumerable<UserViewModel>), StatusCodes.Status200OK)]
     public async Task<IActionResult> Users()
     {
-      var result = await this.service.GetUsersAsync();
+      var result = await _service.GetUsersAsync();
 
       return Ok(result);
     }
@@ -86,7 +86,7 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (string.IsNullOrWhiteSpace(id)) return BadRequest();
 
-      var result = await this.service.GetUserAsync(id);
+      var result = await _service.GetUserAsync(id);
 
       return Ok(result);
     }
@@ -98,7 +98,7 @@ namespace tomware.OpenIddict.UI.Api
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
 
-      var result = await this.service.UpdateAsync(model);
+      var result = await _service.UpdateAsync(model);
 
       return Ok(result);
     }

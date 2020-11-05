@@ -21,16 +21,16 @@ namespace tomware.OpenIddict.UI.Api
 
   public class RoleService : IRoleService
   {
-    private readonly RoleManager<IdentityRole> manager;
+    private readonly RoleManager<IdentityRole> _manager;
 
     public RoleService(RoleManager<IdentityRole> manager)
     {
-      this.manager = manager;
+      _manager = manager;
     }
 
     public async Task<IEnumerable<RoleViewModel>> GetRolesAsync()
     {
-      var items = this.manager.Roles
+      var items = _manager.Roles
         .OrderBy(r => r.Name)
         .ToList();
 
@@ -43,7 +43,7 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (id == null) throw new ArgumentNullException(nameof(id));
 
-      var role = await this.manager.FindByIdAsync(id);
+      var role = await _manager.FindByIdAsync(id);
 
       return role != null ? ToModel(role) : null;
     }
@@ -53,9 +53,9 @@ namespace tomware.OpenIddict.UI.Api
       if (model == null) throw new ArgumentNullException(nameof(model));
 
       var newRole = new IdentityRole(model.Name);
-      if (!await this.manager.RoleExistsAsync(model.Name))
+      if (!await _manager.RoleExistsAsync(model.Name))
       {
-        await this.manager.CreateAsync(newRole);
+        await _manager.CreateAsync(newRole);
       }
 
       return newRole.Id;
@@ -66,19 +66,19 @@ namespace tomware.OpenIddict.UI.Api
       if (model == null) throw new ArgumentNullException(nameof(model));
       if (string.IsNullOrWhiteSpace(model.Id)) throw new ArgumentNullException(nameof(model.Id));
 
-      var role = await this.manager.FindByIdAsync(model.Id);
+      var role = await _manager.FindByIdAsync(model.Id);
       role.Name = model.Name;
 
-      await this.manager.UpdateAsync(role);
+      await _manager.UpdateAsync(role);
     }
 
     public async Task DeleteAsync(string id)
     {
       if (id == null) throw new ArgumentNullException(nameof(id));
 
-      var role = await this.manager.FindByIdAsync(id);
+      var role = await _manager.FindByIdAsync(id);
 
-      await this.manager.DeleteAsync(role);
+      await _manager.DeleteAsync(role);
     }
 
     private RoleViewModel ToModel(IdentityRole entity)

@@ -14,52 +14,52 @@ namespace tomware.OpenIddict.UI.Infrastructure
 
     public EfRepository(OpenIddictUIContext context)
     {
-      this.Context = context;
+      Context = context;
     }
 
     public virtual async Task<TEntity> GetByIdAsync(TKey id)
     {
-      return await this.Context.Set<TEntity>()
+      return await Context.Set<TEntity>()
         .FindAsync(id);
     }
 
     public async Task<IReadOnlyList<TEntity>> ListAsync(ISpecification<TEntity> spec)
     {
-      return await this.ApplySpecification(spec).ToListAsync();
+      return await ApplySpecification(spec).ToListAsync();
     }
 
     public async Task<int> CountAsync(ISpecification<TEntity> spec)
     {
-      return await this.ApplySpecification(spec).CountAsync();
+      return await ApplySpecification(spec).CountAsync();
     }
 
     public async Task<TEntity> AddAsync(TEntity entity)
     {
-      this.Context.Set<TEntity>().Add(entity);
+      Context.Set<TEntity>().Add(entity);
 
-      await this.Context.SaveChangesAsync();
+      await Context.SaveChangesAsync();
 
       return entity;
     }
 
     public async System.Threading.Tasks.Task UpdateAsync(TEntity entity)
     {
-      this.Context.Entry(entity).State = EntityState.Modified;
+      Context.Entry(entity).State = EntityState.Modified;
 
-      await this.Context.SaveChangesAsync();
+      await Context.SaveChangesAsync();
     }
 
     public async System.Threading.Tasks.Task DeleteAsync(TEntity entity)
     {
-      this.Context.Set<TEntity>().Remove(entity);
+      Context.Set<TEntity>().Remove(entity);
 
-      await this.Context.SaveChangesAsync();
+      await Context.SaveChangesAsync();
     }
 
     private IQueryable<TEntity> ApplySpecification(ISpecification<TEntity> spec)
     {
       return SpecificationEvaluator<TEntity>
-        .GetQuery(this.Context.Set<TEntity>().AsQueryable(), spec);
+        .GetQuery(Context.Set<TEntity>().AsQueryable(), spec);
     }
   }
 }

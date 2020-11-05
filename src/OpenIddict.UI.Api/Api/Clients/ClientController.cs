@@ -10,20 +10,20 @@ namespace tomware.OpenIddict.UI.Api
   [Authorize(Policies.ADMIN_POLICY)]
   public class ClientController : ControllerBase
   {
-    private readonly IClientService service;
+    private readonly IClientService _service;
 
     public ClientController(
       IClientService service
     )
     {
-      this.service = service;
+      _service = service;
     }
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<ClientViewModel>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetClientsAsync()
     {
-      var result = await this.service.GetClientsAsync();
+      var result = await _service.GetClientsAsync();
 
       return Ok(result);
     }
@@ -34,7 +34,7 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (clientId == null) return BadRequest();
 
-      var result = await this.service.GetAsync(clientId);
+      var result = await _service.GetAsync(clientId);
       if (result == null) return NotFound();
 
       return Ok(result);
@@ -47,9 +47,9 @@ namespace tomware.OpenIddict.UI.Api
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
 
-      var result = await this.service.CreateAsync(model);
+      var result = await _service.CreateAsync(model);
 
-      return Created($"api/clients/{result}", result); // this.Json(result)
+      return Created($"api/clients/{result}", result); // Json(result)
     }
 
     [HttpPut]
@@ -59,7 +59,7 @@ namespace tomware.OpenIddict.UI.Api
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
 
-      await this.service.UpdateAsync(model);
+      await _service.UpdateAsync(model);
 
       return NoContent();
     }
@@ -70,7 +70,7 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (clientId == null) return BadRequest();
 
-      await this.service.DeleteAsync(clientId);
+      await _service.DeleteAsync(clientId);
 
       return NoContent();
     }

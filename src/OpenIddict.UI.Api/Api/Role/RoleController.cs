@@ -10,18 +10,18 @@ namespace tomware.OpenIddict.UI.Api
   [Authorize(Policies.ADMIN_POLICY)]
   public class RoleController : ControllerBase
   {
-    private readonly IRoleService service;
+    private readonly IRoleService _service;
 
     public RoleController(IRoleService service)
     {
-      this.service = service;
+      _service = service;
     }
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<RoleViewModel>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetRolesAsync()
     {
-      var result = await this.service.GetRolesAsync();
+      var result = await _service.GetRolesAsync();
 
       return Ok(result);
     }
@@ -32,7 +32,7 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (id == null) return BadRequest();
 
-      var result = await this.service.GetAsync(id);
+      var result = await _service.GetAsync(id);
       if (result == null) return NotFound();
 
       return Ok(result);
@@ -45,9 +45,9 @@ namespace tomware.OpenIddict.UI.Api
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
 
-      var result = await this.service.CreateAsync(model);
+      var result = await _service.CreateAsync(model);
 
-      return Created($"api/role/{result}", result); // this.Json(result)
+      return Created($"api/role/{result}", result); // Json(result)
     }
 
     [HttpPut]
@@ -57,7 +57,7 @@ namespace tomware.OpenIddict.UI.Api
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
 
-      await this.service.UpdateAsync(model);
+      await _service.UpdateAsync(model);
 
       return NoContent();
     }
@@ -68,7 +68,7 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (id == null) return BadRequest();
 
-      await this.service.DeleteAsync(id);
+      await _service.DeleteAsync(id);
 
       return NoContent();
     }

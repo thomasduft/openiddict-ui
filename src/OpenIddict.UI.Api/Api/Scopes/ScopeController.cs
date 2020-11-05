@@ -10,18 +10,18 @@ namespace tomware.OpenIddict.UI.Api
   [Authorize(Policies.ADMIN_POLICY)]
   public class ScopeController : ControllerBase
   {
-    private readonly IScopeService service;
+    private readonly IScopeService _service;
 
     public ScopeController(IScopeService service)
     {
-      this.service = service;
+      _service = service;
     }
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<ScopeViewModel>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetClaimTypesAsync()
     {
-      var result = await this.service.GetScopesAsync();
+      var result = await _service.GetScopesAsync();
 
       return Ok(result);
     }
@@ -30,7 +30,7 @@ namespace tomware.OpenIddict.UI.Api
     [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetScopeNamesAsync()
     {
-      var result = await this.service.GetScopeNamesAsync();
+      var result = await _service.GetScopeNamesAsync();
 
       return Ok(result);
     }
@@ -41,7 +41,7 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (name == null) return BadRequest();
 
-      var result = await this.service.GetAsync(name);
+      var result = await _service.GetAsync(name);
       if (result == null) return NotFound();
 
       return Ok(result);
@@ -54,9 +54,9 @@ namespace tomware.OpenIddict.UI.Api
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
 
-      var result = await this.service.CreateAsync(model);
+      var result = await _service.CreateAsync(model);
 
-      return Created($"api/scopes/{result}", result); // this.Json(result)
+      return Created($"api/scopes/{result}", result); // Json(result)
     }
 
     [HttpPut]
@@ -66,7 +66,7 @@ namespace tomware.OpenIddict.UI.Api
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
 
-      await this.service.UpdateAsync(model);
+      await _service.UpdateAsync(model);
 
       return NoContent();
     }
@@ -77,7 +77,7 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (name == null) return BadRequest();
 
-      await this.service.DeleteAsync(name);
+      await _service.DeleteAsync(name);
 
       return NoContent();
     }
