@@ -1,17 +1,57 @@
+using System;
 using Microsoft.EntityFrameworkCore;
+using OpenIddict.EntityFrameworkCore.Models;
 using tomware.OpenIddict.UI.Core;
 using tomware.OpenIddict.UI.Infrastructure.Configuration;
-using OpenIddict.EntityFrameworkCore.Models;
 
 namespace tomware.OpenIddict.UI.Infrastructure
 {
-  public class OpenIddictUIContext : DbContext
+  public class OpenIddictUIStoreOptions
+  {
+    public Action<DbContextOptionsBuilder> OpenIddictUIContext { get; set; }
+    public Action<IServiceProvider, DbContextOptionsBuilder> ResolveDbContextOptions { get; set; }
+  }
+
+  public interface IOpenIddictUIContext
+  {
+    DbSet<ClaimType> ClaimTypes { get; set; }
+
+    DbSet<OpenIddictEntityFrameworkCoreApplication> Applications { get; set; }
+
+    DbSet<OpenIddictEntityFrameworkCoreAuthorization> Authorizations { get; set; }
+
+    DbSet<OpenIddictEntityFrameworkCoreScope> Scopes { get; set; }
+
+    DbSet<OpenIddictEntityFrameworkCoreToken> Tokens { get; set; }
+  }
+
+  public class OpenIddictUIContext : OpenIddictUIContext<OpenIddictUIContext>
+  {
+    public OpenIddictUIContext(
+      DbContextOptions<OpenIddictUIContext> options,
+      OpenIddictUIStoreOptions storeOptions
+    ) : base(options, storeOptions)
+    {
+    }
+  }
+
+  public class OpenIddictUIContext<TContext> : DbContext, IOpenIddictUIContext
+    where TContext : DbContext, IOpenIddictUIContext
   {
     // further configs see
     // https://github.com/IdentityServer/IdentityServer4/blob/main/src/EntityFramework.Storage/src/DbContexts/ConfigurationDbContext.cs
 
-    public OpenIddictUIContext(DbContextOptions options) : base(options)
-    { }
+    private readonly OpenIddictUIStoreOptions storeOptions;
+
+    public OpenIddictUIContext(
+      DbContextOptions<TContext> options,
+      OpenIddictUIStoreOptions storeOptions
+    )
+      : base(options)
+    {
+      this.storeOptions = storeOptions
+        ?? throw new ArgumentNullException(nameof(storeOptions));
+    }
 
     public DbSet<ClaimType> ClaimTypes { get; set; }
 
@@ -27,7 +67,13 @@ namespace tomware.OpenIddict.UI.Infrastructure
     {
       base.OnModelCreating(builder);
 
-      builder.ApplyConfiguration(new ClaimTypeEntityConfiguration());
+      builder
+        .ApplyConfiguration(new ClaimTypeEntityConfiguration())
+        .UseOpenIddict();
+      // .ApplyConfiguration(new OpenIddictEntityFrameworkCoreApplicationConfiguration<TApplication, TAuthorization, TToken, TKey>())
+      // .ApplyConfiguration(new OpenIddictEntityFrameworkCoreAuthorizationConfiguration<TAuthorization, TApplication, TToken, TKey>())
+      // .ApplyConfiguration(new OpenIddictEntityFrameworkCoreScopeConfiguration<TScope, TKey>())
+      // .ApplyConfiguration(new OpenIddictEntityFrameworkCoreTokenConfiguration<TToken, TApplication, TAuthorization, TKey>());
     }
   }
 }

@@ -6,6 +6,7 @@ using OpenIddict.Core;
 using OpenIddict.EntityFrameworkCore.Models;
 using System;
 using System.Threading.Tasks;
+using tomware.OpenIddict.UI.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace tomware.Microip.Web
@@ -18,6 +19,7 @@ namespace tomware.Microip.Web
   public class MigrationService : IMigrationService
   {
     private readonly STSContext context;
+    private readonly OpenIddictUIContext openIddictUIContext;
     private readonly OpenIddictApplicationManager<OpenIddictEntityFrameworkCoreApplication> applicationManager;
     private readonly UserManager<ApplicationUser> userManager;
     private readonly RoleManager<IdentityRole> roleManager;
@@ -25,6 +27,7 @@ namespace tomware.Microip.Web
 
     public MigrationService(
       STSContext context,
+      OpenIddictUIContext openopenIddictUIContext,
       OpenIddictApplicationManager<OpenIddictEntityFrameworkCoreApplication> applicationManager,
       UserManager<ApplicationUser> userManager,
       RoleManager<IdentityRole> roleManager,
@@ -32,6 +35,7 @@ namespace tomware.Microip.Web
       )
     {
       this.context = context;
+      this.openIddictUIContext = openopenIddictUIContext;
       this.applicationManager = applicationManager;
       this.userManager = userManager;
       this.roleManager = roleManager;
@@ -40,7 +44,8 @@ namespace tomware.Microip.Web
 
     public async Task EnsureMigrationAsync()
     {
-      await this.context.Database.MigrateAsync(); // EnsureCreatedAsync();
+      await this.context.Database.MigrateAsync(); 
+      await this.openIddictUIContext.Database.MigrateAsync();
 
       await this.EnsureAdministratorRole();
       await this.EnsureAdministratorUser();
@@ -116,7 +121,7 @@ namespace tomware.Microip.Web
             Permissions.Scopes.Email,
             Permissions.Scopes.Profile,
             Permissions.Scopes.Roles,
-            Permissions.Prefixes.Scope + "demo_api"
+            Permissions.Prefixes.Scope + Constants.STS_API
           }
         });
       }

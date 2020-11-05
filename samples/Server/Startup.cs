@@ -75,15 +75,9 @@ namespace tomware.Microip.Web
       //   options.Cookie.SecurePolicy = cookieSecurePolicy;
       // });
 
-      var connection = this.Configuration["ConnectionString"];
       services.AddDbContext<STSContext>(options =>
         {
-          options.UseSqlite(connection);
-
-          // Register the entity sets needed by OpenIddict.
-          // Note: use the generic overload if you need
-          // to replace the default OpenIddict entities.
-          options.UseOpenIddict();
+          options.UseSqlite(this.Configuration["ConnectionStrings:Application"]);
         });
 
       services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -119,8 +113,7 @@ namespace tomware.Microip.Web
         {
           // Configure OpenIddict to use the Entity Framework Core stores and models.
           // Note: call ReplaceDefaultEntities() to replace the default OpenIddict entities.
-          options.UseEntityFrameworkCore()
-                 .UseDbContext<STSContext>();
+          options.UseEntityFrameworkCore();
         })
         // Register the OpenIddict server components.
         .AddServer(options =>
@@ -133,8 +126,8 @@ namespace tomware.Microip.Web
 
           // Mark the "email", "profile" and "roles" scopes as supported scopes.
           options.RegisterScopes(
-            Scopes.Email, 
-            Scopes.Profile, 
+            Scopes.Email,
+            Scopes.Profile,
             Scopes.Roles,
             Constants.STS_API);
 
@@ -153,7 +146,7 @@ namespace tomware.Microip.Web
                  .EnableTokenEndpointPassthrough()
                  .EnableUserinfoEndpointPassthrough()
                  .EnableStatusCodePagesIntegration();
-          
+
           // options.DisableHttpsRequirement(); ID2083
         })
         // Register the OpenIddict validation components.
@@ -164,13 +157,20 @@ namespace tomware.Microip.Web
 
           // Register the ASP.NET Core host.
           options.UseAspNetCore();
+        })
+        .AddUIStore(options =>
+        {
+          options.OpenIddictUIContext = builder =>
+              builder.UseSqlite(this.Configuration["ConnectionStrings:Application"],
+                  sql => sql.MigrationsAssembly(typeof(Startup)
+                    .GetTypeInfo()
+                    .Assembly
+                    .GetName()
+                    .Name));
         });
 
-         // OpenIddict.UI
-      services.AddOpenIddictUICoreServices();
-      services.AddOpenIddictUIInfrastructureServices();
+      // OpenIddict.UI
       services.AddOpenIddictUIApiServices<ApplicationUser>();
-
 
       // ---------------------------------------------------------------------------------------- //
 
