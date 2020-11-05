@@ -6,7 +6,7 @@ namespace tomware.OpenIddict.UI.Core
 {
   public abstract class BaseSpecification<T> : ISpecification<T>
   {
-    public List<Expression<Func<T, bool>>> Criterias { get; }
+    public List<Expression<Func<T, bool>>> Criteria { get; }
       = new List<Expression<Func<T, bool>>>();
     public List<Expression<Func<T, object>>> Includes { get; }
       = new List<Expression<Func<T, object>>>();
@@ -22,7 +22,7 @@ namespace tomware.OpenIddict.UI.Core
 
     /// <summary>
     /// Constructor for BaseSpecification with no Criteria.
-    /// Note: Use AddCriteria(criteria) when criterias are required!
+    /// Note: Use AddCriterion(criteria) when criterias are required!
     /// </summary>
     protected BaseSpecification()
     {
@@ -31,14 +31,14 @@ namespace tomware.OpenIddict.UI.Core
     /// <summary>
     /// Constructor for BaseSpecification with default Criteria.
     /// </summary>
-    protected BaseSpecification(Expression<Func<T, bool>> criteria)
+    protected BaseSpecification(Expression<Func<T, bool>> criterion)
     {
-      Criterias.Add(criteria);
+      Criteria.Add(criterion);
     }
 
-    protected virtual void AddCriteria(Expression<Func<T, bool>> criteria)
+    protected virtual void AddCriterion(Expression<Func<T, bool>> criterion)
     {
-      Criterias.Add(criteria);
+      Criteria.Add(criterion);
     }
 
     protected virtual void AddInclude(Expression<Func<T, object>> includeExpression)

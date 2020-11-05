@@ -14,9 +14,9 @@ namespace tomware.OpenIddict.UI.Infrastructure
       var query = inputQuery;
 
       // modify the IQueryable using the specification's criteria expression
-      if (specification.Criterias.Count > 0)
+      if (specification.Criteria.Count > 0)
       {
-        foreach (var criteria in specification.Criterias)
+        foreach (var criteria in specification.Criteria)
         {
           query = query.Where(criteria);
         }
