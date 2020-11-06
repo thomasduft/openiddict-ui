@@ -44,7 +44,7 @@ namespace tomware.Microip.Web
 
     public async Task EnsureMigrationAsync()
     {
-      await this.context.Database.MigrateAsync(); 
+      await this.context.Database.MigrateAsync();
       await this.openIddictUIContext.Database.MigrateAsync();
 
       await this.EnsureAdministratorRole();
@@ -95,7 +95,7 @@ namespace tomware.Microip.Web
           ClientId = "stsclient",
           DisplayName = "STS Admin UI",
           // ClientSecret = "",
-          ConsentType = ConsentTypes.Explicit,
+          ConsentType = ConsentTypes.Implicit,
           Requirements =
           {
             Requirements.Features.ProofKeyForCodeExchange

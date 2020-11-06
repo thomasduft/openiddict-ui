@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
       ? 'http://localhost:4200'
       : window.location.origin;
 
-    const devModeIssuer = 'https://localhost:5000';
+    const devModeIssuer = 'https://localhost:5000/';
 
     this.oauthService.configure({
       clientId: 'stsclient',
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
       responseType: 'code',
       scope: 'openid sts_api',
       loginUrl: isDevMode()
-        ? devModeIssuer +  '/identity/account/login'
+        ? devModeIssuer + '/identity/account/login'
         : window.location.origin + 'identity/account/login',
       logoutUrl: isDevMode()
         ? devModeIssuer + '/identity/account/logout'

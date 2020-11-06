@@ -39,7 +39,7 @@ namespace tomware.Microip.Web
         o.AddPolicy("AllowAllOrigins", builder =>
         {
           builder
-            .WithOrigins("http://localhost:4200", "https://localhost:4200")
+            .WithOrigins("http://localhost:4200")
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowCredentials()
@@ -132,11 +132,14 @@ namespace tomware.Microip.Web
 
           // Note: this sample only uses the authorization code flow but you can enable
           // the other flows if you need to support implicit, password or client credentials.
-          options.AllowAuthorizationCodeFlow();
+          options.AllowAuthorizationCodeFlow()
+                 .AllowRefreshTokenFlow();
 
           // Register the signing and encryption credentials.
           options.AddDevelopmentEncryptionCertificate()
                  .AddDevelopmentSigningCertificate();
+
+           options.RequireProofKeyForCodeExchange();
 
           // Register the ASP.NET Core host and configure the ASP.NET Core-specific options.
           options.UseAspNetCore()

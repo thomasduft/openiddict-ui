@@ -1,8 +1,5 @@
 using System.Threading.Tasks;
 using IdentityModel;
-using IdentityServer4.Events;
-using IdentityServer4.Extensions;
-using IdentityServer4.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,21 +16,15 @@ namespace tomware.Microip.Web.Areas.Identity.Pages.Account
     public string LogoutId { get; set; }
 
     private readonly ILogger<LogoutModel> logger;
-    private readonly IEventService eventService;
-    private readonly IIdentityServerInteractionService interaction;
     private readonly SignInManager<ApplicationUser> signInManager;
 
     public LogoutModel(
       ILogger<LogoutModel> logger,
-      IEventService eventService,
-      IIdentityServerInteractionService interaction,
       SignInManager<ApplicationUser> signInManager
     )
     {
       this.logger = logger;
       this.signInManager = signInManager;
-      this.eventService = eventService;
-      this.interaction = interaction;
     }
 
     public void OnGet(string logoutId)
@@ -46,16 +37,11 @@ namespace tomware.Microip.Web.Areas.Identity.Pages.Account
       // see: https://github.com/IdentityServer/IdentityServer4.Quickstart.UI/blob/master/Quickstart/Account/AccountController.cs
       // see: https://github.com/IdentityServer/IdentityServer4.Quickstart.UI/blob/master/Views/Account/LoggedOut.cshtml
       // see: https://github.com/IdentityServer/IdentityServer4.Quickstart.UI/blob/master/wwwroot/js/signout-redirect.js
-      var vm = await BuildLoggedOutViewModelAsync(LogoutId);
+      var vm = BuildLoggedOutViewModelAsync(LogoutId);
 
       if (User?.Identity.IsAuthenticated == true)
       {
         await signInManager.SignOutAsync();
-
-        await eventService.RaiseAsync(new UserLogoutSuccessEvent(
-          User.GetSubjectId(),
-          User.GetDisplayName()
-        ));
 
         logger.LogInformation("User logged out.");
       }
@@ -84,15 +70,10 @@ namespace tomware.Microip.Web.Areas.Identity.Pages.Account
       }
     }
 
-    private async Task<LoggedOutViewModel> BuildLoggedOutViewModelAsync(string logoutId)
+    private LoggedOutViewModel BuildLoggedOutViewModelAsync(string logoutId)
     {
-      // get context information (client name, post logout redirect URI and iframe for federated signout)
-      var logout = await this.interaction.GetLogoutContextAsync(logoutId);
-
       var vm = new LoggedOutViewModel
       {
-        PostLogoutRedirectUri = logout?.PostLogoutRedirectUri,
-        SignOutIframeUrl = logout?.SignOutIFrameUrl,
         LogoutId = logoutId
       };
 
@@ -101,19 +82,7 @@ namespace tomware.Microip.Web.Areas.Identity.Pages.Account
         var idp = User.FindFirst(JwtClaimTypes.IdentityProvider)?.Value;
         if (idp != null && idp != IdentityServer4.IdentityServerConstants.LocalIdentityProvider)
         {
-          var providerSupportsSignout = await HttpContext.GetSchemeSupportsSignOutAsync(idp);
-          if (providerSupportsSignout)
-          {
-            if (vm.LogoutId == null)
-            {
-              // if there's no current logout context, we need to create one
-              // this captures necessary info from the current logged in user
-              // before we signout and redirect away to the external IdP for signout
-              vm.LogoutId = await this.interaction.CreateLogoutContextAsync();
-            }
-
-            vm.ExternalAuthenticationScheme = idp;
-          }
+          vm.ExternalAuthenticationScheme = idp;
         }
       }
 
