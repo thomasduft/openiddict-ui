@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,25 +18,33 @@ namespace tomware.Microip.Web
       var configuration = services
         .BuildServiceProvider()
         .GetRequiredService<IConfiguration>();
-     
+
       var authority = GetAuthority(configuration);
       services
-        .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-        .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
+        .AddAuthentication(options => {
+          options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+          options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
         {
-          opt.Authority = authority;
-          opt.Audience = Constants.STS_API;
-          opt.RequireHttpsMetadata = false;
-          opt.IncludeErrorDetails = true;
-          opt.SaveToken = true;
-          opt.TokenValidationParameters = new TokenValidationParameters()
-          {
-            ValidateIssuer = true,
-            ValidateAudience = false,
-            NameClaimType = "name",
-            RoleClaimType = "role"
-          };
+          options.LoginPath = "/Identity/Account/Login";
+          options.LogoutPath = "/Identity/Account/Logout";
         });
+        // .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
+        // {
+        //   opt.Authority = authority;
+        //   opt.Audience = Constants.STS_API;
+        //   opt.RequireHttpsMetadata = false;
+        //   opt.IncludeErrorDetails = true;
+        //   opt.SaveToken = true;
+        //   opt.TokenValidationParameters = new TokenValidationParameters()
+        //   {
+        //     ValidateIssuer = true,
+        //     ValidateAudience = false,
+        //     NameClaimType = "name",
+        //     RoleClaimType = "role"
+        //   };
+        // });
 
       // own services
       services.AddScoped<IMigrationService, MigrationService>();

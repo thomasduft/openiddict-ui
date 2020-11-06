@@ -104,7 +104,13 @@ namespace tomware.Microip.Web
           options.Lockout.AllowedForNewUsers = true;
         });
 
+      // STS Services
+      services.AddSTSServices(); // TODO: combine with above
+
       // ---------------------------------------------------------------------------------------- //
+      var authority = !string.IsNullOrWhiteSpace(Configuration["AuthorityForDocker"])
+        ? Configuration["AuthorityForDocker"]
+        : Program.GetUrls(Configuration);
 
       services.AddOpenIddict()
         // Register the OpenIddict core components.
@@ -117,6 +123,8 @@ namespace tomware.Microip.Web
         // Register the OpenIddict server components.
         .AddServer(options =>
         {
+          options.SetIssuer(new Uri(authority));
+
           // Enable the authorization, logout, token and userinfo endpoints.
           options.SetAuthorizationEndpointUris("/connect/authorize")
                  .SetLogoutEndpointUris("/connect/logout")
@@ -127,6 +135,7 @@ namespace tomware.Microip.Web
           options.RegisterScopes(
             Scopes.Email,
             Scopes.Profile,
+            Scopes.OpenId,
             Scopes.Roles,
             Constants.STS_API);
 
@@ -139,7 +148,7 @@ namespace tomware.Microip.Web
           options.AddDevelopmentEncryptionCertificate()
                  .AddDevelopmentSigningCertificate();
 
-           options.RequireProofKeyForCodeExchange();
+          options.RequireProofKeyForCodeExchange();
 
           // Register the ASP.NET Core host and configure the ASP.NET Core-specific options.
           options.UseAspNetCore()
@@ -154,6 +163,11 @@ namespace tomware.Microip.Web
         // Register the OpenIddict validation components.
         .AddValidation(options =>
         {
+          // Configure the audience accepted by this resource server.
+          // The value MUST match the audience associated with the
+          // "demo_api" scope, which is used by ResourceController
+          options.AddAudiences(Constants.STS_API);
+
           // Import the configuration from the local OpenIddict server instance.
           options.UseLocalServer();
 
@@ -175,9 +189,6 @@ namespace tomware.Microip.Web
         .AddUIApis<ApplicationUser>();
 
       // ---------------------------------------------------------------------------------------- //
-
-      // STS Services
-      services.AddSTSServices(); // TODO: combine with above
 
       // localization
       services.AddSingleton<IdentityLocalizationService>();
@@ -244,6 +255,10 @@ namespace tomware.Microip.Web
         IdentityModelEventSource.ShowPII = true;
 
         app.UseDeveloperExceptionPage();
+      }
+      else
+      {
+        app.UseExceptionHandler("/Home/Error");
       }
 
       // app.UseMiddleware<SecurityHeadersMiddleware>();
