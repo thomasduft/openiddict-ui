@@ -1,0 +1,28 @@
+<tw-list [rows]="claimtypes | filter : searchText">
+  <tw-header>
+    <h3 class="title" i18n>Claimtypes</h3>
+    <div class="button__bar">
+      <a class="button" [routerLink]="['.', 'new']">
+        <tw-icon name="plus"></tw-icon>
+      </a>
+      <button type="button" (click)="reload()">
+        <tw-icon name="refresh"></tw-icon>
+      </button>
+    </div>
+    <div class="form list__search">
+      <input type="text"
+        placeholder="search"
+        [(ngModel)]="searchText"
+        i18n-placeholder>
+    </div>
+  </tw-header>
+  <ng-template let-claimtype twTemplate="claimtype-item">
+    <div [routerLink]="['.', claimtype?.id]"
+         routerLinkActive="active"
+         [attr.title]="claimtype?.name"
+         class="list__item">
+      <div>{{ claimtype.name }}</div>
+      <div>{{ claimtype.description }}</div>
+    </div>
+  </ng-template>
+</tw-list>

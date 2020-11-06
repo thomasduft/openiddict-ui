@@ -1,0 +1,28 @@
+<tw-list [rows]="scopes | filter : searchText">
+  <tw-header>
+    <h3 class="title" i18n>Scopes</h3>
+    <div class="button__bar">
+      <a class="button" [routerLink]="['.', 'new']">
+        <tw-icon name="plus"></tw-icon>
+      </a>
+      <button type="button" (click)="reload()">
+        <tw-icon name="refresh"></tw-icon>
+      </button>
+    </div>
+    <div class="form list__search">
+      <input type="text"
+        placeholder="search"
+        [(ngModel)]="searchText"
+        i18n-placeholder>
+    </div>
+  </tw-header>
+  <ng-template let-scope twTemplate="scope-item">
+    <div [routerLink]="['.', scope.name]"
+         routerLinkActive="active"
+         [attr.title]="scope.name"
+         class="list__item">
+      <div>{{ scope.name }}</div>
+      <div>{{ scope.displayName }}</div>
+    </div>
+  </ng-template>
+</tw-list>

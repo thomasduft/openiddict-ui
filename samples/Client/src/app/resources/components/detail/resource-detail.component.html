@@ -1,0 +1,8 @@
+<tw-formdef #formDef [key]="key"
+  [viewModel]="viewModel"
+  [showSave]="true"
+  [showDelete]="!isNew"
+  [errors]="errors"
+  (submitted)="submitted($event)"
+  (deleted)="deleted($event)">
+</tw-formdef>

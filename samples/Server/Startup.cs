@@ -18,7 +18,6 @@ using System.Linq;
 using System.Reflection;
 using tomware.Microip.Web.Resources;
 using tomware.OpenIddict.UI.Api;
-using tomware.OpenIddict.UI.Core;
 using tomware.OpenIddict.UI.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 

@@ -1,0 +1,67 @@
+<div tabindex="0" class="multiselect-dropdown"
+  (blur)="onTouched()"
+  tw-clickoutside (clickOutside)="closeDropdown()">
+  <div [class.disabled]="disabled">
+    <span tabindex="-1" class="dropdown-btn" (click)="toggleDropdown($event)">
+      <span class="no-item-selected" *ngIf="selectedItems.length == 0" i18n>select items</span>
+      <span class="selected-item" *ngFor="let item of sortedSelectedItems; trackBy: trackByFn;">
+        {{ item.value }}
+        <a style="padding-top:2px;padding-left:2px;color:white" 
+           (click)="onItemClick(item)">x</a>
+      </span>
+      <span style="float:right !important;padding-right:4px">
+        <span [ngClass]="isDropdownOpen ? 'dropdown-up' : 'dropdown-down'"></span>
+      </span>
+    </span>
+  </div>
+  <div class="dropdown-list" *ngIf="isDropdownOpen">
+    <ul>
+      <li *ngIf="!singleSelection"
+          class="multiselect-item-checkbox"
+          style="border-bottom: 1px solid #ccc"
+          (click)="toggleSelectAll()"
+          tabindex="0">
+        <input type="checkbox"
+               aria-label="multiselect-select-all"
+               [checked]="isAllItemsSelected()"
+               [disabled]="disabled" />
+        <div *ngIf="!isAllItemsSelected()" i18n>select all</div>
+        <div *ngIf="isAllItemsSelected()" i18n>unselect all</div>
+      </li>
+      <li class="filter-textbox" *ngIf="listItems.length > 0">
+        <input type="text" 
+               aria-label="multiselect-search"
+               i18n-placeholder [placeholder]="'search'"
+               [readOnly]="disabled"
+               [(ngModel)]="filter.value"
+               (ngModelChange)="onFilterTextChange($event)">
+      </li>
+      <li class="filter-textbox" *ngIf="allowAddingItems">
+        <input type="text" 
+               aria-label="multiselect-add-listitem"
+               i18n-placeholder [placeholder]="'add item'"
+               [readOnly]="disabled"
+               #addListItem>
+        <button 
+          type="button" 
+          (click)="addItem(addListItem.value)"><strong>+</strong>
+        </button>
+      </li>
+    </ul>
+    <ul>
+      <li *ngFor="let item of sortedListItems | tw2ListFilter:filter" 
+        (click)="onItemClick(item)" class="multiselect-item-checkbox"
+        (keydown)="onKeyDown($event, item)"
+        tabindex="0">
+        <input type="checkbox" 
+               aria-label="multiselect-item" 
+               [checked]="isSelected(item)" 
+               [disabled]="disabled || !isSelected(item)" />
+        <div>{{ item.value }}</div>
+      </li>
+      <li class='no-data' *ngIf="listItems.length == 0">
+        <h5 i18n>No data!</h5>
+      </li>
+    </ul>
+  </div>
+</div>

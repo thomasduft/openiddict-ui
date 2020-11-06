@@ -1,0 +1,28 @@
+<tw-list [rows]="clients | filter : searchText">
+  <tw-header>
+    <h3 class="title" i18n>Clients</h3>
+    <div class="button__bar">
+      <a class="button" [routerLink]="['.', 'new']">
+        <tw-icon name="plus"></tw-icon>
+      </a>
+      <button type="button" (click)="reload()">
+        <tw-icon name="refresh"></tw-icon>
+      </button>
+    </div>
+    <div class="form list__search">
+      <input type="text"
+        placeholder="search"
+        [(ngModel)]="searchText"
+        i18n-placeholder>
+    </div>
+  </tw-header>
+  <ng-template let-client twTemplate="client-item">
+    <div [routerLink]="['.', client.clientId]"
+         routerLinkActive="active"
+         [attr.title]="client.clientId"
+         class="list__item">
+      <div>{{ client.clientId }}</div>
+      <div>{{ client.clientName }}</div>
+    </div>
+  </ng-template>
+</tw-list>

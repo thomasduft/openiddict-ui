@@ -1,0 +1,84 @@
+@import "_variables.less";
+
+* {
+	margin:0;
+	padding:0;
+}
+
+body {
+	font-family: sans-serif;
+	height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: @sidebar-background;
+}
+
+a {
+	color: @workspace-link-color;
+	text-decoration: none;
+}
+
+ul, li {
+	list-style-type: none;
+	list-style-position: inside;
+}
+
+table {
+  width: 100%;
+  margin-top: 5px;
+}
+
+td {
+	// border: 1px solid black;
+  text-align: left;
+	vertical-align: top;
+
+  button,
+	input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="time"],
+  input[type="url"],
+  textarea,
+  select {
+		margin-bottom: 0;
+		padding: 0;
+		-webkit-appearance: menulist-button;
+    height: 35px;
+	}
+}
+
+.title {
+	width: 100%;
+	font-size: 1.2em;
+	font-weight: bold;
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid @sidebar-background;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 3px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lighten(@sidebar-background, 20%);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: @sidebar-background;
+}

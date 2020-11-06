@@ -1,0 +1,6 @@
+<div *ngIf="!onlydetail" class="pane__list">
+  <ng-content select="[list]"></ng-content>
+</div>
+<div class="pane__detail">
+  <ng-content select="[detail]"></ng-content>
+</div>

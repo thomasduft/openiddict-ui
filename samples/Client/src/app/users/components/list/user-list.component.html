@@ -1,0 +1,28 @@
+<tw-list [rows]="users | filter : searchText">
+  <tw-header>
+    <h3 class="title" i18n>Users</h3>
+    <div class="button__bar">
+      <a class="button" [routerLink]="['.', 'register']">
+        <tw-icon name="plus"></tw-icon>
+      </a>
+      <button type="button" (click)="reload()">
+        <tw-icon name="refresh"></tw-icon>
+      </button>
+    </div>
+    <div class="form list__search">
+      <input type="text"
+        placeholder="search"
+        [(ngModel)]="searchText"
+        i18n-placeholder>
+    </div>
+  </tw-header>
+  <ng-template let-user twTemplate="user-item">
+    <div [routerLink]="['.', user?.id]"
+         routerLinkActive="active"
+         [attr.title]="user?.userName"
+         class="list__item">
+      <div>{{ user.userName }}</div>
+      <div>{{ user.email }}</div>
+    </div>
+  </ng-template>
+</tw-list>

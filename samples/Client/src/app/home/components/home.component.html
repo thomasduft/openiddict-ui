@@ -1,0 +1,10 @@
+<tw-pane onlydetail="true">
+  <div detail>
+    <h3 i18n>Hello {{ userName }}!</h3>
+    <p *ngIf="!isAuthenticated">Please login...</p>
+    <p *ngIf="isAuthenticated && isAdmin">Now go and configure something meaningful!</p>
+    <p *ngIf="isAuthenticated && isAdmin">Change my <a (click)="openProfile()" href="javascript:void(0)">profile</a>...
+    </p>
+    <p *ngIf="isAuthenticated && !isAdmin">It seems that you have not given access to this kind of data!</p>
+  </div>
+</tw-pane>

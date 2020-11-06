@@ -1,0 +1,28 @@
+<tw-list [rows]="resources | filter : searchText">
+  <tw-header>
+    <h3 class="title" i18n>Resources</h3>
+    <div class="button__bar">
+      <a class="button" [routerLink]="['.', 'new']">
+        <tw-icon name="plus"></tw-icon>
+      </a>
+      <button type="button" (click)="reload()">
+        <tw-icon name="refresh"></tw-icon>
+      </button>
+    </div>
+    <div class="form list__search">
+      <input type="text"
+        placeholder="search"
+        [(ngModel)]="searchText"
+        i18n-placeholder>
+    </div>
+  </tw-header>
+  <ng-template let-resource twTemplate="resource-item">
+    <div [routerLink]="['.', resource.name]"
+         routerLinkActive="active"
+         [attr.title]="resource.name"
+         class="list__item">
+      <div>{{ resource.name }}</div>
+      <div>{{ resource.displayName }}</div>
+    </div>
+  </ng-template>
+</tw-list>
