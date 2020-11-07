@@ -73,11 +73,11 @@ export class AppComponent implements OnInit {
       responseType: 'code',
       scope: 'openid sts_api',
       loginUrl: isDevMode()
-        ? devModeIssuer + '/identity/account/login'
-        : window.location.origin + 'identity/account/login',
+        ? devModeIssuer + '/account/login'
+        : window.location.origin + 'account/login',
       logoutUrl: isDevMode()
-        ? devModeIssuer + '/identity/account/logout'
-        : window.location.origin + '/identity/account/logout',
+        ? devModeIssuer + '/account/logout'
+        : window.location.origin + '/account/logout',
       requireHttps: false
     });
     this.oauthService.events.subscribe(async (e: OAuthEvent) => {

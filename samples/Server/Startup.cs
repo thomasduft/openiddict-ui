@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,12 +12,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using tomware.Microip.Web.Resources;
 using tomware.OpenIddict.UI.Api;
 using tomware.OpenIddict.UI.Infrastructure;
@@ -104,13 +108,32 @@ namespace tomware.Microip.Web
           options.Lockout.AllowedForNewUsers = true;
         });
 
+      var authority = !string.IsNullOrWhiteSpace(Configuration["AuthorityForDocker"])
+        ? Configuration["AuthorityForDocker"]
+        : Program.GetUrls(Configuration);
+
+      services
+        .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
+        {
+          opt.Authority = authority;
+          opt.Audience = Constants.STS_API;
+          opt.RequireHttpsMetadata = false;
+          opt.IncludeErrorDetails = true;
+          opt.SaveToken = true;
+          opt.TokenValidationParameters = new TokenValidationParameters()
+          {
+            ValidateIssuer = true,
+            ValidateAudience = false,
+            NameClaimType = "name",
+            RoleClaimType = "role"
+          };
+        });
+
       // STS Services
       services.AddSTSServices(); // TODO: combine with above
 
       // ---------------------------------------------------------------------------------------- //
-      var authority = !string.IsNullOrWhiteSpace(Configuration["AuthorityForDocker"])
-        ? Configuration["AuthorityForDocker"]
-        : Program.GetUrls(Configuration);
 
       services.AddOpenIddict()
         // Register the OpenIddict core components.
@@ -284,6 +307,21 @@ namespace tomware.Microip.Web
         endpoints.MapRazorPages();
         endpoints.MapDefaultControllerRoute();
       });
+    }
+
+    private static X509Certificate2 GetCertificate(IConfiguration config)
+    {
+      var settings = config.GetSection("CertificateSettings");
+      if (settings == null) return null;
+
+      string filename = settings.GetValue<string>("filename");
+      string password = settings.GetValue<string>("password");
+      if (!string.IsNullOrEmpty(filename) && !string.IsNullOrEmpty(password))
+      {
+        return new X509Certificate2(filename, password);
+      }
+
+      return null;
     }
 
     private static void CheckSameSite(HttpContext httpContext, CookieOptions options)

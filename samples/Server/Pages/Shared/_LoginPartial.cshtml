@@ -9,13 +9,13 @@
   @if (SignInManager.IsSignedIn(User))
   {
     <li>
-      <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
+      <a id="manage" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
     </li>
-    @* <li>
+    <li>
       <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post">
         <button id="logout" type="submit">Logout</button>
       </form>
-    </li> *@
+    </li>
   }
   else
   {
@@ -23,7 +23,7 @@
       <a id="register" asp-area="Identity" asp-page="/Account/Register">@SharedLocalizer.GetLocalizedHtmlString("REGISTER")</a>
     </li>*@
     <li>
-      <a id="login" asp-area="Identity" asp-page="/Account/Login">@SharedLocalizer.GetLocalizedHtmlString("LOGIN")</a>
+      <a id="login" asp-page="/Account/Login">@SharedLocalizer.GetLocalizedHtmlString("LOGIN")</a>
     </li>
   }
 </ul>
