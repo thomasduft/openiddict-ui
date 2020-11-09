@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using OpenIddict.Validation.AspNetCore;
-using tomware.OpenIddict.UI.Api;
 
 namespace tomware.OpenIddict.UI.Api
 {
@@ -32,13 +31,12 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (ModelState.IsValid)
       {
-        var user = _service.CreateUser(model);
-        var result = await _service.RegisterAsync(user, model.Password);
+        var result = await _service.RegisterAsync(model);
         if (result.Succeeded)
         {
           _logger.LogInformation(
             "New user {Email} successfully registred!",
-            user.Email
+            model.Email
           );
 
           return Ok(result);

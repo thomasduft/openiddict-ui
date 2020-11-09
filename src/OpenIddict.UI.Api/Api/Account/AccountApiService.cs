@@ -10,8 +10,7 @@ namespace tomware.OpenIddict.UI.Api
 {
   public interface IAccountApiService
   {
-    IdentityUser CreateUser(RegisterUserViewModel model);
-    Task<IdentityResult> RegisterAsync(IdentityUser user, string password);
+    Task<IdentityResult> RegisterAsync(RegisterUserViewModel model);
     Task<IdentityResult> ChangePasswordAsync(ChangePasswordViewModel model);
     Task<IEnumerable<UserViewModel>> GetUsersAsync();
     Task<UserViewModel> GetUserAsync(string id);
@@ -19,7 +18,7 @@ namespace tomware.OpenIddict.UI.Api
   }
 
   public class AccountApiService<TIdentityUser> : IAccountApiService
-    where TIdentityUser : IdentityUser
+    where TIdentityUser : IdentityUser, new()
   {
     private readonly UserManager<TIdentityUser> _manager;
 
@@ -30,24 +29,18 @@ namespace tomware.OpenIddict.UI.Api
       _manager = manager;
     }
 
-    public IdentityUser CreateUser(
+    public async Task<IdentityResult> RegisterAsync(
       RegisterUserViewModel model
     )
     {
-      return new IdentityUser
+      var identiyUser = new TIdentityUser
       {
         UserName = model.UserName,
         Email = model.Email,
         LockoutEnabled = true
       };
-    }
 
-    public async Task<IdentityResult> RegisterAsync(
-      IdentityUser user,
-      string password
-    )
-    {
-      return await _manager.CreateAsync((TIdentityUser)user, password);
+      return await _manager.CreateAsync(identiyUser, model.Password);
     }
 
     public async Task<IdentityResult> ChangePasswordAsync(
