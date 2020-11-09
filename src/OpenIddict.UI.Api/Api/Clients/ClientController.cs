@@ -1,13 +1,15 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace tomware.OpenIddict.UI.Api
 {
   [Route("api/clients")]
-  [Authorize(Policies.ADMIN_POLICY)]
+  [Authorize(Policies.ADMIN_POLICY, AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
   public class ClientController : ControllerBase
   {
     private readonly IClientService _service;
@@ -49,7 +51,7 @@ namespace tomware.OpenIddict.UI.Api
 
       var result = await _service.CreateAsync(model);
 
-      return Created($"api/clients/{result}", result); // Json(result)
+      return Created($"api/clients/{result}", JsonSerializer.Serialize(result));
     }
 
     [HttpPut]

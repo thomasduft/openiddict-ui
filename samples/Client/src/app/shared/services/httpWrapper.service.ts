@@ -27,6 +27,10 @@ export class HttpWrapperService {
     return this.http.get<T>(url, { params });
   }
 
+  public getRaw<T>(endpoint: string, params?: HttpParams): Observable<T> {
+    return this.http.get<T>(endpoint, { params });
+  }
+
   public post<T>(endpoint: string, body: any): Observable<T> {
     const url = this.api.createApiUrl(endpoint);
 

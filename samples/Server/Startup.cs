@@ -17,6 +17,7 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
@@ -112,8 +113,15 @@ namespace tomware.Microip.Web
         ? Configuration["AuthorityForDocker"]
         : Program.GetUrls(Configuration);
 
+      JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+      JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
+
       services
-        .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddAuthentication(o =>
+        {
+          o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+          o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
         .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
         {
           opt.Authority = authority;
@@ -125,8 +133,8 @@ namespace tomware.Microip.Web
           {
             ValidateIssuer = true,
             ValidateAudience = false,
-            NameClaimType = "name",
-            RoleClaimType = "role"
+            NameClaimType = Claims.Subject,
+            RoleClaimType = Claims.Role,
           };
         });
 

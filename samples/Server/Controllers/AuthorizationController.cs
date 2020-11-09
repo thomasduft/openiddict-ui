@@ -37,7 +37,8 @@ namespace tomware.Microip.Web
         OpenIddictAuthorizationManager<OpenIddictEntityFrameworkCoreAuthorization> authorizationManager,
         OpenIddictScopeManager<OpenIddictEntityFrameworkCoreScope> scopeManager,
         SignInManager<ApplicationUser> signInManager,
-        UserManager<ApplicationUser> userManager)
+        UserManager<ApplicationUser> userManager
+    )
     {
       _applicationManager = applicationManager;
       _authorizationManager = authorizationManager;
@@ -297,7 +298,14 @@ namespace tomware.Microip.Web
     public IActionResult Deny() => Forbid(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
 
     [HttpGet("~/connect/logout")]
-    public IActionResult Logout() => View();
+    public IActionResult Logout(string id_token_hint, string post_logout_redirect_uri)
+    {
+      return RedirectToPage("/Account/Logout", new
+      {
+        logoutId = id_token_hint,
+        redirectUri = post_logout_redirect_uri
+      });
+    }
 
     [ActionName(nameof(Logout)), HttpPost("~/connect/logout"), ValidateAntiForgeryToken]
     public async Task<IActionResult> LogoutPost()

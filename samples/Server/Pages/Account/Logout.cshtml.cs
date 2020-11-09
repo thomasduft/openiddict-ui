@@ -15,6 +15,9 @@ namespace tomware.Microip.Web.Pages.Account
     [BindProperty]
     public string LogoutId { get; set; }
 
+    [BindProperty]
+    public string RedirectUri { get; set; }
+
     private readonly ILogger<LogoutModel> logger;
     private readonly SignInManager<ApplicationUser> signInManager;
 
@@ -27,16 +30,14 @@ namespace tomware.Microip.Web.Pages.Account
       this.signInManager = signInManager;
     }
 
-    public void OnGet(string logoutId)
+    public void OnGet(string logoutId, string redirectUri)
     {
       this.LogoutId = logoutId;
+      this.RedirectUri = redirectUri;
     }
 
     public async Task<IActionResult> OnPost()
     {
-      // see: https://github.com/IdentityServer/IdentityServer4.Quickstart.UI/blob/master/Quickstart/Account/AccountController.cs
-      // see: https://github.com/IdentityServer/IdentityServer4.Quickstart.UI/blob/master/Views/Account/LoggedOut.cshtml
-      // see: https://github.com/IdentityServer/IdentityServer4.Quickstart.UI/blob/master/wwwroot/js/signout-redirect.js
       var vm = BuildLoggedOutViewModelAsync(LogoutId);
 
       if (User?.Identity.IsAuthenticated == true)
@@ -60,9 +61,9 @@ namespace tomware.Microip.Web.Pages.Account
         );
       }
 
-      if (vm.PostLogoutRedirectUri != null)
+      if (this.RedirectUri != null)
       {
-        return Redirect(vm.PostLogoutRedirectUri);
+        return Redirect(this.RedirectUri);
       }
       else
       {

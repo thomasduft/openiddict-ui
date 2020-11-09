@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { OAuthService, OAuthEvent } from 'angular-oauth2-oidc';
+import { OAuthService, OAuthEvent, UserInfo } from 'angular-oauth2-oidc';
 
 import { UserService } from './shared';
 
@@ -78,10 +78,20 @@ export class AppComponent implements OnInit {
       logoutUrl: isDevMode()
         ? devModeIssuer + '/account/logout'
         : window.location.origin + '/account/logout',
+      userinfoEndpoint: isDevMode()
+        ? devModeIssuer + '/connect/userinfo'
+        : window.location.origin + '/connect/userinfo',
       requireHttps: false
     });
+
     this.oauthService.events.subscribe(async (e: OAuthEvent) => {
-      // console.log(e);
+      console.log(e);
+
+      if (this.oauthService.hasValidAccessToken()) {
+        // console.log('IdToken:', this.oauthService.getIdToken());
+        // console.log('AccessToken:', this.oauthService.getAccessToken());
+      }
+
       if (e.type === 'token_received' || e.type === 'token_refreshed') {
         this.user.setProperties(this.oauthService.getAccessToken());
       }
@@ -92,9 +102,11 @@ export class AppComponent implements OnInit {
         this.user.setProperties(this.oauthService.getAccessToken());
       }
     });
+
     this.oauthService.loadDiscoveryDocumentAndLogin({
       onTokenReceived: context => {
-        this.user.setProperties(context.accessToken);
+        // this.user.setProperties(context.accessToken);
+        console.log(context);
       }
     });
   }
