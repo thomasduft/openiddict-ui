@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using OpenIddict.Validation.AspNetCore;
+using tomware.OpenIddict.UI.Api;
 
 namespace tomware.OpenIddict.UI.Api
 {
@@ -14,15 +15,15 @@ namespace tomware.OpenIddict.UI.Api
   public class AccountController : ControllerBase
   {
     private readonly ILogger<AccountController> _logger;
-    private readonly IAccountService _service;
+    private readonly IAccountApiService _service;
 
     public AccountController(
       ILogger<AccountController> logger,
-      IAccountService accountService
+      IAccountApiService service
     )
     {
       _logger = logger;
-      _service = accountService;
+      _service = service;
     }
 
     [HttpPost("register")]

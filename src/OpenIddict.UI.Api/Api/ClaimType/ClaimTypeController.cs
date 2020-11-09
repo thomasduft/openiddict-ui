@@ -13,9 +13,9 @@ namespace tomware.OpenIddict.UI.Api
   [Authorize(Policies.ADMIN_POLICY, AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
   public class ClaimTypeController : ControllerBase
   {
-    private readonly IClaimTypeService _service;
+    private readonly IClaimTypeApiService _service;
 
-    public ClaimTypeController(IClaimTypeService service)
+    public ClaimTypeController(IClaimTypeApiService service)
     {
       _service = service;
     }

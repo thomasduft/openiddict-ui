@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -16,7 +17,9 @@ namespace tomware.Microip.Web
   {
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public UserinfoController(UserManager<ApplicationUser> userManager)
+    public UserinfoController(
+      UserManager<ApplicationUser> userManager
+    )
     {
       _userManager = userManager;
     }
@@ -46,6 +49,8 @@ namespace tomware.Microip.Web
         [Claims.Email] = user.Email,
         [Claims.Role] = await _userManager.GetRolesAsync(user)
       };
+
+      // var userClaims = await _userManager.GetClaimsAsync(user);
 
       // if (User.HasScope(Scopes.Email))
       // {

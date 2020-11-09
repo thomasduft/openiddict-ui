@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace tomware.OpenIddict.UI.Api
 {
-  public interface IAccountService
+  public interface IAccountApiService
   {
     IdentityUser CreateUser(RegisterUserViewModel model);
     Task<IdentityResult> RegisterAsync(IdentityUser user, string password);
@@ -18,12 +18,12 @@ namespace tomware.OpenIddict.UI.Api
     Task<IdentityResult> UpdateAsync(UserViewModel model);
   }
 
-  public class AccountService<TIdentityUser> : IAccountService
+  public class AccountApiService<TIdentityUser> : IAccountApiService
     where TIdentityUser : IdentityUser
   {
     private readonly UserManager<TIdentityUser> _manager;
 
-    public AccountService(
+    public AccountApiService(
       UserManager<TIdentityUser> manager
     )
     {

@@ -46,8 +46,9 @@ namespace tomware.OpenIddict.UI.Api
       this IServiceCollection services
     ) where T : IdentityUser
     {
-      services.AddTransient<IAccountService, AccountService<T>>();
+      services.AddTransient<IAccountApiService, AccountApiService<T>>();
       services.AddTransient<IRoleService, RoleService>();
+      services.AddTransient<IClaimTypeApiService, ClaimTypeApiService>();
 
       // TODO: with OpenIddict managers
       // services.AddTransient<IClientService, ClientService>();
