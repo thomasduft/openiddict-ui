@@ -51,11 +51,8 @@ namespace tomware.OpenIddict.UI.Api
       services.AddTransient<IClaimTypeApiService, ClaimTypeApiService>();
 
       // TODO: with OpenIddict managers
+      services.AddTransient<IScopeApiService, ScopeApiService>();
       // services.AddTransient<IClientService, ClientService>();
-      // services.AddTransient<IScopeService, ScopeService>();
-
-      // TODO: anyway custom implementation!
-      //services.AddTransient<IClaimTypeService, ClaimTypeService>();
 
       return services;
     }

@@ -17,7 +17,7 @@
     </div>
   </tw-header>
   <ng-template let-scope twTemplate="scope-item">
-    <div [routerLink]="['.', scope.name]"
+    <div [routerLink]="['.', scope.id]"
          routerLinkActive="active"
          [attr.title]="scope.name"
          class="list__item">

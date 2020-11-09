@@ -3,197 +3,94 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using tomware.OpenIddict.UI.Core;
+using tomware.OpenIddict.UI.Infrastructure;
 
 namespace tomware.OpenIddict.UI.Api
 {
-  public interface IScopeService
+  public interface IScopeApiService
   {
     Task<IEnumerable<ScopeViewModel>> GetScopesAsync();
 
     Task<IEnumerable<string>> GetScopeNamesAsync();
 
-    Task<ScopeViewModel> GetAsync(string name);
+    Task<ScopeViewModel> GetAsync(string id);
 
     Task<string> CreateAsync(ScopeViewModel model);
 
     Task UpdateAsync(ScopeViewModel model);
 
-    Task DeleteAsync(string name);
+    Task DeleteAsync(string id);
   }
 
-  // public class ScopeService : IScopeService
-  // {
-  //   private readonly ConfigurationDbContext context;
+  public class ScopeApiService : IScopeApiService
+  {
+    private readonly IScopeService _service;
 
-  //   public ScopeService(ConfigurationDbContext context)
-  //   {
-  //     this.context = context;
-  //   }
+    public ScopeApiService(IScopeService service)
+    {
+      _service = service;
+    }
 
-  //   public async Task<IEnumerable<ScopeViewModel>> GetScopesAsync()
-  //   {
-  //     var items = await this.LoadAll()
-  //      .AsNoTracking()
-  //      .ToListAsync();
+    public async Task<IEnumerable<ScopeViewModel>> GetScopesAsync()
+    {
+      var items = await _service.GetScopesAsync();
 
-  //     return items.Select(x => ToModel(x));
-  //   }
+      return items.Select(c => ToModel(c));
+    }
 
-  //   public async Task<IEnumerable<string>> GetScopeNamesAsync()
-  //   {
-  //     var apiScopes = await this.context.ApiScopes
-  //       .OrderBy(x => x.Name)
-  //       .AsNoTracking()
-  //       .ToListAsync();
+    public async Task<IEnumerable<string>> GetScopeNamesAsync()
+    {
+      var items = await _service.GetScopesAsync();
 
-  //     var identityResources = await this.context.IdentityResources
-  //       .OrderBy(x => x.Name)
-  //       .AsNoTracking()
-  //       .ToListAsync();
+      return items.Select(i => i.Name);
+    }
 
-  //     return apiScopes.Select(x => x.Name)
-  //       .Union(identityResources.Select(x => x.Name))
-  //       .Distinct();
-  //   }
+    public async Task<ScopeViewModel> GetAsync(string id)
+    {
+      if (id == null) throw new ArgumentNullException(nameof(id));
 
-  //   public async Task<ScopeViewModel> GetAsync(string name)
-  //   {
-  //     if (name == null) throw new ArgumentNullException(nameof(name));
+      var claimType = await _service.GetAsync(id);
 
-  //     var apiScope = await this.GetApiScopeByName(name);
+      return claimType != null ? ToModel(claimType) : null;
+    }
 
-  //     return apiScope != null ? ToModel(apiScope) : null;
-  //   }
+    public async Task<string> CreateAsync(ScopeViewModel model)
+    {
+      if (model == null) throw new ArgumentNullException(nameof(model));
 
-  //   public async Task<string> CreateAsync(ScopeViewModel model)
-  //   {
-  //     if (model is null) throw new System.ArgumentNullException(nameof(model));
+      var param = ToParam(model);
 
-  //     var apiScope = new ApiScope
-  //     {
-  //       Enabled = model.Enabled,
-  //       Name = model.Name,
-  //       DisplayName = model.DisplayName,
-  //       Description = model.Description,
-  //       Required = model.Required,
-  //       ShowInDiscoveryDocument = model.ShowInDiscoveryDocument,
-  //       Emphasize = model.Emphasize,
-  //     };
+      return await _service.CreateAsync(param);
+    }
 
-  //     HandleCollectionProperties(model, apiScope);
+    public async Task UpdateAsync(ScopeViewModel model)
+    {
+      if (model == null) throw new ArgumentNullException(nameof(model));
+      if (string.IsNullOrWhiteSpace(model.Id)) throw new ArgumentNullException(nameof(model.Id));
 
-  //     this.context.ApiScopes.Add(apiScope);
+      var param = ToParam(model);
 
-  //     await this.context.SaveChangesAsync();
+      await _service.UpdateAsync(param);
+    }
 
-  //     return apiScope.Name;
-  //   }
+    public async Task DeleteAsync(string id)
+    {
+      if (id == null) throw new ArgumentNullException(nameof(id));
 
-  //   public async Task UpdateAsync(ScopeViewModel model)
-  //   {
-  //     if (model == null) throw new ArgumentNullException(nameof(model));
+      await _service.DeleteAsync(id);
+    }
 
-  //     var apiScope = await this.GetApiScopeId(model.Id.Value);
-  //     if (apiScope == null) throw new ArgumentNullException(nameof(apiScope));
+    private ScopeParam ToParam(ScopeViewModel model)
+    {
+      return SimpleMapper.From<ScopeViewModel, ScopeParam>(model);
+    }
 
-  //     apiScope.Enabled = model.Enabled;
-  //     apiScope.Name = model.Name;
-  //     apiScope.DisplayName = model.DisplayName;
-  //     apiScope.Description = model.Description;
-  //     apiScope.Required = model.Required;
-  //     apiScope.ShowInDiscoveryDocument = model.ShowInDiscoveryDocument;
-  //     apiScope.Emphasize = model.Emphasize;
-
-  //     HandleCollectionProperties(model, apiScope);
-
-  //     this.context.ApiScopes.Update(apiScope);
-
-  //     await this.context.SaveChangesAsync();
-  //   }
-
-  //   public async Task DeleteAsync(string name)
-  //   {
-  //     if (name == null) throw new ArgumentNullException(nameof(name));
-
-  //     var apiScope = await this.context.ApiScopes
-  //       .FirstOrDefaultAsync(c => c.Name == name);
-
-  //     var clients = await this.context.Clients
-  //             .Include(x => x.AllowedScopes)
-  //             .ToListAsync();
-  //     foreach (var client in clients)
-  //     {
-  //       client.AllowedScopes.RemoveAll(x => apiScope.Name == x.Scope);
-  //     }
-
-  //     var apiResources = await this.context.ApiResources
-  //             .Include(x => x.Scopes)
-  //             .ToListAsync();
-  //     foreach (var apiResource in apiResources)
-  //     {
-  //       apiResource.Scopes.RemoveAll(x => apiScope.Name == x.Scope);
-  //     }
-
-  //     this.context.ApiScopes.Remove(apiScope);
-
-  //     await this.context.SaveChangesAsync();
-  //   }
-
-  //   private IOrderedQueryable<ApiScope> LoadAll()
-  //   {
-  //     return this.context.ApiScopes
-  //             .Include(x => x.UserClaims)
-  //             .Include(x => x.Properties)
-  //             .OrderBy(x => x.Name);
-  //   }
-
-  //   private async Task<ApiScope> GetApiScopeByName(string name)
-  //   {
-  //     List<ApiScope> items = await this.LoadAll()
-  //      .Where(x => x.Name == name)
-  //      .ToListAsync();
-
-  //     return items.Count() == 1 ? items.First() : null;
-  //   }
-
-  //   private async Task<ApiScope> GetApiScopeId(int id)
-  //   {
-  //     List<ApiScope> items = await this.LoadAll()
-  //      .Where(x => x.Id == id)
-  //      .ToListAsync();
-
-  //     return items.Count() == 1 ? items.First() : null;
-  //   }
-
-  //   private ScopeViewModel ToModel(ApiScope entity)
-  //   {
-  //     return new ScopeViewModel
-  //     {
-  //       Id = entity.Id,
-  //       Enabled = entity.Enabled,
-  //       Name = entity.Name,
-  //       DisplayName = entity.DisplayName,
-  //       Description = entity.Description,
-  //       Required = entity.Required,
-  //       ShowInDiscoveryDocument = entity.ShowInDiscoveryDocument,
-  //       Emphasize = entity.Emphasize,
-  //       UserClaims = entity.UserClaims
-  //         .Select(x => x.Type).ToList()
-  //     };
-  //   }
-
-  //   private void HandleCollectionProperties(ScopeViewModel model, ApiScope apiScope)
-  //   {
-  //     // deassign them
-  //     if (apiScope.UserClaims != null) apiScope.UserClaims.Clear();
-
-  //     // assign them
-  //     apiScope.UserClaims = model.UserClaims
-  //       .Select(x => new ApiScopeClaim
-  //       {
-  //         Scope = apiScope,
-  //         Type = x
-  //       }).ToList();
-  //   }
-  // }
+    private ScopeViewModel ToModel(ScopeInfo info)
+    {
+      var vm = SimpleMapper.From<ScopeInfo, ScopeViewModel>(info);
+      vm.Id = info.Id;
+      return vm;
+    }
+  }
 }

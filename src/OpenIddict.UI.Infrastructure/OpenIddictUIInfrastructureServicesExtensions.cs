@@ -43,6 +43,8 @@ namespace tomware.OpenIddict.UI.Infrastructure
       services.AddTransient<IClaimTypeRepository, ClaimTypeRepository<OpenIddictUIContext>>();
       services.AddTransient<IScopeRepository, ScopeRepository<OpenIddictUIContext>>();
 
+      services.AddTransient<IScopeService, ScopeService>();
+
       return services;
     }
 

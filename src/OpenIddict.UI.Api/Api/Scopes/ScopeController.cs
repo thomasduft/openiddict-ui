@@ -12,9 +12,9 @@ namespace tomware.OpenIddict.UI.Api
   [Authorize(Policies.ADMIN_POLICY, AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
   public class ScopeController : ControllerBase
   {
-    private readonly IScopeService _service;
+    private readonly IScopeApiService _service;
 
-    public ScopeController(IScopeService service)
+    public ScopeController(IScopeApiService service)
     {
       _service = service;
     }
@@ -37,13 +37,13 @@ namespace tomware.OpenIddict.UI.Api
       return Ok(result);
     }
 
-    [HttpGet("{name}")]
+    [HttpGet("{id}")]
     [ProducesResponseType(typeof(ScopeViewModel), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAsync(string name)
+    public async Task<IActionResult> GetAsync(string id)
     {
-      if (name == null) return BadRequest();
+      if (id == null) return BadRequest();
 
-      var result = await _service.GetAsync(name);
+      var result = await _service.GetAsync(id);
       if (result == null) return NotFound();
 
       return Ok(result);
