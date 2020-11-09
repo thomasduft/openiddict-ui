@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { OAuthService, OAuthEvent, UserInfo } from 'angular-oauth2-oidc';
+import { OAuthService, OAuthEvent } from 'angular-oauth2-oidc';
 
 import { UserService } from './shared';
 
@@ -85,28 +85,18 @@ export class AppComponent implements OnInit {
     });
 
     this.oauthService.events.subscribe(async (e: OAuthEvent) => {
-      console.log(e);
-
-      if (this.oauthService.hasValidAccessToken()) {
-        // console.log('IdToken:', this.oauthService.getIdToken());
-        // console.log('AccessToken:', this.oauthService.getAccessToken());
-      }
-
       if (e.type === 'token_received' || e.type === 'token_refreshed') {
-        this.user.setProperties(this.oauthService.getAccessToken());
+        this.user.loadProfile();
       }
 
       if (e.type === 'discovery_document_loaded' && this.oauthService.hasValidAccessToken()) {
-        // const userInfo = await this.oauthService.loadUserProfile();
-        // console.log(userInfo);
-        this.user.setProperties(this.oauthService.getAccessToken());
+        this.user.loadProfile();
       }
     });
 
     this.oauthService.loadDiscoveryDocumentAndLogin({
-      onTokenReceived: context => {
-        // this.user.setProperties(context.accessToken);
-        console.log(context);
+      onTokenReceived: () => {
+        this.user.loadProfile();
       }
     });
   }

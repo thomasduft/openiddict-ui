@@ -27,8 +27,8 @@ export class HomeComponent {
   public openProfile(): void {
     window.location.replace(
       isDevMode()
-        ? 'http://localhost:5000/identity/account/manage'
-        : window.location.origin + '/identity/account/manage'
+        ? 'https://localhost:5000/account/manage'
+        : window.location.origin + '/account/manage'
     );
   }
 }

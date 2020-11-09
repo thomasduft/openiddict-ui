@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { UserInfo } from 'angular-oauth2-oidc';
-import { HttpWrapperService } from './httpWrapper.service';
+
+import { UserInfo, OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class UserService {
   private claims: Array<string> = new Array<string>();
 
   public get isAuthenticated(): boolean {
-    return this.authenticated || this.username !== UserService.ANONYMOUS;
+    return this.username !== UserService.ANONYMOUS;
   }
 
   public get userName(): string {
@@ -25,11 +25,11 @@ export class UserService {
   }
 
   public constructor(
-    private http: HttpWrapperService
+    private oauth: OAuthService
   ) { }
 
   public reset(): void {
-    this.setProperties();
+    this.loadProfile();
   }
 
   public hasClaim(claim: string): boolean {
@@ -40,33 +40,18 @@ export class UserService {
     return this.claims.some((r => r === claim));
   }
 
-  public setProperties(accesToken: string = null): void {
-    if (accesToken) {
-      // const jwt = JSON.parse(window.atob(accesToken.split('.')[1]));
+  public loadProfile(): void {
+    if (!this.isAuthenticated) {
+      this.oauth.loadUserProfile().then((info: UserInfo) => {
+        this.username = info.name;
+        this.claims = Array.isArray(info.role)
+          ? info.role
+          : [info.role];
 
-      // this.username = jwt.given_name;
-
-      // this.claims = Array.isArray(jwt.role)
-      //   ? jwt.role
-      //   : [jwt.role];
-
-      // if (jwt.tw && Array.isArray(jwt.tw)) {
-      //   this.claims.push(...jwt.tw);
-      // }
-      if (!this.isAuthenticated) {
-        this.http.getRaw<UserInfo>('https://localhost:5000/connect/userinfo')
-          .subscribe((info: UserInfo) => {
-            this.username = info.given_name;
-
-          });
-      }
-
-      this.authenticated = true;
-
-      return;
+        // if (jwt.tw && Array.isArray(jwt.tw)) {
+        //   this.claims.push(...jwt.tw);
+        // }
+      });
     }
-
-    this.username = UserService.ANONYMOUS;
-    this.claims = new Array<string>();
   }
 }

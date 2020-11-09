@@ -55,8 +55,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         if (err instanceof HttpErrorResponse) {
           if (err.status === 403) {
             this.router.navigate(['forbidden']);
-          }
-          if (err.status >= 500) {
+          } else {
             console.log(err);
             this.messageBus.publish(new StatusMessage(
               err.statusText,

@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,12 +10,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
-using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
@@ -109,39 +105,14 @@ namespace tomware.Microip.Web
           options.Lockout.AllowedForNewUsers = true;
         });
 
-      var authority = !string.IsNullOrWhiteSpace(Configuration["AuthorityForDocker"])
-        ? Configuration["AuthorityForDocker"]
-        : Program.GetUrls(Configuration);
-
-      JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-      JwtSecurityTokenHandler.DefaultOutboundClaimTypeMap.Clear();
-
-      services
-        .AddAuthentication(o =>
-        {
-          o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-          o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        })
-        .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
-        {
-          opt.Authority = authority;
-          opt.Audience = Constants.STS_API;
-          opt.RequireHttpsMetadata = false;
-          opt.IncludeErrorDetails = true;
-          opt.SaveToken = true;
-          opt.TokenValidationParameters = new TokenValidationParameters()
-          {
-            ValidateIssuer = true,
-            ValidateAudience = false,
-            NameClaimType = Claims.Subject,
-            RoleClaimType = Claims.Role,
-          };
-        });
-
       // STS Services
       services.AddSTSServices(); // TODO: combine with above
 
       // ---------------------------------------------------------------------------------------- //
+
+      var authority = !string.IsNullOrWhiteSpace(Configuration["AuthorityForDocker"])
+        ? Configuration["AuthorityForDocker"]
+        : Program.GetUrls(Configuration);
 
       services.AddOpenIddict()
         // Register the OpenIddict core components.
@@ -190,6 +161,7 @@ namespace tomware.Microip.Web
                  .EnableStatusCodePagesIntegration();
 
           // options.DisableHttpsRequirement(); ID2083
+          // options.EnableDegradedMode();
         })
         // Register the OpenIddict validation components.
         .AddValidation(options =>
@@ -197,7 +169,7 @@ namespace tomware.Microip.Web
           // Configure the audience accepted by this resource server.
           // The value MUST match the audience associated with the
           // "demo_api" scope, which is used by ResourceController
-          options.AddAudiences(Constants.STS_API);
+          // options.AddAudiences(Constants.STS_API);
 
           // Import the configuration from the local OpenIddict server instance.
           options.UseLocalServer();
@@ -390,7 +362,7 @@ namespace tomware.Microip.Web
         "/roles",
         "/users",
         "/users/register",
-        "/resources",
+        "/scopes",
         "/clients"
       };
 
