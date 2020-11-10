@@ -54,8 +54,8 @@ export class ClientDetailComponent implements OnInit {
   public ngOnInit(): void {
     this.routeParams$ = this.route.params
       .subscribe((params: Params) => {
-        if (params.clientId) {
-          this.init(params.clientId);
+        if (params.id) {
+          this.init(params.id);
         }
       });
   }
@@ -110,26 +110,23 @@ export class ClientDetailComponent implements OnInit {
     this.router.navigate(['clients']);
   }
 
-  private init(clientId?: string): void {
-    if (clientId !== 'new') {
-      this.load(clientId);
+  private init(id?: string): void {
+    if (id !== 'new') {
+      this.load(id);
     } else {
       this.create();
     }
   }
 
-  private load(clientId: string): void {
+  private load(id: string): void {
     this.isNew = false;
     this.client$ = forkJoin({
       scopenames: this.scopeService.scopenames(),
-      client: this.service.client(clientId)
+      client: this.service.client(id)
     }).subscribe((result: any) => {
       this.slotRegistry.register(new ClientDetailSlot(
-        result.client.allowedGrantTypes,
         result.client.redirectUris,
-        result.client.postLogoutRedirectUris,
-        result.client.allowedCorsOrigins,
-        result.scopenames
+        result.client.postLogoutRedirectUris
       ));
 
       this.key = ClientDetailSlot.KEY;
@@ -140,28 +137,20 @@ export class ClientDetailComponent implements OnInit {
   private create(): void {
     this.isNew = true;
     this.viewModel = {
-      id: 0,
-      enabled: true,
+      id: null,
       clientId: 'new',
-      clientName: undefined,
-      requireClientSecret: false,
+      displayName: undefined,
       clientSecret: undefined,
       requirePkce: false,
       requireConsent: false,
-      allowAccessTokensViaBrowser: false,
-      allowedGrantTypes: [],
       redirectUris: [],
       postLogoutRedirectUris: [],
-      allowedCorsOrigins: [],
-      allowedScopes: []
+      permissions: []
     };
 
     this.slotRegistry.register(new ClientDetailSlot(
-      this.viewModel.allowedGrantTypes,
       this.viewModel.redirectUris,
-      this.viewModel.postLogoutRedirectUris,
-      this.viewModel.allowedCorsOrigins,
-      this.viewModel.allowedScopes
+      this.viewModel.postLogoutRedirectUris
     ));
   }
 

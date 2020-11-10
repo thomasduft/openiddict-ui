@@ -8,37 +8,30 @@ using System.Threading.Tasks;
 
 namespace tomware.OpenIddict.UI.Api
 {
-  [Route("api/scopes")]
+  [Route("api/application")]
   [Authorize(Policies.ADMIN_POLICY, AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
-  public class ScopeController : ControllerBase
+  public class ApplicationController : ControllerBase
   {
-    private readonly IScopeApiService _service;
+    private readonly IApplicationApiService _service;
 
-    public ScopeController(IScopeApiService service)
+    public ApplicationController(
+      IApplicationApiService service
+    )
     {
       _service = service;
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<ScopeViewModel>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetClaimTypesAsync()
+    [ProducesResponseType(typeof(IEnumerable<ApplicationViewModel>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetClientsAsync()
     {
-      var result = await _service.GetScopesAsync();
-
-      return Ok(result);
-    }
-
-    [HttpGet("names")]
-    [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetScopeNamesAsync()
-    {
-      var result = await _service.GetScopeNamesAsync();
+      var result = await _service.GetClientsAsync();
 
       return Ok(result);
     }
 
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(ScopeViewModel), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApplicationViewModel), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAsync(string id)
     {
       if (id == null) return BadRequest();
@@ -51,19 +44,19 @@ namespace tomware.OpenIddict.UI.Api
 
     [HttpPost]
     [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
-    public async Task<IActionResult> CreateAsync([FromBody] ScopeViewModel model)
+    public async Task<IActionResult> CreateAsync([FromBody]ApplicationViewModel model)
     {
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
 
       var result = await _service.CreateAsync(model);
 
-      return Created($"api/scopes/{result}", JsonSerializer.Serialize(result));
+      return Created($"api/clients/{result}", JsonSerializer.Serialize(result));
     }
 
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> UpdateAsync([FromBody] ScopeViewModel model)
+    public async Task<IActionResult> UpdateAsync([FromBody]ApplicationViewModel model)
     {
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -73,13 +66,13 @@ namespace tomware.OpenIddict.UI.Api
       return NoContent();
     }
 
-    [HttpDelete("{name}")]
+    [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> DeleteAsync(string name)
+    public async Task<IActionResult> DeleteAsync(string id)
     {
-      if (name == null) return BadRequest();
+      if (id == null) return BadRequest();
 
-      await _service.DeleteAsync(name);
+      await _service.DeleteAsync(id);
 
       return NoContent();
     }

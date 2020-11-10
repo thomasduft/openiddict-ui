@@ -11,17 +11,17 @@ namespace tomware.OpenIddict.UI.Infrastructure
   public class ScopeService : IScopeService
   {
     private readonly IScopeRepository _repository;
-    private readonly OpenIddictScopeManager<OpenIddictEntityFrameworkCoreScope> _scopeManager;
+    private readonly OpenIddictScopeManager<OpenIddictEntityFrameworkCoreScope> _manager;
 
     public ScopeService(
       IScopeRepository repository,
-      OpenIddictScopeManager<OpenIddictEntityFrameworkCoreScope> scopeManager
+      OpenIddictScopeManager<OpenIddictEntityFrameworkCoreScope> manager
     )
     {
       _repository = repository
         ?? throw new ArgumentNullException(nameof(repository));
-      _scopeManager = scopeManager
-        ?? throw new ArgumentNullException(nameof(scopeManager));
+      _manager = manager
+        ?? throw new ArgumentNullException(nameof(manager));
     }
 
     public async Task<IEnumerable<ScopeInfo>> GetScopesAsync()
@@ -35,7 +35,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
     {
       if (id == null) throw new ArgumentNullException(nameof(id));
 
-      var entity = await this._scopeManager.FindByIdAsync(id);
+      var entity = await this._manager.FindByIdAsync(id);
 
       return entity != null ? ToInfo(entity) : null;
     }
@@ -51,7 +51,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
         Description = model.Description,
       };
 
-      await this._scopeManager.CreateAsync(newEntity);
+      await this._manager.CreateAsync(newEntity);
 
       return newEntity.Id;
     }
@@ -60,20 +60,20 @@ namespace tomware.OpenIddict.UI.Infrastructure
     {
       if (string.IsNullOrWhiteSpace(model.Id)) throw new ArgumentNullException(nameof(model.Id));
 
-      var entity = await this._scopeManager.FindByIdAsync(model.Id);
+      var entity = await this._manager.FindByIdAsync(model.Id);
 
       SimpleMapper.Map<ScopeParam, OpenIddictEntityFrameworkCoreScope>(model, entity);
 
-      await this._scopeManager.UpdateAsync(entity);
+      await this._manager.UpdateAsync(entity);
     }
 
     public async Task DeleteAsync(string id)
     {
       if (id == null) throw new ArgumentNullException(nameof(id));
 
-      var entity = await this._scopeManager.FindByIdAsync(id);
+      var entity = await this._manager.FindByIdAsync(id);
 
-      await _scopeManager.DeleteAsync(entity);
+      await _manager.DeleteAsync(entity);
     }
 
     private ScopeInfo ToInfo(OpenIddictEntityFrameworkCoreScope entity)

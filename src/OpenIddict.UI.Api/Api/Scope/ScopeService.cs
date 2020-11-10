@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using tomware.OpenIddict.UI.Core;
 using tomware.OpenIddict.UI.Infrastructure;
 
@@ -88,9 +87,7 @@ namespace tomware.OpenIddict.UI.Api
 
     private ScopeViewModel ToModel(ScopeInfo info)
     {
-      var vm = SimpleMapper.From<ScopeInfo, ScopeViewModel>(info);
-      vm.Id = info.Id;
-      return vm;
+      return SimpleMapper.From<ScopeInfo, ScopeViewModel>(info);
     }
   }
 }

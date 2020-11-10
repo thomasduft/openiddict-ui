@@ -1,6 +1,6 @@
 <tw-list [rows]="clients | filter : searchText">
   <tw-header>
-    <h3 class="title" i18n>Clients</h3>
+    <h3 class="title" i18n>Applications</h3>
     <div class="button__bar">
       <a class="button" [routerLink]="['.', 'new']">
         <tw-icon name="plus"></tw-icon>
@@ -17,12 +17,12 @@
     </div>
   </tw-header>
   <ng-template let-client twTemplate="client-item">
-    <div [routerLink]="['.', client.clientId]"
+    <div [routerLink]="['.', client.id]"
          routerLinkActive="active"
-         [attr.title]="client.clientId"
+         [attr.title]="client.displayName"
          class="list__item">
       <div>{{ client.clientId }}</div>
-      <div>{{ client.clientName }}</div>
+      <div>{{ client.displayName }}</div>
     </div>
   </ng-template>
 </tw-list>

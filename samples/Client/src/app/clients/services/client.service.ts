@@ -15,31 +15,31 @@ export class ClientService {
 
   public clients(): Observable<Array<Client>> {
     return this.http
-      .get<Array<Client>>('clients')
+      .get<Array<Client>>('application')
       .pipe(catchError(this.http.handleError));
   }
 
-  public client(clientId: string): Observable<Client> {
+  public client(id: string): Observable<Client> {
     return this.http
-      .get<Client>(`clients/${clientId}`)
+      .get<Client>(`application/${id}`)
       .pipe(catchError(this.http.handleError));
   }
 
   public create(model: Client): Observable<string> {
     return this.http
-      .post<string>('clients', model)
+      .post<string>('application', model)
       .pipe(catchError(this.http.handleError));
   }
 
   public update(model: Client): Observable<any> {
     return this.http
-      .put<Client>('clients', model)
+      .put<Client>('application', model)
       .pipe(catchError(this.http.handleError));
   }
 
-  public delete(clientId: string): Observable<any> {
+  public delete(id: string): Observable<any> {
     return this.http
-      .delete<any>(`clients/${clientId}`)
+      .delete<any>(`application/${id}`)
       .pipe(catchError(this.http.handleError));
   }
 }

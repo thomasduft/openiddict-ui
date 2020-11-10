@@ -19,7 +19,7 @@ const ROUTES: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: ':clientId',
+        path: ':id',
         component: ClientDetailComponent
       }
     ]

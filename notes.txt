@@ -1,5 +1,15 @@
 TODO:
+- manage applications aka clients
+  - ??? authorizations, tokens
 
+- change server to OpenIddict Mvc.server
+  - https://github.com/openiddict/openiddict-core/tree/dev/samples/Mvc.Server
+
+- distinguish between Identity and OpenIddict management
+  - introduce OpenIddict.UI.Identity.Api
+    - claimtypes
+    - roles
+    - users
 
 ----------------------------------------------------------------------------------------------------
 

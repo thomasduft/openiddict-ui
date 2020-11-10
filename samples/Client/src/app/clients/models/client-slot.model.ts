@@ -18,30 +18,15 @@ export class ClientDetailSlot implements Slot {
   public editors: Editor[];
 
   public constructor(
-    allowedGrantTypes: Array<string>,
     redirectUris: Array<string>,
-    postLogoutRedirectUris: Array<string>,
-    allowedCorsOrigins: Array<string>,
-    allowedScopes: Array<string>
+    postLogoutRedirectUris: Array<string>
   ) {
-
-    const allowedGrantTypesOptions = allowedGrantTypes.map((x: string) => {
-      return { key: x, value: x };
-    });
 
     const redirectUrisOptions = redirectUris.map((x: string) => {
       return { key: x, value: x };
     });
 
     const postLogoutRedirectUrisOptions = postLogoutRedirectUris.map((x: string) => {
-      return { key: x, value: x };
-    });
-
-    const allowedCorsOriginsOptions = allowedCorsOrigins.map((x: string) => {
-      return { key: x, value: x };
-    });
-
-    const allowedScopesOptions = allowedScopes.map((x: string) => {
       return { key: x, value: x };
     });
 
@@ -53,26 +38,15 @@ export class ClientDetailSlot implements Slot {
         required: true
       },
       {
-        key: 'enabled',
-        type: CHECKBOX_EDITOR,
-        label: 'Enabled'
-      },
-      {
         key: 'clientId',
         type: TEXT_EDITOR,
         label: 'ClientId',
         required: true
       },
       {
-        key: 'clientName',
+        key: 'displayName',
         type: TEXT_EDITOR,
-        label: 'Client name',
-        required: true
-      },
-      {
-        key: 'requireClientSecret',
-        type: CHECKBOX_EDITOR,
-        label: 'Require client secret',
+        label: 'Display name',
         required: true
       },
       {
@@ -92,20 +66,6 @@ export class ClientDetailSlot implements Slot {
         label: 'Require consent'
       },
       {
-        key: 'allowAccessTokensViaBrowser',
-        type: CHECKBOX_EDITOR,
-        label: 'Allow AccessTokens via Browser'
-      },
-      {
-        key: 'allowedGrantTypes',
-        type: MULTI_SELECT_EDITOR,
-        label: 'Allowed GrantTypes',
-        options: allowedGrantTypesOptions,
-        singleSelection: false,
-        bindingBehaviour: VALUE_BINDING_BEHAVIOR,
-        allowAddingItems: true
-      },
-      {
         key: 'redirectUris',
         type: MULTI_SELECT_EDITOR,
         label: 'Redirect uris',
@@ -122,24 +82,6 @@ export class ClientDetailSlot implements Slot {
         singleSelection: false,
         bindingBehaviour: VALUE_BINDING_BEHAVIOR,
         allowAddingItems: true
-      },
-      {
-        key: 'allowedCorsOrigins',
-        type: MULTI_SELECT_EDITOR,
-        label: 'Allowed CORS origins',
-        options: allowedCorsOriginsOptions,
-        singleSelection: false,
-        bindingBehaviour: VALUE_BINDING_BEHAVIOR,
-        allowAddingItems: true
-      },
-      {
-        key: 'allowedScopes',
-        type: MULTI_SELECT_EDITOR,
-        label: 'Allowed scopes',
-        options: allowedScopesOptions,
-        singleSelection: false,
-        bindingBehaviour: VALUE_BINDING_BEHAVIOR,
-        allowAddingItems: false
       }
     ];
   }
