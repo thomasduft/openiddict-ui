@@ -1,12 +1,11 @@
 TODO:
-- manage applications aka clients
-  - ??? authorizations, tokens
+- proper refactor client -> clients to applications
+  - applications.module.ts
+
 
 - change server to OpenIddict Mvc.server
   - https://github.com/openiddict/openiddict-core/tree/dev/samples/Mvc.Server
 
-- proper refactor client -> clients to applications
-  - applications.module.ts
 
 - distinguish between Identity and OpenIddict management
   - introduce OpenIddict.UI.Identity.Api
@@ -14,6 +13,16 @@ TODO:
     - roles
     - users
 
+
+- rename solution to openiddict-ui
+  - tomware prefix in namespaces
+
+
+- try Alba for Integration Testing API endpoints
+  - https://jasperfx.github.io/alba/
+
+
+- ??? authorizations, tokens
 ----------------------------------------------------------------------------------------------------
 
 
