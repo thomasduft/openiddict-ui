@@ -43,7 +43,7 @@ export class ClientListComponent
   }
 
   public onMessage(message: RefreshMessage): void {
-    if (message.source === 'client') {
+    if (message.source === 'application') {
       this.loadData();
     }
   }

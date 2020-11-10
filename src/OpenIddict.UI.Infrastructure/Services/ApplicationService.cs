@@ -3,8 +3,10 @@ using OpenIddict.EntityFrameworkCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using tomware.OpenIddict.UI.Core;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace tomware.OpenIddict.UI.Infrastructure
 {
@@ -28,14 +30,14 @@ namespace tomware.OpenIddict.UI.Infrastructure
     {
       var items = await _repository.ListAsync(new AllApplications());
 
-      return items.Select(x => ToInfo(x));
+      return items.Select(x => ToListInfo(x));
     }
 
     public async Task<ApplicationInfo> GetAsync(string id)
     {
       if (id == null) throw new ArgumentNullException(nameof(id));
 
-      var entity = await this._manager.FindByIdAsync(id);
+      var entity = await _manager.FindByIdAsync(id);
 
       return entity != null ? ToInfo(entity) : null;
     }
@@ -44,22 +46,17 @@ namespace tomware.OpenIddict.UI.Infrastructure
     {
       if (model == null) throw new ArgumentNullException(nameof(model));
 
-      // TODO: handle Json serialized properties
       var newEntity = new OpenIddictEntityFrameworkCoreApplication
       {
         ClientId = model.ClientId,
         DisplayName = model.DisplayName,
         ClientSecret = model.ClientSecret,
-        ConsentType = model.ConsentType,
-        Permissions = model.Permissions, // TODO: Permissions
-        Properties = model.Properties, // TODO: Properties
-        RedirectUris = model.RedirectUris, // TODO: RedirectUris
-        PostLogoutRedirectUris = model.PostLogoutRedirectUris, // TODO: PostLogoutRedirectUris
-        Requirements = model.Requirements, // TODO: Requirements
         Type = model.Type
       };
 
-      await this._manager.CreateAsync(newEntity, newEntity.ClientSecret);
+      HandleCustomProperties(model, newEntity);
+
+      await _manager.CreateAsync(newEntity, newEntity.ClientSecret);
 
       return newEntity.Id;
     }
@@ -68,26 +65,63 @@ namespace tomware.OpenIddict.UI.Infrastructure
     {
       if (string.IsNullOrWhiteSpace(model.Id)) throw new ArgumentNullException(nameof(model.Id));
 
-      var entity = await this._manager.FindByIdAsync(model.Id);
+      var entity = await _manager.FindByIdAsync(model.Id);
 
-      // TODO: handle Json serialized properties
       SimpleMapper.Map<ApplicationParam, OpenIddictEntityFrameworkCoreApplication>(model, entity);
 
-      await this._manager.UpdateAsync(entity, entity.ClientSecret);
+      HandleCustomProperties(model, entity);
+
+      await _manager.UpdateAsync(entity, entity.ClientSecret);
     }
 
     public async Task DeleteAsync(string id)
     {
       if (id == null) throw new ArgumentNullException(nameof(id));
 
-      var entity = await this._manager.FindByIdAsync(id);
+      var entity = await _manager.FindByIdAsync(id);
 
       await _manager.DeleteAsync(entity);
     }
 
-    private ApplicationInfo ToInfo(OpenIddictEntityFrameworkCoreApplication entity)
+    private ApplicationInfo ToListInfo(OpenIddictEntityFrameworkCoreApplication entity)
     {
       return SimpleMapper.From<OpenIddictEntityFrameworkCoreApplication, ApplicationInfo>(entity);
+    }
+
+    private ApplicationInfo ToInfo(OpenIddictEntityFrameworkCoreApplication entity)
+    {
+      var info = SimpleMapper.From<OpenIddictEntityFrameworkCoreApplication, ApplicationInfo>(entity);
+
+      info.RequireConsent = entity.ConsentType == ConsentTypes.Explicit;
+      info.Permissions = entity.Permissions != null
+        ? JsonSerializer.Deserialize<List<string>>(entity.Permissions)
+        : new List<string>();
+      info.RedirectUris = entity.RedirectUris != null
+        ? JsonSerializer.Deserialize<List<string>>(entity.RedirectUris)
+        : new List<string>();
+      info.PostLogoutRedirectUris = entity.PostLogoutRedirectUris != null
+        ? JsonSerializer.Deserialize<List<string>>(entity.PostLogoutRedirectUris)
+        : new List<string>();
+      info.RequirePkce = entity.Requirements != null
+        ? JsonSerializer.Deserialize<List<string>>(entity.Requirements)
+        .Contains(Requirements.Features.ProofKeyForCodeExchange)
+        : false;
+
+      return info;
+    }
+
+    private static void HandleCustomProperties(
+      ApplicationParam model, 
+      OpenIddictEntityFrameworkCoreApplication entity
+    )
+    {
+      entity.ConsentType = model.RequireConsent ? ConsentTypes.Explicit : ConsentTypes.Implicit;
+      entity.Permissions = JsonSerializer.Serialize(model.Permissions);
+      entity.RedirectUris = JsonSerializer.Serialize(model.RedirectUris);
+      entity.PostLogoutRedirectUris = JsonSerializer.Serialize(model.PostLogoutRedirectUris);
+      entity.Requirements = model.RequirePkce ? JsonSerializer.Serialize(new List<string> {
+        Requirements.Features.ProofKeyForCodeExchange
+      }) : null;
     }
   }
 }

@@ -107,7 +107,7 @@ export class ClientDetailComponent implements OnInit {
   }
 
   public back(): void {
-    this.router.navigate(['clients']);
+    this.router.navigate(['applications']);
   }
 
   private init(id?: string): void {
@@ -126,7 +126,8 @@ export class ClientDetailComponent implements OnInit {
     }).subscribe((result: any) => {
       this.slotRegistry.register(new ClientDetailSlot(
         result.client.redirectUris,
-        result.client.postLogoutRedirectUris
+        result.client.postLogoutRedirectUris,
+        result.client.permissions
       ));
 
       this.key = ClientDetailSlot.KEY;
@@ -137,7 +138,7 @@ export class ClientDetailComponent implements OnInit {
   private create(): void {
     this.isNew = true;
     this.viewModel = {
-      id: null,
+      id: 'new',
       clientId: 'new',
       displayName: undefined,
       clientSecret: undefined,
@@ -150,7 +151,8 @@ export class ClientDetailComponent implements OnInit {
 
     this.slotRegistry.register(new ClientDetailSlot(
       this.viewModel.redirectUris,
-      this.viewModel.postLogoutRedirectUris
+      this.viewModel.postLogoutRedirectUris,
+      this.viewModel.permissions
     ));
   }
 
@@ -171,6 +173,6 @@ export class ClientDetailComponent implements OnInit {
         StatusLevel.Success
       ));
 
-    this.messageBus.publish(new RefreshMessage('client'));
+    this.messageBus.publish(new RefreshMessage('application'));
   }
 }

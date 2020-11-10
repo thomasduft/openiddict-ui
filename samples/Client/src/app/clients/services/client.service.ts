@@ -26,6 +26,7 @@ export class ClientService {
   }
 
   public create(model: Client): Observable<string> {
+    model.id = undefined;
     return this.http
       .post<string>('application', model)
       .pipe(catchError(this.http.handleError));

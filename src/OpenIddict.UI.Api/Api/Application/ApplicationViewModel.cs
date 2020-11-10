@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace tomware.OpenIddict.UI.Api
 {
@@ -18,11 +19,10 @@ namespace tomware.OpenIddict.UI.Api
 
     public bool RequireConsent { get; set; }
 
+    public List<string> Permissions { get; set; } = new List<string>();
     public List<string> RedirectUris { get; set; } = new List<string>();
     public List<string> PostLogoutRedirectUris { get; set; } = new List<string>();
-    public List<string> Permissions { get; set; } = new List<string>();
-    public List<string> Properties { get; set; } = new List<string>();
 
-    public string Type { get; set; }
+    public string Type { get; set; } = ClientTypes.Public;
   }
 }

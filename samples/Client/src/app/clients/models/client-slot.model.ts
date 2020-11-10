@@ -19,7 +19,8 @@ export class ClientDetailSlot implements Slot {
 
   public constructor(
     redirectUris: Array<string>,
-    postLogoutRedirectUris: Array<string>
+    postLogoutRedirectUris: Array<string>,
+    permissions: Array<string>
   ) {
 
     const redirectUrisOptions = redirectUris.map((x: string) => {
@@ -27,6 +28,10 @@ export class ClientDetailSlot implements Slot {
     });
 
     const postLogoutRedirectUrisOptions = postLogoutRedirectUris.map((x: string) => {
+      return { key: x, value: x };
+    });
+
+    const permissionsOptions = permissions.map((x: string) => {
       return { key: x, value: x };
     });
 
@@ -79,6 +84,15 @@ export class ClientDetailSlot implements Slot {
         type: MULTI_SELECT_EDITOR,
         label: 'Post logout redirect uris',
         options: postLogoutRedirectUrisOptions,
+        singleSelection: false,
+        bindingBehaviour: VALUE_BINDING_BEHAVIOR,
+        allowAddingItems: true
+      },
+      {
+        key: 'permissions',
+        type: MULTI_SELECT_EDITOR,
+        label: 'Permissions',
+        options: permissionsOptions,
         singleSelection: false,
         bindingBehaviour: VALUE_BINDING_BEHAVIOR,
         allowAddingItems: true

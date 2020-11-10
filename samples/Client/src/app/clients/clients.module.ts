@@ -14,7 +14,7 @@ import { ClientDashboardComponent } from './components/dashboard/client-dashboar
 
 const ROUTES: Routes = [
   {
-    path: 'clients',
+    path: 'applications',
     component: ClientDashboardComponent,
     canActivate: [AuthGuard],
     children: [
