@@ -65,13 +65,13 @@ export class AppComponent implements OnInit {
     const devModeIssuer = 'https://localhost:5000/';
 
     this.oauthService.configure({
-      clientId: 'stsclient',
+      clientId: 'spa_client',
       issuer: isDevMode()
         ? devModeIssuer
         : window.location.origin + '/',
       redirectUri: redirUri,
       responseType: 'code',
-      scope: 'openid sts_api',
+      scope: 'openid roles email demo_api',
       loginUrl: isDevMode()
         ? devModeIssuer + '/account/login'
         : window.location.origin + 'account/login',

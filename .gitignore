@@ -262,4 +262,4 @@ __pycache__/
 dist/
 lcov.info
 test/coverage.json
-samples/Server/sts.sqlite
+samples/**/*.sqlite

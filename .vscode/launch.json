@@ -1,15 +1,12 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "STS",
+      "name": "Server",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/samples/Server/bin/Debug/netcoreapp3.1/tomware.Microip.Web.dll",
+      "program": "${workspaceFolder}/samples/Server/bin/Debug/net5.0/Mvc.Server.dll",
       "args": [],
       "cwd": "${workspaceFolder}/samples/Server",
       "stopAtEntry": false,

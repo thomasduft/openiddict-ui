@@ -43,7 +43,7 @@ export class UserService {
     if (!this.isAuthenticated) {
       this.oauth.loadUserProfile()
         .then((info: UserInfo) => {
-          this.username = info.name;
+          this.username = info.name || info.email;
           this.claims = Array.isArray(info.role)
             ? info.role
             : [info.role];
