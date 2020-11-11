@@ -1,4 +1,4 @@
-<tw-list [rows]="clients | filter : searchText">
+<tw-list [rows]="applications | filter : searchText">
   <tw-header>
     <h3 class="title" i18n>Applications</h3>
     <div class="button__bar">
@@ -16,13 +16,13 @@
         i18n-placeholder>
     </div>
   </tw-header>
-  <ng-template let-client twTemplate="client-item">
-    <div [routerLink]="['.', client.id]"
+  <ng-template let-application twTemplate="application-item">
+    <div [routerLink]="['.', application.id]"
          routerLinkActive="active"
-         [attr.title]="client.displayName"
+         [attr.title]="application.displayName"
          class="list__item">
-      <div>{{ client.clientId }}</div>
-      <div>{{ client.displayName }}</div>
+      <div>{{ application.clientId }}</div>
+      <div>{{ application.displayName }}</div>
     </div>
   </ng-template>
 </tw-list>

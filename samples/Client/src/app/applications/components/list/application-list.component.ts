@@ -5,28 +5,27 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AutoUnsubscribe, IMessageSubscriber, MessageBus } from '../../../shared';
 import { RefreshMessage } from '../../../core';
 
-import { Client } from '../../models';
-import { ClientService } from '../../services/index';
+import { Application } from '../../models';
+import { ApplicationService } from '../../services/index';
 
 @AutoUnsubscribe
 @Component({
-  selector: 'tw-client-list',
-  templateUrl: './client-list.component.html',
-  styleUrls: ['./client-list.component.less'],
+  selector: 'tw-application-list',
+  templateUrl: './application-list.component.html',
   providers: [
-    ClientService
+    ApplicationService
   ]
 })
-export class ClientListComponent
+export class ApplicationListComponent
   implements OnInit, OnDestroy, IMessageSubscriber<RefreshMessage> {
-  private clients$: Subscription;
+  private applications$: Subscription;
   private busSubscription: number;
 
   public searchText = '';
-  public clients: Array<Client> = [];
+  public applications: Array<Application> = [];
 
   public constructor(
-    private service: ClientService,
+    private service: ApplicationService,
     private bus: MessageBus
   ) {
     this.busSubscription = this.bus.subsribe(this);
@@ -61,9 +60,9 @@ export class ClientListComponent
   }
 
   private loadRoles(): void {
-    this.clients$ = this.service.clients()
-      .subscribe((response: Array<Client>) => {
-        this.clients = response;
+    this.applications$ = this.service.applications()
+      .subscribe((response: Array<Application>) => {
+        this.applications = response;
       });
   }
 }

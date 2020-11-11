@@ -16,7 +16,7 @@ import { ClaimtypesModule } from './claimtypes/claimtypes.module';
 import { RolesModule } from './roles/roles.module';
 import { UsersModule } from './users/users.module';
 import { ScopessModule } from './scopes/scopes.module';
-import { ClientsModule } from './clients/clients.module';
+import { ApplicationsModule } from './applications/applications.module';
 
 import { AppComponent } from './app.component';
 
@@ -43,7 +43,7 @@ const ROUTES: Routes = [
     RolesModule,
     UsersModule,
     ScopessModule,
-    ClientsModule
+    ApplicationsModule
   ],
   providers: [
     httpInterceptorProviders

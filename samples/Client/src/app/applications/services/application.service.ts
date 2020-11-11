@@ -5,36 +5,36 @@ import { Injectable } from '@angular/core';
 
 import { HttpWrapperService } from '../../shared/services/index';
 
-import { Client } from '../models/index';
+import { Application } from '../models/index';
 
 @Injectable()
-export class ClientService {
+export class ApplicationService {
   public constructor(
     private http: HttpWrapperService
   ) { }
 
-  public clients(): Observable<Array<Client>> {
+  public applications(): Observable<Array<Application>> {
     return this.http
-      .get<Array<Client>>('application')
+      .get<Array<Application>>('application')
       .pipe(catchError(this.http.handleError));
   }
 
-  public client(id: string): Observable<Client> {
+  public application(id: string): Observable<Application> {
     return this.http
-      .get<Client>(`application/${id}`)
+      .get<Application>(`application/${id}`)
       .pipe(catchError(this.http.handleError));
   }
 
-  public create(model: Client): Observable<string> {
+  public create(model: Application): Observable<string> {
     model.id = undefined;
     return this.http
       .post<string>('application', model)
       .pipe(catchError(this.http.handleError));
   }
 
-  public update(model: Client): Observable<any> {
+  public update(model: Application): Observable<any> {
     return this.http
-      .put<Client>('application', model)
+      .put<Application>('application', model)
       .pipe(catchError(this.http.handleError));
   }
 

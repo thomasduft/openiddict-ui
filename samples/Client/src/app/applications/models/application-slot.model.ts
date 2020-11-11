@@ -9,10 +9,10 @@ import {
   HIDDEN_EDITOR
 } from '../../shared/formdef';
 
-export class ClientDetailSlot implements Slot {
+export class ApplicationDetailSlot implements Slot {
   public static KEY = 'ClientDetailSlot';
 
-  public key = ClientDetailSlot.KEY;
+  public key = ApplicationDetailSlot.KEY;
   public type = SINGLE_SLOT;
   public title = 'Detail';
   public editors: Editor[];

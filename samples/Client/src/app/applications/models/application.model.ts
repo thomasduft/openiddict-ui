@@ -1,4 +1,4 @@
-export interface Client {
+export interface Application {
   id: string;
   clientId: string;
   displayName: string;

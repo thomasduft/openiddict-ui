@@ -1,8 +1,4 @@
 TODO:
-- proper refactor client -> clients to applications
-  - applications.module.ts
-
-
 - change server to OpenIddict Mvc.server
   - https://github.com/openiddict/openiddict-core/tree/dev/samples/Mvc.Server
 

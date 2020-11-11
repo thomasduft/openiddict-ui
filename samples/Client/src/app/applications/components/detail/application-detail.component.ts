@@ -18,32 +18,31 @@ import { FormdefRegistry } from '../../../shared/formdef';
 import { RefreshMessage } from '../../../core';
 import { ScopeService } from '../../../scopes/services/scope.service';
 
-import { ClientDetailSlot, Client } from '../../models';
-import { ClientService } from '../../services';
+import { ApplicationDetailSlot, Application } from '../../models';
+import { ApplicationService } from '../../services';
 
 @AutoUnsubscribe
 @Component({
-  selector: 'tw-client-detail',
-  templateUrl: './client-detail.component.html',
-  styleUrls: ['./client-detail.component.less'],
+  selector: 'tw-application-detail',
+  templateUrl: './application-detail.component.html',
   providers: [
-    ClientService,
+    ApplicationService,
     ScopeService
   ]
 })
-export class ClientDetailComponent implements OnInit {
+export class ApplicationDetailComponent implements OnInit {
   private routeParams$: Subscription;
-  private client$: Subscription;
+  private application$: Subscription;
 
-  public key = ClientDetailSlot.KEY;
-  public viewModel: Client;
+  public key = ApplicationDetailSlot.KEY;
+  public viewModel: Application;
   public errors: Array<string> = [];
   public isNew = false;
 
   public constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private service: ClientService,
+    private service: ApplicationService,
     private scopeService: ScopeService,
     private slotRegistry: FormdefRegistry,
     private popup: Popover,
@@ -60,15 +59,15 @@ export class ClientDetailComponent implements OnInit {
       });
   }
 
-  public submitted(viewModel: Client): void {
+  public submitted(viewModel: Application): void {
     if (this.isNew) {
-      this.client$ = this.service.create(viewModel)
+      this.application$ = this.service.create(viewModel)
         .subscribe(
           () => this.handleSuccess(),
           (error: IdentityResult) => this.handleError(error)
         );
     } else {
-      this.client$ = this.service.update(viewModel)
+      this.application$ = this.service.update(viewModel)
         .subscribe(
           () => this.handleSuccess(),
           (error: IdentityResult) => this.handleError(error)
@@ -76,7 +75,7 @@ export class ClientDetailComponent implements OnInit {
     }
   }
 
-  public deleted(viewModel: Client): void {
+  public deleted(viewModel: Application): void {
     if (this.isNew) {
       return;
     }
@@ -97,7 +96,7 @@ export class ClientDetailComponent implements OnInit {
     popoverRef.afterClosed$
       .subscribe((res: PopoverCloseEvent<DeleteConfirmation>) => {
         if (res.data.confirm) {
-          this.client$ = this.service.delete(viewModel.clientId)
+          this.application$ = this.service.delete(viewModel.clientId)
             .subscribe((id: string) => {
               this.changesSaved();
               this.back();
@@ -120,17 +119,17 @@ export class ClientDetailComponent implements OnInit {
 
   private load(id: string): void {
     this.isNew = false;
-    this.client$ = forkJoin({
+    this.application$ = forkJoin({
       scopenames: this.scopeService.scopenames(),
-      client: this.service.client(id)
+      client: this.service.application(id)
     }).subscribe((result: any) => {
-      this.slotRegistry.register(new ClientDetailSlot(
+      this.slotRegistry.register(new ApplicationDetailSlot(
         result.client.redirectUris,
         result.client.postLogoutRedirectUris,
         result.client.permissions
       ));
 
-      this.key = ClientDetailSlot.KEY;
+      this.key = ApplicationDetailSlot.KEY;
       this.viewModel = result.client;
     });
   }
@@ -149,7 +148,7 @@ export class ClientDetailComponent implements OnInit {
       permissions: []
     };
 
-    this.slotRegistry.register(new ClientDetailSlot(
+    this.slotRegistry.register(new ApplicationDetailSlot(
       this.viewModel.redirectUris,
       this.viewModel.postLogoutRedirectUris,
       this.viewModel.permissions

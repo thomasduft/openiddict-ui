@@ -7,20 +7,20 @@ import { AuthGuard } from '../shared';
 import { SharedModule } from '../shared/shared.module';
 import { FormdefModule } from '../shared/formdef/formdef.module';
 
-import { ClientService } from './services';
-import { ClientListComponent } from './components/list/client-list.component';
-import { ClientDetailComponent } from './components/detail/client-detail.component';
-import { ClientDashboardComponent } from './components/dashboard/client-dashboard.component';
+import { ApplicationService } from './services';
+import { ApplicationListComponent } from './components/list/application-list.component';
+import { ApplicationDetailComponent } from './components/detail/application-detail.component';
+import { ApplicationDashboardComponent } from './components/dashboard/application-dashboard.component';
 
 const ROUTES: Routes = [
   {
     path: 'applications',
-    component: ClientDashboardComponent,
+    component: ApplicationDashboardComponent,
     canActivate: [AuthGuard],
     children: [
       {
         path: ':id',
-        component: ClientDetailComponent
+        component: ApplicationDetailComponent
       }
     ]
   }
@@ -35,12 +35,12 @@ const ROUTES: Routes = [
     FormdefModule
   ],
   declarations: [
-    ClientListComponent,
-    ClientDetailComponent,
-    ClientDashboardComponent
+    ApplicationListComponent,
+    ApplicationDetailComponent,
+    ApplicationDashboardComponent
   ],
   providers: [
-    ClientService
+    ApplicationService
   ]
 })
-export class ClientsModule { }
+export class ApplicationsModule { }
