@@ -4,15 +4,17 @@ TODO:
   - https://jasperfx.github.io/alba/documentation/xunit/
 
 
+- provide simple readme
+  - short but precise
+  - why and purpose
+  - how to
+
+
 - distinguish between Identity and OpenIddict management
   - introduce OpenIddict.UI.Identity.Api
     - claimtypes
     - roles
     - users
-
-
-- rename solution to openiddict-ui
-  - tomware prefix in namespaces
 
 
 - ??? authorizations, tokens
