@@ -5,7 +5,7 @@
     <AssemblyName>tomware.OpenIddict.UI.Infrastructure</AssemblyName>
     <RootNamespace>tomware.OpenIddict.UI.Infrastructure</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Description>Infrastructure types for OpenIddict U.</Description>
+    <Description>Infrastructure types for openiddict UI</Description>
     <RepositoryUrl>https://github.com/thomasduft/microip</RepositoryUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Authors>Thomas Duft</Authors>
