@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
       clientId: 'stsclient',
       issuer: isDevMode()
         ? devModeIssuer
-        : window.location.origin,
+        : window.location.origin + '/',
       redirectUri: redirUri,
       responseType: 'code',
       scope: 'openid sts_api',

@@ -1,0 +1,118 @@
+@import "./../_variables.less";
+@import './../_mixins.less';
+
+.sidebar {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  background: @sidebar-background;
+  width: @sidebar-width;
+  overflow-y: auto;
+}
+
+.sidebar__header {
+  display: flex;
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 0.5em;
+  color: whitesmoke;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  > button {
+    cursor: pointer;
+  }
+  img {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 140px;
+    height: 140px;
+  }
+}
+
+.sidebar__content {
+  display: flex;
+  flex: 1;
+  text-align: left;
+  line-height: 2.5em;
+  overflow-y: auto;
+  ul {
+    width: 100%;
+    font-size: 0.8em;
+    li {
+      padding: 0px 20px;
+      a, span {
+        color: whitesmoke;
+        display: block;
+        font-weight: bold;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        width: 100%;
+      }
+      ul {
+        li, .active {
+          margin: 0px -20px;
+          padding: 0px 40px;
+        }
+        li:hover {
+          margin: 0px -20px;
+          padding: 0px 40px;
+        }
+      }
+    }
+    .menu__item {
+      &:hover {
+        cursor: pointer;
+        background: lighten(@sidebar-background, 10%);
+      }
+    }
+    .active {
+      background: lighten(@sidebar-background, 10%);
+    }
+  }
+}
+
+.sidebar__footer {
+  display: flex;
+  color: whitesmoke;
+  text-align: left;
+  line-height: 2.5em;
+  ul {
+    width: 100%;
+    font-size: 0.8em;
+    li {
+      padding: 0px 20px;
+      a, span {
+        color: whitesmoke;
+        display: block;
+        font-weight: bold;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        width: 100%;
+      }
+      &:hover {
+        cursor: pointer;
+        background: lighten(@sidebar-background, 10%);
+      }
+    }
+  }
+}
+
+.sidebar--collapsed {
+  width: 50px;
+  overflow: hidden;
+  .sidebar__header {
+    .rotate(-90);
+    font-weight: bold;
+    button {
+      .rotate(+90)
+    }
+  }
+  .sidebar__content {
+    display: none;
+  }
+  .sidebar__footer {
+    display: none;
+  }
+}
