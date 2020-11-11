@@ -8,7 +8,6 @@ import { UserInfo, OAuthService } from 'angular-oauth2-oidc';
 export class UserService {
   private static ANONYMOUS = 'anonymous';
 
-  private authenticated = false;
   private username: string = UserService.ANONYMOUS;
   private claims: Array<string> = new Array<string>();
 
@@ -42,16 +41,17 @@ export class UserService {
 
   public loadProfile(): void {
     if (!this.isAuthenticated) {
-      this.oauth.loadUserProfile().then((info: UserInfo) => {
-        this.username = info.name;
-        this.claims = Array.isArray(info.role)
-          ? info.role
-          : [info.role];
+      this.oauth.loadUserProfile()
+        .then((info: UserInfo) => {
+          this.username = info.name;
+          this.claims = Array.isArray(info.role)
+            ? info.role
+            : [info.role];
 
-        // if (jwt.tw && Array.isArray(jwt.tw)) {
-        //   this.claims.push(...jwt.tw);
-        // }
-      });
+          // if (jwt.tw && Array.isArray(jwt.tw)) {
+          //   this.claims.push(...jwt.tw);
+          // }
+        });
     }
   }
 }
