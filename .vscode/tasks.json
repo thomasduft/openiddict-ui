@@ -37,6 +37,23 @@
         "/consoleloggerparameters:NoSummary"
       ],
       "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "test",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "test",
+        "/p:CollectCoverage=true",
+        "/p:CoverletOutputFormat=lcov",
+        "/p:CoverletOutput=./../lcov",
+        "${workspaceFolder}/tests/OpenIddict.UI.Tests.csproj"
+      ],
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
     }
   ]
 }
