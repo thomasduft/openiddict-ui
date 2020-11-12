@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Alba;
+using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace tomware.OpenIddict.UI.Tests.Helpers
@@ -9,9 +12,7 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
   {
     // The Alba system
     protected SystemUnderTest System => Fixture.System;
-
-    // Just a convenience because you use it pretty often
-    // in tests to get at application services
+    // Just a convenience because you use it pretty often in tests to get at application services
     protected IServiceProvider Services => Fixture.System.Services;
 
     public WebAppFixture Fixture { get; }

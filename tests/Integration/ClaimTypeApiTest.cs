@@ -26,7 +26,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       // Arrange
 
       // Act
-      var response = await System.Scenario(s =>
+      var response = await Scenario(s =>
       {
         switch (verb)
         {

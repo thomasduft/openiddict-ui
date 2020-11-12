@@ -90,7 +90,7 @@ namespace Mvc.Server
         // * Client ID: postman
         // * Client secret: [blank] (not used with public clients)
         // * Scope: openid email profile roles
-        // * Grant type: authorization code
+        // * Grant type: authorization_code
         // * Request access token locally: yes
         if (await manager.FindByClientIdAsync("postman") is null)
         {
@@ -113,6 +113,38 @@ namespace Mvc.Server
               Permissions.GrantTypes.Password,
               Permissions.GrantTypes.RefreshToken,
               Permissions.ResponseTypes.Code,
+              Permissions.Scopes.Email,
+              Permissions.Scopes.Profile,
+              Permissions.Scopes.Roles
+            }
+          });
+        }
+
+        // To test this sample with Postman, use the following settings:
+        //
+        // * Access token URL: https://localhost:5000/connect/token
+        // * grant_type: password
+        // * client_id: test-client
+        // * client_secret: my-secret
+        // * username: admin@openiddict.com
+        // * password: Pass123$
+        // * scope: openid email profile roles
+        // * Request access token locally: yes
+        if (await manager.FindByClientIdAsync("test-client") is null)
+        {
+          await manager.CreateAsync(new OpenIddictApplicationDescriptor
+          {
+            ClientId = "test-client",
+            ConsentType = ConsentTypes.Systematic,
+            DisplayName = "Tester",
+            ClientSecret = "my-secret",
+            Permissions =
+            {
+              Permissions.Endpoints.Authorization,
+              Permissions.Endpoints.Token,
+              Permissions.GrantTypes.Password,
+              Permissions.GrantTypes.RefreshToken,
+              Permissions.ResponseTypes.Token,
               Permissions.Scopes.Email,
               Permissions.Scopes.Profile,
               Permissions.Scopes.Roles

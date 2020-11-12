@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Alba;
@@ -10,7 +12,8 @@ namespace tomware.OpenIddict.UI.Tests.Integration
   public class RoleApiTest : IntegrationContext
   {
     public RoleApiTest(WebAppFixture fixture) : base(fixture)
-    { }
+    {
+    }
 
     [Theory]
     [InlineData("/api/roles", HttpVerb.Get)]
@@ -26,30 +29,44 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       // Arrange
 
       // Act
-      var response = await System.Scenario(s =>
+      var response = await Scenario(_ =>
       {
         switch (verb)
         {
           case HttpVerb.Post:
-            s.Post.Json(new RoleViewModel()).ToUrl(endpoint);
+            _.Post.Json(new RoleViewModel()).ToUrl(endpoint);
             break;
           case HttpVerb.Put:
-            s.Put.Json(new RoleViewModel()).ToUrl(endpoint);
+            _.Put.Json(new RoleViewModel()).ToUrl(endpoint);
             break;
           case HttpVerb.Delete:
-            s.Delete.Url(endpoint);
+            _.Delete.Url(endpoint);
             break;
           default:
-            s.Get.Url(endpoint);
+            _.Get.Url(endpoint);
             break;
         }
 
         // Assert
-        s.StatusCodeShouldBe(HttpStatusCode.Unauthorized);
+        _.StatusCodeShouldBe(HttpStatusCode.Unauthorized);
       });
 
       Assert.NotNull(response);
       Assert.Equal(401, response.Context.Response.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetRolesAsync_ReturnsAdministratorRole()
+    {
+      // Arrange
+      var endpoint = "/api/roles";
+
+      // Act
+      var response = await System.GetAsJson<IEnumerable<RoleViewModel>>(endpoint);
+
+      // Assert
+      Assert.NotNull(response);
+      Assert.Single(response);
     }
   }
 }
