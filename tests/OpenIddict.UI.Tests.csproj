@@ -28,4 +28,15 @@
   <ItemGroup>
     <ProjectReference Include="..\samples\Server\Mvc.Server.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="xunit.runner.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="xunit.runner.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
 </Project>

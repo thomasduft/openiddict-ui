@@ -7,21 +7,21 @@ using Xunit;
 
 namespace tomware.OpenIddict.UI.Tests.Integration
 {
-  public class RoleApiTest : IClassFixture<WebAppFixture>
+  public class ClaimTypeApiTest : IClassFixture<WebAppFixture>
   {
     private readonly SystemUnderTest _system;
 
-    public RoleApiTest(WebAppFixture app)
+    public ClaimTypeApiTest(WebAppFixture app)
     {
       _system = app.SystemUnderTest;
     }
 
     [Theory]
-    [InlineData("/api/roles", HttpVerb.Get)]
-    [InlineData("/api/roles/id", HttpVerb.Get)]
-    [InlineData("/api/roles", HttpVerb.Post)]
-    // [InlineData("/api/roles", HttpVerb.Put)]
-    // [InlineData("/api/roles/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
+    [InlineData("/api/claimtypes", HttpVerb.Get)]
+    [InlineData("/api/claimtypes/id", HttpVerb.Get)]
+    [InlineData("/api/claimtypes", HttpVerb.Post)]
+    // [InlineData("/api/claimtypes", HttpVerb.Put)]
+    // [InlineData("/api/claimtypes/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
     public async Task IsNotAuthenticated_ReturnsUnauthorized(
       string endpoint,
       HttpVerb verb
@@ -35,10 +35,10 @@ namespace tomware.OpenIddict.UI.Tests.Integration
         switch (verb)
         {
           case HttpVerb.Post:
-            s.Post.Json(new RoleViewModel()).ToUrl(endpoint);
+            s.Post.Json(new ClaimTypeViewModel()).ToUrl(endpoint);
             break;
           case HttpVerb.Put:
-            s.Put.Json(new RoleViewModel()).ToUrl(endpoint);
+            s.Put.Json(new ClaimTypeViewModel()).ToUrl(endpoint);
             break;
           case HttpVerb.Delete:
             s.Delete.Url(endpoint);

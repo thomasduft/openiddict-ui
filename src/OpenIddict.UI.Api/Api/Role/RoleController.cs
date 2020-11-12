@@ -49,7 +49,7 @@ namespace tomware.OpenIddict.UI.Api
 
       var result = await _service.CreateAsync(model);
 
-      return Created($"api/role/{result}", JsonSerializer.Serialize(result));
+      return Created($"api/roles/{result}", JsonSerializer.Serialize(result));
     }
 
     [HttpPut]
