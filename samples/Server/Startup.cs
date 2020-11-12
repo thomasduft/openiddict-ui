@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,10 +20,14 @@ namespace Mvc.Server
 {
   public class Startup
   {
-    public Startup(IConfiguration configuration)
-        => Configuration = configuration;
-
     public IConfiguration Configuration { get; }
+    public IWebHostEnvironment Environment { get; }
+
+    public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+    {
+      Configuration = configuration;
+      Environment = environment;
+    }
 
     public void ConfigureServices(IServiceCollection services)
     {
@@ -75,17 +80,21 @@ namespace Mvc.Server
         options.ClaimsIdentity.RoleClaimType = Claims.Role;
       });
 
-      // OpenIddict offers native integration with Quartz.NET to perform scheduled tasks
-      // (like pruning orphaned authorizations/tokens from the database) at regular intervals.
-      services.AddQuartz(options =>
+      var isTestingEnvironment = Environment.EnvironmentName == "Testing";
+      if (!isTestingEnvironment)
       {
-        options.UseMicrosoftDependencyInjectionJobFactory();
-        options.UseSimpleTypeLoader();
-        options.UseInMemoryStore();
-      });
+        // OpenIddict offers native integration with Quartz.NET to perform scheduled tasks
+        // (like pruning orphaned authorizations/tokens from the database) at regular intervals.
+        services.AddQuartz(options =>
+        {
+          options.UseMicrosoftDependencyInjectionJobFactory();
+          options.UseSimpleTypeLoader();
+          options.UseInMemoryStore();
+        });
 
-      // Register the Quartz.NET service and configure it to block shutdown until jobs are complete.
-      services.AddQuartzHostedService(options => options.WaitForJobsToComplete = true);
+        // Register the Quartz.NET service and configure it to block shutdown until jobs are complete.
+        services.AddQuartzHostedService(options => options.WaitForJobsToComplete = true);
+      }
 
       services.AddOpenIddict()
         // Register the OpenIddict core components.
@@ -100,7 +109,10 @@ namespace Mvc.Server
           // options.UseMongoDb()
           //        .UseDatabase(new MongoClient().GetDatabase("openiddict"));
           // Enable Quartz.NET integration.
-          options.UseQuartz();
+          if (!isTestingEnvironment)
+          {
+            options.UseQuartz();
+          }
         })
         // Register the OpenIddict server components.
         .AddServer(options =>

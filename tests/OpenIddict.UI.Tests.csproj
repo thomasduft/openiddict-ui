@@ -5,6 +5,7 @@
     <AssemblyName>tomware.OpenIddict.UI.Tests</AssemblyName>
     <RootNamespace>tomware.OpenIddict.UI.Tests</RootNamespace>
     <IsPackable>false</IsPackable>
+    <ParallelizeTestCollections>false</ParallelizeTestCollections>
   </PropertyGroup>
 
   <ItemGroup>

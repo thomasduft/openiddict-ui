@@ -7,14 +7,10 @@ using Xunit;
 
 namespace tomware.OpenIddict.UI.Tests.Integration
 {
-  public class RoleApiTest : IClassFixture<WebAppFixture>
+  public class RoleApiTest : IntegrationContext
   {
-    private readonly SystemUnderTest _system;
-
-    public RoleApiTest(WebAppFixture app)
-    {
-      _system = app.SystemUnderTest;
-    }
+    public RoleApiTest(WebAppFixture fixture) : base(fixture)
+    { }
 
     [Theory]
     [InlineData("/api/roles", HttpVerb.Get)]
@@ -30,7 +26,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       // Arrange
 
       // Act
-      var response = await _system.Scenario(s =>
+      var response = await System.Scenario(s =>
       {
         switch (verb)
         {

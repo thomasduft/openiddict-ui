@@ -7,14 +7,10 @@ using Xunit;
 
 namespace tomware.OpenIddict.UI.Tests.Integration
 {
-  public class ClaimTypeApiTest : IClassFixture<WebAppFixture>
+  public class ClaimTypeApiTest : IntegrationContext
   {
-    private readonly SystemUnderTest _system;
-
-    public ClaimTypeApiTest(WebAppFixture app)
-    {
-      _system = app.SystemUnderTest;
-    }
+    public ClaimTypeApiTest(WebAppFixture fixture) : base(fixture)
+    { }
 
     [Theory]
     [InlineData("/api/claimtypes", HttpVerb.Get)]
@@ -30,7 +26,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       // Arrange
 
       // Act
-      var response = await _system.Scenario(s =>
+      var response = await System.Scenario(s =>
       {
         switch (verb)
         {
