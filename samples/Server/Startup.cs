@@ -4,6 +4,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +32,8 @@ namespace Mvc.Server
 
     public void ConfigureServices(IServiceCollection services)
     {
+      var isTestingEnvironment = Environment.EnvironmentName == "Testing";
+
       services.AddCors(o =>
       {
         o.AddPolicy("AllowAllOrigins", builder =>
@@ -80,7 +83,6 @@ namespace Mvc.Server
         options.ClaimsIdentity.RoleClaimType = Claims.Role;
       });
 
-      var isTestingEnvironment = Environment.EnvironmentName == "Testing";
       if (!isTestingEnvironment)
       {
         // OpenIddict offers native integration with Quartz.NET to perform scheduled tasks

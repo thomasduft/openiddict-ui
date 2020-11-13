@@ -1,13 +1,24 @@
-using System;
 using Alba;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Mvc.Server;
+using OpenIddict.Server;
+using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using tomware.OpenIddict.UI.Api;
+using static OpenIddict.Abstractions.OpenIddictConstants;
+using static OpenIddict.Server.OpenIddictServerEvents;
+using static OpenIddict.Server.OpenIddictServerHandlers;
 
 namespace tomware.OpenIddict.UI.Tests.Helpers
 {
   public class WebAppFixture : IDisposable
   {
     public SystemUnderTest System { get; }
+
+    public bool IssueAccessToken { get; set; } = true;
 
     // see: https://jeremydmiller.com/2020/04/13/using-alba-for-integration-testing-asp-net-core-web-services/
     public WebAppFixture()
@@ -38,7 +49,11 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
 
         // In this case, I'm setting a fake JWT token on each request
         // as a demonstration
-        // httpContext.Request.Headers["Authorization"] = $"Bearer {generateToken()}";
+        if (this.IssueAccessToken)
+        {
+          var accessToken = GenerateTestToken();
+          httpContext.Request.Headers["Authorization"] = $"Bearer {accessToken}";
+        }
       });
 
       System.AfterEach(httpContext =>
@@ -46,6 +61,44 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
         // Take any kind of teardown action after
         // each simulated HTTP request
       });
+    }
+
+    private string GenerateTestToken()
+    {
+      try
+      {
+        var claims = new List<Claim>
+        {
+          new Claim(Claims.Role, Roles.ADMINISTRATOR_ROLE)
+        };
+        var identity = new ClaimsIdentity(claims);
+
+        IOptions<OpenIddictServerOptions> options
+          = (IOptions<OpenIddictServerOptions>)this.System.Services.GetService(typeof(IOptions<OpenIddictServerOptions>));
+        ILogger<OpenIddictServerDispatcher> logger
+          = (ILogger<OpenIddictServerDispatcher>)this.System.Services.GetService(typeof(ILogger<OpenIddictServerDispatcher>));
+
+        var transaction = new OpenIddictServerTransaction
+        {
+          Options = options.Value,
+          Logger = logger
+        };
+
+        var context = new ProcessSignInContext(transaction)
+        {
+          Issuer = new Uri("https://localhost:5000/"),
+          AccessTokenPrincipal = new ClaimsPrincipal(identity)
+        };
+
+        var generator = new GenerateIdentityModelAccessToken();
+        generator.HandleAsync(context).GetAwaiter().GetResult();
+
+        return context.AccessToken;
+      }
+      catch (Exception)
+      {
+        throw;
+      }
     }
 
     public void Dispose()

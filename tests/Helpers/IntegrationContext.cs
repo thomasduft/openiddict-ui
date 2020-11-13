@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Alba;
-using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace tomware.OpenIddict.UI.Tests.Helpers
@@ -16,6 +13,18 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
     protected IServiceProvider Services => Fixture.System.Services;
 
     public WebAppFixture Fixture { get; }
+
+    public bool IssueAccessToken
+    {
+      get
+      {
+        return Fixture.IssueAccessToken;
+      }
+      set
+      {
+        Fixture.IssueAccessToken = value;
+      }
+    }
 
     protected IntegrationContext(WebAppFixture fixture)
     {
