@@ -4,7 +4,6 @@ using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,8 +31,6 @@ namespace Mvc.Server
 
     public void ConfigureServices(IServiceCollection services)
     {
-      var isTestingEnvironment = Environment.EnvironmentName == "Testing";
-
       services.AddCors(o =>
       {
         o.AddPolicy("AllowAllOrigins", builder =>
@@ -83,7 +80,7 @@ namespace Mvc.Server
         options.ClaimsIdentity.RoleClaimType = Claims.Role;
       });
 
-      if (!isTestingEnvironment)
+      if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
       {
         // OpenIddict offers native integration with Quartz.NET to perform scheduled tasks
         // (like pruning orphaned authorizations/tokens from the database) at regular intervals.
@@ -111,7 +108,7 @@ namespace Mvc.Server
           // options.UseMongoDb()
           //        .UseDatabase(new MongoClient().GetDatabase("openiddict"));
           // Enable Quartz.NET integration.
-          if (!isTestingEnvironment)
+          if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
           {
             options.UseQuartz();
           }
@@ -199,35 +196,38 @@ namespace Mvc.Server
         .AddUIStore(options =>
         {
           options.OpenIddictUIContext = builder =>
-            builder.UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
-              sql => sql.MigrationsAssembly(typeof(Startup)
-                        .GetTypeInfo()
-                        .Assembly
-                        .GetName()
-                        .Name));
+           builder.UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
+             sql => sql.MigrationsAssembly(typeof(Startup)
+                       .GetTypeInfo()
+                       .Assembly
+                       .GetName()
+                       .Name));
         })
         // Register the Api for the EF based UI Store
         .AddUIApis<ApplicationUser>();
 
-      services.AddSwaggerGen(c =>
+      if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
       {
-        c.SwaggerDoc("v1", new OpenApiInfo
+        services.AddSwaggerGen(c =>
         {
-          Version = "v1",
-          Title = "API Documentation",
-          Description = "API Documentation"
-        });
+          c.SwaggerDoc("v1", new OpenApiInfo
+          {
+            Version = "v1",
+            Title = "API Documentation",
+            Description = "API Documentation"
+          });
 
-        c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-        {
-          In = ParameterLocation.Header,
-          Name = "Authorization",
-          Description = "Example: \"Bearer {token}\"",
-          Type = SecuritySchemeType.ApiKey
-        });
+          c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+          {
+            In = ParameterLocation.Header,
+            Name = "Authorization",
+            Description = "Example: \"Bearer {token}\"",
+            Type = SecuritySchemeType.ApiKey
+          });
 
-        c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-      });
+          c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+        });
+      }
 
       services.AddTransient<IEmailSender, AuthMessageSender>();
       services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -240,12 +240,16 @@ namespace Mvc.Server
     public void Configure(IApplicationBuilder app)
     {
       app.UseCors("AllowAllOrigins");
-      app.UseSwagger();
-      app.UseSwaggerUI(c =>
+
+      if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
       {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroWF API V1");
-        c.DocExpansion(DocExpansion.None);
-      });
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+          c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroWF API V1");
+          c.DocExpansion(DocExpansion.None);
+        });
+      }
 
       app.UseDeveloperExceptionPage();
 

@@ -14,18 +14,6 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
 
     public WebAppFixture Fixture { get; }
 
-    public bool IssueAccessToken
-    {
-      get
-      {
-        return Fixture.IssueAccessToken;
-      }
-      set
-      {
-        Fixture.IssueAccessToken = value;
-      }
-    }
-
     protected IntegrationContext(WebAppFixture fixture)
     {
       Fixture = fixture;
@@ -39,6 +27,14 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
     protected Task<IScenarioResult> Scenario(Action<Scenario> configure)
     {
       return Fixture.System.Scenario(configure);
+    }
+
+    /// <summary>
+    /// Does not issue and send an AccessToken. Use it for unauthorized requests!
+    /// </summary>
+    protected void DisableIssuingAccessToken()
+    {
+      Fixture.IssueAccessToken = false;
     }
   }
 }

@@ -27,7 +27,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     )
     {
       // Arrange
-      this.IssueAccessToken = false;
+      DisableIssuingAccessToken();
 
       // Act
       var response = await Scenario(_ =>
@@ -67,7 +67,31 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 
       // Assert
       Assert.NotNull(response);
-      Assert.Single(response);
+      Assert.True(response.Count() > 0);
+    }
+
+    [Fact]
+    public async Task CreateAsync_RoleCreated()
+    {
+      // Arrange
+      var endpoint = "/api/roles";
+      var model = new RoleViewModel
+      {
+        Name = "test_role"
+      };
+
+      // Act
+      var response = await Scenario(_ =>
+      {
+        _.Post.Json(model).ToUrl(endpoint);
+        _.StatusCodeShouldBe(HttpStatusCode.Created);
+      });
+
+      // Assert
+      Assert.NotNull(response);
+
+      var id = response.ResponseBody.ReadAsJson<string>();
+      Assert.NotNull(id);
     }
   }
 }

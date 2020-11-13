@@ -24,7 +24,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     )
     {
       // Arrange
-      this.IssueAccessToken = false;
+      DisableIssuingAccessToken();
 
       // Act
       var response = await Scenario(s =>

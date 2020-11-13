@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,9 +27,16 @@ namespace Mvc.Server
       using var scope = _serviceProvider.CreateScope();
 
       var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-      await context.Database.MigrateAsync(cancellationToken);
-
       var uIContext = scope.ServiceProvider.GetRequiredService<OpenIddictUIContext>();
+
+      // var environment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
+      // if (Helpers.Constants.IsTestingEnvironment(environment.EnvironmentName))
+      // {
+      //   await context.Database.EnsureDeletedAsync();
+      //   await uIContext.Database.EnsureDeletedAsync();
+      // }
+
+      await context.Database.MigrateAsync(cancellationToken);
       await uIContext.Database.MigrateAsync(cancellationToken);
 
       await RegisterApplicationsAsync(scope.ServiceProvider);

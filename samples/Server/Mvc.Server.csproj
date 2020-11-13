@@ -25,7 +25,7 @@
     <PackageReference Include="OpenIddict.AspNetCore" Version="3.0.0-beta6.20527.75" />
     <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="3.0.0-beta6.20527.75" />
     <PackageReference Include="OpenIddict.Quartz" Version="3.0.0-beta6.20527.75" />
-    
+
     <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.ColoredConsole" Version="3.0.1" />
