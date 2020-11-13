@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,6 +12,8 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 {
   public class RoleApiTest : IntegrationContext
   {
+    private const string TEST_ROLE = "test_role";
+
     public RoleApiTest(WebAppFixture fixture) : base(fixture)
     {
     }
@@ -77,7 +80,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       var endpoint = "/api/roles";
       var model = new RoleViewModel
       {
-        Name = "test_role"
+        Name = TEST_ROLE
       };
 
       // Act
@@ -92,6 +95,35 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 
       var id = response.ResponseBody.ReadAsJson<string>();
       Assert.NotNull(id);
+    }
+
+    [Fact]
+    public async Task GetAsync_RoleReceived()
+    {
+      // Arrange
+      var endpoint = "/api/roles";
+      var model = new RoleViewModel
+      {
+        Name = TEST_ROLE
+      };
+
+      var response = await Scenario(_ =>
+      {
+        _.Post.Json(model).ToUrl(endpoint);
+        _.StatusCodeShouldBe(HttpStatusCode.Created);
+      });
+
+      var id = response.ResponseBody.ReadAsJson<string>();
+
+      var getEndpoint = $"{endpoint}/{id}".Replace("\"", string.Empty);
+
+      // Act
+      var result = await System.GetAsJson<RoleViewModel>(getEndpoint);
+
+      // Assert
+      Assert.NotNull(result);
+      Assert.Equal(id.ToString(), result.Id);
+      Assert.Equal(TEST_ROLE, result.Name);
     }
   }
 }
