@@ -17,6 +17,15 @@ TODO:
     - users
 
 
+- proper applications management
+  - client_secret only allowed for ClientTypes.Confidential clients
+    distinguish between public / confidential clients
+  - client_secret issuing flow
+    - for confidential clients a client secret can be issued
+      - hash shoud not be visible in UI
+  - allow choosing scopes in permission dropdown
+
+
 - ??? authorizations, tokens
 ----------------------------------------------------------------------------------------------------
 
@@ -24,6 +33,6 @@ TODO:
 
 ----------------------------------------------------------------------------------------------------
 EF:
-- Contexts: 
+- Contexts:
   - STSContext
   - OpenIddictUIContext

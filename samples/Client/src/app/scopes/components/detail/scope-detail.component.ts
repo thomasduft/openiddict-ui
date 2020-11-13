@@ -94,7 +94,7 @@ export class ScopeDetailComponent implements OnInit {
     popoverRef.afterClosed$
       .subscribe((res: PopoverCloseEvent<DeleteConfirmation>) => {
         if (res.data.confirm) {
-          this.resource$ = this.service.delete(viewModel.name)
+          this.resource$ = this.service.delete(viewModel.id)
             .subscribe((id: string) => {
               this.changesSaved();
               this.back();
@@ -129,7 +129,7 @@ export class ScopeDetailComponent implements OnInit {
   private create(): void {
     this.isNew = true;
     this.viewModel = {
-      id: 0,
+      id: 'new',
       enabled: true,
       name: 'new',
       displayName: undefined,

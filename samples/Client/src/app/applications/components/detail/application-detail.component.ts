@@ -96,7 +96,7 @@ export class ApplicationDetailComponent implements OnInit {
     popoverRef.afterClosed$
       .subscribe((res: PopoverCloseEvent<DeleteConfirmation>) => {
         if (res.data.confirm) {
-          this.application$ = this.service.delete(viewModel.clientId)
+          this.application$ = this.service.delete(viewModel.id)
             .subscribe((id: string) => {
               this.changesSaved();
               this.back();
@@ -126,7 +126,8 @@ export class ApplicationDetailComponent implements OnInit {
       this.slotRegistry.register(new ApplicationDetailSlot(
         result.client.redirectUris,
         result.client.postLogoutRedirectUris,
-        result.client.permissions
+        result.client.permissions,
+        result.scopenames
       ));
 
       this.key = ApplicationDetailSlot.KEY;
@@ -151,7 +152,8 @@ export class ApplicationDetailComponent implements OnInit {
     this.slotRegistry.register(new ApplicationDetailSlot(
       this.viewModel.redirectUris,
       this.viewModel.postLogoutRedirectUris,
-      this.viewModel.permissions
+      this.viewModel.permissions,
+      []
     ));
   }
 

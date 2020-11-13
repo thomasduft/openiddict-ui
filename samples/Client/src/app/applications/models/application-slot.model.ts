@@ -20,7 +20,8 @@ export class ApplicationDetailSlot implements Slot {
   public constructor(
     redirectUris: Array<string>,
     postLogoutRedirectUris: Array<string>,
-    permissions: Array<string>
+    permissions: Array<string>,
+    allowedScopes: Array<string>,
   ) {
 
     const redirectUrisOptions = redirectUris.map((x: string) => {
@@ -30,6 +31,8 @@ export class ApplicationDetailSlot implements Slot {
     const postLogoutRedirectUrisOptions = postLogoutRedirectUris.map((x: string) => {
       return { key: x, value: x };
     });
+
+    // permissions.push(...allowedScopes);
 
     const permissionsOptions = permissions.map((x: string) => {
       return { key: x, value: x };

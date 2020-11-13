@@ -32,6 +32,7 @@ export class ScopeService {
   }
 
   public create(model: Scope): Observable<string> {
+    model.id = undefined;
     return this.http
       .post<string>('scopes', model)
       .pipe(catchError(this.http.handleError));

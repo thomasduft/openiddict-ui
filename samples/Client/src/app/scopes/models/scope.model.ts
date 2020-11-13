@@ -1,5 +1,5 @@
 export interface Scope {
-  id: number;
+  id: string;
   enabled: boolean;
   name: string;
   displayName: string;
