@@ -2,6 +2,7 @@ TODO:
 - try Alba for Integration Testing API endpoints
   - https://jasperfx.github.io/alba/
   - https://jasperfx.github.io/alba/documentation/xunit/
+  - introduce IMigrationServer instead of Worker
 
 
 - provide simple readme
