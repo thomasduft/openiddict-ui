@@ -16,6 +16,8 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
 {
   public class WebAppFixture : IDisposable
   {
+    private string AccessToken { get; set; }
+
     public SystemUnderTest System { get; }
 
     public bool IssueAccessToken { get; set; } = true;
@@ -51,8 +53,10 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
         // as a demonstration
         if (this.IssueAccessToken)
         {
-          var accessToken = GenerateTestToken();
-          httpContext.Request.Headers["Authorization"] = $"Bearer {accessToken}";
+          if (!httpContext.Request.Headers.ContainsKey("Authorization"))
+          {
+            httpContext.Request.Headers["Authorization"] = $"Bearer {AccessToken}";
+          }
         }
       });
 
@@ -61,9 +65,16 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
         // Take any kind of teardown action after
         // each simulated HTTP request
       });
+
+      AccessToken = GenerateAccessToken();
     }
 
-    private string GenerateTestToken()
+    public void Dispose()
+    {
+      System?.Dispose();
+    }
+
+    private string GenerateAccessToken()
     {
       try
       {
@@ -99,11 +110,6 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
       {
         throw;
       }
-    }
-
-    public void Dispose()
-    {
-      System?.Dispose();
     }
   }
 }

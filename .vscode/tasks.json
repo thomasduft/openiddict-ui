@@ -44,6 +44,7 @@
       "type": "process",
       "args": [
         "test",
+        "/p:ParallelizeTestCollections=false",
         "/p:CollectCoverage=true",
         "/p:CoverletOutputFormat=lcov",
         "/p:CoverletOutput=./../lcov",
