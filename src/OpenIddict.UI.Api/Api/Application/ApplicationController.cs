@@ -23,9 +23,9 @@ namespace tomware.OpenIddict.UI.Api
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<ApplicationViewModel>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetClientsAsync()
+    public async Task<IActionResult> GetApplicationsAsync()
     {
-      var result = await _service.GetClientsAsync();
+      var result = await _service.GetApplicationsAsync();
 
       return Ok(result);
     }
@@ -44,7 +44,7 @@ namespace tomware.OpenIddict.UI.Api
 
     [HttpPost]
     [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
-    public async Task<IActionResult> CreateAsync([FromBody]ApplicationViewModel model)
+    public async Task<IActionResult> CreateAsync([FromBody] ApplicationViewModel model)
     {
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -56,7 +56,7 @@ namespace tomware.OpenIddict.UI.Api
 
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> UpdateAsync([FromBody]ApplicationViewModel model)
+    public async Task<IActionResult> UpdateAsync([FromBody] ApplicationViewModel model)
     {
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -75,6 +75,16 @@ namespace tomware.OpenIddict.UI.Api
       await _service.DeleteAsync(id);
 
       return NoContent();
+    }
+
+    [HttpGet("options")]
+    [AllowAnonymous]
+    [ProducesResponseType(typeof(ApplicationOptionsViewModel), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetOptionsAsync()
+    {
+      var result = await _service.GetOptionsAsync();
+
+      return Ok(result);
     }
   }
 }

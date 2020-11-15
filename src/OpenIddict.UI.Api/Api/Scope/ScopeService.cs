@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using tomware.OpenIddict.UI.Core;
 using tomware.OpenIddict.UI.Infrastructure;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace tomware.OpenIddict.UI.Api
 {
@@ -42,7 +43,7 @@ namespace tomware.OpenIddict.UI.Api
     {
       var items = await _service.GetScopesAsync();
 
-      return items.Select(i => i.Name);
+      return items.Select(i => $"{Permissions.Prefixes.Scope}{i.Name}");
     }
 
     public async Task<ScopeViewModel> GetAsync(string id)

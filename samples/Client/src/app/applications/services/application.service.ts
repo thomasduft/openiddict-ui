@@ -5,7 +5,10 @@ import { Injectable } from '@angular/core';
 
 import { HttpWrapperService } from '../../shared/services/index';
 
-import { Application } from '../models/index';
+import {
+  Application,
+  ApplicationOptions
+} from '../models/index';
 
 @Injectable()
 export class ApplicationService {
@@ -16,6 +19,12 @@ export class ApplicationService {
   public applications(): Observable<Array<Application>> {
     return this.http
       .get<Array<Application>>('application')
+      .pipe(catchError(this.http.handleError));
+  }
+
+  public options(): Observable<ApplicationOptions> {
+    return this.http
+      .get<ApplicationOptions>(`application/options`)
       .pipe(catchError(this.http.handleError));
   }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
 using tomware.OpenIddict.UI.Core;
 using tomware.OpenIddict.UI.Infrastructure;
 
@@ -9,7 +10,7 @@ namespace tomware.OpenIddict.UI.Api
 {
   public interface IApplicationApiService
   {
-    Task<IEnumerable<ApplicationViewModel>> GetClientsAsync();
+    Task<IEnumerable<ApplicationViewModel>> GetApplicationsAsync();
 
     Task<ApplicationViewModel> GetAsync(string clientId);
 
@@ -18,21 +19,27 @@ namespace tomware.OpenIddict.UI.Api
     Task UpdateAsync(ApplicationViewModel model);
 
     Task DeleteAsync(string clientId);
+
+    Task<ApplicationOptionsViewModel> GetOptionsAsync();
   }
 
   public class ApplicationApiService : IApplicationApiService
   {
     private readonly IApplicationService _service;
+    private readonly IOptions<OpenIddictUIApiOptions> _options;
 
     public ApplicationApiService(
-      IApplicationService service
+      IApplicationService service,
+      IOptions<OpenIddictUIApiOptions> options
     )
     {
       _service = service
         ?? throw new ArgumentNullException(nameof(service));
+      _options = options
+        ?? throw new ArgumentNullException(nameof(options));
     }
 
-    public async Task<IEnumerable<ApplicationViewModel>> GetClientsAsync()
+    public async Task<IEnumerable<ApplicationViewModel>> GetApplicationsAsync()
     {
       var items = await _service.GetApplicationsAsync();
 
@@ -72,6 +79,19 @@ namespace tomware.OpenIddict.UI.Api
       if (id == null) throw new ArgumentNullException(nameof(id));
 
       await _service.DeleteAsync(id);
+    }
+
+    public async Task<ApplicationOptionsViewModel> GetOptionsAsync()
+    {
+      var options = _options.Value;
+
+      var model = new ApplicationOptionsViewModel
+      {
+        Permissions = options.Permissions.ToList(),
+        Requirements = options.Requirements.ToList()
+      };
+
+      return await Task.FromResult(model);
     }
 
     private ApplicationParam ToParam(ApplicationViewModel model)

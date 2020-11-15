@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -6,21 +7,29 @@ namespace tomware.OpenIddict.UI.Api
   public static class OpenIddictUIServicesExtensions
   {
     public static OpenIddictBuilder AddUIApis<TApplicationUser>(
-      this OpenIddictBuilder builder
+      this OpenIddictBuilder builder,
+      OpenIddictUIApiOptions apiOptionsAction
     ) where TApplicationUser : IdentityUser, new()
     {
-      builder.Services.AddOpenIddictUIApiServices<TApplicationUser>();
+      builder.Services
+        .AddOpenIddictUIApiServices<TApplicationUser>(apiOptionsAction);
 
       return builder;
     }
 
     private static IServiceCollection AddOpenIddictUIApiServices<TApplicationUser>(
-      this IServiceCollection services
+      this IServiceCollection services,
+      OpenIddictUIApiOptions apiOptionsAction
     ) where TApplicationUser : IdentityUser, new()
     {
       services.AddAuthorizationServices();
 
       services.AddApiServices<TApplicationUser>();
+
+      services.Configure<OpenIddictUIApiOptions>(options => {
+        options.Permissions = apiOptionsAction.Permissions;
+        options.Requirements = apiOptionsAction.Requirements;
+      });
 
       return services;
     }

@@ -12,9 +12,11 @@ using Mvc.Server.Models;
 using Mvc.Server.Services;
 using Quartz;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using OpenIddict.Abstractions;
 using tomware.OpenIddict.UI.Api;
 using tomware.OpenIddict.UI.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;
+using System.Collections.Generic;
 
 namespace Mvc.Server
 {
@@ -204,7 +206,27 @@ namespace Mvc.Server
                        .Name));
         })
         // Register the Api for the EF based UI Store
-        .AddUIApis<ApplicationUser>();
+        .AddUIApis<ApplicationUser>(new OpenIddictUIApiOptions
+          {
+            Permissions =
+            {
+              Permissions.Endpoints.Authorization,
+              Permissions.Endpoints.Logout,
+              Permissions.Endpoints.Token,
+              Permissions.GrantTypes.AuthorizationCode,
+              Permissions.GrantTypes.Password,
+              Permissions.GrantTypes.RefreshToken,
+              Permissions.ResponseTypes.Code,
+              Permissions.Scopes.Email,
+              Permissions.Scopes.Profile,
+              Permissions.Scopes.Roles,
+              Permissions.Prefixes.Scope + "demo_api"
+            },
+            Requirements =
+            {
+              Requirements.Features.ProofKeyForCodeExchange
+            }
+        });
 
       if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
       {

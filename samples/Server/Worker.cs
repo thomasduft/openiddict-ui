@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,13 +27,6 @@ namespace Mvc.Server
 
       var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
       var uIContext = scope.ServiceProvider.GetRequiredService<OpenIddictUIContext>();
-
-      // var environment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
-      // if (Helpers.Constants.IsTestingEnvironment(environment.EnvironmentName))
-      // {
-      //   await context.Database.EnsureDeletedAsync();
-      //   await uIContext.Database.EnsureDeletedAsync();
-      // }
 
       await context.Database.MigrateAsync(cancellationToken);
       await uIContext.Database.MigrateAsync(cancellationToken);
@@ -114,45 +106,11 @@ namespace Mvc.Server
             Permissions =
             {
               Permissions.Endpoints.Authorization,
-              Permissions.Endpoints.Device,
               Permissions.Endpoints.Token,
               Permissions.GrantTypes.AuthorizationCode,
-              Permissions.GrantTypes.DeviceCode,
               Permissions.GrantTypes.Password,
               Permissions.GrantTypes.RefreshToken,
               Permissions.ResponseTypes.Code,
-              Permissions.Scopes.Email,
-              Permissions.Scopes.Profile,
-              Permissions.Scopes.Roles
-            }
-          });
-        }
-
-        // To test this sample with Postman, use the following settings:
-        //
-        // * Access token URL: https://localhost:5000/connect/token
-        // * grant_type: password
-        // * client_id: test-client
-        // * client_secret: my-secret
-        // * username: admin@openiddict.com
-        // * password: Pass123$
-        // * scope: openid email profile roles
-        // * Request access token locally: yes
-        if (await manager.FindByClientIdAsync("test-client") is null)
-        {
-          await manager.CreateAsync(new OpenIddictApplicationDescriptor
-          {
-            ClientId = "test-client",
-            ConsentType = ConsentTypes.Systematic,
-            DisplayName = "Tester",
-            ClientSecret = "my-secret",
-            Permissions =
-            {
-              Permissions.Endpoints.Authorization,
-              Permissions.Endpoints.Token,
-              Permissions.GrantTypes.Password,
-              Permissions.GrantTypes.RefreshToken,
-              Permissions.ResponseTypes.Token,
               Permissions.Scopes.Email,
               Permissions.Scopes.Profile,
               Permissions.Scopes.Roles

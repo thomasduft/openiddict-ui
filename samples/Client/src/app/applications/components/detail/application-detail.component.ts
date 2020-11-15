@@ -121,17 +121,18 @@ export class ApplicationDetailComponent implements OnInit {
     this.isNew = false;
     this.application$ = forkJoin({
       scopenames: this.scopeService.scopenames(),
-      client: this.service.application(id)
+      options: this.service.options(),
+      application: this.service.application(id)
     }).subscribe((result: any) => {
       this.slotRegistry.register(new ApplicationDetailSlot(
-        result.client.redirectUris,
-        result.client.postLogoutRedirectUris,
-        result.client.permissions,
+        result.application.redirectUris,
+        result.application.postLogoutRedirectUris,
+        result.options.permissions,
         result.scopenames
       ));
 
       this.key = ApplicationDetailSlot.KEY;
-      this.viewModel = result.client;
+      this.viewModel = result.application;
     });
   }
 

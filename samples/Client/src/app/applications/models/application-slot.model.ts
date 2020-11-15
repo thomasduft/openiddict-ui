@@ -21,7 +21,7 @@ export class ApplicationDetailSlot implements Slot {
     redirectUris: Array<string>,
     postLogoutRedirectUris: Array<string>,
     permissions: Array<string>,
-    allowedScopes: Array<string>,
+    scopes: Array<string>
   ) {
 
     const redirectUrisOptions = redirectUris.map((x: string) => {
@@ -32,7 +32,13 @@ export class ApplicationDetailSlot implements Slot {
       return { key: x, value: x };
     });
 
-    // permissions.push(...allowedScopes);
+    // do not add double entries
+    scopes.forEach(s => {
+      if (!permissions.some(p => p === s))
+      {
+        permissions.push(s);
+      }
+    });
 
     const permissionsOptions = permissions.map((x: string) => {
       return { key: x, value: x };
