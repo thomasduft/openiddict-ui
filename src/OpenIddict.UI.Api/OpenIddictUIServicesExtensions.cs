@@ -8,18 +8,18 @@ namespace tomware.OpenIddict.UI.Api
   {
     public static OpenIddictBuilder AddUIApis<TApplicationUser>(
       this OpenIddictBuilder builder,
-      OpenIddictUIApiOptions apiOptionsAction
+      OpenIddictUIApiOptions uiApiOptions
     ) where TApplicationUser : IdentityUser, new()
     {
       builder.Services
-        .AddOpenIddictUIApiServices<TApplicationUser>(apiOptionsAction);
+        .AddOpenIddictUIApiServices<TApplicationUser>(uiApiOptions);
 
       return builder;
     }
 
     private static IServiceCollection AddOpenIddictUIApiServices<TApplicationUser>(
       this IServiceCollection services,
-      OpenIddictUIApiOptions apiOptionsAction
+      OpenIddictUIApiOptions uiApiOptions
     ) where TApplicationUser : IdentityUser, new()
     {
       services.AddAuthorizationServices();
@@ -27,8 +27,8 @@ namespace tomware.OpenIddict.UI.Api
       services.AddApiServices<TApplicationUser>();
 
       services.Configure<OpenIddictUIApiOptions>(options => {
-        options.Permissions = apiOptionsAction.Permissions;
-        options.Requirements = apiOptionsAction.Requirements;
+        options.Permissions = uiApiOptions.Permissions;
+        options.Requirements = uiApiOptions.Requirements;
       });
 
       return services;

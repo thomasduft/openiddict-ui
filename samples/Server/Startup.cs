@@ -12,11 +12,9 @@ using Mvc.Server.Models;
 using Mvc.Server.Services;
 using Quartz;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using OpenIddict.Abstractions;
 using tomware.OpenIddict.UI.Api;
 using tomware.OpenIddict.UI.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;
-using System.Collections.Generic;
 
 namespace Mvc.Server
 {
