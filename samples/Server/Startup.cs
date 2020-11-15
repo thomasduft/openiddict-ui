@@ -125,12 +125,14 @@ namespace Mvc.Server
                  .SetTokenEndpointUris("/connect/token")
                  .SetUserinfoEndpointUris("/connect/userinfo")
                  .SetVerificationEndpointUris("/connect/verify");
-          // Note: this sample uses the code, device code, password and refresh token flows, but you
+          
+          // Note: this sample uses the code, device, password and refresh token flows, but you
           // can enable the other flows if you need to support implicit or client credentials.
           options.AllowAuthorizationCodeFlow()
                  .AllowDeviceCodeFlow()
                  .AllowPasswordFlow()
                  .AllowRefreshTokenFlow();
+          
           // Mark the "email", "profile", "roles" and "demo_api" scopes as supported scopes.
           options.RegisterScopes(
             Scopes.OpenId,
@@ -142,8 +144,10 @@ namespace Mvc.Server
           // Register the signing and encryption credentials.
           options.AddDevelopmentEncryptionCertificate()
                  .AddDevelopmentSigningCertificate();
+          
           // Force client applications to use Proof Key for Code Exchange (PKCE).
           options.RequireProofKeyForCodeExchange();
+          
           // Register the ASP.NET Core host and configure the ASP.NET Core-specific options.
           options.UseAspNetCore()
                  .EnableStatusCodePagesIntegration()
@@ -153,6 +157,7 @@ namespace Mvc.Server
                  .EnableUserinfoEndpointPassthrough()
                  .EnableVerificationEndpointPassthrough()
                  .DisableTransportSecurityRequirement(); // During development, you can disable the HTTPS requirement.
+          
           // Note: if you don't want to specify a client_id when sending
           // a token or revocation request, uncomment the following line:
           //
@@ -182,6 +187,7 @@ namespace Mvc.Server
           // options.AddAudiences("resource_server");
           // Import the configuration from the local OpenIddict server instance.
           options.UseLocalServer();
+          
           // Register the ASP.NET Core host.
           options.UseAspNetCore();
           // For applications that need immediate access token or authorization
@@ -206,12 +212,15 @@ namespace Mvc.Server
         // Register the Api for the EF based UI Store
         .AddUIApis<ApplicationUser>(new OpenIddictUIApiOptions
           {
+            // Tell the system about the allowed Permissions and Requirements 
+            // it is built/configured for.
             Permissions =
             {
               Permissions.Endpoints.Authorization,
               Permissions.Endpoints.Logout,
               Permissions.Endpoints.Token,
               Permissions.GrantTypes.AuthorizationCode,
+              Permissions.GrantTypes.DeviceCode,
               Permissions.GrantTypes.Password,
               Permissions.GrantTypes.RefreshToken,
               Permissions.ResponseTypes.Code,
