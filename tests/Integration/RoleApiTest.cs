@@ -70,10 +70,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       Assert.NotNull(response);
       Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-      string responseContent = await response.Content.ReadAsStringAsync();
-      Assert.NotNull(response);
-
-      var model = Deserialize<List<RoleViewModel>>(responseContent);
+      var model = await response.Content.ReadAsJson<List<RoleViewModel>>();
       Assert.NotNull(model);
       Assert.True(model.Count() > 0);
     }
@@ -92,8 +89,9 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 
       // Assert
       Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 
-      var id = await response.Content.ReadAsStringAsync();
+      var id = await response.Content.ReadAsJson<string>();
       Assert.NotNull(id);
     }
 
@@ -106,16 +104,16 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       {
         Name = NEW_ROLE
       });
-      var id = await createResponse.Content.ReadAsStringAsync();
+      var id = await createResponse.Content.ReadAsJson<string>();
 
       // Act
       var response = await GetAsync($"{endpoint}/{id}");
 
       // Assert
       Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-      var responseContent = await response.Content.ReadAsStringAsync();
-      var model = Deserialize<RoleViewModel>(responseContent);
+      var model = await response.Content.ReadAsJson<RoleViewModel>();
 
       Assert.NotNull(model);
       Assert.Equal(id, model.Id);
@@ -131,7 +129,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       {
         Name = NEW_ROLE
       });
-      var id = await createResponse.Content.ReadAsStringAsync();
+      var id = await createResponse.Content.ReadAsJson<string>();
 
       // Act
       var response = await PutAsync(endpoint, new RoleViewModel
@@ -154,7 +152,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       {
         Name = NEW_ROLE
       });
-      var id = await createResponse.Content.ReadAsStringAsync();
+      var id = await createResponse.Content.ReadAsJson<string>();
 
       // Act
       var response = await DeleteAsync($"{endpoint}/{id}");

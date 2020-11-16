@@ -1,20 +1,14 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OpenIddict.Validation.AspNetCore;
 
 namespace tomware.OpenIddict.UI.Api
 {
   [Route("api/accounts")]
-  [Authorize(
-    Policies.ADMIN_POLICY,
-    AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
-  )]
-  public class AccountController : ControllerBase
+  public class AccountController : ApiControllerBase
   {
     private readonly ILogger<AccountController> _logger;
     private readonly IAccountApiService _service;

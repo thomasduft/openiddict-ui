@@ -107,10 +107,10 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
         .PutAsync(endpoint, httpContent);
     }
 
-  protected async Task<HttpResponseMessage> DeleteAsync(
-     string endpoint,
-     bool authorized = true
-   )
+    protected async Task<HttpResponseMessage> DeleteAsync(
+       string endpoint,
+       bool authorized = true
+    )
     {
       return await GetClient(authorized)
         .DeleteAsync(endpoint);

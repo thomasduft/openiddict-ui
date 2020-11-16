@@ -33,9 +33,11 @@ namespace tomware.OpenIddict.UI.Api
       RegisterUserViewModel model
     )
     {
+      // TODO: provide strategy for enabling correct UserName/Email login
+      // for not misusing the Email as UserName!
       var identiyUser = new TIdentityUser
       {
-        UserName = model.UserName,
+        UserName = model.Email, // model.UserName
         Email = model.Email,
         LockoutEnabled = true
       };

@@ -1,18 +1,13 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using OpenIddict.Validation.AspNetCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace tomware.OpenIddict.UI.Api
 {
   [Route("api/application")]
-  [Authorize(
-    Policies.ADMIN_POLICY,
-    AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
-  )]
-  public class ApplicationController : ControllerBase
+  public class ApplicationController : ApiControllerBase
   {
     private readonly IApplicationApiService _service;
 

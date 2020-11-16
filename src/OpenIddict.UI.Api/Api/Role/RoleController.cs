@@ -1,18 +1,12 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OpenIddict.Validation.AspNetCore;
 
 namespace tomware.OpenIddict.UI.Api
 {
   [Route("api/roles")]
-  [Authorize(
-    Policies.ADMIN_POLICY,
-    AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
-  )]
-  public class RoleController : ControllerBase
+  public class RoleController : ApiControllerBase
   {
     private readonly IRoleService _service;
 
@@ -43,7 +37,7 @@ namespace tomware.OpenIddict.UI.Api
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> CreateAsync([FromBody] RoleViewModel model)
     {
       if (model == null) return BadRequest();
