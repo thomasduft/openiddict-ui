@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -10,7 +9,10 @@ using OpenIddict.Validation.AspNetCore;
 namespace tomware.OpenIddict.UI.Api
 {
   [Route("api/claimtypes")]
-  [Authorize(Policies.ADMIN_POLICY, AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
+  [Authorize(
+    Policies.ADMIN_POLICY,
+    AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
+  )]
   public class ClaimTypeController : ControllerBase
   {
     private readonly IClaimTypeApiService _service;
@@ -50,7 +52,7 @@ namespace tomware.OpenIddict.UI.Api
 
       var result = await _service.CreateAsync(model);
 
-      return Created($"api/claimtypes/{result}", JsonSerializer.Serialize(result));
+      return Created($"api/claimtypes/{result}", result);
     }
 
     [HttpPut]

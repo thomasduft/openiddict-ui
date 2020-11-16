@@ -3,13 +3,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Text.Json;
 using OpenIddict.Validation.AspNetCore;
 
 namespace tomware.OpenIddict.UI.Api
 {
   [Route("api/roles")]
-  [Authorize(Policies.ADMIN_POLICY, AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
+  [Authorize(
+    Policies.ADMIN_POLICY,
+    AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
+  )]
   public class RoleController : ControllerBase
   {
     private readonly IRoleService _service;
@@ -49,7 +51,7 @@ namespace tomware.OpenIddict.UI.Api
 
       var result = await _service.CreateAsync(model);
 
-      return Created($"api/roles/{result}", JsonSerializer.Serialize(result));
+      return Created($"api/roles/{result}", result);
     }
 
     [HttpPut]

@@ -116,21 +116,15 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 
       var id = response.ResponseBody.ReadAsJson<string>();
 
-      var getEndpoint = $"{endpoint}/{id}".Replace("\"", string.Empty);
+      var getEndpoint = $"{endpoint}/{id}";
 
       // Act
-      var result = await Scenario(_ =>
-      {
-        _.Get.Url(getEndpoint);
-        _.StatusCodeShouldBeOk();
-      });
+      var roleViewModel = await System.GetAsJson<RoleViewModel>(getEndpoint);
 
-      var roleViewModel = response.ResponseBody.ReadAsJson<RoleViewModel>();
-
-      // // Assert
-      // Assert.NotNull(roleViewModel);
-      // Assert.Equal(id.ToString(), roleViewModel.Id);
-      // Assert.Equal(TEST_ROLE, roleViewModel.Name);
+      // Assert
+      Assert.NotNull(roleViewModel);
+      Assert.Equal(id, roleViewModel.Id);
+      Assert.Equal(NEW_ROLE, roleViewModel.Name);
     }
   }
 }

@@ -3,13 +3,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Validation.AspNetCore;
 using System.Collections.Generic;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace tomware.OpenIddict.UI.Api
 {
   [Route("api/application")]
-  [Authorize(Policies.ADMIN_POLICY, AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
+  [Authorize(
+    Policies.ADMIN_POLICY,
+    AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
+  )]
   public class ApplicationController : ControllerBase
   {
     private readonly IApplicationApiService _service;
@@ -51,7 +53,7 @@ namespace tomware.OpenIddict.UI.Api
 
       var result = await _service.CreateAsync(model);
 
-      return Created($"api/clients/{result}", JsonSerializer.Serialize(result));
+      return Created($"api/clients/{result}", result);
     }
 
     [HttpPut]

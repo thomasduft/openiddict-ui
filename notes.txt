@@ -2,13 +2,9 @@ TODO:
 - try Alba for Integration Testing API endpoints
   - https://jasperfx.github.io/alba/
   - https://jasperfx.github.io/alba/documentation/xunit/
-  - introduce IMigrationServer instead of Worker
 
-
-- provide simple readme
-  - short but precise
-  - why and purpose
-  - how to
+  - use standard integration testing approach with WebApplicationFactory
+    - https://docs.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-5.0
 
 
 - distinguish between Identity and OpenIddict management
@@ -24,7 +20,6 @@ TODO:
   - client_secret issuing flow
     - for confidential clients a client secret can be issued
       - hash shoud not be visible in UI
-  - allow choosing scopes in permission dropdown
 
 
 - ??? authorizations, tokens

@@ -3,13 +3,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Validation.AspNetCore;
 using System.Collections.Generic;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace tomware.OpenIddict.UI.Api
 {
   [Route("api/scopes")]
-  [Authorize(Policies.ADMIN_POLICY, AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
+  [Authorize(
+    Policies.ADMIN_POLICY,
+    AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
+  )]
   public class ScopeController : ControllerBase
   {
     private readonly IScopeApiService _service;
@@ -58,7 +60,7 @@ namespace tomware.OpenIddict.UI.Api
 
       var result = await _service.CreateAsync(model);
 
-      return Created($"api/scopes/{result}", JsonSerializer.Serialize(result));
+      return Created($"api/scopes/{result}", result);
     }
 
     [HttpPut]

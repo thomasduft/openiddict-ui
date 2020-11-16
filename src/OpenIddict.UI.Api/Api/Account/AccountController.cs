@@ -10,7 +10,10 @@ using OpenIddict.Validation.AspNetCore;
 namespace tomware.OpenIddict.UI.Api
 {
   [Route("api/accounts")]
-  [Authorize(Policies.ADMIN_POLICY, AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
+  [Authorize(
+    Policies.ADMIN_POLICY,
+    AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
+  )]
   public class AccountController : ControllerBase
   {
     private readonly ILogger<AccountController> _logger;

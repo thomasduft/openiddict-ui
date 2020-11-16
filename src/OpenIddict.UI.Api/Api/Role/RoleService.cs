@@ -56,9 +56,13 @@ namespace tomware.OpenIddict.UI.Api
       if (!await _manager.RoleExistsAsync(model.Name))
       {
         await _manager.CreateAsync(newRole);
+
+        return newRole.Id;
       }
 
-      return newRole.Id;
+      var role = await _manager.FindByNameAsync(model.Name);
+
+      return role.Id;
     }
 
     public async Task UpdateAsync(RoleViewModel model)
