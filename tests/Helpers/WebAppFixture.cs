@@ -1,8 +1,10 @@
 using Alba;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Mvc.Server;
+using Mvc.Server.Services;
 using OpenIddict.Server;
 using System;
 using System.Collections.Generic;
@@ -66,12 +68,34 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
         // each simulated HTTP request
       });
 
+      EnsureMigration();
       AccessToken = GenerateAccessToken();
     }
 
     public void Dispose()
     {
       System?.Dispose();
+    }
+
+    private void EnsureMigration()
+    {
+       IServiceProvider serviceProvider
+          = (IServiceProvider)this.System.Services.GetService(typeof(IServiceProvider));
+
+      using (var scope = serviceProvider.CreateScope())
+      {
+        var services = scope.ServiceProvider;
+        try
+        {
+          var migrator = services.GetRequiredService<IMigrationService>();
+          migrator.EnsureMigrationAsync().GetAwaiter().GetResult();
+        }
+        catch (Exception ex)
+        {
+          var logger = services.GetRequiredService<ILogger<Program>>();
+          logger.LogError(ex, "An error occurred while migrating the database.");
+        }
+      }
     }
 
     private string GenerateAccessToken()
