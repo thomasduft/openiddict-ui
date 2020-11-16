@@ -43,7 +43,7 @@ namespace tomware.OpenIddict.UI.Api
     {
       var items = await _service.GetScopesAsync();
 
-      return items.Select(i => $"{Permissions.Prefixes.Scope}{i.Name}");
+      return items.Select(i => i.Name);
     }
 
     public async Task<ScopeViewModel> GetAsync(string id)

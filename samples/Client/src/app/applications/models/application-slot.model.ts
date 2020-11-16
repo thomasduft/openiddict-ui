@@ -34,7 +34,8 @@ export class ApplicationDetailSlot implements Slot {
 
     // do not add double entries
     scopes.forEach(s => {
-      if (!permissions.some(p => p === s))
+      const prefixedScopeName = `scp:${s}`;
+      if (!permissions.some(p => p === prefixedScopeName))
       {
         permissions.push(s);
       }

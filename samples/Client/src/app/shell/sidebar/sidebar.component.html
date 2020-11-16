@@ -15,7 +15,7 @@
         {{ userName }}
       </a>
     </li>
-    <tw-menu *ngIf="isAuthenticated"></tw-menu>
+    <tw-menu *ngIf="isAuthenticated && isAdmin"></tw-menu>
   </ul>
 </div>
 <div class="sidebar__footer">
