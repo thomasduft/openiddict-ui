@@ -292,10 +292,11 @@ namespace Mvc.Server
       app.UseAuthentication();
       app.UseAuthorization();
 
-      app.UseEndpoints(options =>
-        options.MapControllerRoute(
-          name: "default",
-          pattern: "{controller=Home}/{action=Index}/{id?}"));
+      app.UseEndpoints(options => 
+      {
+        options.MapControllers();
+        options.MapDefaultControllerRoute();
+      });
     }
   }
 }
