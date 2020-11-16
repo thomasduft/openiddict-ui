@@ -15,9 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{46B1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvc.Server", "samples\Server\Mvc.Server.csproj", "{B20AFF8D-CB26-44CE-BBB8-E71E56F1A255}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenIddict.UI.Tests", "tests\OpenIddict.UI.Tests.csproj", "{701E1961-298E-41A0-A490-6E979B5EBE55}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenIddict.UI.Test", "test\OpenIddict.UI.Test.csproj", "{895A9934-CF2C-4A45-BF68-36C867F21A88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenIddict.UI.Tests", "tests\OpenIddict.UI.Tests.csproj", "{895A9934-CF2C-4A45-BF68-36C867F21A88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,18 +78,6 @@ Global
 		{B20AFF8D-CB26-44CE-BBB8-E71E56F1A255}.Release|x64.Build.0 = Release|Any CPU
 		{B20AFF8D-CB26-44CE-BBB8-E71E56F1A255}.Release|x86.ActiveCfg = Release|Any CPU
 		{B20AFF8D-CB26-44CE-BBB8-E71E56F1A255}.Release|x86.Build.0 = Release|Any CPU
-		{701E1961-298E-41A0-A490-6E979B5EBE55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{701E1961-298E-41A0-A490-6E979B5EBE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{701E1961-298E-41A0-A490-6E979B5EBE55}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{701E1961-298E-41A0-A490-6E979B5EBE55}.Debug|x64.Build.0 = Debug|Any CPU
-		{701E1961-298E-41A0-A490-6E979B5EBE55}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{701E1961-298E-41A0-A490-6E979B5EBE55}.Debug|x86.Build.0 = Debug|Any CPU
-		{701E1961-298E-41A0-A490-6E979B5EBE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{701E1961-298E-41A0-A490-6E979B5EBE55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{701E1961-298E-41A0-A490-6E979B5EBE55}.Release|x64.ActiveCfg = Release|Any CPU
-		{701E1961-298E-41A0-A490-6E979B5EBE55}.Release|x64.Build.0 = Release|Any CPU
-		{701E1961-298E-41A0-A490-6E979B5EBE55}.Release|x86.ActiveCfg = Release|Any CPU
-		{701E1961-298E-41A0-A490-6E979B5EBE55}.Release|x86.Build.0 = Release|Any CPU
 		{895A9934-CF2C-4A45-BF68-36C867F21A88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{895A9934-CF2C-4A45-BF68-36C867F21A88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{895A9934-CF2C-4A45-BF68-36C867F21A88}.Debug|x64.ActiveCfg = Debug|Any CPU

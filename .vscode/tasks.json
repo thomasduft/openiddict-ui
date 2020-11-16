@@ -48,24 +48,6 @@
         "/p:CollectCoverage=true",
         "/p:CoverletOutputFormat=lcov",
         "/p:CoverletOutput=./../lcov",
-        "${workspaceFolder}/test/OpenIddict.UI.Test.csproj"
-      ],
-      "problemMatcher": "$msCompile",
-      "group": {
-        "kind": "test",
-        "isDefault": true
-      }
-    },
-    {
-      "label": "test with alba",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "test",
-        "/p:ParallelizeTestCollections=false",
-        "/p:CollectCoverage=true",
-        "/p:CoverletOutputFormat=lcov",
-        "/p:CoverletOutput=./../lcov",
         "${workspaceFolder}/tests/OpenIddict.UI.Tests.csproj"
       ],
       "problemMatcher": "$msCompile",

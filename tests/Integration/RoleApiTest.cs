@@ -1,9 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Alba;
+using Mvc.Server;
 using tomware.OpenIddict.UI.Api;
 using tomware.OpenIddict.UI.Tests.Helpers;
 using Xunit;
@@ -14,14 +14,15 @@ namespace tomware.OpenIddict.UI.Tests.Integration
   {
     private const string TEST_ROLE = "test_role";
     private const string NEW_ROLE = "new_role";
+    private const string UPDATE_ROLE = "update_role";
 
-    public RoleApiTest(WebAppFixture fixture) : base(fixture)
-    {
-    }
+    public RoleApiTest(IntegrationApplicationFactory<Startup> fixture)
+      : base(fixture)
+    { }
 
     [Theory]
     [InlineData("/api/roles", HttpVerb.Get)]
-    [InlineData("/api/roles/id", HttpVerb.Get)]
+    [InlineData("/api/roles/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Get)]
     [InlineData("/api/roles", HttpVerb.Post)]
     // [InlineData("/api/roles", HttpVerb.Put)]
     // [InlineData("/api/roles/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
@@ -31,33 +32,29 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     )
     {
       // Arrange
-      DisableIssuingAccessToken();
+      HttpResponseMessage response = null;
+      var authorized = false;
 
       // Act
-      var response = await Scenario(_ =>
+      switch (verb)
       {
-        switch (verb)
-        {
-          case HttpVerb.Post:
-            _.Post.Json(new RoleViewModel()).ToUrl(endpoint);
-            break;
-          case HttpVerb.Put:
-            _.Put.Json(new RoleViewModel()).ToUrl(endpoint);
-            break;
-          case HttpVerb.Delete:
-            _.Delete.Url(endpoint);
-            break;
-          default:
-            _.Get.Url(endpoint);
-            break;
-        }
+        case HttpVerb.Post:
+          response = await PostAsync(endpoint, new RoleViewModel(), authorized);
+          break;
+        case HttpVerb.Put:
+          response = await PutAsync(endpoint, new RoleViewModel(), authorized);
+          break;
+        case HttpVerb.Delete:
+          response = await DeleteAsync(endpoint, authorized);
+          break;
+        default:
+          response = await GetAsync(endpoint, authorized);
+          break;
+      }
 
-        // Assert
-        _.StatusCodeShouldBe(HttpStatusCode.Unauthorized);
-      });
-
+      // Assert
       Assert.NotNull(response);
-      Assert.Equal(401, response.Context.Response.StatusCode);
+      Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
     }
 
     [Fact]
@@ -67,11 +64,18 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       var endpoint = "/api/roles";
 
       // Act
-      var response = await System.GetAsJson<IEnumerable<RoleViewModel>>(endpoint);
+      var response = await GetAsync(endpoint);
 
       // Assert
       Assert.NotNull(response);
-      Assert.True(response.Count() > 0);
+      Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+      string responseContent = await response.Content.ReadAsStringAsync();
+      Assert.NotNull(response);
+
+      var model = Deserialize<List<RoleViewModel>>(responseContent);
+      Assert.NotNull(model);
+      Assert.True(model.Count() > 0);
     }
 
     [Fact]
@@ -79,22 +83,17 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     {
       // Arrange
       var endpoint = "/api/roles";
-      var model = new RoleViewModel
-      {
-        Name = TEST_ROLE
-      };
 
       // Act
-      var response = await Scenario(_ =>
+      var response = await PostAsync(endpoint, new RoleViewModel
       {
-        _.Post.Json(model).ToUrl(endpoint);
-        _.StatusCodeShouldBe(HttpStatusCode.Created);
+        Name = TEST_ROLE
       });
 
       // Assert
       Assert.NotNull(response);
 
-      var id = response.ResponseBody.ReadAsJson<string>();
+      var id = await response.Content.ReadAsStringAsync();
       Assert.NotNull(id);
     }
 
@@ -103,28 +102,66 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     {
       // Arrange
       var endpoint = "/api/roles";
-      var model = new RoleViewModel
+      var createResponse = await PostAsync(endpoint, new RoleViewModel
       {
         Name = NEW_ROLE
-      };
-
-      var response = await Scenario(_ =>
-      {
-        _.Post.Json(model).ToUrl(endpoint);
-        _.StatusCodeShouldBe(HttpStatusCode.Created);
       });
-
-      var id = response.ResponseBody.ReadAsJson<string>();
-
-      var getEndpoint = $"{endpoint}/{id}";
+      var id = await createResponse.Content.ReadAsStringAsync();
 
       // Act
-      var roleViewModel = await System.GetAsJson<RoleViewModel>(getEndpoint);
+      var response = await GetAsync($"{endpoint}/{id}");
 
       // Assert
-      Assert.NotNull(roleViewModel);
-      Assert.Equal(id, roleViewModel.Id);
-      Assert.Equal(NEW_ROLE, roleViewModel.Name);
+      Assert.NotNull(response);
+
+      var responseContent = await response.Content.ReadAsStringAsync();
+      var model = Deserialize<RoleViewModel>(responseContent);
+
+      Assert.NotNull(model);
+      Assert.Equal(id, model.Id);
+      Assert.Equal(NEW_ROLE, model.Name);
+    }
+
+    [Fact]
+    public async Task UpdateAsync_RoleUpdated()
+    {
+      // Arrange
+      var endpoint = "/api/roles";
+      var createResponse = await PostAsync(endpoint, new RoleViewModel
+      {
+        Name = NEW_ROLE
+      });
+      var id = await createResponse.Content.ReadAsStringAsync();
+
+      // Act
+      var response = await PutAsync(endpoint, new RoleViewModel
+      {
+        Id = id,
+        Name = UPDATE_ROLE
+      });
+
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task DeleteAsync_RoleDeleted()
+    {
+      // Arrange
+      var endpoint = "/api/roles";
+      var createResponse = await PostAsync(endpoint, new RoleViewModel
+      {
+        Name = NEW_ROLE
+      });
+      var id = await createResponse.Content.ReadAsStringAsync();
+
+      // Act
+      var response = await DeleteAsync($"{endpoint}/{id}");
+
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
     }
   }
 }

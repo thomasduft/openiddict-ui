@@ -1,15 +1,17 @@
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
-using Alba;
+using Mvc.Server;
 using tomware.OpenIddict.UI.Api;
 using tomware.OpenIddict.UI.Tests.Helpers;
 using Xunit;
 
 namespace tomware.OpenIddict.UI.Tests.Integration
 {
-  public class ClaimTypeApiTest : IntegrationContext
+  public class ClaimeTypeApiTest : IntegrationContext
   {
-    public ClaimTypeApiTest(WebAppFixture fixture) : base(fixture)
+    public ClaimeTypeApiTest(IntegrationApplicationFactory<Startup> fixture)
+      : base(fixture)
     { }
 
     [Theory]
@@ -24,33 +26,29 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     )
     {
       // Arrange
-      DisableIssuingAccessToken();
+      HttpResponseMessage response = null;
+      var authorized = false;
 
       // Act
-      var response = await Scenario(s =>
+      switch (verb)
       {
-        switch (verb)
-        {
-          case HttpVerb.Post:
-            s.Post.Json(new ClaimTypeViewModel()).ToUrl(endpoint);
-            break;
-          case HttpVerb.Put:
-            s.Put.Json(new ClaimTypeViewModel()).ToUrl(endpoint);
-            break;
-          case HttpVerb.Delete:
-            s.Delete.Url(endpoint);
-            break;
-          default:
-            s.Get.Url(endpoint);
-            break;
-        }
+        case HttpVerb.Post:
+          response = await PostAsync(endpoint, new ClaimTypeViewModel(), authorized);
+          break;
+        case HttpVerb.Put:
+          response = await PutAsync(endpoint, new ClaimTypeViewModel(), authorized);
+          break;
+        case HttpVerb.Delete:
+          response = await DeleteAsync(endpoint, authorized);
+          break;
+        default:
+          response = await GetAsync(endpoint, authorized);
+          break;
+      }
 
-        // Assert
-        s.StatusCodeShouldBe(HttpStatusCode.Unauthorized);
-      });
-
+      // Assert
       Assert.NotNull(response);
-      Assert.Equal(401, response.Context.Response.StatusCode);
+      Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
     }
   }
 }
