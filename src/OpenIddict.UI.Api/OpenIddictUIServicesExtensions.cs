@@ -28,7 +28,6 @@ namespace tomware.OpenIddict.UI.Api
 
       services.Configure<OpenIddictUIApiOptions>(options => {
         options.Permissions = uiApiOptions.Permissions;
-        options.Requirements = uiApiOptions.Requirements;
       });
 
       return services;

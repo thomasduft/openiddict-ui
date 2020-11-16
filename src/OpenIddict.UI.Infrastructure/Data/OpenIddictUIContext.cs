@@ -38,9 +38,6 @@ namespace tomware.OpenIddict.UI.Infrastructure
   public class OpenIddictUIContext<TContext> : DbContext, IOpenIddictUIContext
     where TContext : DbContext, IOpenIddictUIContext
   {
-    // further configs see
-    // https://github.com/IdentityServer/IdentityServer4/blob/main/src/EntityFramework.Storage/src/DbContexts/ConfigurationDbContext.cs
-
     private readonly OpenIddictUIStoreOptions _storeOptions;
 
     public OpenIddictUIContext(

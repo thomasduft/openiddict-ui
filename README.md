@@ -81,27 +81,22 @@ services.AddOpenIddict()
   })
   // Register the API for the EF and ASP.NET Identity based UI Store
   .AddUIApis<ApplicationUser>(new OpenIddictUIApiOptions
+  {
+    // Tell the system about the allowed Permissions it is built/configured for.
+    Permissions =
     {
-      // Tell the system about the allowed 
-      // Permissions and Requirements it is built/configured for.
-      Permissions =
-      {
-        Permissions.Endpoints.Authorization,
-        Permissions.Endpoints.Logout,
-        Permissions.Endpoints.Token,
-        Permissions.GrantTypes.AuthorizationCode,
-        Permissions.GrantTypes.Password,
-        Permissions.GrantTypes.RefreshToken,
-        Permissions.ResponseTypes.Code,
-        Permissions.Scopes.Email,
-        Permissions.Scopes.Profile,
-        Permissions.Scopes.Roles,
-        Permissions.Prefixes.Scope + "demo_api"
-      },
-      Requirements =
-      {
-        Requirements.Features.ProofKeyForCodeExchange
-      }
+      Permissions.Endpoints.Authorization,
+      Permissions.Endpoints.Logout,
+      Permissions.Endpoints.Token,
+      Permissions.GrantTypes.AuthorizationCode,
+      Permissions.GrantTypes.Password,
+      Permissions.GrantTypes.RefreshToken,
+      Permissions.ResponseTypes.Code,
+      Permissions.Scopes.Email,
+      Permissions.Scopes.Profile,
+      Permissions.Scopes.Roles,
+      Permissions.Prefixes.Scope + "demo_api"
+    }
   });
   
 ...

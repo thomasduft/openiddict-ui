@@ -87,8 +87,7 @@ namespace tomware.OpenIddict.UI.Api
 
       var model = new ApplicationOptionsViewModel
       {
-        Permissions = options.Permissions.ToList(),
-        Requirements = options.Requirements.ToList()
+        Permissions = options.Permissions
       };
 
       return await Task.FromResult(model);

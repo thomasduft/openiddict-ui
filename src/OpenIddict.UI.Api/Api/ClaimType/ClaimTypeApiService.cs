@@ -38,7 +38,7 @@ namespace tomware.OpenIddict.UI.Api
 
     public async Task<ClaimTypeViewModel> GetAsync(Guid id)
     {
-      if (id == null) throw new ArgumentNullException(nameof(id));
+      if (id != Guid.Empty) throw new ArgumentNullException(nameof(id));
 
       var claimType = await _service.GetAsync(id);
 
@@ -66,7 +66,7 @@ namespace tomware.OpenIddict.UI.Api
 
     public async Task DeleteAsync(Guid id)
     {
-      if (id == null) throw new ArgumentNullException(nameof(id));
+      if (id != Guid.Empty) throw new ArgumentNullException(nameof(id));
 
       await _service.DeleteAsync(id);
     }
