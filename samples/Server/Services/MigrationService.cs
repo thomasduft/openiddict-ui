@@ -1,35 +1,40 @@
-﻿using System;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Mvc.Server.Helpers;
 using Mvc.Server.Models;
 using OpenIddict.Abstractions;
+using System;
+using System.Globalization;
+using System.Threading.Tasks;
 using tomware.OpenIddict.UI.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Mvc.Server
+namespace Mvc.Server.Services
 {
-  public class Worker : IHostedService
+  public interface IMigrationService
+  {
+    Task EnsureMigrationAsync();
+  }
+
+  public class MigrationService : IMigrationService
   {
     private readonly IServiceProvider _serviceProvider;
 
-    public Worker(IServiceProvider serviceProvider)
-        => _serviceProvider = serviceProvider;
+    public MigrationService(IServiceProvider serviceProvider)
+    {
+      _serviceProvider = serviceProvider;
+    }
 
-    public async Task StartAsync(CancellationToken cancellationToken)
+    public async Task EnsureMigrationAsync()
     {
       using var scope = _serviceProvider.CreateScope();
 
       var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
       var uIContext = scope.ServiceProvider.GetRequiredService<OpenIddictUIContext>();
 
-      await context.Database.MigrateAsync(cancellationToken);
-      await uIContext.Database.MigrateAsync(cancellationToken);
+      await context.Database.MigrateAsync();
+      await uIContext.Database.MigrateAsync();
 
       await RegisterApplicationsAsync(scope.ServiceProvider);
       await RegisterScopesAsync(scope.ServiceProvider);
@@ -174,7 +179,5 @@ namespace Mvc.Server
         await manager.AddToRoleAsync(applicationUser, Roles.ADMINISTRATOR_ROLE);
       }
     }
-
-    public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
   }
 }
