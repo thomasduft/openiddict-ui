@@ -260,6 +260,7 @@ __pycache__/
 *.pyc
 
 dist/
+!samples/Server/wwwroot/**/*/dist
 lcov.info
 test/coverage.json
 samples/**/*.sqlite
