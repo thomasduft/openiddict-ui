@@ -48,6 +48,7 @@
         "/p:CollectCoverage=true",
         "/p:CoverletOutputFormat=lcov",
         "/p:CoverletOutput=./../lcov",
+        "/p:Include=[tomware.*]tomware.OpenIddict.UI.*",
         "${workspaceFolder}/tests/OpenIddict.UI.Tests.csproj"
       ],
       "problemMatcher": "$msCompile",
