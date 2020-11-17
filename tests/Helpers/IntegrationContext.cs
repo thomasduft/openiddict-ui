@@ -26,7 +26,6 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
     : IClassFixture<IntegrationApplicationFactory<Startup>>
   {
     private IntegrationApplicationFactory<Mvc.Server.Startup> _factory;
-
     private readonly HttpClient _client;
     private readonly string _accessToken;
 
