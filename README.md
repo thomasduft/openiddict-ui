@@ -8,10 +8,47 @@ On top of that it ships API's for the `Usermanagement` when using [ASP.NET Core 
 
 As a goodie the samples demonstrates this features by an Angular SPA client that uses the [Authorization Code flow](https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth).
 
+## Running the sample
+
+Assuming you downloaded the sources and opened the directory with [VS Code](https://code.visualstudio.com/) you should be good to go! Ahh and of course you need [.NET Core](https://dotnet.microsoft.com/download) and [node.js](https://nodejs.org/en/) installed on your development environment.
+
+### Running the Server
+1. Open the integrated terminal in VS Code and type
+
+```bash
+dotnet build
+```
+
+That ensures you are able to build the dotnet related stuff!
+
+2. Go to the VS Code Debug tab (Ctrl+Shift+D) and run the Server project.
+
+3. After the Server is running navigate within your favorite command line to the `Client` directory and type:
+
+```bash
+npm i
+```
+
+This will install all the Client's required dependencies.
+
+```bash
+npm run start
+```
+
+This will start Angular's development server.
+
+4. Now open your browser of choice and point to the well known Angular dev url.
+
+```bash
+http://localhost:4200
+```
+
+You should see now the login screen.
+
 
 ## Using it
 
-Follow the original setup of the OpenIddict in the `Startup - ConfigureServices(...)` - method and add the two additional extension hooks `AddUIStore(..)` and `AddUIApis<TIdentityUser>()` and you should be good to go.
+Follow the original setup of the OpenIddict in the `Startup - ConfigureServices(...)` - method and add the two additional extension hooks `AddUIStore(...)` and `AddUIApis<TIdentityUser>()` and you should be good to go.
 
 ```csharp
 ...
