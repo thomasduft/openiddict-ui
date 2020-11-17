@@ -35,7 +35,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
     {
       if (id == null) throw new ArgumentNullException(nameof(id));
 
-      var entity = await this._manager.FindByIdAsync(id);
+      var entity = await _manager.FindByIdAsync(id);
 
       return entity != null ? ToInfo(entity) : null;
     }
@@ -44,34 +44,45 @@ namespace tomware.OpenIddict.UI.Infrastructure
     {
       if (model == null) throw new ArgumentNullException(nameof(model));
 
-      var newEntity = new OpenIddictEntityFrameworkCoreScope
+      var entity = await _manager.FindByNameAsync(model.Name);
+      if (entity == null)
       {
-        Name = model.Name,
-        DisplayName = model.DisplayName,
-        Description = model.Description,
-      };
+        // create new entity
+        var newEntity = new OpenIddictEntityFrameworkCoreScope
+        {
+          Name = model.Name,
+          DisplayName = model.DisplayName,
+          Description = model.Description,
+        };
+        await _manager.CreateAsync(newEntity);
 
-      await this._manager.CreateAsync(newEntity);
+        return newEntity.Id;
+      }
 
-      return newEntity.Id;
+      // update existing entity
+      model.Id = entity.Id;
+      SimpleMapper.Map<ScopeParam, OpenIddictEntityFrameworkCoreScope>(model, entity);
+      await _manager.UpdateAsync(entity);
+
+      return entity.Id;
     }
 
     public async Task UpdateAsync(ScopeParam model)
     {
       if (string.IsNullOrWhiteSpace(model.Id)) throw new ArgumentNullException(nameof(model.Id));
 
-      var entity = await this._manager.FindByIdAsync(model.Id);
+      var entity = await _manager.FindByIdAsync(model.Id);
 
       SimpleMapper.Map<ScopeParam, OpenIddictEntityFrameworkCoreScope>(model, entity);
 
-      await this._manager.UpdateAsync(entity);
+      await _manager.UpdateAsync(entity);
     }
 
     public async Task DeleteAsync(string id)
     {
       if (id == null) throw new ArgumentNullException(nameof(id));
 
-      var entity = await this._manager.FindByIdAsync(id);
+      var entity = await _manager.FindByIdAsync(id);
 
       await _manager.DeleteAsync(entity);
     }

@@ -31,28 +31,27 @@ namespace tomware.OpenIddict.UI.Core
       return entity != null ? ToInfo(entity) : null;
     }
 
-    public async Task<bool> ClaimTypeExists(string name)
-    {
-      if (name is null) throw new ArgumentNullException(nameof(name));
-
-      var items = await _repository.ListAsync(new ClaimTypeByName(name));
-      return items.Count() == 1;
-    }
-
     public async Task<Guid> CreateAsync(ClaimTypeParam model)
     {
       if (model == null) throw new ArgumentNullException(nameof(model));
 
-      if (!await ClaimTypeExists(model.Name))
+      var items = await _repository.ListAsync(new ClaimTypeByName(model.Name));
+      var entity = items.FirstOrDefault();
+      if (entity == null)
       {
-        var entity = ClaimType.Create(model.Name, model.Description);
-        await _repository.AddAsync(entity);
+        // create new entity
+        var newEntity = ClaimType.Create(model.Name, model.Description);
+        await _repository.AddAsync(newEntity);
 
-        return entity.Id;
+        return newEntity.Id;
       }
 
-      var items = await _repository.ListAsync(new ClaimTypeByName(model.Name));
-      return items.Single().Id;
+      // update existing entity
+      model.Id = entity.Id;
+      SimpleMapper.Map<ClaimTypeParam, ClaimType>(model, entity);
+      await _repository.UpdateAsync(entity);
+
+      return entity.Id;
     }
 
     public async Task UpdateAsync(ClaimTypeParam model)

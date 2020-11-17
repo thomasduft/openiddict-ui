@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,21 +10,20 @@ using Xunit;
 
 namespace tomware.OpenIddict.UI.Tests.Integration
 {
-  public class ClaimeTypeApiTest : IntegrationContext
+  public class ScopeApiTest : IntegrationContext
   {
+    private const string TEST_SCOPE = "test_scope";
 
-    private const string TEST_CLAIMTYPE = "test_claimtype";
-
-    public ClaimeTypeApiTest(IntegrationApplicationFactory<Startup> fixture)
+    public ScopeApiTest(IntegrationApplicationFactory<Startup> fixture)
       : base(fixture)
     { }
 
     [Theory]
-    [InlineData("/api/claimtypes", HttpVerb.Get)]
-    [InlineData("/api/claimtypes/id", HttpVerb.Get)]
-    [InlineData("/api/claimtypes", HttpVerb.Post)]
-    // [InlineData("/api/claimtypes", HttpVerb.Put)]
-    // [InlineData("/api/claimtypes/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
+    [InlineData("/api/scopes", HttpVerb.Get)]
+    [InlineData("/api/scopes/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Get)]
+    [InlineData("/api/scopes", HttpVerb.Post)]
+    // [InlineData("/api/scopes", HttpVerb.Put)]
+    // [InlineData("/api/scopes/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
     public async Task IsNotAuthenticated_ReturnsUnauthorized(
       string endpoint,
       HttpVerb verb
@@ -39,10 +37,10 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       switch (verb)
       {
         case HttpVerb.Post:
-          response = await PostAsync(endpoint, new ClaimTypeViewModel(), authorized);
+          response = await PostAsync(endpoint, new RoleViewModel(), authorized);
           break;
         case HttpVerb.Put:
-          response = await PutAsync(endpoint, new ClaimTypeViewModel(), authorized);
+          response = await PutAsync(endpoint, new RoleViewModel(), authorized);
           break;
         case HttpVerb.Delete:
           response = await DeleteAsync(endpoint, authorized);
@@ -61,7 +59,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     public async Task GetClaimTypesAsync_ReturnsAList()
     {
       // Arrange
-      var endpoint = "/api/claimtypes";
+      var endpoint = "/api/scopes";
 
       // Act
       var response = await GetAsync(endpoint);
@@ -70,21 +68,22 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       Assert.NotNull(response);
       Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-      var model = await response.Content.ReadAsJson<List<ClaimTypeViewModel>>();
+      var model = await response.Content.ReadAsJson<List<ScopeViewModel>>();
       Assert.NotNull(model);
       Assert.True(model.Count() >= 0);
     }
 
     [Fact]
-    public async Task CreateAsync_ClaimTypeCreated()
+    public async Task CreateAsync_ScopeCreated()
     {
       // Arrange
-      var endpoint = "/api/claimtypes";
+      var endpoint = "/api/scopes";
 
       // Act
-      var response = await PostAsync(endpoint, new ClaimTypeViewModel
+      var response = await PostAsync(endpoint, new ScopeViewModel
       {
-        Name = TEST_CLAIMTYPE,
+        Name = TEST_SCOPE,
+        DisplayName = "displayname",
         Description = "description"
       });
 
@@ -92,21 +91,22 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       Assert.NotNull(response);
       Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 
-      var id = await response.Content.ReadAsJson<Guid>();
-      Assert.True(id != Guid.Empty);
+      var id = await response.Content.ReadAsJson<string>();
+      Assert.NotNull(id);
     }
 
     [Fact]
-    public async Task GetAsync_ClaimTypeReceived()
+    public async Task GetAsync_RoleReceived()
     {
       // Arrange
-      var endpoint = "/api/claimtypes";
-      var createResponse = await PostAsync(endpoint, new ClaimTypeViewModel
+      var endpoint = "/api/scopes";
+      var createResponse = await PostAsync(endpoint, new ScopeViewModel
       {
-        Name = TEST_CLAIMTYPE,
+        Name = TEST_SCOPE,
+        DisplayName = "displayname",
         Description = "description"
       });
-      var id = await createResponse.Content.ReadAsJson<Guid>();
+      var id = await createResponse.Content.ReadAsJson<string>();
 
       // Act
       var response = await GetAsync($"{endpoint}/{id}");
@@ -115,32 +115,35 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       Assert.NotNull(response);
       Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-      var model = await response.Content.ReadAsJson<ClaimTypeViewModel>();
+      var model = await response.Content.ReadAsJson<ScopeViewModel>();
 
       Assert.NotNull(model);
-      Assert.Equal(id, model.Id.Value);
-      Assert.Equal(TEST_CLAIMTYPE, model.Name);
+      Assert.Equal(id, model.Id);
+      Assert.Equal(TEST_SCOPE, model.Name);
+      Assert.Equal("displayname", model.DisplayName);
       Assert.Equal("description", model.Description);
     }
 
     [Fact]
-    public async Task UpdateAsync_ClaimTypeUpdated()
+    public async Task UpdateAsync_ScopeUpdated()
     {
       // Arrange
-      var endpoint = "/api/claimtypes";
-      var createResponse = await PostAsync(endpoint, new ClaimTypeViewModel
+      var endpoint = "/api/scopes";
+      var createResponse = await PostAsync(endpoint, new ScopeViewModel
       {
-        Name = TEST_CLAIMTYPE,
+        Name = TEST_SCOPE,
+        DisplayName = "displayname",
         Description = "description"
       });
-      var id = await createResponse.Content.ReadAsJson<Guid>();
+      var id = await createResponse.Content.ReadAsJson<string>();
 
       // Act
-      var response = await PutAsync(endpoint, new ClaimTypeViewModel
+      var response = await PutAsync(endpoint, new ScopeViewModel
       {
         Id = id,
-        Name = TEST_CLAIMTYPE,
-        Description = "updated description"
+        Name = TEST_SCOPE,
+        DisplayName = "displayname updated",
+        Description = "description updated"
       });
 
       // Assert
@@ -149,16 +152,17 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     }
 
     [Fact]
-    public async Task DeleteAsync_ClaimTypeDeleted()
+    public async Task DeleteAsync_ScopeDeleted()
     {
       // Arrange
-      var endpoint = "/api/claimtypes";
-      var createResponse = await PostAsync(endpoint, new ClaimTypeViewModel
+      var endpoint = "/api/scopes";
+      var createResponse = await PostAsync(endpoint, new ScopeViewModel
       {
-        Name = TEST_CLAIMTYPE,
+        Name = TEST_SCOPE,
+        DisplayName = "displayname",
         Description = "description"
       });
-      var id = await createResponse.Content.ReadAsJson<Guid>();
+      var id = await createResponse.Content.ReadAsJson<string>();
 
       // Act
       var response = await DeleteAsync($"{endpoint}/{id}");

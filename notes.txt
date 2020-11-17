@@ -6,7 +6,11 @@ TODO:
     - users
 
 
-- proper applications management
+- ordering of tests
+  - clear sequence of get, create, update, delete
+
+
+- applications management
   - client_secret only allowed for ClientTypes.Confidential clients
     distinguish between public / confidential clients
   - client_secret issuing flow

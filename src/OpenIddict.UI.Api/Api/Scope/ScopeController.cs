@@ -17,7 +17,7 @@ namespace tomware.OpenIddict.UI.Api
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<ScopeViewModel>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetClaimTypesAsync()
+    public async Task<IActionResult> GetScopesAsync()
     {
       var result = await _service.GetScopesAsync();
 
