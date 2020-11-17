@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -10,6 +13,9 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 {
   public class ClaimeTypeApiTest : IntegrationContext
   {
+
+    private const string TEST_CLAIMTYPE = "test_claimtype";
+
     public ClaimeTypeApiTest(IntegrationApplicationFactory<Startup> fixture)
       : base(fixture)
     { }
@@ -49,6 +55,117 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       // Assert
       Assert.NotNull(response);
       Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetClaimTypesAsync_ReturnsAList()
+    {
+      // Arrange
+      var endpoint = "/api/claimtypes";
+
+      // Act
+      var response = await GetAsync(endpoint);
+
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+      var model = await response.Content.ReadAsJson<List<ClaimTypeViewModel>>();
+      Assert.NotNull(model);
+      Assert.True(model.Count() >= 0);
+    }
+
+    [Fact]
+    public async Task CreateAsync_ClaimTypeCreated()
+    {
+      // Arrange
+      var endpoint = "/api/claimtypes";
+
+      // Act
+      var response = await PostAsync(endpoint, new ClaimTypeViewModel
+      {
+        Name = TEST_CLAIMTYPE,
+        Description = "description"
+      });
+
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+
+      var id = await response.Content.ReadAsJson<string>();
+      Assert.NotNull(id);
+    }
+
+    [Fact]
+    public async Task GetAsync_ClaimTypeReceived()
+    {
+      // Arrange
+      var endpoint = "/api/claimtypes";
+      var createResponse = await PostAsync(endpoint, new ClaimTypeViewModel
+      {
+        Name = TEST_CLAIMTYPE,
+        Description = "description"
+      });
+      var id = await createResponse.Content.ReadAsJson<Guid>();
+
+      // Act
+      var response = await GetAsync($"{endpoint}/{id.ToString()}");
+
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+      var model = await response.Content.ReadAsJson<ClaimTypeViewModel>();
+
+      Assert.NotNull(model);
+      Assert.Equal(id, model.Id.Value);
+      Assert.Equal(TEST_CLAIMTYPE, model.Name);
+      Assert.Equal("description", model.Description);
+    }
+
+    [Fact]
+    public async Task UpdateAsync_ClaimTypeUpdated()
+    {
+      // Arrange
+      var endpoint = "/api/claimtypes";
+      var createResponse = await PostAsync(endpoint, new ClaimTypeViewModel
+      {
+        Name = TEST_CLAIMTYPE,
+        Description = "description"
+      });
+      var id = await createResponse.Content.ReadAsJson<Guid>();
+
+      // Act
+      var response = await PutAsync(endpoint, new ClaimTypeViewModel
+      {
+        Id = id,
+        Name = TEST_CLAIMTYPE,
+        Description = "updated description"
+      });
+
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task DeleteAsync_ClaimTypeDeleted()
+    {
+      // Arrange
+      var endpoint = "/api/claimtypes";
+      var createResponse = await PostAsync(endpoint, new ClaimTypeViewModel
+      {
+        Name = TEST_CLAIMTYPE,
+        Description = "description"
+      });
+      var id = await createResponse.Content.ReadAsJson<Guid>();
+
+      // Act
+      var response = await DeleteAsync($"{endpoint}/{id}");
+
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
     }
   }
 }

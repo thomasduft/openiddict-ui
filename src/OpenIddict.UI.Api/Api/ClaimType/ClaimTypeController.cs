@@ -29,7 +29,7 @@ namespace tomware.OpenIddict.UI.Api
     [ProducesResponseType(typeof(ClaimTypeViewModel), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAsync(Guid id)
     {
-      if (id != Guid.Empty) return BadRequest();
+      if (id == Guid.Empty) return BadRequest();
 
       var result = await _service.GetAsync(id);
       if (result == null) return NotFound();
@@ -65,7 +65,7 @@ namespace tomware.OpenIddict.UI.Api
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> DeleteAsync(Guid id)
     {
-      if (id != Guid.Empty) return BadRequest();
+      if (id == Guid.Empty) return BadRequest();
 
       await _service.DeleteAsync(id);
 

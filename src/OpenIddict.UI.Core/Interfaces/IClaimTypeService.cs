@@ -10,6 +10,8 @@ namespace tomware.OpenIddict.UI.Core
 
     Task<ClaimTypeInfo> GetAsync(Guid id);
 
+    Task<bool> ClaimTypeExists(string name);
+
     Task<Guid> CreateAsync(ClaimTypeParam model);
 
     Task UpdateAsync(ClaimTypeParam model);

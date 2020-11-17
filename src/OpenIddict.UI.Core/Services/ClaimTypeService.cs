@@ -31,15 +31,28 @@ namespace tomware.OpenIddict.UI.Core
       return entity != null ? ToInfo(entity) : null;
     }
 
+    public async Task<bool> ClaimTypeExists(string name)
+    {
+      if (name is null) throw new ArgumentNullException(nameof(name));
+
+      var items = await _repository.ListAsync(new ClaimTypeByName(name));
+      return items.Count() == 1;
+    }
+
     public async Task<Guid> CreateAsync(ClaimTypeParam model)
     {
       if (model == null) throw new ArgumentNullException(nameof(model));
 
-      var entity = ClaimType.Create(model.Name, model.Description);
+      if (!await ClaimTypeExists(model.Name))
+      {
+        var entity = ClaimType.Create(model.Name, model.Description);
+        await _repository.AddAsync(entity);
 
-      await _repository.AddAsync(entity);
+        return entity.Id;
+      }
 
-      return entity.Id;
+      var items = await _repository.ListAsync(new ClaimTypeByName(model.Name));
+      return items.Single().Id;
     }
 
     public async Task UpdateAsync(ClaimTypeParam model)

@@ -229,6 +229,9 @@ namespace Mvc.Server.Models.Data.UI
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("ClaimType");
                 });
 

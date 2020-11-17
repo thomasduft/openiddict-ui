@@ -22,5 +22,8 @@ TODO:
 ----------------------------------------------------------------------------------------------------
 EF:
 - Contexts:
-  - STSContext
+  - ApplicationDbContext
   - OpenIddictUIContext
+
+- dotnet ef migrations add Initial -c ApplicationDbContext -o Models/Data
+- dotnet ef migrations add InitialUI -c OpenIddictUIContext -o Models/Data/UI

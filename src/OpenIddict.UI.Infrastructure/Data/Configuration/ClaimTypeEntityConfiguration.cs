@@ -14,6 +14,7 @@ namespace tomware.OpenIddict.UI.Infrastructure.Configuration
       // columns
       builder.HasKey(x => x.Id);
       builder.Property(x => x.Name).IsRequired();
+      builder.HasIndex(c => c.Name).IsUnique();
     }
   }
 }

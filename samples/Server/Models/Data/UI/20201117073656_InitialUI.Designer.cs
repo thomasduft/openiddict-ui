@@ -9,8 +9,8 @@ using tomware.OpenIddict.UI.Infrastructure;
 namespace Mvc.Server.Models.Data.UI
 {
     [DbContext(typeof(OpenIddictUIContext))]
-    [Migration("20201111131058_Initial")]
-    partial class Initial
+    [Migration("20201117073656_InitialUI")]
+    partial class InitialUI
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -230,6 +230,9 @@ namespace Mvc.Server.Models.Data.UI
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("ClaimType");
                 });

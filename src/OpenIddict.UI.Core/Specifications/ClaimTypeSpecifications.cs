@@ -8,4 +8,12 @@ namespace tomware.OpenIddict.UI.Core
       ApplyNoTracking();
     }
   }
+
+  public sealed class ClaimTypeByName : BaseSpecification<ClaimType>
+  {
+    public ClaimTypeByName(string name) : base(x => x.Name == name)
+    {
+      ApplyNoTracking();
+    }
+  }
 }
