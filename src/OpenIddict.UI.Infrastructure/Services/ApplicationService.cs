@@ -46,19 +46,31 @@ namespace tomware.OpenIddict.UI.Infrastructure
     {
       if (model == null) throw new ArgumentNullException(nameof(model));
 
-      var newEntity = new OpenIddictEntityFrameworkCoreApplication
+      var entity = await _manager.FindByClientIdAsync(model.ClientId);
+      if (entity == null)
       {
-        ClientId = model.ClientId,
-        DisplayName = model.DisplayName,
-        ClientSecret = model.ClientSecret,
-        Type = model.Type
-      };
+        // create new entity
+        var newEntity = new OpenIddictEntityFrameworkCoreApplication
+        {
+          ClientId = model.ClientId,
+          DisplayName = model.DisplayName,
+          ClientSecret = model.ClientSecret,
+          Type = model.Type
+        };
 
-      HandleCustomProperties(model, newEntity);
+        HandleCustomProperties(model, newEntity);
 
-      await _manager.CreateAsync(newEntity, newEntity.ClientSecret);
+        await _manager.CreateAsync(newEntity, newEntity.ClientSecret);
 
-      return newEntity.Id;
+        return newEntity.Id;
+      }
+
+      // update existing entity
+      model.Id = entity.Id;
+      SimpleMapper.Map<ApplicationParam, OpenIddictEntityFrameworkCoreApplication>(model, entity);
+      await _manager.UpdateAsync(entity);
+
+      return entity.Id;
     }
 
     public async Task UpdateAsync(ApplicationParam model)
@@ -111,7 +123,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
     }
 
     private static void HandleCustomProperties(
-      ApplicationParam model, 
+      ApplicationParam model,
       OpenIddictEntityFrameworkCoreApplication entity
     )
     {
