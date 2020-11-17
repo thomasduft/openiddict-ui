@@ -68,6 +68,7 @@ namespace tomware.OpenIddict.UI.Core
     public async Task DeleteAsync(Guid id)
     {
       // TODO: check correct removals of claimtypes!
+      // Consider an interaction service
 
       if (id == null) throw new ArgumentNullException(nameof(id));
 
