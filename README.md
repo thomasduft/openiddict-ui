@@ -144,5 +144,5 @@ services.AddOpenIddict()
 The project is still very young and there are a lot of ideas like:
 - Separating the [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-5.0&tabs=visual-studio) API's from the OpenIddict API's.
 - Provide API's for the `Authorization` and `Token` entities (if then really required).
-- Scope and permission handling within the sample client still unclear to me. I am basically waiting for some docs that might be written ;-) or some hints within the code base or unit/integration tests to look for.
+- Scope and permission handling within the sample client is still kind of unclear to me. I am basically waiting for some docs that might be written ;-) or some hints within the code base in the [openiddict-core repo]((https://github.com/openiddict/openiddict-core)) to look for.
 - Provide a [ASP.NET Razor Page](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio) based UI.
