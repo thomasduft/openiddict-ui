@@ -14,7 +14,7 @@ As a goodie the samples demonstrates this features by an Angular SPA client that
 
 ## Running the sample
 
-Assuming you downloaded the sources and opened the directory with [VS Code](https://code.visualstudio.com/) you should be good to go! Ahh and of course you need [.NET Core](https://dotnet.microsoft.com/download) and [node.js](https://nodejs.org/en/) installed on your development environment.
+Assuming you downloaded the sources and opened [VS Code](https://code.visualstudio.com/) in the root repo directory you should be good to go! Ahh and of course you need [.NET Core](https://dotnet.microsoft.com/download) and [node.js](https://nodejs.org/en/) installed on your development environment.
 
 ### Running the Server
 1. Open the integrated terminal in VS Code and type
@@ -55,7 +55,7 @@ You should see now the login screen. You can now login with the pre-configured a
 
 ## Using it
 
-Follow the original setup of the OpenIddict in the `Startup - ConfigureServices(...)` - method and add the two additional extension hooks `AddUIStore(...)` and `AddUIApis<TIdentityUser>()` and you should be good to go.
+Follow the original setup of the OpenIddict in the `Startup.ConfigureServices(...)` - method and add the two additional extension hooks `AddUIStore(...)` and `AddUIApis<TIdentityUser>(...)` and you should be good to go.
 
 ```csharp
 ...
@@ -63,54 +63,17 @@ services.AddOpenIddict()
   // Register the OpenIddict core components.
   .AddCore(options =>
   {
-    // Configure OpenIddict to use the Entity Framework Core stores and models.
-    options.UseEntityFrameworkCore();
-    // Enable Quartz.NET integration.
-    options.UseQuartz();
+    ...
   })
   // Register the OpenIddict server components.
   .AddServer(options =>
   {
-    options.SetIssuer(new Uri("https://localhost:5000/"));
-    // Enable the authorization, device, logout, token, userinfo and verification endpoints.
-    options.SetAuthorizationEndpointUris("/connect/authorize")
-           .SetDeviceEndpointUris("/connect/device")
-           .SetLogoutEndpointUris("/connect/logout")
-           .SetTokenEndpointUris("/connect/token")
-           .SetUserinfoEndpointUris("/connect/userinfo")
-           .SetVerificationEndpointUris("/connect/verify");
-    // Enable the desired flows.
-    options.AllowAuthorizationCodeFlow()
-           .AllowRefreshTokenFlow();
-    // Enable the supported scopes.
-    options.RegisterScopes(
-      Scopes.OpenId,
-      Scopes.Email,
-      Scopes.Profile,
-      Scopes.Roles,
-      "demo_api");
-    // Register the signing and encryption credentials.
-    options.AddDevelopmentEncryptionCertificate()
-           .AddDevelopmentSigningCertificate();
-    // Force client applications to use Proof Key for Code Exchange (PKCE).
-    options.RequireProofKeyForCodeExchange();
-    // Register the ASP.NET Core host and configure the ASP.NET Core-specific options.
-    options.UseAspNetCore()
-           .EnableStatusCodePagesIntegration()
-           .EnableAuthorizationEndpointPassthrough()
-           .EnableLogoutEndpointPassthrough()
-           .EnableTokenEndpointPassthrough()
-           .EnableUserinfoEndpointPassthrough()
-           .EnableVerificationEndpointPassthrough()
-           .DisableTransportSecurityRequirement();
+    ...
   })
   // Register the OpenIddict validation components.
   .AddValidation(options =>
   {
-    // Import the configuration from the local OpenIddict server instance.
-    options.UseLocalServer();
-    // Register the ASP.NET Core host.
-    options.UseAspNetCore();
+    ...
   })
   // Register the EF based UI Store
   .AddUIStore(options =>
