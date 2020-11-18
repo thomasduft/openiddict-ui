@@ -40,4 +40,8 @@ for package in $(find ./dist/nupkgs/ -name *.nupkg); do
   dotnet nuget push $package -k $3 -s https://api.nuget.org/v3/index.json
 done
 
+echo Creating and pushing tag 
+git tag -a v$1
+git push origin v$1
+
 echo Done
