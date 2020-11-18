@@ -9,7 +9,7 @@ using tomware.OpenIddict.UI.Infrastructure;
 namespace Mvc.Server.Models.Data.UI
 {
     [DbContext(typeof(OpenIddictUIContext))]
-    [Migration("20201117073656_InitialUI")]
+    [Migration("20201118092538_InitialUI")]
     partial class InitialUI
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

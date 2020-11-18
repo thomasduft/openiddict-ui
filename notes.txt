@@ -31,3 +31,7 @@ EF:
 
 - dotnet ef migrations add Initial -c ApplicationDbContext -o Models/Data
 - dotnet ef migrations add InitialUI -c OpenIddictUIContext -o Models/Data/UI
+
+----------------------------------------------------------------------------------------------------
+Tests:
+dotnet test /p:ParallelizeTestCollections=false /p:CollectCoverage=true /p:Include=[tomware.*]tomware.OpenIddict.UI.* /p:CoverletOutputFormat=lcov /p:CoverletOutput=./../lcov 

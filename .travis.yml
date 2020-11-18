@@ -5,4 +5,4 @@ dotnet: 5.0.100
 
 script:
   - dotnet build
-  - dotnet test tests/OpenIddict.UI.Tests.csproj
+  - dotnet test tests/OpenIddict.UI.Tests.csproj /p:ParallelizeTestCollections=false /p:CollectCoverage=true /p:Include=[tomware.*]tomware.OpenIddict.UI.*

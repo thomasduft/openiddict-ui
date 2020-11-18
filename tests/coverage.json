@@ -1,0 +1,4826 @@
+{
+  "tomware.OpenIddict.UI.Infrastructure.dll": {
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/Data/OpenIddictUIContext.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.OpenIddictUIStoreOptions": {
+        "System.Action`1<Microsoft.EntityFrameworkCore.DbContextOptionsBuilder> tomware.OpenIddict.UI.Infrastructure.OpenIddictUIStoreOptions::get_OpenIddictUIContext()": {
+          "Lines": {
+            "11": 34
+          },
+          "Branches": []
+        },
+        "System.Action`2<System.IServiceProvider,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder> tomware.OpenIddict.UI.Infrastructure.OpenIddictUIStoreOptions::get_ResolveDbContextOptions()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.OpenIddictUIContext": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.OpenIddictUIContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<tomware.OpenIddict.UI.Infrastructure.OpenIddictUIContext>,tomware.OpenIddict.UI.Infrastructure.OpenIddictUIStoreOptions)": {
+          "Lines": {
+            "33": 29,
+            "34": 29,
+            "35": 29
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.OpenIddictUIContext`1": {
+        "Microsoft.EntityFrameworkCore.DbSet`1<tomware.OpenIddict.UI.Core.ClaimType> tomware.OpenIddict.UI.Infrastructure.OpenIddictUIContext`1::get_ClaimTypes()": {
+          "Lines": {
+            "53": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication> tomware.OpenIddict.UI.Infrastructure.OpenIddictUIContext`1::get_Applications()": {
+          "Lines": {
+            "55": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreAuthorization> tomware.OpenIddict.UI.Infrastructure.OpenIddictUIContext`1::get_Authorizations()": {
+          "Lines": {
+            "57": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreScope> tomware.OpenIddict.UI.Infrastructure.OpenIddictUIContext`1::get_Scopes()": {
+          "Lines": {
+            "59": 0
+          },
+          "Branches": []
+        },
+        "Microsoft.EntityFrameworkCore.DbSet`1<OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreToken> tomware.OpenIddict.UI.Infrastructure.OpenIddictUIContext`1::get_Tokens()": {
+          "Lines": {
+            "61": 0
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Infrastructure.OpenIddictUIContext`1::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)": {
+          "Lines": {
+            "64": 1,
+            "65": 1,
+            "67": 1,
+            "68": 1,
+            "69": 1,
+            "74": 1
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Infrastructure.OpenIddictUIContext`1::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<TContext>,tomware.OpenIddict.UI.Infrastructure.OpenIddictUIStoreOptions)": {
+          "Lines": {
+            "47": 29,
+            "48": 29,
+            "49": 29,
+            "50": 29,
+            "51": 29
+          },
+          "Branches": [
+            {
+              "Line": 49,
+              "Offset": 12,
+              "EndOffset": 14,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 49,
+              "Offset": 12,
+              "EndOffset": 26,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 29
+            }
+          ]
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/Data/Repositories/ApplicationRepository.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.ApplicationRepository`1": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ApplicationRepository`1::.ctor(TContext)": {
+          "Lines": {
+            "9": 8,
+            "10": 8,
+            "11": 8
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/Data/Repositories/ClaimTypeRepository.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.ClaimTypeRepository`1": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ClaimTypeRepository`1::.ctor(TContext)": {
+          "Lines": {
+            "10": 8,
+            "11": 8,
+            "12": 8
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/Data/Repositories/EfRepository.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.EfRepository`2": {
+        "System.Linq.IQueryable`1<TEntity> tomware.OpenIddict.UI.Infrastructure.EfRepository`2::ApplySpecification(tomware.OpenIddict.UI.Core.ISpecification`1<TEntity>)": {
+          "Lines": {
+            "60": 7,
+            "61": 7,
+            "62": 7,
+            "63": 7
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Infrastructure.EfRepository`2::.ctor(tomware.OpenIddict.UI.Infrastructure.OpenIddictUIContext)": {
+          "Lines": {
+            "15": 24,
+            "16": 24,
+            "17": 24,
+            "18": 24
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.EfRepository`2/<GetByIdAsync>d__2": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.EfRepository`2/<GetByIdAsync>d__2::MoveNext()": {
+          "Lines": {
+            "21": 3,
+            "22": 3,
+            "23": 3,
+            "24": 3
+          },
+          "Branches": [
+            {
+              "Line": 22,
+              "Offset": 72,
+              "EndOffset": 74,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 22,
+              "Offset": 72,
+              "EndOffset": 139,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 3
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.EfRepository`2/<ListAsync>d__3": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.EfRepository`2/<ListAsync>d__3::MoveNext()": {
+          "Lines": {
+            "27": 7,
+            "28": 7,
+            "29": 7
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.EfRepository`2/<CountAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.EfRepository`2/<CountAsync>d__4::MoveNext()": {
+          "Lines": {
+            "32": 0,
+            "33": 0,
+            "34": 0
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.EfRepository`2/<AddAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.EfRepository`2/<AddAsync>d__5::MoveNext()": {
+          "Lines": {
+            "37": 1,
+            "38": 1,
+            "40": 1,
+            "42": 1,
+            "43": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.EfRepository`2/<UpdateAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.EfRepository`2/<UpdateAsync>d__6::MoveNext()": {
+          "Lines": {
+            "46": 4,
+            "47": 4,
+            "49": 4,
+            "50": 4
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.EfRepository`2/<DeleteAsync>d__7": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.EfRepository`2/<DeleteAsync>d__7::MoveNext()": {
+          "Lines": {
+            "53": 1,
+            "54": 1,
+            "56": 1,
+            "57": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/Data/Repositories/ScopeRepository.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.ScopeRepository`1": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ScopeRepository`1::.ctor(TContext)": {
+          "Lines": {
+            "9": 8,
+            "10": 8,
+            "11": 8
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/Data/SpecificationEvaluator.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.SpecificationEvaluator`1": {
+        "System.Linq.IQueryable`1<T> tomware.OpenIddict.UI.Infrastructure.SpecificationEvaluator`1::GetQuery(System.Linq.IQueryable`1<T>,tomware.OpenIddict.UI.Core.ISpecification`1<T>)": {
+          "Lines": {
+            "13": 7,
+            "14": 7,
+            "17": 7,
+            "18": 4,
+            "19": 20,
+            "20": 4,
+            "21": 4,
+            "22": 4,
+            "23": 4,
+            "26": 7,
+            "27": 7,
+            "28": 7,
+            "29": 0,
+            "30": 7,
+            "33": 7,
+            "34": 7,
+            "35": 7,
+            "36": 0,
+            "37": 7,
+            "40": 7,
+            "41": 3,
+            "42": 3,
+            "43": 3,
+            "44": 4,
+            "45": 0,
+            "46": 0,
+            "47": 0,
+            "49": 7,
+            "50": 0,
+            "51": 0,
+            "52": 0,
+            "55": 7,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0,
+            "60": 0,
+            "62": 7,
+            "63": 7,
+            "64": 7,
+            "65": 7,
+            "67": 7,
+            "68": 7
+          },
+          "Branches": [
+            {
+              "Line": 17,
+              "Offset": 19,
+              "EndOffset": 21,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 4
+            },
+            {
+              "Line": 19,
+              "Offset": 62,
+              "EndOffset": 37,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            },
+            {
+              "Line": 19,
+              "Offset": 62,
+              "EndOffset": 64,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 4
+            },
+            {
+              "Line": 17,
+              "Offset": 19,
+              "EndOffset": 82,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 7
+            },
+            {
+              "Line": 26,
+              "Offset": 95,
+              "EndOffset": 97,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 3
+            },
+            {
+              "Line": 26,
+              "Offset": 95,
+              "EndOffset": 120,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 7
+            },
+            {
+              "Line": 33,
+              "Offset": 139,
+              "EndOffset": 141,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 3
+            },
+            {
+              "Line": 33,
+              "Offset": 139,
+              "EndOffset": 164,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 7
+            },
+            {
+              "Line": 40,
+              "Offset": 183,
+              "EndOffset": 185,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 3
+            },
+            {
+              "Line": 40,
+              "Offset": 183,
+              "EndOffset": 202,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 4
+            },
+            {
+              "Line": 44,
+              "Offset": 215,
+              "EndOffset": 217,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 44,
+              "Offset": 215,
+              "EndOffset": 232,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 7
+            },
+            {
+              "Line": 49,
+              "Offset": 245,
+              "EndOffset": 247,
+              "Path": 0,
+              "Ordinal": 12,
+              "Hits": 0
+            },
+            {
+              "Line": 49,
+              "Offset": 245,
+              "EndOffset": 307,
+              "Path": 1,
+              "Ordinal": 13,
+              "Hits": 7
+            },
+            {
+              "Line": 55,
+              "Offset": 317,
+              "EndOffset": 319,
+              "Path": 0,
+              "Ordinal": 14,
+              "Hits": 0
+            },
+            {
+              "Line": 55,
+              "Offset": 317,
+              "EndOffset": 345,
+              "Path": 1,
+              "Ordinal": 15,
+              "Hits": 7
+            },
+            {
+              "Line": 62,
+              "Offset": 355,
+              "EndOffset": 357,
+              "Path": 0,
+              "Ordinal": 16,
+              "Hits": 7
+            },
+            {
+              "Line": 62,
+              "Offset": 355,
+              "EndOffset": 366,
+              "Path": 1,
+              "Ordinal": 17,
+              "Hits": 7
+            }
+          ]
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/DTOs/ApplicationInfo.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.ApplicationInfo": {
+        "System.String tomware.OpenIddict.UI.Infrastructure.ApplicationInfo::get_Id()": {
+          "Lines": {
+            "7": 6
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ApplicationInfo::get_ClientId()": {
+          "Lines": {
+            "9": 6
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ApplicationInfo::get_DisplayName()": {
+          "Lines": {
+            "11": 6
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ApplicationInfo::get_ClientSecret()": {
+          "Lines": {
+            "13": 6
+          },
+          "Branches": []
+        },
+        "System.Boolean tomware.OpenIddict.UI.Infrastructure.ApplicationInfo::get_RequirePkce()": {
+          "Lines": {
+            "15": 4
+          },
+          "Branches": []
+        },
+        "System.Boolean tomware.OpenIddict.UI.Infrastructure.ApplicationInfo::get_RequireConsent()": {
+          "Lines": {
+            "17": 4
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Infrastructure.ApplicationInfo::get_Permissions()": {
+          "Lines": {
+            "19": 7
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Infrastructure.ApplicationInfo::get_RedirectUris()": {
+          "Lines": {
+            "20": 7
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Infrastructure.ApplicationInfo::get_PostLogoutRedirectUris()": {
+          "Lines": {
+            "21": 7
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ApplicationInfo::get_Type()": {
+          "Lines": {
+            "23": 6
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/DTOs/ApplicationParam.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.ApplicationParam": {
+        "System.String tomware.OpenIddict.UI.Infrastructure.ApplicationParam::get_Id()": {
+          "Lines": {
+            "8": 14
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ApplicationParam::get_ClientId()": {
+          "Lines": {
+            "9": 14
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ApplicationParam::get_DisplayName()": {
+          "Lines": {
+            "10": 10
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ApplicationParam::get_ClientSecret()": {
+          "Lines": {
+            "11": 10
+          },
+          "Branches": []
+        },
+        "System.Boolean tomware.OpenIddict.UI.Infrastructure.ApplicationParam::get_RequirePkce()": {
+          "Lines": {
+            "16": 7
+          },
+          "Branches": []
+        },
+        "System.Boolean tomware.OpenIddict.UI.Infrastructure.ApplicationParam::get_RequireConsent()": {
+          "Lines": {
+            "21": 7
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Infrastructure.ApplicationParam::get_Permissions()": {
+          "Lines": {
+            "23": 12
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Infrastructure.ApplicationParam::get_RedirectUris()": {
+          "Lines": {
+            "24": 12
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Infrastructure.ApplicationParam::get_PostLogoutRedirectUris()": {
+          "Lines": {
+            "25": 12
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Infrastructure.ApplicationParam::get_Requirements()": {
+          "Lines": {
+            "26": 0
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ApplicationParam::get_Type()": {
+          "Lines": {
+            "27": 15
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/DTOs/ScopeInfo.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.ScopeInfo": {
+        "System.String tomware.OpenIddict.UI.Infrastructure.ScopeInfo::get_Id()": {
+          "Lines": {
+            "5": 4
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ScopeInfo::get_Name()": {
+          "Lines": {
+            "6": 4
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ScopeInfo::get_DisplayName()": {
+          "Lines": {
+            "7": 4
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ScopeInfo::get_Description()": {
+          "Lines": {
+            "8": 4
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ScopeInfo::get_Properties()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ScopeInfo::get_Resources()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/DTOs/ScopeParam.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.ScopeParam": {
+        "System.String tomware.OpenIddict.UI.Infrastructure.ScopeParam::get_Id()": {
+          "Lines": {
+            "7": 14
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ScopeParam::get_Name()": {
+          "Lines": {
+            "8": 14
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ScopeParam::get_DisplayName()": {
+          "Lines": {
+            "9": 10
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Infrastructure.ScopeParam::get_Description()": {
+          "Lines": {
+            "10": 10
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/OpenIddictUIInfrastructureServicesExtensions.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.OpenIddictUIInfrastructureServicesExtensions": {
+        "Microsoft.Extensions.DependencyInjection.OpenIddictBuilder tomware.OpenIddict.UI.Infrastructure.OpenIddictUIInfrastructureServicesExtensions::AddUIStore(Microsoft.Extensions.DependencyInjection.OpenIddictBuilder,System.Action`1<tomware.OpenIddict.UI.Infrastructure.OpenIddictUIStoreOptions>)": {
+          "Lines": {
+            "14": 5,
+            "15": 5,
+            "16": 5,
+            "18": 5,
+            "19": 5,
+            "21": 5,
+            "23": 5,
+            "24": 5
+          },
+          "Branches": []
+        },
+        "Microsoft.Extensions.DependencyInjection.OpenIddictEntityFrameworkCoreBuilder tomware.OpenIddict.UI.Infrastructure.OpenIddictUIInfrastructureServicesExtensions::UseEFCoreUIStore(Microsoft.Extensions.DependencyInjection.OpenIddictCoreBuilder)": {
+          "Lines": {
+            "29": 5,
+            "30": 5,
+            "31": 5,
+            "32": 5,
+            "34": 5,
+            "35": 5
+          },
+          "Branches": []
+        },
+        "Microsoft.Extensions.DependencyInjection.IServiceCollection tomware.OpenIddict.UI.Infrastructure.OpenIddictUIInfrastructureServicesExtensions::AddOpenIddictUIInfrastructureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)": {
+          "Lines": {
+            "40": 5,
+            "41": 5,
+            "43": 5,
+            "44": 5,
+            "45": 5,
+            "47": 5,
+            "48": 5,
+            "50": 5,
+            "51": 5
+          },
+          "Branches": []
+        },
+        "Microsoft.Extensions.DependencyInjection.IServiceCollection tomware.OpenIddict.UI.Infrastructure.OpenIddictUIInfrastructureServicesExtensions::AddOpenIddictUIStore(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action`1<tomware.OpenIddict.UI.Infrastructure.OpenIddictUIStoreOptions>)": {
+          "Lines": {
+            "57": 5,
+            "58": 5,
+            "59": 5,
+            "60": 5,
+            "62": 5,
+            "63": 0,
+            "64": 0,
+            "65": 0,
+            "67": 5,
+            "68": 5,
+            "69": 34,
+            "70": 34,
+            "71": 34,
+            "72": 5,
+            "74": 5,
+            "76": 5,
+            "77": 5
+          },
+          "Branches": [
+            {
+              "Line": 60,
+              "Offset": 32,
+              "EndOffset": 36,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 5
+            },
+            {
+              "Line": 60,
+              "Offset": 32,
+              "EndOffset": 49,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 5
+            },
+            {
+              "Line": 62,
+              "Offset": 65,
+              "EndOffset": 67,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 62,
+              "Offset": 65,
+              "EndOffset": 91,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 5
+            },
+            {
+              "Line": 70,
+              "Offset": 13,
+              "EndOffset": 15,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 13,
+              "EndOffset": 18,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 29
+            }
+          ]
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/Services/ApplicationService.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.ApplicationService": {
+        "tomware.OpenIddict.UI.Infrastructure.ApplicationInfo tomware.OpenIddict.UI.Infrastructure.ApplicationService::ToListInfo(OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication)": {
+          "Lines": {
+            "99": 2,
+            "100": 2,
+            "101": 2
+          },
+          "Branches": []
+        },
+        "tomware.OpenIddict.UI.Infrastructure.ApplicationInfo tomware.OpenIddict.UI.Infrastructure.ApplicationService::ToInfo(OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication)": {
+          "Lines": {
+            "104": 1,
+            "105": 1,
+            "107": 1,
+            "108": 1,
+            "109": 1,
+            "110": 1,
+            "111": 1,
+            "112": 1,
+            "113": 1,
+            "114": 1,
+            "115": 1,
+            "116": 1,
+            "117": 1,
+            "118": 1,
+            "119": 1,
+            "120": 1,
+            "122": 1,
+            "123": 1
+          },
+          "Branches": [
+            {
+              "Line": 108,
+              "Offset": 38,
+              "EndOffset": 40,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 108,
+              "Offset": 38,
+              "EndOffset": 47,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 111,
+              "Offset": 72,
+              "EndOffset": 74,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 111,
+              "Offset": 72,
+              "EndOffset": 81,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 114,
+              "Offset": 106,
+              "EndOffset": 108,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 114,
+              "Offset": 106,
+              "EndOffset": 115,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            },
+            {
+              "Line": 117,
+              "Offset": 140,
+              "EndOffset": 142,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 1
+            },
+            {
+              "Line": 117,
+              "Offset": 140,
+              "EndOffset": 145,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ApplicationService::HandleCustomProperties(tomware.OpenIddict.UI.Infrastructure.ApplicationParam,OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication)": {
+          "Lines": {
+            "129": 2,
+            "130": 2,
+            "131": 2,
+            "132": 2,
+            "133": 2,
+            "134": 2,
+            "135": 2,
+            "136": 2,
+            "137": 2
+          },
+          "Branches": [
+            {
+              "Line": 130,
+              "Offset": 8,
+              "EndOffset": 10,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 2
+            },
+            {
+              "Line": 130,
+              "Offset": 8,
+              "EndOffset": 17,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 134,
+              "Offset": 92,
+              "EndOffset": 94,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 2
+            },
+            {
+              "Line": 134,
+              "Offset": 92,
+              "EndOffset": 97,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            }
+          ]
+        },
+        "tomware.OpenIddict.UI.Infrastructure.ApplicationInfo tomware.OpenIddict.UI.Infrastructure.ApplicationService::<GetApplicationsAsync>b__3_0(OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication)": {
+          "Lines": {
+            "33": 3
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ApplicationService::.ctor(tomware.OpenIddict.UI.Infrastructure.IApplicationRepository,OpenIddict.Core.OpenIddictApplicationManager`1<OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication>)": {
+          "Lines": {
+            "18": 8,
+            "19": 8,
+            "20": 8,
+            "21": 8,
+            "22": 8,
+            "23": 8,
+            "24": 8,
+            "25": 8,
+            "26": 8,
+            "27": 8
+          },
+          "Branches": [
+            {
+              "Line": 23,
+              "Offset": 11,
+              "EndOffset": 13,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 11,
+              "EndOffset": 25,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 8
+            },
+            {
+              "Line": 25,
+              "Offset": 33,
+              "EndOffset": 35,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 25,
+              "Offset": 33,
+              "EndOffset": 47,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 8
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.ApplicationService/<GetApplicationsAsync>d__3": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ApplicationService/<GetApplicationsAsync>d__3::MoveNext()": {
+          "Lines": {
+            "30": 1,
+            "31": 1,
+            "34": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.ApplicationService/<GetAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ApplicationService/<GetAsync>d__4::MoveNext()": {
+          "Lines": {
+            "37": 1,
+            "38": 0,
+            "40": 1,
+            "42": 1,
+            "43": 1
+          },
+          "Branches": [
+            {
+              "Line": 38,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 38,
+              "Offset": 26,
+              "EndOffset": 39,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 40,
+              "Offset": 88,
+              "EndOffset": 90,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 40,
+              "Offset": 88,
+              "EndOffset": 158,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 42,
+              "Offset": 196,
+              "EndOffset": 198,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 42,
+              "Offset": 196,
+              "EndOffset": 201,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.ApplicationService/<CreateAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ApplicationService/<CreateAsync>d__5::MoveNext()": {
+          "Lines": {
+            "46": 4,
+            "47": 0,
+            "49": 4,
+            "50": 4,
+            "51": 1,
+            "53": 1,
+            "54": 1,
+            "55": 1,
+            "56": 1,
+            "57": 1,
+            "58": 1,
+            "59": 1,
+            "61": 1,
+            "63": 1,
+            "65": 1,
+            "69": 3,
+            "70": 3,
+            "71": 3,
+            "73": 3,
+            "74": 4
+          },
+          "Branches": [
+            {
+              "Line": 47,
+              "Offset": 54,
+              "EndOffset": 56,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 47,
+              "Offset": 54,
+              "EndOffset": 67,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 49,
+              "Offset": 121,
+              "EndOffset": 123,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 49,
+              "Offset": 121,
+              "EndOffset": 191,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            },
+            {
+              "Line": 50,
+              "Offset": 236,
+              "EndOffset": 241,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 63,
+              "Offset": 404,
+              "EndOffset": 406,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 63,
+              "Offset": 404,
+              "EndOffset": 476,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 1
+            },
+            {
+              "Line": 50,
+              "Offset": 236,
+              "EndOffset": 501,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 3
+            },
+            {
+              "Line": 71,
+              "Offset": 592,
+              "EndOffset": 594,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 592,
+              "EndOffset": 661,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 3
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.ApplicationService/<UpdateAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ApplicationService/<UpdateAsync>d__6::MoveNext()": {
+          "Lines": {
+            "77": 1,
+            "78": 0,
+            "80": 1,
+            "82": 1,
+            "84": 1,
+            "86": 1,
+            "87": 1
+          },
+          "Branches": [
+            {
+              "Line": 78,
+              "Offset": 47,
+              "EndOffset": 49,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 78,
+              "Offset": 47,
+              "EndOffset": 60,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 80,
+              "Offset": 113,
+              "EndOffset": 115,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 80,
+              "Offset": 113,
+              "EndOffset": 183,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 86,
+              "Offset": 311,
+              "EndOffset": 313,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 86,
+              "Offset": 311,
+              "EndOffset": 380,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.ApplicationService/<DeleteAsync>d__7": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ApplicationService/<DeleteAsync>d__7::MoveNext()": {
+          "Lines": {
+            "90": 1,
+            "91": 0,
+            "93": 1,
+            "95": 1,
+            "96": 1
+          },
+          "Branches": [
+            {
+              "Line": 91,
+              "Offset": 37,
+              "EndOffset": 39,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 91,
+              "Offset": 37,
+              "EndOffset": 50,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 93,
+              "Offset": 98,
+              "EndOffset": 100,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 93,
+              "Offset": 98,
+              "EndOffset": 168,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 95,
+              "Offset": 249,
+              "EndOffset": 251,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 95,
+              "Offset": 249,
+              "EndOffset": 318,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/Services/ScopeService.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.ScopeService": {
+        "tomware.OpenIddict.UI.Infrastructure.ScopeInfo tomware.OpenIddict.UI.Infrastructure.ScopeService::ToInfo(OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreScope)": {
+          "Lines": {
+            "91": 2,
+            "92": 2,
+            "93": 2
+          },
+          "Branches": []
+        },
+        "tomware.OpenIddict.UI.Infrastructure.ScopeInfo tomware.OpenIddict.UI.Infrastructure.ScopeService::<GetScopesAsync>b__3_0(OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreScope)": {
+          "Lines": {
+            "31": 2
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ScopeService::.ctor(tomware.OpenIddict.UI.Infrastructure.IScopeRepository,OpenIddict.Core.OpenIddictScopeManager`1<OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreScope>)": {
+          "Lines": {
+            "16": 8,
+            "17": 8,
+            "18": 8,
+            "19": 8,
+            "20": 8,
+            "21": 8,
+            "22": 8,
+            "23": 8,
+            "24": 8,
+            "25": 8
+          },
+          "Branches": [
+            {
+              "Line": 21,
+              "Offset": 11,
+              "EndOffset": 13,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 21,
+              "Offset": 11,
+              "EndOffset": 25,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 8
+            },
+            {
+              "Line": 23,
+              "Offset": 33,
+              "EndOffset": 35,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 23,
+              "Offset": 33,
+              "EndOffset": 47,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 8
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.ScopeService/<GetScopesAsync>d__3": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ScopeService/<GetScopesAsync>d__3::MoveNext()": {
+          "Lines": {
+            "28": 1,
+            "29": 1,
+            "32": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.ScopeService/<GetAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ScopeService/<GetAsync>d__4::MoveNext()": {
+          "Lines": {
+            "35": 1,
+            "36": 0,
+            "38": 1,
+            "40": 1,
+            "41": 1
+          },
+          "Branches": [
+            {
+              "Line": 36,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 26,
+              "EndOffset": 39,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 38,
+              "Offset": 88,
+              "EndOffset": 90,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 38,
+              "Offset": 88,
+              "EndOffset": 158,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 40,
+              "Offset": 196,
+              "EndOffset": 198,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 40,
+              "Offset": 196,
+              "EndOffset": 201,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.ScopeService/<CreateAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ScopeService/<CreateAsync>d__5::MoveNext()": {
+          "Lines": {
+            "44": 4,
+            "45": 0,
+            "47": 4,
+            "48": 4,
+            "49": 1,
+            "51": 1,
+            "52": 1,
+            "53": 1,
+            "54": 1,
+            "55": 1,
+            "56": 1,
+            "57": 1,
+            "59": 1,
+            "63": 3,
+            "64": 3,
+            "65": 3,
+            "67": 3,
+            "68": 4
+          },
+          "Branches": [
+            {
+              "Line": 45,
+              "Offset": 54,
+              "EndOffset": 56,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 45,
+              "Offset": 54,
+              "EndOffset": 67,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 47,
+              "Offset": 121,
+              "EndOffset": 123,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 47,
+              "Offset": 121,
+              "EndOffset": 191,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            },
+            {
+              "Line": 48,
+              "Offset": 236,
+              "EndOffset": 241,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 1
+            },
+            {
+              "Line": 57,
+              "Offset": 357,
+              "EndOffset": 359,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 0
+            },
+            {
+              "Line": 57,
+              "Offset": 357,
+              "EndOffset": 429,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 1
+            },
+            {
+              "Line": 48,
+              "Offset": 236,
+              "EndOffset": 454,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 3
+            },
+            {
+              "Line": 65,
+              "Offset": 545,
+              "EndOffset": 547,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 65,
+              "Offset": 545,
+              "EndOffset": 614,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 3
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.ScopeService/<UpdateAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ScopeService/<UpdateAsync>d__6::MoveNext()": {
+          "Lines": {
+            "71": 1,
+            "72": 0,
+            "74": 1,
+            "76": 1,
+            "78": 1,
+            "79": 1
+          },
+          "Branches": [
+            {
+              "Line": 72,
+              "Offset": 47,
+              "EndOffset": 49,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 72,
+              "Offset": 47,
+              "EndOffset": 60,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 74,
+              "Offset": 113,
+              "EndOffset": 115,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 74,
+              "Offset": 113,
+              "EndOffset": 183,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 78,
+              "Offset": 282,
+              "EndOffset": 284,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 78,
+              "Offset": 282,
+              "EndOffset": 351,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Infrastructure.ScopeService/<DeleteAsync>d__7": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.ScopeService/<DeleteAsync>d__7::MoveNext()": {
+          "Lines": {
+            "82": 1,
+            "83": 0,
+            "85": 1,
+            "87": 1,
+            "88": 1
+          },
+          "Branches": [
+            {
+              "Line": 83,
+              "Offset": 37,
+              "EndOffset": 39,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 83,
+              "Offset": 37,
+              "EndOffset": 50,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 85,
+              "Offset": 98,
+              "EndOffset": 100,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 85,
+              "Offset": 98,
+              "EndOffset": 168,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 87,
+              "Offset": 249,
+              "EndOffset": 251,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 87,
+              "Offset": 249,
+              "EndOffset": 318,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/Specifications/ApplicationSpecifications.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.AllApplications": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.AllApplications::.ctor()": {
+          "Lines": {
+            "8": 1,
+            "9": 1,
+            "10": 1,
+            "11": 1,
+            "12": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/Specifications/ScopeSpecifications.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.AllScopes": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.AllScopes::.ctor()": {
+          "Lines": {
+            "8": 1,
+            "9": 1,
+            "10": 1,
+            "11": 1,
+            "12": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Infrastructure/Data/Configuration/ClaimTypeEntityConfiguration.cs": {
+      "tomware.OpenIddict.UI.Infrastructure.Configuration.ClaimTypeEntityConfiguration": {
+        "System.Void tomware.OpenIddict.UI.Infrastructure.Configuration.ClaimTypeEntityConfiguration::Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder`1<tomware.OpenIddict.UI.Core.ClaimType>)": {
+          "Lines": {
+            "10": 1,
+            "12": 1,
+            "15": 1,
+            "16": 1,
+            "17": 1,
+            "18": 1
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "tomware.OpenIddict.UI.Core.dll": {
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Core/DTOs/ClaimTypeInfo.cs": {
+      "tomware.OpenIddict.UI.Core.ClaimTypeInfo": {
+        "System.Guid tomware.OpenIddict.UI.Core.ClaimTypeInfo::get_Id()": {
+          "Lines": {
+            "7": 4
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Core.ClaimTypeInfo::get_Name()": {
+          "Lines": {
+            "8": 4
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Core.ClaimTypeInfo::get_Description()": {
+          "Lines": {
+            "9": 4
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Core/DTOs/ClaimTypeParam.cs": {
+      "tomware.OpenIddict.UI.Core.ClaimTypeParam": {
+        "System.Nullable`1<System.Guid> tomware.OpenIddict.UI.Core.ClaimTypeParam::get_Id()": {
+          "Lines": {
+            "7": 10
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Core.ClaimTypeParam::get_Name()": {
+          "Lines": {
+            "8": 14
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Core.ClaimTypeParam::get_Description()": {
+          "Lines": {
+            "9": 10
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Core/DTOs/SimpleMapper.cs": {
+      "tomware.OpenIddict.UI.Core.SimpleMapper": {
+        "tomware.OpenIddict.UI.Core.SimpleMapper tomware.OpenIddict.UI.Core.SimpleMapper::Create()": {
+          "Lines": {
+            "17": 41,
+            "18": 41,
+            "19": 41,
+            "20": 41,
+            "21": 41
+          },
+          "Branches": []
+        },
+        "TTarget tomware.OpenIddict.UI.Core.SimpleMapper::From(TSource)": {
+          "Lines": {
+            "24": 29,
+            "25": 29,
+            "26": 29,
+            "28": 29,
+            "29": 29
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.SimpleMapper::Map(TSource,TTarget)": {
+          "Lines": {
+            "32": 12,
+            "33": 12,
+            "34": 12
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.SimpleMapper::MapTypes(System.Type,System.Type)": {
+          "Lines": {
+            "37": 41,
+            "38": 41,
+            "39": 70,
+            "41": 12,
+            "42": 12,
+            "43": 41
+          },
+          "Branches": [
+            {
+              "Line": 39,
+              "Offset": 23,
+              "EndOffset": 27,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 12
+            },
+            {
+              "Line": 39,
+              "Offset": 23,
+              "EndOffset": 54,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 41
+            }
+          ]
+        },
+        "System.Void tomware.OpenIddict.UI.Core.SimpleMapper::Copy(System.Object,System.Object)": {
+          "Lines": {
+            "46": 41,
+            "47": 41,
+            "48": 41,
+            "50": 41,
+            "51": 41,
+            "52": 0,
+            "53": 0,
+            "54": 0,
+            "56": 41,
+            "58": 490,
+            "59": 204,
+            "60": 204,
+            "61": 204,
+            "62": 204,
+            "63": 204,
+            "64": 41
+          },
+          "Branches": [
+            {
+              "Line": 51,
+              "Offset": 42,
+              "EndOffset": 44,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 51,
+              "Offset": 42,
+              "EndOffset": 55,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 41
+            },
+            {
+              "Line": 58,
+              "Offset": 130,
+              "EndOffset": 72,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 204
+            },
+            {
+              "Line": 58,
+              "Offset": 130,
+              "EndOffset": 132,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 41
+            }
+          ]
+        },
+        "System.Collections.Generic.IList`1<tomware.OpenIddict.UI.Core.SimpleMapper/PropertyMap> tomware.OpenIddict.UI.Core.SimpleMapper::GetMatchingProperties(System.Type,System.Type)": {
+          "Lines": {
+            "67": 12,
+            "68": 12,
+            "69": 12,
+            "71": 12,
+            "72": 784,
+            "73": 703,
+            "74": 703,
+            "75": 703,
+            "76": 703,
+            "77": 70,
+            "78": 70,
+            "79": 70,
+            "80": 70,
+            "81": 70,
+            "82": 12
+          },
+          "Branches": [
+            {
+              "Line": 73,
+              "Offset": 27,
+              "EndOffset": 29,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 67
+            },
+            {
+              "Line": 73,
+              "Offset": 40,
+              "EndOffset": 42,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 67
+            },
+            {
+              "Line": 73,
+              "Offset": 53,
+              "EndOffset": 55,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 67
+            },
+            {
+              "Line": 73,
+              "Offset": 27,
+              "EndOffset": 84,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 624
+            },
+            {
+              "Line": 73,
+              "Offset": 40,
+              "EndOffset": 84,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 624
+            },
+            {
+              "Line": 73,
+              "Offset": 53,
+              "EndOffset": 84,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 624
+            }
+          ]
+        },
+        "System.String tomware.OpenIddict.UI.Core.SimpleMapper::GetMapKey(System.Type,System.Type)": {
+          "Lines": {
+            "85": 82,
+            "86": 82,
+            "87": 82
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.SimpleMapper::.cctor()": {
+          "Lines": {
+            "13": 1,
+            "14": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Core.SimpleMapper/PropertyMap": {
+        "System.Reflection.PropertyInfo tomware.OpenIddict.UI.Core.SimpleMapper/PropertyMap::get_SourceProperty()": {
+          "Lines": {
+            "91": 262
+          },
+          "Branches": []
+        },
+        "System.Reflection.PropertyInfo tomware.OpenIddict.UI.Core.SimpleMapper/PropertyMap::get_TargetProperty()": {
+          "Lines": {
+            "92": 262
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Core/Entities/ClaimType.cs": {
+      "tomware.OpenIddict.UI.Core.ClaimType": {
+        "System.Guid tomware.OpenIddict.UI.Core.ClaimType::get_Id()": {
+          "Lines": {
+            "7": 10
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Core.ClaimType::get_Name()": {
+          "Lines": {
+            "9": 7
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Core.ClaimType::get_Description()": {
+          "Lines": {
+            "11": 7
+          },
+          "Branches": []
+        },
+        "tomware.OpenIddict.UI.Core.ClaimType tomware.OpenIddict.UI.Core.ClaimType::Create(System.String,System.String)": {
+          "Lines": {
+            "17": 1,
+            "18": 1,
+            "19": 1,
+            "20": 1,
+            "21": 1,
+            "22": 1,
+            "23": 1,
+            "24": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Core/OpenIddictUICoreServicesExtensions.cs": {
+      "tomware.OpenIddict.UI.Core.OpenIddictUICoreServicesExtensions": {
+        "Microsoft.Extensions.DependencyInjection.IServiceCollection tomware.OpenIddict.UI.Core.OpenIddictUICoreServicesExtensions::AddOpenIddictUICoreServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)": {
+          "Lines": {
+            "10": 5,
+            "11": 5,
+            "13": 5,
+            "14": 5
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Core/Services/ClaimTypeService.cs": {
+      "tomware.OpenIddict.UI.Core.ClaimTypeService": {
+        "tomware.OpenIddict.UI.Core.ClaimTypeInfo tomware.OpenIddict.UI.Core.ClaimTypeService::ToInfo(tomware.OpenIddict.UI.Core.ClaimType)": {
+          "Lines": {
+            "81": 2,
+            "82": 2,
+            "83": 2
+          },
+          "Branches": []
+        },
+        "tomware.OpenIddict.UI.Core.ClaimTypeInfo tomware.OpenIddict.UI.Core.ClaimTypeService::<GetClaimTypesAsync>b__2_0(tomware.OpenIddict.UI.Core.ClaimType)": {
+          "Lines": {
+            "22": 2
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.ClaimTypeService::.ctor(tomware.OpenIddict.UI.Core.IClaimTypeRepository)": {
+          "Lines": {
+            "12": 8,
+            "13": 8,
+            "14": 8,
+            "15": 8,
+            "16": 8
+          },
+          "Branches": [
+            {
+              "Line": 14,
+              "Offset": 11,
+              "EndOffset": 13,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 14,
+              "Offset": 11,
+              "EndOffset": 25,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 8
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Core.ClaimTypeService/<GetClaimTypesAsync>d__2": {
+        "System.Void tomware.OpenIddict.UI.Core.ClaimTypeService/<GetClaimTypesAsync>d__2::MoveNext()": {
+          "Lines": {
+            "19": 1,
+            "20": 1,
+            "23": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Core.ClaimTypeService/<GetAsync>d__3": {
+        "System.Void tomware.OpenIddict.UI.Core.ClaimTypeService/<GetAsync>d__3::MoveNext()": {
+          "Lines": {
+            "26": 1,
+            "27": 1,
+            "29": 1,
+            "31": 1,
+            "32": 1
+          },
+          "Branches": [
+            {
+              "Line": 31,
+              "Offset": 162,
+              "EndOffset": 164,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 31,
+              "Offset": 162,
+              "EndOffset": 167,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Core.ClaimTypeService/<CreateAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Core.ClaimTypeService/<CreateAsync>d__4::MoveNext()": {
+          "Lines": {
+            "35": 4,
+            "36": 0,
+            "38": 4,
+            "39": 4,
+            "40": 4,
+            "41": 1,
+            "43": 1,
+            "44": 1,
+            "46": 1,
+            "50": 3,
+            "51": 3,
+            "52": 3,
+            "54": 3,
+            "55": 4
+          },
+          "Branches": [
+            {
+              "Line": 36,
+              "Offset": 51,
+              "EndOffset": 53,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 51,
+              "EndOffset": 64,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 40,
+              "Offset": 241,
+              "EndOffset": 246,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 40,
+              "Offset": 241,
+              "EndOffset": 413,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 3
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Core.ClaimTypeService/<UpdateAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Core.ClaimTypeService/<UpdateAsync>d__5::MoveNext()": {
+          "Lines": {
+            "58": 1,
+            "59": 0,
+            "61": 1,
+            "63": 1,
+            "65": 1,
+            "66": 1
+          },
+          "Branches": [
+            {
+              "Line": 59,
+              "Offset": 53,
+              "EndOffset": 55,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 59,
+              "Offset": 53,
+              "EndOffset": 66,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Core.ClaimTypeService/<DeleteAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Core.ClaimTypeService/<DeleteAsync>d__6::MoveNext()": {
+          "Lines": {
+            "69": 1,
+            "73": 1,
+            "75": 1,
+            "77": 1,
+            "78": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Core/Specifications/BaseSpecification.cs": {
+      "tomware.OpenIddict.UI.Core.BaseSpecification`1": {
+        "System.Collections.Generic.List`1<System.Linq.Expressions.Expression`1<System.Func`2<T,System.Boolean>>> tomware.OpenIddict.UI.Core.BaseSpecification`1::get_Criteria()": {
+          "Lines": {
+            "9": 15
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>>> tomware.OpenIddict.UI.Core.BaseSpecification`1::get_Includes()": {
+          "Lines": {
+            "11": 7
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Core.BaseSpecification`1::get_IncludeStrings()": {
+          "Lines": {
+            "13": 14
+          },
+          "Branches": []
+        },
+        "System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>> tomware.OpenIddict.UI.Core.BaseSpecification`1::get_OrderBy()": {
+          "Lines": {
+            "14": 13
+          },
+          "Branches": []
+        },
+        "System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>> tomware.OpenIddict.UI.Core.BaseSpecification`1::get_OrderByDescending()": {
+          "Lines": {
+            "15": 0
+          },
+          "Branches": []
+        },
+        "System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>> tomware.OpenIddict.UI.Core.BaseSpecification`1::get_GroupBy()": {
+          "Lines": {
+            "16": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 tomware.OpenIddict.UI.Core.BaseSpecification`1::get_Take()": {
+          "Lines": {
+            "18": 0
+          },
+          "Branches": []
+        },
+        "System.Int32 tomware.OpenIddict.UI.Core.BaseSpecification`1::get_Skip()": {
+          "Lines": {
+            "19": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean tomware.OpenIddict.UI.Core.BaseSpecification`1::get_IsPagingEnabled()": {
+          "Lines": {
+            "20": 0
+          },
+          "Branches": []
+        },
+        "System.Boolean tomware.OpenIddict.UI.Core.BaseSpecification`1::get_AsNoTracking()": {
+          "Lines": {
+            "21": 21
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.BaseSpecification`1::AddCriterion(System.Linq.Expressions.Expression`1<System.Func`2<T,System.Boolean>>)": {
+          "Lines": {
+            "40": 0,
+            "41": 0,
+            "42": 0
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.BaseSpecification`1::AddInclude(System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>>)": {
+          "Lines": {
+            "45": 0,
+            "46": 0,
+            "47": 0
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.BaseSpecification`1::AddInclude(System.String)": {
+          "Lines": {
+            "50": 0,
+            "51": 0,
+            "52": 0
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.BaseSpecification`1::ApplyPaging(System.Int32,System.Int32)": {
+          "Lines": {
+            "55": 0,
+            "56": 0,
+            "57": 0,
+            "58": 0,
+            "59": 0
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.BaseSpecification`1::ApplyNoTracking()": {
+          "Lines": {
+            "62": 7,
+            "63": 7,
+            "64": 7
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.BaseSpecification`1::ApplyOrderBy(System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>>)": {
+          "Lines": {
+            "67": 3,
+            "68": 3,
+            "69": 3
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.BaseSpecification`1::ApplyOrderByDescending(System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>>)": {
+          "Lines": {
+            "72": 0,
+            "73": 0,
+            "74": 0
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.BaseSpecification`1::ApplyGroupBy(System.Linq.Expressions.Expression`1<System.Func`2<T,System.Object>>)": {
+          "Lines": {
+            "77": 0,
+            "78": 0,
+            "79": 0
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.BaseSpecification`1::.ctor()": {
+          "Lines": {
+            "10": 7,
+            "12": 7,
+            "27": 3,
+            "28": 3,
+            "29": 3
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Core.BaseSpecification`1::.ctor(System.Linq.Expressions.Expression`1<System.Func`2<T,System.Boolean>>)": {
+          "Lines": {
+            "34": 4,
+            "35": 4,
+            "36": 4,
+            "37": 4
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Core/Specifications/ClaimTypeSpecifications.cs": {
+      "tomware.OpenIddict.UI.Core.AllClaimTypes": {
+        "System.Void tomware.OpenIddict.UI.Core.AllClaimTypes::.ctor()": {
+          "Lines": {
+            "5": 1,
+            "6": 1,
+            "7": 1,
+            "8": 1,
+            "9": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Core.ClaimTypeByName": {
+        "System.Void tomware.OpenIddict.UI.Core.ClaimTypeByName::.ctor(System.String)": {
+          "Lines": {
+            "14": 4,
+            "15": 4,
+            "16": 4,
+            "17": 4
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Core/Specifications/ExpressionExtensions.cs": {
+      "tomware.OpenIddict.UI.Core.ExpressionExtensions": {
+        "System.Linq.Expressions.Expression`1<System.Func`2<T,System.Boolean>> tomware.OpenIddict.UI.Core.ExpressionExtensions::Or(System.Linq.Expressions.Expression`1<System.Func`2<T,System.Boolean>>,System.Linq.Expressions.Expression`1<System.Func`2<T,System.Boolean>>)": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0,
+            "16": 0,
+            "17": 0
+          },
+          "Branches": []
+        },
+        "System.Linq.Expressions.Expression`1<System.Func`2<T,System.Boolean>> tomware.OpenIddict.UI.Core.ExpressionExtensions::And(System.Linq.Expressions.Expression`1<System.Func`2<T,System.Boolean>>,System.Linq.Expressions.Expression`1<System.Func`2<T,System.Boolean>>)": {
+          "Lines": {
+            "23": 0,
+            "24": 0,
+            "25": 0,
+            "26": 0,
+            "27": 0
+          },
+          "Branches": []
+        }
+      }
+    }
+  },
+  "tomware.OpenIddict.UI.Api.dll": {
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Account/AccountApiService.cs": {
+      "tomware.OpenIddict.UI.Api.AccountApiService`1": {
+        "System.Void tomware.OpenIddict.UI.Api.AccountApiService`1::.ctor(Microsoft.AspNetCore.Identity.UserManager`1<TIdentityUser>)": {
+          "Lines": {
+            "24": 5,
+            "25": 5,
+            "26": 5,
+            "27": 5,
+            "28": 5,
+            "29": 5
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.AccountApiService`1/<RegisterAsync>d__2": {
+        "System.Void tomware.OpenIddict.UI.Api.AccountApiService`1/<RegisterAsync>d__2::MoveNext()": {
+          "Lines": {
+            "34": 1,
+            "37": 1,
+            "38": 1,
+            "39": 1,
+            "40": 1,
+            "41": 1,
+            "42": 1,
+            "44": 1,
+            "45": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.AccountApiService`1/<>c": {
+        "tomware.OpenIddict.UI.Api.UserViewModel tomware.OpenIddict.UI.Api.AccountApiService`1/<>c::<GetUsersAsync>b__3_0(TIdentityUser)": {
+          "Lines": {
+            "55": 3,
+            "56": 3,
+            "57": 3,
+            "58": 3,
+            "59": 3,
+            "60": 3,
+            "61": 3
+          },
+          "Branches": [
+            {
+              "Line": 55,
+              "Offset": 248,
+              "EndOffset": 250,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 55,
+              "Offset": 248,
+              "EndOffset": 273,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        },
+        "tomware.OpenIddict.UI.Api.ClaimViewModel tomware.OpenIddict.UI.Api.AccountApiService`1/<>c::<GetUserAsync>b__4_0(System.Security.Claims.Claim)": {
+          "Lines": {
+            "79": 0,
+            "80": 0,
+            "81": 0,
+            "82": 0,
+            "83": 0
+          },
+          "Branches": []
+        },
+        "System.Security.Claims.Claim tomware.OpenIddict.UI.Api.AccountApiService`1/<>c::<UpdateAsync>b__5_0(tomware.OpenIddict.UI.Api.ClaimViewModel)": {
+          "Lines": {
+            "106": 0
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.AccountApiService`1/<GetUserAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Api.AccountApiService`1/<GetUserAsync>d__4::MoveNext()": {
+          "Lines": {
+            "65": 1,
+            "66": 1,
+            "67": 1,
+            "68": 1,
+            "70": 1,
+            "72": 1,
+            "73": 1,
+            "74": 1,
+            "75": 1,
+            "76": 1,
+            "77": 1,
+            "78": 1,
+            "84": 1,
+            "85": 1,
+            "86": 1
+          },
+          "Branches": [
+            {
+              "Line": 72,
+              "Offset": 728,
+              "EndOffset": 730,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 72,
+              "Offset": 728,
+              "EndOffset": 753,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.AccountApiService`1/<UpdateAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Api.AccountApiService`1/<UpdateAsync>d__5::MoveNext()": {
+          "Lines": {
+            "89": 1,
+            "90": 0,
+            "91": 0,
+            "93": 1,
+            "94": 1,
+            "95": 1,
+            "96": 1,
+            "98": 1,
+            "99": 1,
+            "100": 0,
+            "101": 0,
+            "104": 1,
+            "105": 1,
+            "107": 1,
+            "108": 1,
+            "109": 0,
+            "110": 0,
+            "113": 1,
+            "114": 1,
+            "115": 0,
+            "116": 0,
+            "119": 1,
+            "120": 1
+          },
+          "Branches": [
+            {
+              "Line": 90,
+              "Offset": 63,
+              "EndOffset": 65,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 90,
+              "Offset": 63,
+              "EndOffset": 76,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 91,
+              "Offset": 94,
+              "EndOffset": 96,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 91,
+              "Offset": 94,
+              "EndOffset": 107,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            },
+            {
+              "Line": 99,
+              "Offset": 499,
+              "EndOffset": 501,
+              "Path": 0,
+              "Ordinal": 4,
+              "Hits": 0
+            },
+            {
+              "Line": 99,
+              "Offset": 499,
+              "EndOffset": 514,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 1
+            },
+            {
+              "Line": 104,
+              "Offset": 543,
+              "EndOffset": 545,
+              "Path": 0,
+              "Ordinal": 6,
+              "Hits": 1
+            },
+            {
+              "Line": 104,
+              "Offset": 543,
+              "EndOffset": 568,
+              "Path": 1,
+              "Ordinal": 7,
+              "Hits": 1
+            },
+            {
+              "Line": 108,
+              "Offset": 719,
+              "EndOffset": 721,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 0
+            },
+            {
+              "Line": 108,
+              "Offset": 719,
+              "EndOffset": 734,
+              "Path": 1,
+              "Ordinal": 9,
+              "Hits": 1
+            },
+            {
+              "Line": 114,
+              "Offset": 898,
+              "EndOffset": 900,
+              "Path": 0,
+              "Ordinal": 10,
+              "Hits": 0
+            },
+            {
+              "Line": 114,
+              "Offset": 898,
+              "EndOffset": 910,
+              "Path": 1,
+              "Ordinal": 11,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.AccountApiService`1/<AssignClaimsAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Api.AccountApiService`1/<AssignClaimsAsync>d__6::MoveNext()": {
+          "Lines": {
+            "126": 1,
+            "128": 1,
+            "129": 1,
+            "132": 1,
+            "133": 1,
+            "134": 1,
+            "135": 1,
+            "136": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.AccountApiService`1/<AssignRolesAsync>d__7": {
+        "System.Void tomware.OpenIddict.UI.Api.AccountApiService`1/<AssignRolesAsync>d__7::MoveNext()": {
+          "Lines": {
+            "142": 1,
+            "144": 1,
+            "145": 1,
+            "148": 1,
+            "149": 1,
+            "150": 1,
+            "151": 1,
+            "152": 1
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Account/AccountController.cs": {
+      "tomware.OpenIddict.UI.Api.AccountController": {
+        "Microsoft.AspNetCore.Mvc.IActionResult tomware.OpenIddict.UI.Api.AccountController::DeleteAsync(System.String)": {
+          "Lines": {
+            "84": 1,
+            "85": 0,
+            "89": 1,
+            "90": 0
+          },
+          "Branches": [
+            {
+              "Line": 85,
+              "Offset": 9,
+              "EndOffset": 11,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 85,
+              "Offset": 9,
+              "EndOffset": 20,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        },
+        "System.Void tomware.OpenIddict.UI.Api.AccountController::AddErrors(Microsoft.AspNetCore.Identity.IdentityResult)": {
+          "Lines": {
+            "93": 0,
+            "94": 0,
+            "95": 0,
+            "96": 0,
+            "97": 0,
+            "98": 0
+          },
+          "Branches": [
+            {
+              "Line": 94,
+              "Offset": 54,
+              "EndOffset": 16,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            },
+            {
+              "Line": 94,
+              "Offset": 54,
+              "EndOffset": 56,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            }
+          ]
+        },
+        "System.Void tomware.OpenIddict.UI.Api.AccountController::.ctor(Microsoft.Extensions.Logging.ILogger`1<tomware.OpenIddict.UI.Api.AccountController>,tomware.OpenIddict.UI.Api.IAccountApiService)": {
+          "Lines": {
+            "17": 5,
+            "18": 5,
+            "19": 5,
+            "20": 5,
+            "21": 5,
+            "22": 5,
+            "23": 5,
+            "24": 5
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.AccountController/<Register>d__3": {
+        "System.Void tomware.OpenIddict.UI.Api.AccountController/<Register>d__3::MoveNext()": {
+          "Lines": {
+            "29": 1,
+            "30": 1,
+            "31": 1,
+            "32": 1,
+            "33": 1,
+            "34": 1,
+            "35": 1,
+            "36": 1,
+            "37": 1,
+            "38": 1,
+            "40": 1,
+            "43": 0,
+            "44": 0,
+            "46": 0,
+            "47": 1
+          },
+          "Branches": [
+            {
+              "Line": 30,
+              "Offset": 33,
+              "EndOffset": 38,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 1
+            },
+            {
+              "Line": 33,
+              "Offset": 191,
+              "EndOffset": 193,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 33,
+              "Offset": 191,
+              "EndOffset": 256,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 0
+            },
+            {
+              "Line": 30,
+              "Offset": 33,
+              "EndOffset": 282,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.AccountController/<Users>d__4": {
+        "System.Void tomware.OpenIddict.UI.Api.AccountController/<Users>d__4::MoveNext()": {
+          "Lines": {
+            "52": 1,
+            "53": 1,
+            "55": 1,
+            "56": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.AccountController/<GetUser>d__5": {
+        "System.Void tomware.OpenIddict.UI.Api.AccountController/<GetUser>d__5::MoveNext()": {
+          "Lines": {
+            "61": 1,
+            "62": 0,
+            "64": 1,
+            "66": 1,
+            "67": 1
+          },
+          "Branches": [
+            {
+              "Line": 62,
+              "Offset": 28,
+              "EndOffset": 30,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 62,
+              "Offset": 28,
+              "EndOffset": 47,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.AccountController/<UpdateAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Api.AccountController/<UpdateAsync>d__6::MoveNext()": {
+          "Lines": {
+            "72": 1,
+            "73": 0,
+            "74": 0,
+            "76": 1,
+            "78": 1,
+            "79": 1
+          },
+          "Branches": [
+            {
+              "Line": 73,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 73,
+              "Offset": 29,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 74,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 74,
+              "Offset": 69,
+              "EndOffset": 99,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Account/RegisterUserViewModel.cs": {
+      "tomware.OpenIddict.UI.Api.RegisterUserViewModel": {
+        "System.String tomware.OpenIddict.UI.Api.RegisterUserViewModel::get_UserName()": {
+          "Lines": {
+            "8": 5
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.RegisterUserViewModel::get_Email()": {
+          "Lines": {
+            "12": 8
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.RegisterUserViewModel::get_Password()": {
+          "Lines": {
+            "17": 7
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.RegisterUserViewModel::get_ConfirmPassword()": {
+          "Lines": {
+            "21": 5
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Account/UserViewModel.cs": {
+      "tomware.OpenIddict.UI.Api.ClaimViewModel": {
+        "System.String tomware.OpenIddict.UI.Api.ClaimViewModel::get_Type()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.ClaimViewModel::get_Value()": {
+          "Lines": {
+            "9": 0
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.UserViewModel": {
+        "System.String tomware.OpenIddict.UI.Api.UserViewModel::get_Id()": {
+          "Lines": {
+            "15": 16
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.UserViewModel::get_UserName()": {
+          "Lines": {
+            "18": 14
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.UserViewModel::get_Email()": {
+          "Lines": {
+            "21": 15
+          },
+          "Branches": []
+        },
+        "System.Boolean tomware.OpenIddict.UI.Api.UserViewModel::get_LockoutEnabled()": {
+          "Lines": {
+            "23": 14
+          },
+          "Branches": []
+        },
+        "System.Boolean tomware.OpenIddict.UI.Api.UserViewModel::get_IsLockedOut()": {
+          "Lines": {
+            "25": 10
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<tomware.OpenIddict.UI.Api.ClaimViewModel> tomware.OpenIddict.UI.Api.UserViewModel::get_Claims()": {
+          "Lines": {
+            "27": 19
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Api.UserViewModel::get_Roles()": {
+          "Lines": {
+            "29": 19
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Application/ApplicationApiService.cs": {
+      "tomware.OpenIddict.UI.Api.ApplicationApiService": {
+        "tomware.OpenIddict.UI.Infrastructure.ApplicationParam tomware.OpenIddict.UI.Api.ApplicationApiService::ToParam(tomware.OpenIddict.UI.Api.ApplicationViewModel)": {
+          "Lines": {
+            "97": 5,
+            "98": 5,
+            "99": 5
+          },
+          "Branches": []
+        },
+        "tomware.OpenIddict.UI.Api.ApplicationViewModel tomware.OpenIddict.UI.Api.ApplicationApiService::ToModel(tomware.OpenIddict.UI.Infrastructure.ApplicationInfo)": {
+          "Lines": {
+            "102": 3,
+            "103": 3,
+            "104": 3
+          },
+          "Branches": []
+        },
+        "tomware.OpenIddict.UI.Api.ApplicationViewModel tomware.OpenIddict.UI.Api.ApplicationApiService::<GetApplicationsAsync>b__3_0(tomware.OpenIddict.UI.Infrastructure.ApplicationInfo)": {
+          "Lines": {
+            "46": 3
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationApiService::.ctor(tomware.OpenIddict.UI.Infrastructure.IApplicationService,Microsoft.Extensions.Options.IOptions`1<tomware.OpenIddict.UI.Api.OpenIddictUIApiOptions>)": {
+          "Lines": {
+            "31": 8,
+            "32": 8,
+            "33": 8,
+            "34": 8,
+            "35": 8,
+            "36": 8,
+            "37": 8,
+            "38": 8,
+            "39": 8,
+            "40": 8
+          },
+          "Branches": [
+            {
+              "Line": 36,
+              "Offset": 11,
+              "EndOffset": 13,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 36,
+              "Offset": 11,
+              "EndOffset": 25,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 8
+            },
+            {
+              "Line": 38,
+              "Offset": 33,
+              "EndOffset": 35,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 38,
+              "Offset": 33,
+              "EndOffset": 47,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 8
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ApplicationApiService/<GetApplicationsAsync>d__3": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationApiService/<GetApplicationsAsync>d__3::MoveNext()": {
+          "Lines": {
+            "43": 1,
+            "44": 1,
+            "47": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ApplicationApiService/<GetAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationApiService/<GetAsync>d__4::MoveNext()": {
+          "Lines": {
+            "50": 1,
+            "51": 0,
+            "53": 1,
+            "55": 1,
+            "56": 1
+          },
+          "Branches": [
+            {
+              "Line": 51,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 51,
+              "Offset": 26,
+              "EndOffset": 39,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 55,
+              "Offset": 182,
+              "EndOffset": 184,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 55,
+              "Offset": 182,
+              "EndOffset": 187,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ApplicationApiService/<CreateAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationApiService/<CreateAsync>d__5::MoveNext()": {
+          "Lines": {
+            "59": 4,
+            "60": 0,
+            "62": 4,
+            "64": 4,
+            "65": 4
+          },
+          "Branches": [
+            {
+              "Line": 60,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 60,
+              "Offset": 26,
+              "EndOffset": 39,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ApplicationApiService/<UpdateAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationApiService/<UpdateAsync>d__6::MoveNext()": {
+          "Lines": {
+            "68": 1,
+            "69": 0,
+            "70": 0,
+            "72": 1,
+            "74": 1,
+            "75": 1
+          },
+          "Branches": [
+            {
+              "Line": 69,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 69,
+              "Offset": 29,
+              "EndOffset": 42,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 70,
+              "Offset": 60,
+              "EndOffset": 62,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 60,
+              "EndOffset": 73,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ApplicationApiService/<DeleteAsync>d__7": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationApiService/<DeleteAsync>d__7::MoveNext()": {
+          "Lines": {
+            "78": 1,
+            "79": 0,
+            "81": 1,
+            "82": 1
+          },
+          "Branches": [
+            {
+              "Line": 79,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 79,
+              "Offset": 26,
+              "EndOffset": 39,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ApplicationApiService/<GetOptionsAsync>d__8": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationApiService/<GetOptionsAsync>d__8::MoveNext()": {
+          "Lines": {
+            "85": 0,
+            "86": 0,
+            "88": 0,
+            "89": 0,
+            "90": 0,
+            "91": 0,
+            "93": 0,
+            "94": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Application/ApplicationController.cs": {
+      "tomware.OpenIddict.UI.Api.ApplicationController": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationController::.ctor(tomware.OpenIddict.UI.Api.IApplicationApiService)": {
+          "Lines": {
+            "14": 8,
+            "15": 8,
+            "16": 8,
+            "17": 8,
+            "18": 8,
+            "19": 8
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ApplicationController/<GetApplicationsAsync>d__2": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationController/<GetApplicationsAsync>d__2::MoveNext()": {
+          "Lines": {
+            "24": 1,
+            "25": 1,
+            "27": 1,
+            "28": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ApplicationController/<GetAsync>d__3": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationController/<GetAsync>d__3::MoveNext()": {
+          "Lines": {
+            "33": 1,
+            "34": 0,
+            "36": 1,
+            "37": 0,
+            "39": 1,
+            "40": 1
+          },
+          "Branches": [
+            {
+              "Line": 34,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 34,
+              "Offset": 26,
+              "EndOffset": 45,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 37,
+              "Offset": 195,
+              "EndOffset": 197,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 37,
+              "Offset": 195,
+              "EndOffset": 211,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ApplicationController/<CreateAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationController/<CreateAsync>d__4::MoveNext()": {
+          "Lines": {
+            "45": 4,
+            "46": 0,
+            "47": 0,
+            "49": 4,
+            "51": 4,
+            "52": 4
+          },
+          "Branches": [
+            {
+              "Line": 46,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 46,
+              "Offset": 29,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 47,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 47,
+              "Offset": 69,
+              "EndOffset": 99,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ApplicationController/<UpdateAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationController/<UpdateAsync>d__5::MoveNext()": {
+          "Lines": {
+            "57": 1,
+            "58": 0,
+            "59": 0,
+            "61": 1,
+            "63": 1,
+            "64": 1
+          },
+          "Branches": [
+            {
+              "Line": 58,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 58,
+              "Offset": 29,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 59,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 59,
+              "Offset": 69,
+              "EndOffset": 99,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ApplicationController/<DeleteAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationController/<DeleteAsync>d__6::MoveNext()": {
+          "Lines": {
+            "69": 1,
+            "70": 0,
+            "72": 1,
+            "74": 1,
+            "75": 1
+          },
+          "Branches": [
+            {
+              "Line": 70,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 26,
+              "EndOffset": 45,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ApplicationController/<GetOptionsAsync>d__7": {
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationController/<GetOptionsAsync>d__7::MoveNext()": {
+          "Lines": {
+            "81": 0,
+            "82": 0,
+            "84": 0,
+            "85": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Application/ApplicationOptionsViewModel.cs": {
+      "tomware.OpenIddict.UI.Api.ApplicationOptionsViewModel": {
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Api.ApplicationOptionsViewModel::get_Permissions()": {
+          "Lines": {
+            "8": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Api.ApplicationOptionsViewModel::get_Requirements()": {
+          "Lines": {
+            "10": 0
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Api.ApplicationOptionsViewModel::get_Types()": {
+          "Lines": {
+            "12": 0
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Api.ApplicationOptionsViewModel::.ctor()": {
+          "Lines": {
+            "13": 0,
+            "14": 0,
+            "15": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Application/ApplicationViewModel.cs": {
+      "tomware.OpenIddict.UI.Api.ApplicationViewModel": {
+        "System.String tomware.OpenIddict.UI.Api.ApplicationViewModel::get_Id()": {
+          "Lines": {
+            "9": 36
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.ApplicationViewModel::get_ClientId()": {
+          "Lines": {
+            "12": 35
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.ApplicationViewModel::get_DisplayName()": {
+          "Lines": {
+            "14": 35
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.ApplicationViewModel::get_ClientSecret()": {
+          "Lines": {
+            "16": 30
+          },
+          "Branches": []
+        },
+        "System.Boolean tomware.OpenIddict.UI.Api.ApplicationViewModel::get_RequirePkce()": {
+          "Lines": {
+            "18": 35
+          },
+          "Branches": []
+        },
+        "System.Boolean tomware.OpenIddict.UI.Api.ApplicationViewModel::get_RequireConsent()": {
+          "Lines": {
+            "20": 35
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Api.ApplicationViewModel::get_Permissions()": {
+          "Lines": {
+            "22": 51
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Api.ApplicationViewModel::get_RedirectUris()": {
+          "Lines": {
+            "23": 51
+          },
+          "Branches": []
+        },
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Api.ApplicationViewModel::get_PostLogoutRedirectUris()": {
+          "Lines": {
+            "24": 51
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.ApplicationViewModel::get_Type()": {
+          "Lines": {
+            "26": 51
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/ClaimType/ClaimTypeApiService.cs": {
+      "tomware.OpenIddict.UI.Api.ClaimTypeApiService": {
+        "tomware.OpenIddict.UI.Core.ClaimTypeParam tomware.OpenIddict.UI.Api.ClaimTypeApiService::ToParam(tomware.OpenIddict.UI.Api.ClaimTypeViewModel)": {
+          "Lines": {
+            "75": 5,
+            "76": 5,
+            "77": 5
+          },
+          "Branches": []
+        },
+        "tomware.OpenIddict.UI.Api.ClaimTypeViewModel tomware.OpenIddict.UI.Api.ClaimTypeApiService::ToModel(tomware.OpenIddict.UI.Core.ClaimTypeInfo)": {
+          "Lines": {
+            "80": 2,
+            "81": 2,
+            "82": 2,
+            "83": 2,
+            "84": 2
+          },
+          "Branches": []
+        },
+        "tomware.OpenIddict.UI.Api.ClaimTypeViewModel tomware.OpenIddict.UI.Api.ClaimTypeApiService::<GetClaimTypesAsync>b__2_0(tomware.OpenIddict.UI.Core.ClaimTypeInfo)": {
+          "Lines": {
+            "36": 2
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Api.ClaimTypeApiService::.ctor(tomware.OpenIddict.UI.Core.IClaimTypeService)": {
+          "Lines": {
+            "26": 8,
+            "27": 8,
+            "28": 8,
+            "29": 8,
+            "30": 8
+          },
+          "Branches": [
+            {
+              "Line": 28,
+              "Offset": 11,
+              "EndOffset": 13,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 28,
+              "Offset": 11,
+              "EndOffset": 25,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 8
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ClaimTypeApiService/<GetClaimTypesAsync>d__2": {
+        "System.Void tomware.OpenIddict.UI.Api.ClaimTypeApiService/<GetClaimTypesAsync>d__2::MoveNext()": {
+          "Lines": {
+            "33": 1,
+            "34": 1,
+            "37": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ClaimTypeApiService/<GetAsync>d__3": {
+        "System.Void tomware.OpenIddict.UI.Api.ClaimTypeApiService/<GetAsync>d__3::MoveNext()": {
+          "Lines": {
+            "40": 1,
+            "41": 0,
+            "43": 1,
+            "45": 1,
+            "46": 1
+          },
+          "Branches": [
+            {
+              "Line": 41,
+              "Offset": 33,
+              "EndOffset": 35,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 41,
+              "Offset": 33,
+              "EndOffset": 46,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 45,
+              "Offset": 189,
+              "EndOffset": 191,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 45,
+              "Offset": 189,
+              "EndOffset": 194,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ClaimTypeApiService/<CreateAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Api.ClaimTypeApiService/<CreateAsync>d__4::MoveNext()": {
+          "Lines": {
+            "49": 4,
+            "50": 0,
+            "52": 4,
+            "54": 4,
+            "55": 4
+          },
+          "Branches": [
+            {
+              "Line": 50,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 50,
+              "Offset": 26,
+              "EndOffset": 39,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ClaimTypeApiService/<UpdateAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Api.ClaimTypeApiService/<UpdateAsync>d__5::MoveNext()": {
+          "Lines": {
+            "58": 1,
+            "59": 0,
+            "60": 0,
+            "62": 1,
+            "64": 1,
+            "65": 1
+          },
+          "Branches": [
+            {
+              "Line": 59,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 59,
+              "Offset": 29,
+              "EndOffset": 42,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 60,
+              "Offset": 66,
+              "EndOffset": 68,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 60,
+              "Offset": 66,
+              "EndOffset": 79,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ClaimTypeApiService/<DeleteAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Api.ClaimTypeApiService/<DeleteAsync>d__6::MoveNext()": {
+          "Lines": {
+            "68": 1,
+            "69": 0,
+            "71": 1,
+            "72": 1
+          },
+          "Branches": [
+            {
+              "Line": 69,
+              "Offset": 33,
+              "EndOffset": 35,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 69,
+              "Offset": 33,
+              "EndOffset": 46,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/ClaimType/ClaimTypeController.cs": {
+      "tomware.OpenIddict.UI.Api.ClaimTypeController": {
+        "System.Void tomware.OpenIddict.UI.Api.ClaimTypeController::.ctor(tomware.OpenIddict.UI.Api.IClaimTypeApiService)": {
+          "Lines": {
+            "14": 8,
+            "15": 8,
+            "16": 8,
+            "17": 8
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ClaimTypeController/<GetClaimTypesAsync>d__2": {
+        "System.Void tomware.OpenIddict.UI.Api.ClaimTypeController/<GetClaimTypesAsync>d__2::MoveNext()": {
+          "Lines": {
+            "22": 1,
+            "23": 1,
+            "25": 1,
+            "26": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ClaimTypeController/<GetAsync>d__3": {
+        "System.Void tomware.OpenIddict.UI.Api.ClaimTypeController/<GetAsync>d__3::MoveNext()": {
+          "Lines": {
+            "31": 1,
+            "32": 0,
+            "34": 1,
+            "35": 0,
+            "37": 1,
+            "38": 1
+          },
+          "Branches": [
+            {
+              "Line": 32,
+              "Offset": 33,
+              "EndOffset": 35,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 32,
+              "Offset": 33,
+              "EndOffset": 52,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 35,
+              "Offset": 202,
+              "EndOffset": 204,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 35,
+              "Offset": 202,
+              "EndOffset": 218,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ClaimTypeController/<CreateAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Api.ClaimTypeController/<CreateAsync>d__4::MoveNext()": {
+          "Lines": {
+            "43": 4,
+            "44": 0,
+            "45": 0,
+            "47": 4,
+            "49": 4,
+            "50": 4
+          },
+          "Branches": [
+            {
+              "Line": 44,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 44,
+              "Offset": 29,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 45,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 45,
+              "Offset": 69,
+              "EndOffset": 99,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ClaimTypeController/<UpdateAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Api.ClaimTypeController/<UpdateAsync>d__5::MoveNext()": {
+          "Lines": {
+            "55": 1,
+            "56": 0,
+            "57": 0,
+            "59": 1,
+            "61": 1,
+            "62": 1
+          },
+          "Branches": [
+            {
+              "Line": 56,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 56,
+              "Offset": 29,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 57,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 57,
+              "Offset": 69,
+              "EndOffset": 99,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ClaimTypeController/<DeleteAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Api.ClaimTypeController/<DeleteAsync>d__6::MoveNext()": {
+          "Lines": {
+            "67": 1,
+            "68": 0,
+            "70": 1,
+            "72": 1,
+            "73": 1
+          },
+          "Branches": [
+            {
+              "Line": 68,
+              "Offset": 33,
+              "EndOffset": 35,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 68,
+              "Offset": 33,
+              "EndOffset": 52,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/ClaimType/ClaimTypeViewModel.cs": {
+      "tomware.OpenIddict.UI.Api.ClaimTypeViewModel": {
+        "System.Nullable`1<System.Guid> tomware.OpenIddict.UI.Api.ClaimTypeViewModel::get_Id()": {
+          "Lines": {
+            "8": 30
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.ClaimTypeViewModel::get_Name()": {
+          "Lines": {
+            "11": 33
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.ClaimTypeViewModel::get_Description()": {
+          "Lines": {
+            "13": 33
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Role/RoleController.cs": {
+      "tomware.OpenIddict.UI.Api.RoleController": {
+        "System.Void tomware.OpenIddict.UI.Api.RoleController::.ctor(tomware.OpenIddict.UI.Api.IRoleService)": {
+          "Lines": {
+            "13": 8,
+            "14": 8,
+            "15": 8,
+            "16": 8
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.RoleController/<GetRolesAsync>d__2": {
+        "System.Void tomware.OpenIddict.UI.Api.RoleController/<GetRolesAsync>d__2::MoveNext()": {
+          "Lines": {
+            "21": 1,
+            "22": 1,
+            "24": 1,
+            "25": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.RoleController/<GetAsync>d__3": {
+        "System.Void tomware.OpenIddict.UI.Api.RoleController/<GetAsync>d__3::MoveNext()": {
+          "Lines": {
+            "30": 1,
+            "31": 0,
+            "33": 1,
+            "34": 0,
+            "36": 1,
+            "37": 1
+          },
+          "Branches": [
+            {
+              "Line": 31,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 31,
+              "Offset": 26,
+              "EndOffset": 45,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 34,
+              "Offset": 195,
+              "EndOffset": 197,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 34,
+              "Offset": 195,
+              "EndOffset": 211,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.RoleController/<CreateAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Api.RoleController/<CreateAsync>d__4::MoveNext()": {
+          "Lines": {
+            "42": 4,
+            "43": 0,
+            "44": 0,
+            "46": 4,
+            "48": 4,
+            "49": 4
+          },
+          "Branches": [
+            {
+              "Line": 43,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 29,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 44,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 44,
+              "Offset": 69,
+              "EndOffset": 99,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.RoleController/<UpdateAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Api.RoleController/<UpdateAsync>d__5::MoveNext()": {
+          "Lines": {
+            "54": 1,
+            "55": 0,
+            "56": 0,
+            "58": 1,
+            "60": 1,
+            "61": 1
+          },
+          "Branches": [
+            {
+              "Line": 55,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 55,
+              "Offset": 29,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 56,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 56,
+              "Offset": 69,
+              "EndOffset": 99,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.RoleController/<DeleteAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Api.RoleController/<DeleteAsync>d__6::MoveNext()": {
+          "Lines": {
+            "66": 1,
+            "67": 0,
+            "69": 1,
+            "71": 1,
+            "72": 1
+          },
+          "Branches": [
+            {
+              "Line": 67,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 67,
+              "Offset": 26,
+              "EndOffset": 45,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Role/RoleService.cs": {
+      "tomware.OpenIddict.UI.Api.RoleService": {
+        "tomware.OpenIddict.UI.Api.RoleViewModel tomware.OpenIddict.UI.Api.RoleService::ToModel(Microsoft.AspNetCore.Identity.IdentityRole)": {
+          "Lines": {
+            "89": 5,
+            "90": 5,
+            "91": 5,
+            "92": 5,
+            "93": 5,
+            "94": 5,
+            "95": 5
+          },
+          "Branches": []
+        },
+        "tomware.OpenIddict.UI.Api.RoleViewModel tomware.OpenIddict.UI.Api.RoleService::<GetRolesAsync>b__2_1(Microsoft.AspNetCore.Identity.IdentityRole)": {
+          "Lines": {
+            "37": 5
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Api.RoleService::.ctor(Microsoft.AspNetCore.Identity.RoleManager`1<Microsoft.AspNetCore.Identity.IdentityRole>)": {
+          "Lines": {
+            "26": 8,
+            "27": 8,
+            "28": 8,
+            "29": 8
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.RoleService/<GetRolesAsync>d__2": {
+        "System.Void tomware.OpenIddict.UI.Api.RoleService/<GetRolesAsync>d__2::MoveNext()": {
+          "Lines": {
+            "32": 1,
+            "33": 1,
+            "34": 1,
+            "35": 1,
+            "39": 1,
+            "40": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.RoleService/<GetAsync>d__3": {
+        "System.Void tomware.OpenIddict.UI.Api.RoleService/<GetAsync>d__3::MoveNext()": {
+          "Lines": {
+            "43": 1,
+            "44": 0,
+            "46": 1,
+            "48": 1,
+            "49": 1
+          },
+          "Branches": [
+            {
+              "Line": 44,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 44,
+              "Offset": 26,
+              "EndOffset": 39,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 48,
+              "Offset": 182,
+              "EndOffset": 184,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 48,
+              "Offset": 182,
+              "EndOffset": 187,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.RoleService/<CreateAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Api.RoleService/<CreateAsync>d__4::MoveNext()": {
+          "Lines": {
+            "52": 4,
+            "53": 0,
+            "55": 4,
+            "56": 4,
+            "57": 1,
+            "58": 1,
+            "60": 1,
+            "63": 3,
+            "65": 3,
+            "66": 4
+          },
+          "Branches": [
+            {
+              "Line": 53,
+              "Offset": 54,
+              "EndOffset": 56,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 53,
+              "Offset": 54,
+              "EndOffset": 67,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 56,
+              "Offset": 226,
+              "EndOffset": 231,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 1
+            },
+            {
+              "Line": 56,
+              "Offset": 226,
+              "EndOffset": 365,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 3
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.RoleService/<UpdateAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Api.RoleService/<UpdateAsync>d__5::MoveNext()": {
+          "Lines": {
+            "69": 1,
+            "70": 0,
+            "71": 0,
+            "73": 1,
+            "74": 1,
+            "76": 1,
+            "77": 1
+          },
+          "Branches": [
+            {
+              "Line": 70,
+              "Offset": 40,
+              "EndOffset": 42,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 40,
+              "EndOffset": 53,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 71,
+              "Offset": 71,
+              "EndOffset": 73,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 71,
+              "Offset": 71,
+              "EndOffset": 84,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.RoleService/<DeleteAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Api.RoleService/<DeleteAsync>d__6::MoveNext()": {
+          "Lines": {
+            "80": 1,
+            "81": 0,
+            "83": 1,
+            "85": 1,
+            "86": 1
+          },
+          "Branches": [
+            {
+              "Line": 81,
+              "Offset": 37,
+              "EndOffset": 39,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 81,
+              "Offset": 37,
+              "EndOffset": 50,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Role/RoleViewModel.cs": {
+      "tomware.OpenIddict.UI.Api.RoleViewModel": {
+        "System.String tomware.OpenIddict.UI.Api.RoleViewModel::get_Id()": {
+          "Lines": {
+            "7": 37
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.RoleViewModel::get_Name()": {
+          "Lines": {
+            "10": 51
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Scope/ScopeController.cs": {
+      "tomware.OpenIddict.UI.Api.ScopeController": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeController::.ctor(tomware.OpenIddict.UI.Api.IScopeApiService)": {
+          "Lines": {
+            "13": 8,
+            "14": 8,
+            "15": 8,
+            "16": 8
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeController/<GetScopesAsync>d__2": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeController/<GetScopesAsync>d__2::MoveNext()": {
+          "Lines": {
+            "21": 1,
+            "22": 1,
+            "24": 1,
+            "25": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeController/<GetScopeNamesAsync>d__3": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeController/<GetScopeNamesAsync>d__3::MoveNext()": {
+          "Lines": {
+            "30": 0,
+            "31": 0,
+            "33": 0,
+            "34": 0
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeController/<GetAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeController/<GetAsync>d__4::MoveNext()": {
+          "Lines": {
+            "39": 1,
+            "40": 0,
+            "42": 1,
+            "43": 0,
+            "45": 1,
+            "46": 1
+          },
+          "Branches": [
+            {
+              "Line": 40,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 40,
+              "Offset": 26,
+              "EndOffset": 45,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 43,
+              "Offset": 195,
+              "EndOffset": 197,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 43,
+              "Offset": 195,
+              "EndOffset": 211,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeController/<CreateAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeController/<CreateAsync>d__5::MoveNext()": {
+          "Lines": {
+            "51": 4,
+            "52": 0,
+            "53": 0,
+            "55": 4,
+            "57": 4,
+            "58": 4
+          },
+          "Branches": [
+            {
+              "Line": 52,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 52,
+              "Offset": 29,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            },
+            {
+              "Line": 53,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 53,
+              "Offset": 69,
+              "EndOffset": 99,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 4
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeController/<UpdateAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeController/<UpdateAsync>d__6::MoveNext()": {
+          "Lines": {
+            "63": 1,
+            "64": 0,
+            "65": 0,
+            "67": 1,
+            "69": 1,
+            "70": 1
+          },
+          "Branches": [
+            {
+              "Line": 64,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 64,
+              "Offset": 29,
+              "EndOffset": 48,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 65,
+              "Offset": 69,
+              "EndOffset": 71,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 65,
+              "Offset": 69,
+              "EndOffset": 99,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeController/<DeleteAsync>d__7": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeController/<DeleteAsync>d__7::MoveNext()": {
+          "Lines": {
+            "75": 1,
+            "76": 0,
+            "78": 1,
+            "80": 1,
+            "81": 1
+          },
+          "Branches": [
+            {
+              "Line": 76,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 76,
+              "Offset": 26,
+              "EndOffset": 45,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Scope/ScopeService.cs": {
+      "tomware.OpenIddict.UI.Api.ScopeApiService": {
+        "tomware.OpenIddict.UI.Infrastructure.ScopeParam tomware.OpenIddict.UI.Api.ScopeApiService::ToParam(tomware.OpenIddict.UI.Api.ScopeViewModel)": {
+          "Lines": {
+            "85": 5,
+            "86": 5,
+            "87": 5
+          },
+          "Branches": []
+        },
+        "tomware.OpenIddict.UI.Api.ScopeViewModel tomware.OpenIddict.UI.Api.ScopeApiService::ToModel(tomware.OpenIddict.UI.Infrastructure.ScopeInfo)": {
+          "Lines": {
+            "90": 2,
+            "91": 2,
+            "92": 2
+          },
+          "Branches": []
+        },
+        "tomware.OpenIddict.UI.Api.ScopeViewModel tomware.OpenIddict.UI.Api.ScopeApiService::<GetScopesAsync>b__2_0(tomware.OpenIddict.UI.Infrastructure.ScopeInfo)": {
+          "Lines": {
+            "39": 2
+          },
+          "Branches": []
+        },
+        "System.Void tomware.OpenIddict.UI.Api.ScopeApiService::.ctor(tomware.OpenIddict.UI.Infrastructure.IScopeService)": {
+          "Lines": {
+            "30": 8,
+            "31": 8,
+            "32": 8,
+            "33": 8
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeApiService/<GetScopesAsync>d__2": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeApiService/<GetScopesAsync>d__2::MoveNext()": {
+          "Lines": {
+            "36": 1,
+            "37": 1,
+            "40": 1
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeApiService/<>c": {
+        "System.String tomware.OpenIddict.UI.Api.ScopeApiService/<>c::<GetScopeNamesAsync>b__3_0(tomware.OpenIddict.UI.Infrastructure.ScopeInfo)": {
+          "Lines": {
+            "46": 0
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeApiService/<GetScopeNamesAsync>d__3": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeApiService/<GetScopeNamesAsync>d__3::MoveNext()": {
+          "Lines": {
+            "43": 0,
+            "44": 0,
+            "47": 0
+          },
+          "Branches": []
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeApiService/<GetAsync>d__4": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeApiService/<GetAsync>d__4::MoveNext()": {
+          "Lines": {
+            "50": 1,
+            "51": 0,
+            "53": 1,
+            "55": 1,
+            "56": 1
+          },
+          "Branches": [
+            {
+              "Line": 51,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 51,
+              "Offset": 26,
+              "EndOffset": 39,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 55,
+              "Offset": 182,
+              "EndOffset": 184,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 55,
+              "Offset": 182,
+              "EndOffset": 187,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeApiService/<CreateAsync>d__5": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeApiService/<CreateAsync>d__5::MoveNext()": {
+          "Lines": {
+            "59": 4,
+            "60": 0,
+            "62": 4,
+            "64": 4,
+            "65": 4
+          },
+          "Branches": [
+            {
+              "Line": 60,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 60,
+              "Offset": 26,
+              "EndOffset": 39,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 4
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeApiService/<UpdateAsync>d__6": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeApiService/<UpdateAsync>d__6::MoveNext()": {
+          "Lines": {
+            "68": 1,
+            "69": 0,
+            "70": 0,
+            "72": 1,
+            "74": 1,
+            "75": 1
+          },
+          "Branches": [
+            {
+              "Line": 69,
+              "Offset": 29,
+              "EndOffset": 31,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 69,
+              "Offset": 29,
+              "EndOffset": 42,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            },
+            {
+              "Line": 70,
+              "Offset": 60,
+              "EndOffset": 62,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 0
+            },
+            {
+              "Line": 70,
+              "Offset": 60,
+              "EndOffset": 73,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 1
+            }
+          ]
+        }
+      },
+      "tomware.OpenIddict.UI.Api.ScopeApiService/<DeleteAsync>d__7": {
+        "System.Void tomware.OpenIddict.UI.Api.ScopeApiService/<DeleteAsync>d__7::MoveNext()": {
+          "Lines": {
+            "78": 1,
+            "79": 0,
+            "81": 1,
+            "82": 1
+          },
+          "Branches": [
+            {
+              "Line": 79,
+              "Offset": 26,
+              "EndOffset": 28,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 79,
+              "Offset": 26,
+              "EndOffset": 39,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 1
+            }
+          ]
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Api/Scope/ScopeViewModel.cs": {
+      "tomware.OpenIddict.UI.Api.ScopeViewModel": {
+        "System.String tomware.OpenIddict.UI.Api.ScopeViewModel::get_Id()": {
+          "Lines": {
+            "7": 29
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.ScopeViewModel::get_Name()": {
+          "Lines": {
+            "10": 32
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.ScopeViewModel::get_DisplayName()": {
+          "Lines": {
+            "12": 32
+          },
+          "Branches": []
+        },
+        "System.String tomware.OpenIddict.UI.Api.ScopeViewModel::get_Description()": {
+          "Lines": {
+            "14": 32
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/Common/OpenIddictUIApiOptions.cs": {
+      "tomware.OpenIddict.UI.Api.OpenIddictUIApiOptions": {
+        "System.Collections.Generic.List`1<System.String> tomware.OpenIddict.UI.Api.OpenIddictUIApiOptions::get_Permissions()": {
+          "Lines": {
+            "7": 0
+          },
+          "Branches": []
+        }
+      }
+    },
+    "/home/tom/work/net/openiddict-ui/src/OpenIddict.UI.Api/OpenIddictUIServicesExtensions.cs": {
+      "tomware.OpenIddict.UI.Api.OpenIddictUIServicesExtensions": {
+        "Microsoft.Extensions.DependencyInjection.OpenIddictBuilder tomware.OpenIddict.UI.Api.OpenIddictUIServicesExtensions::AddUIApis(Microsoft.Extensions.DependencyInjection.OpenIddictBuilder,tomware.OpenIddict.UI.Api.OpenIddictUIApiOptions)": {
+          "Lines": {
+            "13": 5,
+            "14": 5,
+            "15": 5,
+            "17": 5,
+            "18": 5
+          },
+          "Branches": []
+        },
+        "Microsoft.Extensions.DependencyInjection.IServiceCollection tomware.OpenIddict.UI.Api.OpenIddictUIServicesExtensions::AddOpenIddictUIApiServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,tomware.OpenIddict.UI.Api.OpenIddictUIApiOptions)": {
+          "Lines": {
+            "24": 5,
+            "25": 5,
+            "27": 5,
+            "29": 0,
+            "30": 0,
+            "31": 0,
+            "33": 5,
+            "34": 5
+          },
+          "Branches": []
+        },
+        "Microsoft.Extensions.DependencyInjection.IServiceCollection tomware.OpenIddict.UI.Api.OpenIddictUIServicesExtensions::AddAuthorizationServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)": {
+          "Lines": {
+            "39": 5,
+            "40": 5,
+            "41": 10,
+            "42": 10,
+            "43": 10,
+            "44": 15,
+            "45": 15,
+            "46": 15,
+            "47": 10,
+            "48": 10,
+            "50": 5,
+            "51": 5
+          },
+          "Branches": []
+        },
+        "Microsoft.Extensions.DependencyInjection.IServiceCollection tomware.OpenIddict.UI.Api.OpenIddictUIServicesExtensions::AddApiServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)": {
+          "Lines": {
+            "56": 5,
+            "58": 5,
+            "59": 5,
+            "60": 5,
+            "63": 5,
+            "64": 5,
+            "66": 5,
+            "67": 5
+          },
+          "Branches": []
+        }
+      }
+    }
+  }
+}

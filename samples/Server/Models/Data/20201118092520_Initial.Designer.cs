@@ -9,7 +9,7 @@ using Mvc.Server.Models;
 namespace Mvc.Server.Models.Data
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201117073602_Initial")]
+    [Migration("20201118092520_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
