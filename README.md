@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/thomasduft/openiddict-ui.svg?branch=main)](https://travis-ci.org/thomasduft/openiddict-ui)
+
 # OpenIddict UI
 
 A first step to provide some UI features to the [OpenIddict](https://github.com/openiddict/openiddict-core) stack. 
