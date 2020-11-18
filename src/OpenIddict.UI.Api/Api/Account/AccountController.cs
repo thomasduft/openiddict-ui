@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace tomware.OpenIddict.UI.Api
 {
@@ -34,29 +35,6 @@ namespace tomware.OpenIddict.UI.Api
           _logger.LogInformation(
             "New user {Email} successfully registred!",
             model.Email
-          );
-
-          return Ok(result);
-        }
-
-        AddErrors(result);
-      }
-
-      return BadRequest(ModelState);
-    }
-
-    [HttpPost("changepassword")]
-    [ProducesResponseType(typeof(IdentityResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> ChangePassword([FromBody]ChangePasswordViewModel model)
-    {
-      if (ModelState.IsValid)
-      {
-        var result = await _service.ChangePasswordAsync(model);
-        if (result.Succeeded)
-        {
-          _logger.LogInformation(
-            "The password for user {UserName} has been changed.",
-            model.UserName
           );
 
           return Ok(result);
@@ -106,7 +84,9 @@ namespace tomware.OpenIddict.UI.Api
     {
       if (string.IsNullOrWhiteSpace(id)) return BadRequest();
 
-      throw new System.NotImplementedException("DeleteAsync");
+      // Don't think deleting user makes sense
+      // Better provide an Inactive property on the IdentityUser and set it to Inactive.
+      throw new NotImplementedException("DeleteAsync");
     }
 
     private void AddErrors(IdentityResult result)

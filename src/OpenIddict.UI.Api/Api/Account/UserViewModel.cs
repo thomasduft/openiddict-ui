@@ -24,8 +24,8 @@ namespace tomware.OpenIddict.UI.Api
 
     public bool IsLockedOut { get; set; }
 
-    public List<ClaimViewModel> Claims { get; set; }
+    public List<ClaimViewModel> Claims { get; set; } = new List<ClaimViewModel>();
 
-    public List<string> Roles { get; set; }
+    public List<string> Roles { get; set; } = new List<string>();
   }
 }

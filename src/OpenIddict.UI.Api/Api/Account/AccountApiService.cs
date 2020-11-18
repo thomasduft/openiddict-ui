@@ -11,7 +11,6 @@ namespace tomware.OpenIddict.UI.Api
   public interface IAccountApiService
   {
     Task<IdentityResult> RegisterAsync(RegisterUserViewModel model);
-    Task<IdentityResult> ChangePasswordAsync(ChangePasswordViewModel model);
     Task<IEnumerable<UserViewModel>> GetUsersAsync();
     Task<UserViewModel> GetUserAsync(string id);
     Task<IdentityResult> UpdateAsync(UserViewModel model);
@@ -43,19 +42,6 @@ namespace tomware.OpenIddict.UI.Api
       };
 
       return await _manager.CreateAsync(identiyUser, model.Password);
-    }
-
-    public async Task<IdentityResult> ChangePasswordAsync(
-      ChangePasswordViewModel model
-    )
-    {
-      var user = await _manager.FindByNameAsync(model.UserName);
-
-      return await _manager.ChangePasswordAsync(
-        user,
-        model.CurrentPassword,
-        model.NewPassword
-      );
     }
 
     public async Task<IEnumerable<UserViewModel>> GetUsersAsync()

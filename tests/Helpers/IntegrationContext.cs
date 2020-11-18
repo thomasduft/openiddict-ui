@@ -29,8 +29,6 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
     private readonly HttpClient _client;
     private readonly string _accessToken;
 
-    protected IServiceProvider Services => _factory.Services;
-
     protected IntegrationContext(IntegrationApplicationFactory<Mvc.Server.Startup> factory)
     {
       _factory = factory;
@@ -46,21 +44,21 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
 
     private HttpClient GetClient(bool authorized = true)
     {
-      if (this._client.DefaultRequestHeaders.Authorization != null)
+      if (_client.DefaultRequestHeaders.Authorization != null)
       {
-        this._client.DefaultRequestHeaders.Authorization = null;
+        _client.DefaultRequestHeaders.Authorization = null;
       }
 
       if (authorized)
       {
-        if (this._client.DefaultRequestHeaders.Authorization == null)
+        if (_client.DefaultRequestHeaders.Authorization == null)
         {
-          this._client.DefaultRequestHeaders.Authorization
+          _client.DefaultRequestHeaders.Authorization
             = new AuthenticationHeaderValue("Bearer", _accessToken);
         }
       }
 
-      return this._client;
+      return _client;
     }
 
     protected T Deserialize<T>(string responseBody)
@@ -114,6 +112,11 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
       return await GetClient(authorized)
         .DeleteAsync(endpoint);
     }
+
+    protected T GetRequiredService<T>()
+    {
+      return _factory.Services.GetRequiredService<T>();
+    }
   }
 
   public class IntegrationApplicationFactory<TStartup>
@@ -130,7 +133,7 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
         var sp = services.BuildServiceProvider();
         EnsureMigration(sp);
 
-        this.AccessToken = GenerateAccessToken(sp);
+        AccessToken = GenerateAccessToken(sp);
       });
     }
 

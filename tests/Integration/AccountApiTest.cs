@@ -60,7 +60,6 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 
     [Theory]
     [InlineData("/api/accounts/register")]
-    [InlineData("/api/accounts/changepassword")]
     public async Task IsNotAuthenticated_ReturnsUnauthorized(string endpoint)
     {
       // Arrange
@@ -71,11 +70,6 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       if (endpoint.EndsWith("register"))
       {
         response = await PostAsync(endpoint, new RegisterUserViewModel(), authorized);
-      }
-
-      if (endpoint.EndsWith("changepassword"))
-      {
-        response = await PostAsync(endpoint, new ChangePasswordViewModel(), authorized);
       }
 
       // Assert
@@ -124,82 +118,79 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
-    // [Fact]
-    // public async Task GetAsync_RoleReceived()
-    // {
-    //   // Arrange
-    //   var endpoint = "/api/roles";
-    //   var createResponse = await PostAsync(endpoint, new RoleViewModel
-    //   {
-    //     Name = NEW_ROLE
-    //   });
-    //   var id = await createResponse.Content.ReadAsJson<string>();
+    [Fact]
+    public async Task GetAsync_UserReceived()
+    {
+      // Arrange
+      var email = "mail@openiddict.com";
+      var user = await FindUserByEmail(email);
+      Assert.NotNull(user);
 
-    //   // Act
-    //   var response = await GetAsync($"{endpoint}/{id}");
+      // Act
+      var response = await GetAsync($"/api/accounts/user/{user.Id}");
 
-    //   // Assert
-    //   Assert.NotNull(response);
-    //   Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    //   var model = await response.Content.ReadAsJson<RoleViewModel>();
+      var model = await response.Content.ReadAsJson<UserViewModel>();
+      Assert.NotNull(model);
+      Assert.Equal(user.Id, model.Id);
+      Assert.Equal(email, model.Email);
+    }
 
-    //   Assert.NotNull(model);
-    //   Assert.Equal(id, model.Id);
-    //   Assert.Equal(NEW_ROLE, model.Name);
-    // }
+    [Fact]
+    public async Task UpdateAsync_UserUpdated()
+    {
+      // Arrange
+      var email = "mail@openiddict.com";
+      var user = await FindUserByEmail(email);
+      Assert.NotNull(user);
 
-    // [Fact]
-    // public async Task UpdateAsync_RoleUpdated()
-    // {
-    //   // Arrange
-    //   var endpoint = "/api/roles";
-    //   var createResponse = await PostAsync(endpoint, new RoleViewModel
-    //   {
-    //     Name = NEW_ROLE
-    //   });
-    //   var id = await createResponse.Content.ReadAsJson<string>();
+      // Act
+      var response = await PutAsync("/api/accounts/user", new UserViewModel
+      {
+        Id = user.Id,
+        UserName = user.UserName,
+        Email = user.Email,
+        LockoutEnabled = !user.LockoutEnabled
+      });
 
-    //   // Act
-    //   var response = await PutAsync(endpoint, new RoleViewModel
-    //   {
-    //     Id = id,
-    //     Name = UPDATE_ROLE
-    //   });
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
 
-    //   // Assert
-    //   Assert.NotNull(response);
-    //   Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
-    // }
+    [Fact]
+    public async Task DeleteAsync_UserDeleted()
+    {
+      // Arrange
+      var email = "mail@openiddict.com";
+      var user = await FindUserByEmail(email);
+      Assert.NotNull(user);
 
-    // [Fact]
-    // public async Task DeleteAsync_RoleDeleted()
-    // {
-    //   // Arrange
-    //   var endpoint = "/api/roles";
-    //   var createResponse = await PostAsync(endpoint, new RoleViewModel
-    //   {
-    //     Name = NEW_ROLE
-    //   });
-    //   var id = await createResponse.Content.ReadAsJson<string>();
+      // Act
+      var response = await DeleteAsync($"/api/accounts/user/{user.Id}");
 
-    //   // Act
-    //   var response = await DeleteAsync($"{endpoint}/{id}");
-
-    //   // Assert
-    //   Assert.NotNull(response);
-    //   Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
-    // }
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
+    }
 
     private async Task DeleteUser(string email)
     {
-      UserManager<ApplicationUser> usermanager
-       = (UserManager<ApplicationUser>)Services.GetService(typeof(UserManager<ApplicationUser>));
-      var user = await usermanager.FindByEmailAsync(email);
+      var user = await FindUserByEmail(email);
       if (user == null) return;
 
+      var usermanager = GetRequiredService<UserManager<ApplicationUser>>();
       var deleteResult = await usermanager.DeleteAsync(user);
       Assert.True(deleteResult.Succeeded);
+    }
+
+    private async Task<ApplicationUser> FindUserByEmail(string email)
+    {
+      var usermanager = GetRequiredService<UserManager<ApplicationUser>>();
+      return await usermanager.FindByEmailAsync(email);
     }
   }
 }
