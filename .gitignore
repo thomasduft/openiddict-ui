@@ -262,5 +262,5 @@ __pycache__/
 dist/
 !samples/Server/wwwroot/**/*/dist
 lcov.info
-test/coverage.json
+tests/coverage.json
 samples/**/*.sqlite
