@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { ExpanderModule } from './expander/expander.module';
 import { IconModule } from './icon/icon.module';
 import { ListModule } from './list/list.module';
 import { PaneModule } from './pane/pane.module';
@@ -18,7 +17,6 @@ import { FilterPipe } from './pipes';
   imports: [
     CommonModule,
     RouterModule,
-    ExpanderModule,
     IconModule,
     ListModule,
     PaneModule,
@@ -33,7 +31,6 @@ import { FilterPipe } from './pipes';
   exports: [
     ForbiddenComponent,
     PageNotFoundComponent,
-    ExpanderModule,
     IconModule,
     ListModule,
     PaneModule,

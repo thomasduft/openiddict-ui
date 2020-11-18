@@ -8,6 +8,8 @@ On top of that it ships API's for the `Usermanagement` when using [ASP.NET Core 
 
 As a goodie the samples demonstrates this features by an Angular SPA client that uses the [Authorization Code flow](https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth).
 
+![SPA Client](./spa-client.png)
+
 ## Running the sample
 
 Assuming you downloaded the sources and opened the directory with [VS Code](https://code.visualstudio.com/) you should be good to go! Ahh and of course you need [.NET Core](https://dotnet.microsoft.com/download) and [node.js](https://nodejs.org/en/) installed on your development environment.
@@ -43,7 +45,10 @@ This will start Angular's development server.
 http://localhost:4200
 ```
 
-You should see now the login screen.
+You should see now the login screen. You can now login with the pre-configured administrator users account which is:
+
+- E-Mail: admin@openiddict.com
+- Password: Pass123$
 
 
 ## Using it
