@@ -6,11 +6,11 @@
     <RootNamespace>tomware.OpenIddict.UI.Infrastructure</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Description>Infrastructure types for openiddict UI</Description>
-    <RepositoryUrl>https://github.com/thomasduft/microip</RepositoryUrl>
+    <RepositoryUrl>https://github.com/thomasduft/openiddict-ui</RepositoryUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Authors>Thomas Duft</Authors>
     <Company>tomWare SOLUTIONS</Company>
-    <PackageProjectUrl>https://github.com/thomasduft/microip</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/thomasduft/openiddict-ui</PackageProjectUrl>
     <PackageTags>OpenIddict</PackageTags>
     <RepositoryType>git</RepositoryType>
     <Copyright>2020 tomWare SOLUTIONS</Copyright>
