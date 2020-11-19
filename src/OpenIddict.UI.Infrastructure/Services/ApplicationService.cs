@@ -102,7 +102,8 @@ namespace tomware.OpenIddict.UI.Infrastructure
 
     private ApplicationInfo ToInfo(OpenIddictEntityFrameworkCoreApplication entity)
     {
-      var info = SimpleMapper.From<OpenIddictEntityFrameworkCoreApplication, ApplicationInfo>(entity);
+      var info = SimpleMapper
+        .From<OpenIddictEntityFrameworkCoreApplication, ApplicationInfo>(entity);
 
       info.RequireConsent = entity.ConsentType == ConsentTypes.Explicit;
       info.Permissions = entity.Permissions != null
