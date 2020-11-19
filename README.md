@@ -2,7 +2,9 @@
 
 # OpenIddict UI
 
-A first step to provide some UI features to the [OpenIddict](https://github.com/openiddict/openiddict-core) stack. 
+A first step to provide some headless UI features to the [OpenIddict](https://github.com/openiddict/openiddict-core) stack. 
+
+> Please note that this project does not provide you a ready to use UI instead provides you the required services that allow you to build one. You can use the samples as a starting point though.
 
 Currently it provides API's for managing `Scopes` and `Applications`.
 

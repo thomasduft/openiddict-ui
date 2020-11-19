@@ -41,7 +41,7 @@ for package in $(find ./dist/nupkgs/ -name *.nupkg); do
 done
 
 echo Creating and pushing tag 
-git tag -a v$1
+git tag -a v$1 -m '"version '$1'"'
 git push origin v$1
 
 echo Done
