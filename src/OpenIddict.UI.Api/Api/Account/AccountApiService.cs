@@ -20,26 +20,24 @@ namespace tomware.OpenIddict.UI.Api
     where TIdentityUser : IdentityUser, new()
   {
     private readonly UserManager<TIdentityUser> _manager;
+    private readonly IUserCreationStrategy<TIdentityUser> _userCreationStrategy;
 
     public AccountApiService(
-      UserManager<TIdentityUser> manager
+      UserManager<TIdentityUser> manager,
+      IUserCreationStrategy<TIdentityUser> userCreationStrategy
     )
     {
-      _manager = manager;
+      _manager = manager
+        ?? throw new ArgumentNullException(nameof(manager));
+      _userCreationStrategy = userCreationStrategy
+        ?? throw new ArgumentNullException(nameof(userCreationStrategy));
     }
 
     public async Task<IdentityResult> RegisterAsync(
       RegisterUserViewModel model
     )
     {
-      // TODO: provide strategy for enabling correct UserName/Email login
-      // for not misusing the Email as UserName!
-      var identiyUser = new TIdentityUser
-      {
-        UserName = model.Email, // model.UserName
-        Email = model.Email,
-        LockoutEnabled = true
-      };
+      var identiyUser = _userCreationStrategy.CreateUser(model);
 
       return await _manager.CreateAsync(identiyUser, model.Password);
     }

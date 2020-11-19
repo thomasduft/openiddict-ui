@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -6,6 +5,9 @@ namespace tomware.OpenIddict.UI.Api
 {
   public static class OpenIddictUIServicesExtensions
   {
+    /// <summary>
+    /// Register the Api for the EF based UI Store.
+    /// </summary>
     public static OpenIddictBuilder AddUIApis<TApplicationUser>(
       this OpenIddictBuilder builder,
       OpenIddictUIApiOptions uiApiOptions
@@ -13,6 +15,19 @@ namespace tomware.OpenIddict.UI.Api
     {
       builder.Services
         .AddOpenIddictUIApiServices<TApplicationUser>(uiApiOptions);
+
+      return builder;
+    }
+
+    /// <summary>
+    /// Registers the UserName to UserName UserCreationStrategy.
+    /// </summary>
+    public static OpenIddictBuilder AddUserNameUserCreationStrategy<TApplicationUser>(
+      this OpenIddictBuilder builder
+    ) where TApplicationUser : IdentityUser, new()
+    {
+      builder.Services
+        .AddTransient<IUserCreationStrategy<TApplicationUser>, UserNameUserCreationStrategy<TApplicationUser>>();
 
       return builder;
     }
@@ -55,6 +70,7 @@ namespace tomware.OpenIddict.UI.Api
     ) where TApplicationUser : IdentityUser, new()
     {
       // Identity services
+      services.AddTransient<IUserCreationStrategy<TApplicationUser>, EmailUserCreationStrategy<TApplicationUser>>();
       services.AddTransient<IAccountApiService, AccountApiService<TApplicationUser>>();
       services.AddTransient<IRoleService, RoleService>();
       services.AddTransient<IClaimTypeApiService, ClaimTypeApiService>();

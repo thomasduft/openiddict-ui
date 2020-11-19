@@ -235,8 +235,8 @@ namespace Mvc.Server
             Permissions.Scopes.Profile,
             Permissions.Scopes.Roles,
             Permissions.Prefixes.Scope + "demo_api"
-        }
-        });
+          }
+        }).AddUserNameUserCreationStrategy<ApplicationUser>();
 
       if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
       {
