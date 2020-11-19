@@ -4,7 +4,9 @@ import {
   Editor,
   TEXT_EDITOR,
   HIDDEN_EDITOR,
-  TEXT_AREA_EDITOR
+  TEXT_AREA_EDITOR,
+  MULTI_SELECT_EDITOR,
+  VALUE_BINDING_BEHAVIOR
 } from '../../shared/formdef';
 
 export class ScopeDetailSlot implements Slot {
@@ -15,7 +17,11 @@ export class ScopeDetailSlot implements Slot {
   public title = 'Detail';
   public editors: Editor[];
 
-  public constructor() {
+  public constructor(resources: Array<string>) {
+    const resourcesOptions = resources.map((x: string) => {
+      return { key: x, value: x };
+    });
+
     this.editors = [
       {
         key: 'id',
@@ -39,7 +45,16 @@ export class ScopeDetailSlot implements Slot {
         key: 'description',
         type: TEXT_AREA_EDITOR,
         label: 'Description'
-      }
+      },
+      {
+        key: 'resources',
+        type: MULTI_SELECT_EDITOR,
+        label: 'Resources',
+        options: resourcesOptions,
+        singleSelection: false,
+        bindingBehaviour: VALUE_BINDING_BEHAVIOR,
+        allowAddingItems: true
+      },
     ];
   }
 }

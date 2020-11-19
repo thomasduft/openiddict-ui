@@ -67,8 +67,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
 
       // update existing entity
       model.Id = entity.Id;
-      SimpleMapper.Map<ApplicationParam, OpenIddictEntityFrameworkCoreApplication>(model, entity);
-      await _manager.UpdateAsync(entity);
+      await UpdateAsync(model);
 
       return entity.Id;
     }

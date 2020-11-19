@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace tomware.OpenIddict.UI.Infrastructure
 {
   public class ScopeInfo
@@ -7,6 +9,6 @@ namespace tomware.OpenIddict.UI.Infrastructure
     public string DisplayName { get; set; }
     public string Description { get; set; }
     public string Properties { get; set; }
-    public string Resources { get; set; }
+    public List<string> Resources { get; set; } = new List<string>();
   }
 }

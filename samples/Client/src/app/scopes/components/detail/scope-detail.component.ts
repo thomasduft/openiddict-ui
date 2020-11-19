@@ -119,7 +119,7 @@ export class ScopeDetailComponent implements OnInit {
     this.isNew = false;
     this.resource$ = this.service.scope(name)
       .subscribe((result: Scope) => {
-        this.slotRegistry.register(new ScopeDetailSlot());
+        this.slotRegistry.register(new ScopeDetailSlot(result.resources));
 
         this.key = ScopeDetailSlot.KEY;
         this.viewModel = result;
@@ -130,16 +130,12 @@ export class ScopeDetailComponent implements OnInit {
     this.isNew = true;
     this.viewModel = {
       id: 'new',
-      enabled: true,
       name: 'new',
       displayName: undefined,
       description: undefined,
-      required: false,
-      showInDiscoveryDocument: false,
-      emphasize: false,
-      userClaims: []
+      resources: []
     };
-    this.slotRegistry.register(new ScopeDetailSlot());
+    this.slotRegistry.register(new ScopeDetailSlot([]));
   }
 
   private handleSuccess(): void {

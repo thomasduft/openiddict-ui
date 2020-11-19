@@ -104,7 +104,12 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       {
         Name = TEST_SCOPE,
         DisplayName = "displayname",
-        Description = "description"
+        Description = "description",
+        Resources = new List<string>
+        {
+          "resource1",
+          "resource2"
+        }
       });
       var id = await createResponse.Content.ReadAsJson<string>();
 
@@ -122,6 +127,9 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       Assert.Equal(TEST_SCOPE, model.Name);
       Assert.Equal("displayname", model.DisplayName);
       Assert.Equal("description", model.Description);
+      Assert.Equal(2, model.Resources.Count);
+      Assert.Equal("resource1", model.Resources[0]);
+      Assert.Equal("resource2", model.Resources[1]);
     }
 
     [Fact]

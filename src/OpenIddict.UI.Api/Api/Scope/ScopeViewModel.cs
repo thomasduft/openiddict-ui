@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace tomware.OpenIddict.UI.Api
@@ -12,5 +13,7 @@ namespace tomware.OpenIddict.UI.Api
     public string DisplayName { get; set; }
 
     public string Description { get; set; }
+
+    public List<string> Resources { get; set; } = new List<string>();
   }
 }

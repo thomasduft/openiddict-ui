@@ -3,6 +3,7 @@ using OpenIddict.EntityFrameworkCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using tomware.OpenIddict.UI.Core;
 
@@ -54,6 +55,9 @@ namespace tomware.OpenIddict.UI.Infrastructure
           DisplayName = model.DisplayName,
           Description = model.Description
         };
+
+        HandleCustomProperties(model, newEntity);
+
         await _manager.CreateAsync(newEntity);
 
         return newEntity.Id;
@@ -61,8 +65,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
 
       // update existing entity
       model.Id = entity.Id;
-      SimpleMapper.Map<ScopeParam, OpenIddictEntityFrameworkCoreScope>(model, entity);
-      await _manager.UpdateAsync(entity);
+      await UpdateAsync(model);
 
       return entity.Id;
     }
@@ -74,6 +77,8 @@ namespace tomware.OpenIddict.UI.Infrastructure
       var entity = await _manager.FindByIdAsync(model.Id);
 
       SimpleMapper.Map<ScopeParam, OpenIddictEntityFrameworkCoreScope>(model, entity);
+
+      HandleCustomProperties(model, entity);
 
       await _manager.UpdateAsync(entity);
     }
@@ -89,7 +94,22 @@ namespace tomware.OpenIddict.UI.Infrastructure
 
     private ScopeInfo ToInfo(OpenIddictEntityFrameworkCoreScope entity)
     {
-      return SimpleMapper.From<OpenIddictEntityFrameworkCoreScope, ScopeInfo>(entity);
+      var info = SimpleMapper
+        .From<OpenIddictEntityFrameworkCoreScope, ScopeInfo>(entity);
+
+      info.Resources = entity.Resources != null
+        ? JsonSerializer.Deserialize<List<string>>(entity.Resources)
+        : new List<string>();
+
+      return info;
+    }
+
+    private void HandleCustomProperties(
+      ScopeParam model,
+      OpenIddictEntityFrameworkCoreScope entity
+    )
+    {
+      entity.Resources = JsonSerializer.Serialize(model.Resources);
     }
   }
 }

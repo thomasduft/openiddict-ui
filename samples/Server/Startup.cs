@@ -192,7 +192,7 @@ namespace Mvc.Server
           // Configure the audience accepted by this resource server.
           // The value MUST match the audience associated with the
           // "demo_api" scope, which is used by ResourceController.
-          // options.AddAudiences("resource_server");
+          options.AddAudiences("resource_server");
           // Import the configuration from the local OpenIddict server instance.
           options.UseLocalServer();
 
