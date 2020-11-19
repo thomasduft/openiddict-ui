@@ -1,4 +1,14 @@
 TODO:
+- claimtypes and claimtype.typevalue
+
+
+- manage resources on scopes
+
+
+- better ux for applications.permissions
+  - sth. like the approach of OrchardCore ID UI
+
+
 - distinguish between Identity and OpenIddict management
   - introduce OpenIddict.UI.Identity.Api
     - claimtypes

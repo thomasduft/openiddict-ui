@@ -52,7 +52,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
         {
           Name = model.Name,
           DisplayName = model.DisplayName,
-          Description = model.Description,
+          Description = model.Description
         };
         await _manager.CreateAsync(newEntity);
 
