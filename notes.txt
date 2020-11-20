@@ -1,7 +1,4 @@
 TODO:
-- claimtypes and claimtype.typevalue
-
-
 - better ux for applications.permissions
   - sth. like the approach of OrchardCore ID UI
 
