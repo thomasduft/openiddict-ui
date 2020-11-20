@@ -16,6 +16,24 @@ namespace tomware.OpenIddict.UI.Api
       builder.Services
         .AddOpenIddictUIApiServices<TApplicationUser>(uiApiOptions);
 
+      builder.AddOpenIddictUIRoutePrefix();
+
+      return builder;
+    }
+
+    /// <summary>
+    /// Registers a conventional route prefix for the API controllers that defaults to "api/".
+    /// </summary>
+    public static OpenIddictBuilder AddOpenIddictUIRoutePrefix(
+      this OpenIddictBuilder builder,
+      string routePrefix = "api/"
+    )
+    {
+      builder.Services.AddControllers(options =>
+      {
+        options.UseOpenIddictUIRoutePrefix(routePrefix);
+      });
+
       return builder;
     }
 
@@ -41,7 +59,8 @@ namespace tomware.OpenIddict.UI.Api
 
       services.AddApiServices<TApplicationUser>();
 
-      services.Configure<OpenIddictUIApiOptions>(options => {
+      services.Configure<OpenIddictUIApiOptions>(options =>
+      {
         options.Permissions = uiApiOptions.Permissions;
       });
 

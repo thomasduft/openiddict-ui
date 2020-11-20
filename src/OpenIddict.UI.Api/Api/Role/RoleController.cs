@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace tomware.OpenIddict.UI.Api
 {
-  [Route("api/roles")]
+  [Route("roles")]
   public class RoleController : ApiControllerBase
   {
     private readonly IRoleService _service;
@@ -45,7 +45,7 @@ namespace tomware.OpenIddict.UI.Api
 
       var result = await _service.CreateAsync(model);
 
-      return Created($"api/roles/{result}", result);
+      return Created($"roles/{result}", result);
     }
 
     [HttpPut]

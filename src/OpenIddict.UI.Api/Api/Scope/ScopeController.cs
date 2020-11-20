@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace tomware.OpenIddict.UI.Api
 {
-  [Route("api/scopes")]
+  [Route("scopes")]
   public class ScopeController : ApiControllerBase
   {
     private readonly IScopeApiService _service;
@@ -54,7 +54,7 @@ namespace tomware.OpenIddict.UI.Api
 
       var result = await _service.CreateAsync(model);
 
-      return Created($"api/scopes/{result}", result);
+      return Created($"scopes/{result}", result);
     }
 
     [HttpPut]

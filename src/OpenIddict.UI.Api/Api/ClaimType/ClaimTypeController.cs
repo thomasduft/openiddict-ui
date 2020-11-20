@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace tomware.OpenIddict.UI.Api
 {
-  [Route("api/claimtypes")]
+  [Route("claimtypes")]
   public class ClaimTypeController : ApiControllerBase
   {
     private readonly IClaimTypeApiService _service;
@@ -46,7 +46,7 @@ namespace tomware.OpenIddict.UI.Api
 
       var result = await _service.CreateAsync(model);
 
-      return Created($"api/claimtypes/{result}", result);
+      return Created($"claimtypes/{result}", result);
     }
 
     [HttpPut]

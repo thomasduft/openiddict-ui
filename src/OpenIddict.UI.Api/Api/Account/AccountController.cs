@@ -8,7 +8,7 @@ using System;
 
 namespace tomware.OpenIddict.UI.Api
 {
-  [Route("api/accounts")]
+  [Route("accounts")]
   public class AccountController : ApiControllerBase
   {
     private readonly ILogger<AccountController> _logger;
