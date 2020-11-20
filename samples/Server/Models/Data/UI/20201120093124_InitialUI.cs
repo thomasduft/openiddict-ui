@@ -13,7 +13,8 @@ namespace Mvc.Server.Models.Data.UI
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: true)
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    ClaimValueType = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

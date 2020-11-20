@@ -10,8 +10,11 @@ namespace tomware.OpenIddict.UI.Core
 
     public string Description { get; set; }
 
+    public string ClaimValueType { get; set; }
+
     public static ClaimType Create(
       string name,
+      string claimValueType,
       string description = null
     )
     {
@@ -19,6 +22,7 @@ namespace tomware.OpenIddict.UI.Core
       {
         Id = Guid.NewGuid(),
         Name = name,
+        ClaimValueType = claimValueType,
         Description = description
       };
     }

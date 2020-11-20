@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Mvc.Server;
 using tomware.OpenIddict.UI.Api;
@@ -84,7 +85,8 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       var response = await PostAsync(endpoint, new ClaimTypeViewModel
       {
         Name = TEST_CLAIMTYPE,
-        Description = "description"
+        Description = "description",
+        ClaimValueType = ClaimValueTypes.Boolean
       });
 
       // Assert
@@ -103,7 +105,8 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       var createResponse = await PostAsync(endpoint, new ClaimTypeViewModel
       {
         Name = TEST_CLAIMTYPE,
-        Description = "description"
+        Description = "description",
+        ClaimValueType = ClaimValueTypes.Boolean
       });
       var id = await createResponse.Content.ReadAsJson<Guid>();
 
@@ -120,6 +123,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       Assert.Equal(id, model.Id.Value);
       Assert.Equal(TEST_CLAIMTYPE, model.Name);
       Assert.Equal("description", model.Description);
+      Assert.Equal(ClaimValueTypes.Boolean, model.ClaimValueType);
     }
 
     [Fact]
@@ -130,7 +134,8 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       var createResponse = await PostAsync(endpoint, new ClaimTypeViewModel
       {
         Name = TEST_CLAIMTYPE,
-        Description = "description"
+        Description = "description",
+        ClaimValueType = ClaimValueTypes.Boolean
       });
       var id = await createResponse.Content.ReadAsJson<Guid>();
 
@@ -139,7 +144,8 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       {
         Id = id,
         Name = TEST_CLAIMTYPE,
-        Description = "updated description"
+        Description = "updated description",
+        ClaimValueType = ClaimValueTypes.Boolean
       });
 
       // Assert
@@ -155,7 +161,8 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       var createResponse = await PostAsync(endpoint, new ClaimTypeViewModel
       {
         Name = TEST_CLAIMTYPE,
-        Description = "description"
+        Description = "description",
+        ClaimValueType = ClaimValueTypes.Boolean
       });
       var id = await createResponse.Content.ReadAsJson<Guid>();
 

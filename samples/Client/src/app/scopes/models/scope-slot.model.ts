@@ -54,7 +54,7 @@ export class ScopeDetailSlot implements Slot {
         singleSelection: false,
         bindingBehaviour: VALUE_BINDING_BEHAVIOR,
         allowAddingItems: true
-      },
+      }
     ];
   }
 }

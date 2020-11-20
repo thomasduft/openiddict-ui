@@ -40,7 +40,11 @@ namespace tomware.OpenIddict.UI.Core
       if (entity == null)
       {
         // create new entity
-        var newEntity = ClaimType.Create(model.Name, model.Description);
+        var newEntity = ClaimType.Create(
+          model.Name,
+          model.ClaimValueType,
+          model.Description
+        );
         await _repository.AddAsync(newEntity);
 
         return newEntity.Id;

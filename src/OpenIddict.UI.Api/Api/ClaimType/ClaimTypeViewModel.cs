@@ -11,5 +11,8 @@ namespace tomware.OpenIddict.UI.Api
     public string Name { get; set; }
 
     public string Description { get; set; }
+
+    [Required]
+    public string ClaimValueType { get; set; }
   }
 }
