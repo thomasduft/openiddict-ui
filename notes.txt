@@ -1,4 +1,7 @@
 TODO:
+- delete a user
+
+
 - better ux for applications.permissions
   - sth. like the approach of OrchardCore ID UI
 
