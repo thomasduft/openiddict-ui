@@ -102,10 +102,8 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       var email = "mail@openiddict.com";
       await DeleteUser(email);
 
-      var endpoint = "/api/accounts/register";
-
       // Act
-      var response = await PostAsync(endpoint, new RegisterUserViewModel
+      var response = await PostAsync("/api/accounts/register", new RegisterUserViewModel
       {
         UserName = "username",
         Email = email,
@@ -144,6 +142,14 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     {
       // Arrange
       var email = "mail@openiddict.com";
+      await PostAsync("/api/accounts/register", new RegisterUserViewModel
+      {
+        UserName = "username",
+        Email = email,
+        Password = "Pass123$",
+        ConfirmPassword = "Pass123$"
+      });
+
       var user = await FindUserByEmail(email);
       Assert.NotNull(user);
 
@@ -165,7 +171,15 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     public async Task DeleteAsync_UserDeleted()
     {
       // Arrange
-      var email = "mail@openiddict.com";
+      var email = "userToDelete@openiddict.com";
+      await PostAsync("/api/accounts/register", new RegisterUserViewModel
+      {
+        UserName = "username",
+        Email = email,
+        Password = "Pass123$",
+        ConfirmPassword = "Pass123$"
+      });
+
       var user = await FindUserByEmail(email);
       Assert.NotNull(user);
 
@@ -174,7 +188,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 
       // Assert
       Assert.NotNull(response);
-      Assert.Equal(HttpStatusCode.InternalServerError, response.StatusCode);
+      Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     private async Task DeleteUser(string email)

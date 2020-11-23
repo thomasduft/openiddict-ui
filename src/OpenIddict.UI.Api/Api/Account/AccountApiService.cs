@@ -14,6 +14,7 @@ namespace tomware.OpenIddict.UI.Api
     Task<IEnumerable<UserViewModel>> GetUsersAsync();
     Task<UserViewModel> GetUserAsync(string id);
     Task<IdentityResult> UpdateAsync(UserViewModel model);
+    Task<IdentityResult> DeleteAsync(string id);
   }
 
   public class AccountApiService<TIdentityUser> : IAccountApiService
@@ -115,6 +116,15 @@ namespace tomware.OpenIddict.UI.Api
       }
 
       return result;
+    }
+
+    public async Task<IdentityResult> DeleteAsync(string id)
+    {
+      if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException(nameof(id));
+
+      var user = await _manager.FindByIdAsync(id);
+
+      return await _manager.DeleteAsync(user);
     }
 
     private async Task<IdentityResult> AssignClaimsAsync(

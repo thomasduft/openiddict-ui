@@ -80,13 +80,19 @@ namespace tomware.OpenIddict.UI.Api
 
     [HttpDelete("user/{id}")]
     [ProducesResponseType(typeof(IdentityResult), StatusCodes.Status200OK)]
-    public IActionResult DeleteAsync(string id)
+    public async Task<IActionResult> DeleteAsync(string id)
     {
       if (string.IsNullOrWhiteSpace(id)) return BadRequest();
 
-      // Don't think deleting user makes sense
+      // TODO: Don't think deleting user makes sense
       // Better provide an Inactive property on the IdentityUser and set it to Inactive.
-      throw new NotImplementedException("DeleteAsync");
+      // throw new NotImplementedException("DeleteAsync");
+
+      // Proposal: UserDeletionStrategy???
+
+      var result = await _service.DeleteAsync(id);
+
+      return Ok(result);
     }
 
     private void AddErrors(IdentityResult result)

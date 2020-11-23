@@ -1,24 +1,13 @@
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Mvc.Server;
-using Mvc.Server.Helpers;
-using Mvc.Server.Services;
-using OpenIddict.Server;
 using Xunit;
-using static OpenIddict.Abstractions.OpenIddictConstants;
-using static OpenIddict.Server.OpenIddictServerEvents;
-using static OpenIddict.Server.OpenIddictServerHandlers;
 
 namespace tomware.OpenIddict.UI.Tests.Helpers
 {
@@ -40,25 +29,6 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
       });
 
       _accessToken = _factory.AccessToken;
-    }
-
-    private HttpClient GetClient(bool authorized = true)
-    {
-      if (_client.DefaultRequestHeaders.Authorization != null)
-      {
-        _client.DefaultRequestHeaders.Authorization = null;
-      }
-
-      if (authorized)
-      {
-        if (_client.DefaultRequestHeaders.Authorization == null)
-        {
-          _client.DefaultRequestHeaders.Authorization
-            = new AuthenticationHeaderValue("Bearer", _accessToken);
-        }
-      }
-
-      return _client;
     }
 
     protected T Deserialize<T>(string responseBody)
@@ -117,80 +87,24 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
     {
       return _factory.Services.GetRequiredService<T>();
     }
-  }
 
-  public class IntegrationApplicationFactory<TStartup>
-    : WebApplicationFactory<TStartup> where TStartup : class
-  {
-    public string AccessToken { get; set; }
-
-    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    private HttpClient GetClient(bool authorized = true)
     {
-      builder.UseEnvironment("Testing");
-
-      builder.ConfigureServices(services =>
+      if (_client.DefaultRequestHeaders.Authorization != null)
       {
-        var sp = services.BuildServiceProvider();
-        EnsureMigration(sp);
+        _client.DefaultRequestHeaders.Authorization = null;
+      }
 
-        AccessToken = GenerateAccessToken(sp);
-      });
-    }
-
-    public void EnsureMigration(IServiceProvider sp)
-    {
-      using (var scope = sp.CreateScope())
+      if (authorized)
       {
-        var services = scope.ServiceProvider;
-        try
+        if (_client.DefaultRequestHeaders.Authorization == null)
         {
-          var migrator = services.GetRequiredService<IMigrationService>();
-          migrator.EnsureMigrationAsync().GetAwaiter().GetResult();
-        }
-        catch (Exception ex)
-        {
-          var logger = services.GetRequiredService<ILogger<IntegrationApplicationFactory<TStartup>>>();
-          logger.LogError(ex, "An error occurred while migrating the testing database.");
+          _client.DefaultRequestHeaders.Authorization
+            = new AuthenticationHeaderValue("Bearer", _accessToken);
         }
       }
-    }
 
-    public string GenerateAccessToken(IServiceProvider sp)
-    {
-      try
-      {
-        var claims = new List<Claim>
-        {
-          new Claim(Claims.Role, Roles.ADMINISTRATOR_ROLE)
-        };
-        var identity = new ClaimsIdentity(claims);
-
-        IOptions<OpenIddictServerOptions> options
-          = (IOptions<OpenIddictServerOptions>)sp.GetService(typeof(IOptions<OpenIddictServerOptions>));
-        ILogger<OpenIddictServerDispatcher> logger
-          = (ILogger<OpenIddictServerDispatcher>)sp.GetService(typeof(ILogger<OpenIddictServerDispatcher>));
-
-        var transaction = new OpenIddictServerTransaction
-        {
-          Options = options.Value,
-          Logger = logger
-        };
-
-        var context = new ProcessSignInContext(transaction)
-        {
-          Issuer = new Uri("https://localhost:5000/"),
-          AccessTokenPrincipal = new ClaimsPrincipal(identity)
-        };
-
-        var generator = new GenerateIdentityModelAccessToken();
-        generator.HandleAsync(context).GetAwaiter().GetResult();
-
-        return context.AccessToken;
-      }
-      catch (Exception)
-      {
-        throw;
-      }
+      return _client;
     }
   }
 }
