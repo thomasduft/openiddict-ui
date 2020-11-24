@@ -10,8 +10,7 @@ import { UserService } from '../../shared';
 
 @Component({
   selector: 'tw-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.less']
+  templateUrl: './sidebar.component.html'
 })
 export class SidebarComponent {
   public collapsed = false;

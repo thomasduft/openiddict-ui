@@ -22,7 +22,6 @@ import { ClaimTypesService } from '../../services';
 @Component({
   selector: 'tw-claimtype-detail',
   templateUrl: './claimtype-detail.component.html',
-  styleUrls: ['./claimtype-detail.component.less'],
   providers: [
     ClaimTypesService
   ]

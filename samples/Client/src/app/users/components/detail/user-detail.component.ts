@@ -14,7 +14,6 @@ import { AccountService } from '../../services';
 @Component({
   selector: 'tw-user-detail',
   templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.less'],
   providers: [
     AccountService
   ]

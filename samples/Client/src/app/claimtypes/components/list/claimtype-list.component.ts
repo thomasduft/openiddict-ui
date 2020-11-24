@@ -12,7 +12,6 @@ import { ClaimTypesService } from '../../services/claimtypes.service';
 @Component({
   selector: 'tw-claimtype-list',
   templateUrl: './claimtype-list.component.html',
-  styleUrls: ['./claimtype-list.component.less'],
   providers: [
     ClaimTypesService
   ]

@@ -51,12 +51,6 @@ export class AccountService {
       .pipe(catchError(this.http.handleError));
   }
 
-  public changePassword(model: ChangePassword): Observable<IdentityResult> {
-    return this.http
-      .post<IdentityResult>('accounts/changepassword', model)
-      .pipe(catchError(this.http.handleError));
-  }
-
   public update(model: User): Observable<IdentityResult> {
     return this.http
       .put<IdentityResult>('accounts/user', model)
@@ -68,16 +62,4 @@ export class AccountService {
       .delete<any>(`accounts/user/${id}`)
       .pipe(catchError(this.http.handleError));
   }
-
-  // public assignClaims(model: AssignClaims): Observable<IdentityResult> {
-  //   return this.http
-  //     .put<IdentityResult>('accounts/assignclaims', model)
-  //     .pipe(catchError(this.http.handleError));
-  // }
-
-  // public assignRoles(model: AssignRoles): Observable<IdentityResult> {
-  //   return this.http
-  //     .put<IdentityResult>('accounts/assignroles', model)
-  //     .pipe(catchError(this.http.handleError));
-  // }
 }

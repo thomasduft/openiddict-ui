@@ -37,7 +37,7 @@ export class ApplicationDetailSlot implements Slot {
       const prefixedScopeName = `scp:${s}`;
       if (!permissions.some(p => p === prefixedScopeName))
       {
-        permissions.push(s);
+        permissions.push(prefixedScopeName);
       }
     });
 

@@ -12,7 +12,6 @@ import { ScopeService } from '../../services/index';
 @Component({
   selector: 'tw-scope-list',
   templateUrl: './scope-list.component.html',
-  styleUrls: ['./scope-list.component.less'],
   providers: [
     ScopeService
   ]

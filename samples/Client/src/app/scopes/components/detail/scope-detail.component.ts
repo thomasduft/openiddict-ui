@@ -24,7 +24,6 @@ import { ScopeService } from '../../services';
 @Component({
   selector: 'tw-scope-detail',
   templateUrl: './scope-detail.component.html',
-  styleUrls: ['./scope-detail.component.less'],
   providers: [
     ScopeService
   ]

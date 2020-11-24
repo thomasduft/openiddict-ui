@@ -12,7 +12,6 @@ import { AccountService } from '../../services/account.service';
 @Component({
   selector: 'tw-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.less'],
   providers: [
     AccountService
   ]

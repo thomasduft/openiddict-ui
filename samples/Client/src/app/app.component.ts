@@ -7,8 +7,7 @@ import { UserService } from './shared';
 
 @Component({
   selector: 'tw-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
   title = 'ClientApp';
@@ -73,14 +72,14 @@ export class AppComponent implements OnInit {
       responseType: 'code',
       scope: 'openid roles email demo_api',
       loginUrl: isDevMode()
-        ? devModeIssuer + '/account/login'
+        ? devModeIssuer + 'account/login'
         : window.location.origin + 'account/login',
       logoutUrl: isDevMode()
-        ? devModeIssuer + '/account/logout'
-        : window.location.origin + '/account/logout',
+        ? devModeIssuer + 'account/logout'
+        : window.location.origin + 'account/logout',
       userinfoEndpoint: isDevMode()
-        ? devModeIssuer + '/connect/userinfo'
-        : window.location.origin + '/connect/userinfo',
+        ? devModeIssuer + 'connect/userinfo'
+        : window.location.origin + 'connect/userinfo',
       requireHttps: false
     });
 

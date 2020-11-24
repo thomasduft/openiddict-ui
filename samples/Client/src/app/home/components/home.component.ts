@@ -4,8 +4,7 @@ import { UserService } from '../../shared';
 
 @Component({
   selector: 'tw-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  templateUrl: './home.component.html'
 })
 export class HomeComponent {
   public get isAuthenticated(): boolean {

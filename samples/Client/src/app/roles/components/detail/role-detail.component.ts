@@ -22,7 +22,6 @@ import { RoleService } from '../../services';
 @Component({
   selector: 'tw-role-detail',
   templateUrl: './role-detail.component.html',
-  styleUrls: ['./role-detail.component.less'],
   providers: [
     RoleService
   ]
