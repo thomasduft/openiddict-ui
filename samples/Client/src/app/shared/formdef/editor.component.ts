@@ -78,7 +78,7 @@ import { Editor } from './models';
           [attr.id]="editor.key"
           [formControlName]="editor.key" />
 
-    <div *ngIf="control(editor.key).invalid" class="form__validation--error">
+    <div *ngIf="control(editor.key) && control(editor.key).invalid" class="form__validation--error">
       <div *ngIf="control(editor.key).hasError('required')" i18n>
         {{ editor.label }} required.
       </div>

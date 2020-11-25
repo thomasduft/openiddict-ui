@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
-import { BaseSlotComponent } from './models';
+import { BaseSlotDirective } from './models';
 
 @Component({
   selector: 'tw-slot',
   template: `
-  <ng-container *ngIf="slot.editors && slot.editors.length > 0">
+  <ng-container *ngIf="slot && slot.editors && slot.editors.length > 0">
     <fieldset>
       <legend class="title" (click)="toggle()">{{ slot.title }}</legend>
       <ng-container *ngIf="!collapsed">
@@ -17,7 +17,7 @@ import { BaseSlotComponent } from './models';
       </ng-container>
     </fieldset>
   </ng-container>
-  <ng-container *ngIf="slot.children && slot.children.length > 0">
+  <ng-container *ngIf="slot && slot.children && slot.children.length > 0">
     <ng-container *ngFor="let child of slot.children">
       <tw-slothost
         [slot]="child"
@@ -26,7 +26,7 @@ import { BaseSlotComponent } from './models';
     </ng-container>
   </ng-container>`
 })
-export class SlotComponent extends BaseSlotComponent {
+export class SlotComponent extends BaseSlotDirective {
   public collapsed = false;
 
   public toggle(): void {

@@ -1,9 +1,8 @@
-import { FormdefComponent } from './../../../shared/formdef/formdef.component';
 import { Subscription, forkJoin } from 'rxjs';
 
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Validators } from '@angular/forms';
+import { Validators, FormGroup } from '@angular/forms';
 
 import {
   AutoUnsubscribe,
@@ -16,7 +15,7 @@ import {
   DeleteConfirmation,
   IdentityResult
 } from '../../../shared';
-import { FormdefRegistry } from '../../../shared/formdef';
+import { FormdefRegistry, FormdefService } from '../../../shared/formdef';
 import { RefreshMessage } from '../../../core';
 import { ScopeService } from '../../../scopes/services/scope.service';
 
@@ -29,7 +28,8 @@ import { ApplicationService } from '../../services';
   templateUrl: './application-detail.component.html',
   providers: [
     ApplicationService,
-    ScopeService
+    ScopeService,
+    FormdefService
   ]
 })
 export class ApplicationDetailComponent implements OnInit {
@@ -40,6 +40,7 @@ export class ApplicationDetailComponent implements OnInit {
   public viewModel: Application;
   public errors: Array<string> = [];
   public isNew = false;
+  public form = new FormGroup({});
 
   public constructor(
     private router: Router,
@@ -49,7 +50,8 @@ export class ApplicationDetailComponent implements OnInit {
     private slotRegistry: FormdefRegistry,
     private popup: Popover,
     private element: ElementRef,
-    private messageBus: MessageBus
+    private messageBus: MessageBus,
+    private formdefService: FormdefService
   ) { }
 
   public ngOnInit(): void {
@@ -133,14 +135,21 @@ export class ApplicationDetailComponent implements OnInit {
         result.scopenames
       ));
 
-      this.key = ApplicationDetailSlot.KEY;
-      this.viewModel = result.application;
+      this.applyData(result.application);
     });
   }
 
   private create(): void {
     this.isNew = true;
-    this.viewModel = {
+
+    this.slotRegistry.register(new ApplicationDetailSlot(
+      this.viewModel.redirectUris,
+      this.viewModel.postLogoutRedirectUris,
+      this.viewModel.permissions,
+      []
+    ));
+
+    this.applyData({
       id: 'new',
       clientId: 'new',
       displayName: undefined,
@@ -151,14 +160,15 @@ export class ApplicationDetailComponent implements OnInit {
       redirectUris: [],
       postLogoutRedirectUris: [],
       permissions: []
-    };
+    });
+  }
 
-    this.slotRegistry.register(new ApplicationDetailSlot(
-      this.viewModel.redirectUris,
-      this.viewModel.postLogoutRedirectUris,
-      this.viewModel.permissions,
-      []
-    ));
+  private applyData(viewModel: Application) {
+    this.key = ApplicationDetailSlot.KEY;
+    this.form = this.formdefService.toGroup(this.key, viewModel);
+    this.viewModel = viewModel;
+
+    this.applyFormBehavior(this.form);
   }
 
   private handleSuccess(): void {
@@ -179,5 +189,21 @@ export class ApplicationDetailComponent implements OnInit {
       ));
 
     this.messageBus.publish(new RefreshMessage('application'));
+  }
+
+  private applyFormBehavior(form: FormGroup): void {
+    if (form === undefined) { return; }
+
+    const typeControl = form.get('type');
+    if (typeControl) {
+      typeControl.valueChanges.subscribe(type => {
+        if (type === 'confidential') {
+          form.get('clientSecret').setValidators(Validators.required);
+        } else {
+          form.get('clientSecret').setValidators(null);
+        }
+        form.get('clientSecret').updateValueAndValidity();
+      });
+    }
   }
 }

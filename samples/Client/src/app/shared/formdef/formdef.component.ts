@@ -16,7 +16,7 @@ import { FormdefService } from './formdef.service';
   template: `
   <form [formGroup]="form"
         (ngSubmit)="onSubmit()">
-    <tw-slot *ngIf="slot"
+    <tw-slot
         [slot]="slot"
         [form]="form">
     </tw-slot>
@@ -56,12 +56,22 @@ export class FormdefComponent implements OnInit {
   public set viewModel(v: any) {
     if (v) {
       this.model = v;
+
       this.ngOnInit();
     }
   }
   public get viewModel() {
     return this.model;
   }
+
+  @Input()
+  public form: FormGroup = new FormGroup({});
+
+  @Input()
+  public useInputForm = false;
+
+  @Input()
+  public slot: Slot;
 
   @Input()
   public showSave = false;
@@ -94,9 +104,6 @@ export class FormdefComponent implements OnInit {
   @HostBinding('class')
   public class = 'form';
 
-  public form: FormGroup = new FormGroup({});
-  public slot: Slot;
-
   public get formValue(): any {
     return this.form.value;
   }
@@ -113,7 +120,9 @@ export class FormdefComponent implements OnInit {
     this.errors = [];
     if (!this.viewModel) { return; }
 
-    this.form = this.formdefService.toGroup(this.key, this.viewModel);
+    if (!this.useInputForm) {
+      this.form = this.formdefService.toGroup(this.key, this.viewModel);
+    }
     this.slot = this.formdefService.getSlot(this.key);
   }
 
