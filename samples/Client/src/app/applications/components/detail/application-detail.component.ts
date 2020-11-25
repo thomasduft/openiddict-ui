@@ -197,13 +197,29 @@ export class ApplicationDetailComponent implements OnInit {
     const typeControl = form.get('type');
     if (typeControl) {
       typeControl.valueChanges.subscribe(type => {
+        form.get('clientSecret').setValue(undefined);
+
         if (type === 'confidential') {
+          form.get('clientSecret').enable();
           form.get('clientSecret').setValidators(Validators.required);
+
+          form.get('requirePkce').setValue(false);
+          form.get('requireConsent').setValue(false);
+          form.get('redirectUris').setValue([]);
+          form.get('postLogoutRedirectUris').setValue([]);
+          form.get('permissions').setValue([]);
         } else {
+          form.get('clientSecret').disable();
           form.get('clientSecret').setValidators(null);
         }
+
         form.get('clientSecret').updateValueAndValidity();
       });
+    }
+
+    const clientSecretControl = form.get('clientSecret');
+    if (clientSecretControl && !this.isNew) {
+      clientSecretControl.disable();
     }
   }
 }

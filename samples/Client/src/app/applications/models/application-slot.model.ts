@@ -3,6 +3,7 @@ import {
   SINGLE_SLOT,
   Editor,
   TEXT_EDITOR,
+  PASSWORD_EDITOR,
   CHECKBOX_EDITOR,
   SELECT_EDITOR,
   MULTI_SELECT_EDITOR,
@@ -77,7 +78,7 @@ export class ApplicationDetailSlot implements Slot {
       },
       {
         key: 'clientSecret',
-        type: TEXT_EDITOR,
+        type: PASSWORD_EDITOR,
         label: 'Client secret'
       },
       {
