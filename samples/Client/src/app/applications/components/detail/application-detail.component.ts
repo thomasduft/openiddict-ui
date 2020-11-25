@@ -141,15 +141,7 @@ export class ApplicationDetailComponent implements OnInit {
 
   private create(): void {
     this.isNew = true;
-
-    this.slotRegistry.register(new ApplicationDetailSlot(
-      this.viewModel.redirectUris,
-      this.viewModel.postLogoutRedirectUris,
-      this.viewModel.permissions,
-      []
-    ));
-
-    this.applyData({
+    const viewModel = {
       id: 'new',
       clientId: 'new',
       displayName: undefined,
@@ -160,7 +152,16 @@ export class ApplicationDetailComponent implements OnInit {
       redirectUris: [],
       postLogoutRedirectUris: [],
       permissions: []
-    });
+    };
+
+    this.slotRegistry.register(new ApplicationDetailSlot(
+      viewModel.redirectUris,
+      viewModel.postLogoutRedirectUris,
+      viewModel.permissions,
+      []
+    ));
+
+    this.applyData(viewModel);
   }
 
   private applyData(viewModel: Application) {

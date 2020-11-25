@@ -60,12 +60,12 @@ namespace Mvc.Server.Services
             },
             PostLogoutRedirectUris =
             {
-              new Uri("https://localhost:5000/signout-callback-oidc"),
+              new Uri("https://localhost:5000"),
               new Uri("http://localhost:4200")
             },
             RedirectUris =
             {
-              new Uri("https://localhost:5000/signin-oidc"),
+              new Uri("https://localhost:5000"),
               new Uri("http://localhost:4200")
             },
             Permissions =

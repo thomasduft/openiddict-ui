@@ -1,0 +1,27 @@
+@import "../_variables.less";
+
+@tabs-tab-border-color: @sidebar-background;
+
+.tabs {
+  width: 100%;
+  margin: 10px 0px;
+  ul {
+    li {
+      display: inline;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+
+  &__tab {
+    margin-left: 10px;
+  }
+
+  .tab__title {
+    margin: 0px 10px;
+    padding: 0px 5px;
+    &--active {
+      border-bottom: 3px solid @tabs-tab-border-color;
+    }
+  }
+}
