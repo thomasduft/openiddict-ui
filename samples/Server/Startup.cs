@@ -123,6 +123,7 @@ namespace Mvc.Server
                  .SetDeviceEndpointUris("/connect/device")
                  .SetLogoutEndpointUris("/connect/logout")
                  .SetTokenEndpointUris("/connect/token")
+                 .SetIntrospectionEndpointUris("/connect/introspect")
                  .SetUserinfoEndpointUris("/connect/userinfo")
                  .SetVerificationEndpointUris("/connect/verify");
 
@@ -226,6 +227,7 @@ namespace Mvc.Server
             Permissions.Endpoints.Authorization,
             Permissions.Endpoints.Logout,
             Permissions.Endpoints.Token,
+            Permissions.Endpoints.Introspection,
             Permissions.GrantTypes.AuthorizationCode,
             Permissions.GrantTypes.DeviceCode,
             Permissions.GrantTypes.Password,

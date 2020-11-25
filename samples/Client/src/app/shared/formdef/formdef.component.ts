@@ -47,7 +47,7 @@ import { FormdefService } from './formdef.service';
   ]
 })
 export class FormdefComponent implements OnInit {
-  private _viewModel: any;
+  private model: any;
 
   @Input()
   public key: string;
@@ -55,12 +55,12 @@ export class FormdefComponent implements OnInit {
   @Input()
   public set viewModel(v: any) {
     if (v) {
-      this._viewModel = v;
+      this.model = v;
       this.ngOnInit();
     }
   }
   public get viewModel() {
-    return this._viewModel;
+    return this.model;
   }
 
   @Input()

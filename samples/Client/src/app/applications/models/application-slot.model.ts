@@ -4,6 +4,7 @@ import {
   Editor,
   TEXT_EDITOR,
   CHECKBOX_EDITOR,
+  SELECT_EDITOR,
   MULTI_SELECT_EDITOR,
   VALUE_BINDING_BEHAVIOR,
   HIDDEN_EDITOR
@@ -63,6 +64,16 @@ export class ApplicationDetailSlot implements Slot {
         type: TEXT_EDITOR,
         label: 'Display name',
         required: true
+      },
+      {
+        key: 'type',
+        type: SELECT_EDITOR,
+        required: true,
+        label: 'Value type',
+        options: [
+          { key: 'public', value: 'public' },
+          { key: 'confidential', value: 'confidential' }
+        ]
       },
       {
         key: 'clientSecret',

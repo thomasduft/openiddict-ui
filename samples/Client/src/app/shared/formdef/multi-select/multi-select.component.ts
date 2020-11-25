@@ -124,6 +124,8 @@ export class MultiSelectComponent implements ControlValueAccessor {
 
   // From ControlValueAccessor interface
   public writeValue(value: any) {
+    if (value === undefined) { return; }
+
     if (value !== undefined && value !== null && value.length > 0) {
       if (!Array.isArray(value)) {
         value = [value];

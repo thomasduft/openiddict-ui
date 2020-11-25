@@ -54,13 +54,12 @@ namespace tomware.OpenIddict.UI.Infrastructure
         {
           ClientId = model.ClientId,
           DisplayName = model.DisplayName,
-          ClientSecret = model.ClientSecret,
           Type = model.Type
         };
 
         HandleCustomProperties(model, newEntity);
 
-        await _manager.CreateAsync(newEntity, newEntity.ClientSecret);
+        await _manager.CreateAsync(newEntity, model.ClientSecret);
 
         return newEntity.Id;
       }

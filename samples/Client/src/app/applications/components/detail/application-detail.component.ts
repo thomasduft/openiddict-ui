@@ -1,7 +1,9 @@
+import { FormdefComponent } from './../../../shared/formdef/formdef.component';
 import { Subscription, forkJoin } from 'rxjs';
 
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Validators } from '@angular/forms';
 
 import {
   AutoUnsubscribe,
@@ -142,6 +144,7 @@ export class ApplicationDetailComponent implements OnInit {
       id: 'new',
       clientId: 'new',
       displayName: undefined,
+      type: undefined,
       clientSecret: undefined,
       requirePkce: false,
       requireConsent: false,

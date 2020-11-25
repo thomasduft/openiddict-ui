@@ -5,8 +5,7 @@ import {
   HIDDEN_EDITOR,
   TEXT_EDITOR,
   TEXT_AREA_EDITOR,
-  MULTI_SELECT_EDITOR,
-  KEY_BINDING_BEHAVIOR
+  SELECT_EDITOR
 } from '../../shared/formdef';
 
 export class ClaimtypeDetailSlot implements Slot {
@@ -33,7 +32,7 @@ export class ClaimtypeDetailSlot implements Slot {
       },
       {
         key: 'claimValueType',
-        type: MULTI_SELECT_EDITOR,
+        type: SELECT_EDITOR,
         required: true,
         label: 'Value type',
         options: [
@@ -41,10 +40,7 @@ export class ClaimtypeDetailSlot implements Slot {
           { key: 'Integer', value: 'Integer' },
           { key: 'Double', value: 'Double' },
           { key: 'Boolean', value: 'Boolean' },
-        ],
-        singleSelection: true,
-        bindingBehaviour: KEY_BINDING_BEHAVIOR,
-        allowAddingItems: false
+        ]
       },
       {
         key: 'description',

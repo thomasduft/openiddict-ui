@@ -126,8 +126,8 @@ export class ClaimtypeDetailComponent implements OnInit {
     this.viewModel = {
       id: 'new',
       name: undefined,
-      description: undefined,
-      claimValueType: undefined
+      claimValueType: undefined,
+      description: undefined
     };
   }
 
