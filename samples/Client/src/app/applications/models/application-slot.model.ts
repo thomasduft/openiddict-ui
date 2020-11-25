@@ -70,7 +70,7 @@ export class ApplicationDetailSlot implements Slot {
         key: 'type',
         type: SELECT_EDITOR,
         required: true,
-        label: 'Value type',
+        label: 'Type',
         options: [
           { key: 'public', value: 'public' },
           { key: 'confidential', value: 'confidential' }
