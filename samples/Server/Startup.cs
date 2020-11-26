@@ -250,8 +250,8 @@ namespace Mvc.Server
           c.SwaggerDoc("v1", new OpenApiInfo
           {
             Version = "v1",
-            Title = "API Documentation",
-            Description = "API Documentation"
+            Title = "API Server Documentation",
+            Description = "API Server Documentation"
           });
 
           c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -281,7 +281,7 @@ namespace Mvc.Server
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {
-          c.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroWF API V1");
+          c.SwaggerEndpoint("/swagger/v1/swagger.json", "Server API V1");
           c.DocExpansion(DocExpansion.None);
         });
       }
