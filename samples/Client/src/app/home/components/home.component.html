@@ -6,5 +6,22 @@
     <p *ngIf="isAuthenticated && isAdmin">Change my <a (click)="openProfile()" href="javascript:void(0)">profile</a>...
     </p>
     <p *ngIf="isAuthenticated && !isAdmin">It seems that you have not given access to this kind of data!</p>
+    <br />
+    <hr />
+    <div>
+      <h3>Load resource info data</h3>
+      <p>To test it with Swagger go <a href="https://localhost:5001/swagger" target="_blank" >here</a>.</p>
+      <p>
+        <button (click)="loadData()">Load</button>
+      </p>
+      <h5>Private info</h5>
+      <div>
+        <pre>{{ privateInfo | json }}</pre>
+      </div>
+      <h5>Public info</h5>
+      <div>
+        <pre>{{ publicInfo | json }}</pre>
+      </div>
+    </div>
   </div>
 </tw-pane>

@@ -72,8 +72,8 @@ namespace Api
       {
         app.UseCors(builder =>
         {
-          builder.WithOrigins("http://localhost:4200");
-          builder.AllowAnyMethod();
+          builder.WithOrigins("http://localhost:4200", "https://localhost:5000");
+          builder.WithMethods("GET");
           builder.WithHeaders("Authorization");
         });
 
