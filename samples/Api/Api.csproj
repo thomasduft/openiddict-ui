@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.0" NoWarn="NU1605" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.0" NoWarn="NU1605" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-
     <PackageReference Include="OpenIddict.Validation.AspNetCore" Version="3.0.0-rc1.20567.82" />
     <PackageReference Include="OpenIddict.Validation.SystemNetHttp" Version="3.0.0-rc1.20567.82" />
   </ItemGroup>
