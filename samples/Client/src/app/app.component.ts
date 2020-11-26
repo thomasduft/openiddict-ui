@@ -70,7 +70,7 @@ export class AppComponent implements OnInit {
         : window.location.origin + '/',
       redirectUri: redirUri,
       responseType: 'code',
-      scope: 'openid roles email demo_api',
+      scope: 'openid roles email server_scope api_scope',
       loginUrl: isDevMode()
         ? devModeIssuer + 'account/login'
         : window.location.origin + 'account/login',

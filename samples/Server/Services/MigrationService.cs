@@ -54,10 +54,6 @@ namespace Mvc.Server.Services
             // ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
             ConsentType = ConsentTypes.Explicit,
             DisplayName = "SPA Client Application",
-            DisplayNames =
-            {
-              [CultureInfo.GetCultureInfo("fr-FR")] = "Application cliente SPA"
-            },
             PostLogoutRedirectUris =
             {
               new Uri("https://localhost:5000"),
@@ -79,7 +75,8 @@ namespace Mvc.Server.Services
               Permissions.Scopes.Email,
               Permissions.Scopes.Profile,
               Permissions.Scopes.Roles,
-              Permissions.Prefixes.Scope + "demo_api"
+              Permissions.Prefixes.Scope + "server_scope",
+              Permissions.Prefixes.Scope + "api_scope"
             },
             Requirements =
             {
@@ -88,39 +85,20 @@ namespace Mvc.Server.Services
           });
         }
 
-        // To test this sample with Postman, use the following settings:
-        //
-        // * Authorization URL: https://localhost:5000/connect/authorize
-        // * Access token URL: https://localhost:5000/connect/token
-        // * Client ID: postman
-        // * Client secret: [blank] (not used with public clients)
-        // * Scope: openid email profile roles
-        // * Grant type: authorization_code
-        // * Request access token locally: yes
-        if (await manager.FindByClientIdAsync("postman") is null)
+        if (await manager.FindByClientIdAsync("api_service") == null)
         {
-          await manager.CreateAsync(new OpenIddictApplicationDescriptor
+          var descriptor = new OpenIddictApplicationDescriptor
           {
-            ClientId = "postman",
-            ConsentType = ConsentTypes.Systematic,
-            DisplayName = "Postman",
-            RedirectUris =
-            {
-              new Uri("urn:postman")
-            },
+            ClientId = "api_service",
+            DisplayName = "API Service",
+            ClientSecret = "my-api-secret",
             Permissions =
             {
-              Permissions.Endpoints.Authorization,
-              Permissions.Endpoints.Token,
-              Permissions.GrantTypes.AuthorizationCode,
-              Permissions.GrantTypes.Password,
-              Permissions.GrantTypes.RefreshToken,
-              Permissions.ResponseTypes.Code,
-              Permissions.Scopes.Email,
-              Permissions.Scopes.Profile,
-              Permissions.Scopes.Roles
+              Permissions.Endpoints.Introspection
             }
-          });
+          };
+
+          await manager.CreateAsync(descriptor);
         }
       }
 
@@ -128,21 +106,32 @@ namespace Mvc.Server.Services
       {
         var manager = provider.GetRequiredService<IOpenIddictScopeManager>();
 
-        if (await manager.FindByNameAsync("demo_api") is null)
+        if (await manager.FindByNameAsync("server_scope") is null)
         {
           await manager.CreateAsync(new OpenIddictScopeDescriptor
           {
-            DisplayName = "Demo API access",
-            DisplayNames =
-            {
-              [CultureInfo.GetCultureInfo("fr-FR")] = "Accès à l'API de démo"
-            },
-            Name = "demo_api",
+            Name = "server_scope",
+            DisplayName = "Server scope access",
             Resources =
             {
-              "resource_server"
+              "server"
             }
           });
+        }
+
+        if (await manager.FindByNameAsync("api_scope") == null)
+        {
+          var descriptor = new OpenIddictScopeDescriptor
+          {
+            Name = "api_scope",
+            DisplayName = "API Scope access",
+            Resources =
+            {
+              "api_service"
+            }
+          };
+
+          await manager.CreateAsync(descriptor);
         }
       }
 

@@ -5,7 +5,7 @@
       "name": "Server",
       "type": "coreclr",
       "request": "launch",
-      "preLaunchTask": "build",
+      "preLaunchTask": "build-server",
       "program": "${workspaceFolder}/samples/Server/bin/Debug/net5.0/Mvc.Server.dll",
       "args": [],
       "cwd": "${workspaceFolder}/samples/Server",
@@ -20,6 +20,27 @@
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"
       }
+    },
+    {
+      "name": "Api",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-api",
+      "program": "${workspaceFolder}/samples/Api/bin/Debug/net5.0/Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/samples/Api",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      },
+      "console": "externalTerminal"
     }
   ]
 }

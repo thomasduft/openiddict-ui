@@ -140,7 +140,9 @@ namespace Mvc.Server
             Scopes.Email,
             Scopes.Profile,
             Scopes.Roles,
-            "demo_api");
+            "server_scope",
+            "api_scope"
+          );
 
           if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
           {
@@ -236,7 +238,8 @@ namespace Mvc.Server
             Permissions.Scopes.Email,
             Permissions.Scopes.Profile,
             Permissions.Scopes.Roles,
-            Permissions.Prefixes.Scope + "demo_api"
+            Permissions.Prefixes.Scope + "server_scope",
+            Permissions.Prefixes.Scope + "api_scope"
           }
         });
 
