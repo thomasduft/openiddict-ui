@@ -1,7 +1,7 @@
 language: csharp
 dist: bionic
 mono: none
-dotnet: 5.0.100
+dotnet: 5.0.101
 
 script:
   - dotnet build
