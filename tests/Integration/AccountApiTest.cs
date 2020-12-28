@@ -1,11 +1,11 @@
+using Microsoft.AspNetCore.Identity;
+using Mvc.Server;
+using Mvc.Server.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Mvc.Server;
-using Mvc.Server.Models;
 using tomware.OpenIddict.UI.Api;
 using tomware.OpenIddict.UI.Tests.Helpers;
 using Xunit;

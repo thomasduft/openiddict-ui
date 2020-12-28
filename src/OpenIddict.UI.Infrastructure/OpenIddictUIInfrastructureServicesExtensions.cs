@@ -1,6 +1,6 @@
-﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using tomware.OpenIddict.UI.Core;
 
 namespace tomware.OpenIddict.UI.Infrastructure

@@ -1,7 +1,7 @@
-using System.Net.Mime;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Validation.AspNetCore;
+using System.Net.Mime;
 
 namespace tomware.OpenIddict.UI.Api
 {

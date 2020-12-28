@@ -8,8 +8,6 @@ namespace tomware.OpenIddict.UI.Core
 {
   public class SimpleMapper
   {
-    // see: https://www.twilio.com/blog/building-blazing-fast-object-mapper-c-sharp-net-core
-
     private static ConcurrentDictionary<string, PropertyMap[]> maps
       = new ConcurrentDictionary<string, PropertyMap[]>();
 

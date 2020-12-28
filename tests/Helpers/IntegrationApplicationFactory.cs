@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Security.Claims;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +6,9 @@ using Microsoft.Extensions.Options;
 using Mvc.Server.Helpers;
 using Mvc.Server.Services;
 using OpenIddict.Server;
+using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 using static OpenIddict.Server.OpenIddictServerEvents;
 using static OpenIddict.Server.OpenIddictServerHandlers;

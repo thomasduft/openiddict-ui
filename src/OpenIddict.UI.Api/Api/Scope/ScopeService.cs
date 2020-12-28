@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using tomware.OpenIddict.UI.Core;
 using tomware.OpenIddict.UI.Infrastructure;
-using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace tomware.OpenIddict.UI.Api
 {

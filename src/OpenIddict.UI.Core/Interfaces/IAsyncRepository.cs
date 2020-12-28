@@ -9,8 +9,8 @@ namespace tomware.OpenIddict.UI.Core
     Task<TEntity> GetByIdAsync(TKey id);
     Task<IReadOnlyList<TEntity>> ListAsync(ISpecification<TEntity> spec);
     Task<TEntity> AddAsync(TEntity entity);
-    System.Threading.Tasks.Task UpdateAsync(TEntity entity);
-    System.Threading.Tasks.Task DeleteAsync(TEntity entity);
+    Task UpdateAsync(TEntity entity);
+    Task DeleteAsync(TEntity entity);
     Task<int> CountAsync(ISpecification<TEntity> spec);
   }
 }
