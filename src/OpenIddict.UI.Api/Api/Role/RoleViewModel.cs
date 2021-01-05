@@ -6,7 +6,7 @@ namespace tomware.OpenIddict.UI.Api
   {
     public string Id { get; set; }
 
-    [Required]
+    [Required(AllowEmptyStrings = false)]
     public string Name { get; set; }
   }
 }
