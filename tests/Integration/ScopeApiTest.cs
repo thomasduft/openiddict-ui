@@ -74,6 +74,24 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     }
 
     [Fact]
+    public async Task GetScopeNamesAsync_ReturnsAList()
+    {
+      // Arrange
+      var endpoint = "/api/scopes/names";
+
+      // Act
+      var response = await GetAsync(endpoint);
+
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+      var model = await response.Content.ReadAsJson<List<string>>();
+      Assert.NotNull(model);
+      Assert.True(model.Count() >= 0);
+    }
+
+    [Fact]
     public async Task CreateAsync_ScopeCreated()
     {
       // Arrange
