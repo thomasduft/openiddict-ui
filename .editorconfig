@@ -12,10 +12,6 @@ indent_size = 2
 insert_final_newline = false
 trim_trailing_whitespace = true
 
-# Solution Files
-[*.sln]
-indent_style = tab
-
 # XML Project Files
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
 indent_size = 2
