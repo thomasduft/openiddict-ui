@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,32 +9,24 @@ namespace tomware.OpenIddict.UI.Api
   [Route("accounts")]
   public class AccountController : ApiControllerBase
   {
-    private readonly ILogger<AccountController> _logger;
     private readonly IAccountApiService _service;
 
     public AccountController(
-      ILogger<AccountController> logger,
       IAccountApiService service
     )
     {
-      _logger = logger;
       _service = service;
     }
 
     [HttpPost("register")]
     [ProducesResponseType(typeof(IdentityResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> Register([FromBody]RegisterUserViewModel model)
+    public async Task<IActionResult> Register([FromBody] RegisterUserViewModel model)
     {
       if (ModelState.IsValid)
       {
         var result = await _service.RegisterAsync(model);
         if (result.Succeeded)
         {
-          _logger.LogInformation(
-            "New user {Email} successfully registred!",
-            model.Email
-          );
-
           return Ok(result);
         }
 
@@ -67,7 +58,7 @@ namespace tomware.OpenIddict.UI.Api
 
     [HttpPut("user")]
     [ProducesResponseType(typeof(IdentityResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> UpdateAsync([FromBody]UserViewModel model)
+    public async Task<IActionResult> UpdateAsync([FromBody] UserViewModel model)
     {
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);

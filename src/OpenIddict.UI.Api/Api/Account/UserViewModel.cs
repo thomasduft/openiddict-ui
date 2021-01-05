@@ -11,13 +11,13 @@ namespace tomware.OpenIddict.UI.Api
 
   public class UserViewModel
   {
-    [Required]
+    [Required(AllowEmptyStrings = false)]
     public string Id { get; set; }
 
-    [Required]
+    [Required(AllowEmptyStrings = false)]
     public string UserName { get; set; }
 
-    [Required]
+    [Required(AllowEmptyStrings = false)]
     public string Email { get; set; }
 
     public bool LockoutEnabled { get; set; }
