@@ -20,7 +20,7 @@ namespace tomware.OpenIddict.UI.Api
 
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<ApplicationViewModel>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetApplicationsAsync()
+    public async Task<IActionResult> GetAsync()
     {
       var result = await _service.GetApplicationsAsync();
 

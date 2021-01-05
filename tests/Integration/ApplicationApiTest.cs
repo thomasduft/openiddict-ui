@@ -153,6 +153,24 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
     }
 
+    [Fact]
+    public async Task GetOptionsAsync_ReturnsAListOfApplicationOptions()
+    {
+      // Arrange
+      var endpoint = "/api/application/options";
+
+      // Act
+      var response = await GetAsync(endpoint);
+
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+      var model = await response.Content.ReadAsJson<ApplicationOptionsViewModel>();
+      Assert.NotNull(model);
+      Assert.True(model.Types.Count == 2);
+    }
+
     private ApplicationViewModel GetViewModel(string id = null)
     {
       return new ApplicationViewModel
