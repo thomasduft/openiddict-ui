@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
@@ -6,7 +7,7 @@ using Xunit;
 
 namespace tomware.OpenIddict.UI.Tests.Unit
 {
-  public class RoleControllerTest
+  public class ClaimTypeControllerTest
   {
     [Fact]
     public async Task GetAsync_WithNullId_ReturnsBadRequest()
@@ -15,7 +16,7 @@ namespace tomware.OpenIddict.UI.Tests.Unit
       var controller = GetController();
 
       // Act
-      var result = await controller.GetAsync(null);
+      var result = await controller.GetAsync(Guid.Empty);
 
       // Assert
       Assert.NotNull(result);
@@ -26,13 +27,13 @@ namespace tomware.OpenIddict.UI.Tests.Unit
     public async Task GetAsync_WithNotExistingId_ReturnsNotFound()
     {
       // Arrange
-      var serviceMock = new Mock<IRoleService>();
+      var serviceMock = new Mock<IClaimTypeApiService>();
       var controller = GetController(serviceMock);
-      var id = "id";
+      var id = Guid.NewGuid();
 
       serviceMock
         .Setup(r => r.GetAsync(id))
-        .Returns(Task.FromResult<RoleViewModel>(null));
+        .Returns(Task.FromResult<ClaimTypeViewModel>(null));
 
       // Act
       var result = await controller.GetAsync(id);
@@ -61,9 +62,10 @@ namespace tomware.OpenIddict.UI.Tests.Unit
     {
       // Arrange
       var controller = GetController();
-      var model = new RoleViewModel
+      var model = new ClaimTypeViewModel
       {
         // Name // required
+        // ClaimValueType // required
       };
 
       // ModelState must be manually adjusted
@@ -96,9 +98,10 @@ namespace tomware.OpenIddict.UI.Tests.Unit
     {
       // Arrange
       var controller = GetController();
-      var model = new RoleViewModel
+      var model = new ClaimTypeViewModel
       {
         // Name // required
+        // ClaimValueType // required
       };
 
       // ModelState must be manually adjusted
@@ -119,18 +122,18 @@ namespace tomware.OpenIddict.UI.Tests.Unit
       var controller = GetController();
 
       // Act
-      var result = await controller.DeleteAsync(null);
+      var result = await controller.DeleteAsync(Guid.Empty);
 
       // Assert
       Assert.NotNull(result);
       Assert.IsType<BadRequestResult>(result);
     }
 
-    private RoleController GetController(Mock<IRoleService> service = null)
+    private ClaimTypeController GetController(Mock<IClaimTypeApiService> service = null)
     {
-      service ??= new Mock<IRoleService>();
+      service ??= new Mock<IClaimTypeApiService>();
 
-      return new RoleController(service.Object);
+      return new ClaimTypeController(service.Object);
     }
   }
 }

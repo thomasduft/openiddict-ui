@@ -7,12 +7,12 @@ namespace tomware.OpenIddict.UI.Api
   {
     public Guid? Id { get; set; }
 
-    [Required]
+    [Required(AllowEmptyStrings = false)]
     public string Name { get; set; }
 
     public string Description { get; set; }
 
-    [Required]
+    [Required(AllowEmptyStrings = false)]
     public string ClaimValueType { get; set; }
   }
 }
