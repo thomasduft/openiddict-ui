@@ -12,11 +12,11 @@ using Xunit;
 
 namespace tomware.OpenIddict.UI.Tests.Integration
 {
-  public class ClaimeTypeApiTest : IntegrationContext
+  public class ClaimTypeApiTest : IntegrationContext
   {
     private const string TEST_CLAIMTYPE = "test_claimtype";
 
-    public ClaimeTypeApiTest(IntegrationApplicationFactory<Startup> fixture)
+    public ClaimTypeApiTest(IntegrationApplicationFactory<Startup> fixture)
       : base(fixture)
     { }
 
