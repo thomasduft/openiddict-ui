@@ -1,5 +1,5 @@
 {
-  "name": "C# (.NET Core)",
+  "name": "openiddict-ui",
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
