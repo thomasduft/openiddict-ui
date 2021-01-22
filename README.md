@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/thomasduft/openiddict-ui.svg?branch=main)](https://travis-ci.org/thomasduft/openiddict-ui) [![NuGet Release](https://img.shields.io/nuget/vpre/tomware.OpenIddict.UI.Api.svg)](https://www.nuget.org/packages/tomware.OpenIddict.UI.Api)
+![.NET](https://github.com/thomasduft/openiddict-ui/workflows/.NET/badge.svg) [![NuGet Release](https://img.shields.io/nuget/vpre/tomware.OpenIddict.UI.Api.svg)](https://www.nuget.org/packages/tomware.OpenIddict.UI.Api)
 
 # OpenIddict UI
 
