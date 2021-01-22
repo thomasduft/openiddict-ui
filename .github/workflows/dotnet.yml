@@ -22,6 +22,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: |
-        cd ./tests/
-        dotnet test /p:ParallelizeTestCollections=false p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./../lcov /p:Include=[tomware.*]tomware.OpenIddict.UI.*    
+      run: dotnet test /p:ParallelizeTestCollections=false p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./../lcov /p:Include=[tomware.*]tomware.OpenIddict.UI.* ./tests/OpenIddict.UI.Tests.csproj
