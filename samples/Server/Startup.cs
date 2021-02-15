@@ -49,11 +49,6 @@ namespace Mvc.Server
       {
         // Configure the context to use Microsoft SQL Server.
         options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
-
-        // // Register the entity sets needed by OpenIddict.
-        // // Note: use the generic overload if you need
-        // // to replace the default OpenIddict entities.
-        // options.UseOpenIddict(); // TODO: Explain!!
       });
 
       // Register the Identity services.
@@ -99,15 +94,7 @@ namespace Mvc.Server
         // Register the OpenIddict core components.
         .AddCore(options =>
         {
-          // Configure OpenIddict to use the Entity Framework Core stores and models.
-          // Note: call ReplaceDefaultEntities() to replace the default OpenIddict entities.
           options.UseEntityFrameworkCore();
-          //  .UseDbContext<ApplicationDbContext>(); // TODO: Explain!!
-          // Developers who prefer using MongoDB can remove the previous lines
-          // and configure OpenIddict to use the specified MongoDB database:
-          // options.UseMongoDb()
-          //        .UseDatabase(new MongoClient().GetDatabase("openiddict"));
-          // Enable Quartz.NET integration.
           if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
           {
             options.UseQuartz();
@@ -166,48 +153,17 @@ namespace Mvc.Server
                  .EnableLogoutEndpointPassthrough()
                  .EnableTokenEndpointPassthrough()
                  .EnableUserinfoEndpointPassthrough()
-                 .EnableVerificationEndpointPassthrough()
-                 .DisableTransportSecurityRequirement(); // During development, you can disable the HTTPS requirement.
-
-          // Note: if you don't want to specify a client_id when sending
-          // a token or revocation request, uncomment the following line:
-          //
-          // options.AcceptAnonymousClients();
-          // Note: if you want to process authorization and token requests
-          // that specify non-registered scopes, uncomment the following line:
-          //
-          // options.DisableScopeValidation();
-          // Note: if you don't want to use permissions, you can disable
-          // permission enforcement by uncommenting the following lines:
-          //
-          // options.IgnoreEndpointPermissions()
-          //        .IgnoreGrantTypePermissions()
-          //        .IgnoreResponseTypePermissions()
-          //        .IgnoreScopePermissions();
-          // Note: when issuing access tokens used by third-party APIs
-          // you don't own, you can disable access token encryption:
-          //
-          // options.DisableAccessTokenEncryption();
+                 .EnableVerificationEndpointPassthrough();
+                 // .DisableTransportSecurityRequirement(); // During development, you can disable the HTTPS requirement.
         })
         // Register the OpenIddict validation components.
         .AddValidation(options =>
         {
-          // Configure the audience accepted by this resource server.
-          // The value MUST match the audience associated with the
-          // "demo_api" scope, which is used by ResourceController.
-          // options.AddAudiences("resource_server");
           // Import the configuration from the local OpenIddict server instance.
           options.UseLocalServer();
 
           // Register the ASP.NET Core host.
           options.UseAspNetCore();
-          // For applications that need immediate access token or authorization
-          // revocation, the database entry of the received tokens and their
-          // associated authorizations can be validated for each API call.
-          // Enabling these options may have a negative impact on performance.
-          //
-          // options.EnableAuthorizationEntryValidation();
-          // options.EnableTokenEntryValidation();
         })
         // Register the EF based UI Store
         .AddUIStore(options =>
