@@ -42,3 +42,8 @@ EF:
 ----------------------------------------------------------------------------------------------------
 Tests:
 dotnet test /p:ParallelizeTestCollections=false /p:CollectCoverage=true /p:Include=[tomware.*]tomware.OpenIddict.UI.* /p:CoverletOutputFormat=lcov /p:CoverletOutput=./../lcov 
+
+----------------------------------------------------------------------------------------------------
+Tips:
+- dotnet tool install --global dotnet-outdated-tool
+  export PATH="$PATH:/home/vscode/.dotnet/tools"
