@@ -1,7 +1,8 @@
 TODO:
 - better Client deployment
   - introduce deploy.js
-  - check server stylings not removed  
+  - check server stylings not removed
+
 
 - better ux for applications.permissions
   - sth. like the approach of OrchardCore ID UI
