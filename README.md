@@ -114,7 +114,7 @@ services.AddOpenIddict()
 ## Thoughts and ideas
 
 The project is still very young and there are a lot of ideas like:
-- Separating the [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-5.0&tabs=visual-studio) API's from the OpenIddict API's.
+
 - Provide API's for the `Authorization` and `Token` entities (if then really required).
 - Provide a [ASP.NET Razor Page](https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio) based UI.
 - Possibility to manage translated display names based on supported languages etc.
