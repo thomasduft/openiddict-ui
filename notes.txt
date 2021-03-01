@@ -8,13 +8,6 @@ TODO:
   - sth. like the approach of OrchardCore ID UI
 
 
-- distinguish between Identity and OpenIddict management
-  - introduce OpenIddict.UI.Identity.Api
-    - claimtypes
-    - roles
-    - users
-
-
 - ordering of tests
   - clear sequence of get, create, update, delete
 
@@ -46,7 +39,7 @@ EF:
 
 ----------------------------------------------------------------------------------------------------
 Tests:
-dotnet test /p:ParallelizeTestCollections=false /p:CollectCoverage=true /p:Include=[tomware.*]tomware.OpenIddict.UI.* /p:CoverletOutputFormat=lcov /p:CoverletOutput=./../lcov 
+dotnet test /p:ParallelizeTestCollections=false /p:CollectCoverage=true /p:Include=[tomware.*]tomware.OpenIddict.UI.* /p:CoverletOutputFormat=lcov /p:CoverletOutput=./../lcov
 
 ----------------------------------------------------------------------------------------------------
 Tips:
