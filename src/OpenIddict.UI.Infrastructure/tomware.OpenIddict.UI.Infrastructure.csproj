@@ -7,15 +7,16 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Description>Infrastructure types for openiddict UI</Description>
     <RepositoryUrl>https://github.com/thomasduft/openiddict-ui</RepositoryUrl>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Authors>Thomas Duft</Authors>
     <Company>tomWare SOLUTIONS</Company>
-    <PackageProjectUrl>https://github.com/thomasduft/openiddict-ui</PackageProjectUrl>
-    <PackageTags>OpenIddict</PackageTags>
     <RepositoryType>git</RepositoryType>
     <Copyright>2020 tomWare SOLUTIONS</Copyright>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageTags>OpenIddict</PackageTags>
+    <PackageProjectUrl>https://github.com/thomasduft/openiddict-ui</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -26,16 +27,17 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-    <PackageReference Include="OpenIddict.EntityFrameworkCore.Models" Version="3.0.1" />  
-    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="3.0.1" />  
+    <PackageReference Include="OpenIddict.EntityFrameworkCore.Models" Version="3.0.1" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="3.0.1" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\OpenIddict.UI.Core\tomware.OpenIddict.UI.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\LICENSE.md" Pack="true" PackagePath="" />
+    <None Include="..\..\icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
