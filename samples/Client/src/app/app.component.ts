@@ -71,15 +71,6 @@ export class AppComponent implements OnInit {
       redirectUri: redirUri,
       responseType: 'code',
       scope: 'openid roles email server_scope api_scope',
-      loginUrl: isDevMode()
-        ? devModeIssuer + 'account/login'
-        : window.location.origin + 'account/login',
-      logoutUrl: isDevMode()
-        ? devModeIssuer + 'account/logout'
-        : window.location.origin + 'account/logout',
-      userinfoEndpoint: isDevMode()
-        ? devModeIssuer + 'connect/userinfo'
-        : window.location.origin + 'connect/userinfo',
       requireHttps: false
     });
 
