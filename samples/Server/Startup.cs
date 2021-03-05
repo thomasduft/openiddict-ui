@@ -118,7 +118,7 @@ namespace Mvc.Server
           // can enable the other flows if you need to support implicit or client credentials.
           options.AllowAuthorizationCodeFlow()
                  .AllowDeviceCodeFlow()
-                 .AllowPasswordFlow()
+                 // .AllowPasswordFlow()
                  .AllowRefreshTokenFlow();
 
           // Mark the "email", "profile", "roles" and "demo_api" scopes as supported scopes.
