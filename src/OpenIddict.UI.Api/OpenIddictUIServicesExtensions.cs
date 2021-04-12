@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,29 +11,15 @@ namespace tomware.OpenIddict.UI.Api
     /// </summary>
     public static OpenIddictBuilder AddUIApis<TApplicationUser>(
       this OpenIddictBuilder builder,
-      OpenIddictUIApiOptions uiApiOptions
+      Action<OpenIddictUIApiOptions> uiApiOptions = null
     ) where TApplicationUser : IdentityUser, new()
     {
       builder.Services
         .AddOpenIddictUIApiServices<TApplicationUser>(uiApiOptions);
 
-      builder.AddOpenIddictUIRoutePrefix();
-
-      return builder;
-    }
-
-    /// <summary>
-    /// Registers a conventional route prefix for the API controllers that defaults to "api/".
-    /// </summary>
-    public static OpenIddictBuilder AddOpenIddictUIRoutePrefix(
-      this OpenIddictBuilder builder,
-      string routePrefix = "api/"
-    )
-    {
-      builder.Services.AddControllers(options =>
-      {
-        options.UseOpenIddictUIRoutePrefix(routePrefix);
-      });
+      var options = new OpenIddictUIApiOptions();
+      uiApiOptions?.Invoke(options);
+      builder.AddOpenIddictUIRoutePrefix(options.RoutePrefix);
 
       return builder;
     }
@@ -50,19 +37,29 @@ namespace tomware.OpenIddict.UI.Api
       return builder;
     }
 
+    private static OpenIddictBuilder AddOpenIddictUIRoutePrefix(
+      this OpenIddictBuilder builder,
+      string routePrefix = "api/"
+    )
+    {
+      builder.Services.AddControllers(options =>
+      {
+        options.UseOpenIddictUIRoutePrefix(routePrefix);
+      });
+
+      return builder;
+    }
+
     private static IServiceCollection AddOpenIddictUIApiServices<TApplicationUser>(
       this IServiceCollection services,
-      OpenIddictUIApiOptions uiApiOptions
+      Action<OpenIddictUIApiOptions> uiApiOptions = null
     ) where TApplicationUser : IdentityUser, new()
     {
       services.AddAuthorizationServices();
 
       services.AddApiServices<TApplicationUser>();
 
-      services.Configure<OpenIddictUIApiOptions>(options =>
-      {
-        options.Permissions = uiApiOptions.Permissions;
-      });
+      services.Configure<OpenIddictUIApiOptions>(uiApiOptions);
 
       return services;
     }

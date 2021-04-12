@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
@@ -178,10 +179,10 @@ namespace Mvc.Server
                        .Name));
         })
         // Register the Api for the EF based UI Store
-        .AddUIApis<ApplicationUser>(new OpenIddictUIApiOptions
+        .AddUIApis<ApplicationUser>(options =>
         {
           // Tell the system about the allowed Permissions it is built/configured for.
-          Permissions =
+          options.Permissions = new List<string>
           {
             Permissions.Endpoints.Authorization,
             Permissions.Endpoints.Logout,
@@ -197,7 +198,8 @@ namespace Mvc.Server
             Permissions.Scopes.Roles,
             Permissions.Prefixes.Scope + "server_scope",
             Permissions.Prefixes.Scope + "api_scope"
-          }
+          };
+          options.RoutePrefix = "";
         });
 
       if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
