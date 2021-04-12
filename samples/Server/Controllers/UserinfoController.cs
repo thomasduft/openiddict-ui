@@ -12,6 +12,7 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Mvc.Server.Controllers
 {
+  [ApiExplorerSettings(GroupName = "sample-server")]
   public class UserinfoController : Controller
   {
     private readonly UserManager<ApplicationUser> _userManager;

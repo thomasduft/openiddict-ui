@@ -10,6 +10,7 @@ namespace tomware.OpenIddict.UI.Api
     AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
   )]
   [Produces(MediaTypeNames.Application.Json)]
+  [ApiExplorerSettings(GroupName = "openiddict-ui")]
   public class ApiControllerBase : ControllerBase
   {
   }

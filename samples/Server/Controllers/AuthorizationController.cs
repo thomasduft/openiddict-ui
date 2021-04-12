@@ -25,6 +25,7 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Mvc.Server
 {
+  [ApiExplorerSettings(GroupName = "sample-server")]
   public class AuthorizationController : Controller
   {
     private readonly IOpenIddictApplicationManager _applicationManager;

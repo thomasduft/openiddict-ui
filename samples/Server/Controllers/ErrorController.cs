@@ -10,6 +10,7 @@ using Mvc.Server.ViewModels.Shared;
 
 namespace Mvc.Server
 {
+  [ApiExplorerSettings(GroupName = "sample-server")]
   public class ErrorController : Controller
   {
     [HttpGet, HttpPost, Route("~/error")]

@@ -4,6 +4,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -154,7 +155,7 @@ namespace Mvc.Server
                  .EnableTokenEndpointPassthrough()
                  .EnableUserinfoEndpointPassthrough()
                  .EnableVerificationEndpointPassthrough();
-                 // .DisableTransportSecurityRequirement(); // During development, you can disable the HTTPS requirement.
+          // .DisableTransportSecurityRequirement(); // During development, you can disable the HTTPS requirement.
         })
         // Register the OpenIddict validation components.
         .AddValidation(options =>
@@ -217,7 +218,22 @@ namespace Mvc.Server
             Description = "Example: \"Bearer {token}\"",
             Type = SecuritySchemeType.ApiKey
           });
+          c.DocInclusionPredicate((name, api) => true);
+          c.TagActionsBy(api =>
+          {
+            if (api.GroupName != null)
+            {
+              return new[] { api.GroupName };
+            }
 
+            var controllerActionDescriptor = api.ActionDescriptor as ControllerActionDescriptor;
+            if (controllerActionDescriptor != null)
+            {
+              return new[] { controllerActionDescriptor.ControllerName };
+            }
+
+            throw new InvalidOperationException("Unable to determine tag for endpoint.");
+          });
           c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
         });
       }
