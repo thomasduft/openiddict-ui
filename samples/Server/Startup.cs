@@ -199,7 +199,6 @@ namespace Mvc.Server
             Permissions.Prefixes.Scope + "server_scope",
             Permissions.Prefixes.Scope + "api_scope"
           };
-          options.RoutePrefix = "";
         });
 
       if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
