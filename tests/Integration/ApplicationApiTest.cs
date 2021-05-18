@@ -1,6 +1,5 @@
 using Mvc.Server;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -46,7 +45,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
         case HttpVerb.Delete:
           response = await DeleteAsync(endpoint, authorized);
           break;
-        default:
+        case HttpVerb.Get:
           response = await GetAsync(endpoint, authorized);
           break;
       }
@@ -71,7 +70,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 
       var model = await response.Content.ReadAsJson<List<ApplicationViewModel>>();
       Assert.NotNull(model);
-      Assert.True(model.Count() >= 0);
+      Assert.True(model.Count >= 0);
     }
 
     [Fact]
@@ -171,7 +170,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       Assert.True(model.Types.Count == 2);
     }
 
-    private ApplicationViewModel GetViewModel(string id = null)
+    private static ApplicationViewModel GetViewModel(string id = null)
     {
       return new ApplicationViewModel
       {

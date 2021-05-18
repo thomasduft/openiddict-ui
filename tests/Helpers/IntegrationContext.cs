@@ -11,10 +11,9 @@ using Xunit;
 
 namespace tomware.OpenIddict.UI.Tests.Helpers
 {
-  public class IntegrationContext
-    : IClassFixture<IntegrationApplicationFactory<Startup>>
+  public class IntegrationContext : IClassFixture<IntegrationApplicationFactory<Startup>>
   {
-    private IntegrationApplicationFactory<Mvc.Server.Startup> _factory;
+    private readonly IntegrationApplicationFactory<Startup> _factory;
     private readonly HttpClient _client;
     private readonly string _accessToken;
 
@@ -31,7 +30,7 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
       _accessToken = _factory.AccessToken;
     }
 
-    protected T Deserialize<T>(string responseBody)
+    protected static T Deserialize<T>(string responseBody)
     {
       return JsonSerializer.Deserialize<T>(responseBody, new JsonSerializerOptions
       {

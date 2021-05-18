@@ -67,7 +67,8 @@ namespace tomware.OpenIddict.UI.Api
     public async Task UpdateAsync(ApplicationViewModel model)
     {
       if (model == null) throw new ArgumentNullException(nameof(model));
-      if (string.IsNullOrWhiteSpace(model.Id)) throw new ArgumentNullException(nameof(model.Id));
+      if (string.IsNullOrWhiteSpace(model.Id))
+        throw new InvalidOperationException(nameof(model.Id));
 
       var param = ToParam(model);
 
@@ -93,12 +94,12 @@ namespace tomware.OpenIddict.UI.Api
       return await Task.FromResult(model);
     }
 
-    private ApplicationParam ToParam(ApplicationViewModel model)
+    private static ApplicationParam ToParam(ApplicationViewModel model)
     {
       return SimpleMapper.From<ApplicationViewModel, ApplicationParam>(model);
     }
 
-    private ApplicationViewModel ToModel(ApplicationInfo info)
+    private static ApplicationViewModel ToModel(ApplicationInfo info)
     {
       return SimpleMapper.From<ApplicationInfo, ApplicationViewModel>(info);
     }

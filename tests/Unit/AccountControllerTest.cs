@@ -74,7 +74,7 @@ namespace tomware.OpenIddict.UI.Tests.Unit
       Assert.IsType<BadRequestResult>(result);
     }
 
-    private AccountController GetController()
+    private static AccountController GetController()
     {
       var service = new Mock<IAccountApiService>();
 

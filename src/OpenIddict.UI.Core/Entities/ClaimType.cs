@@ -23,7 +23,7 @@ namespace tomware.OpenIddict.UI.Core
         Id = Guid.NewGuid(),
         Name = name,
         ClaimValueType = claimValueType,
-        Description = description
+        Description = description,
       };
     }
   }

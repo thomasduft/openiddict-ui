@@ -1,5 +1,8 @@
 {
   "editor.tabSize": 2,
-  "editor.rulers": [100],
-  "dotnet-test-explorer.testProjectPath": "tests"
+  "editor.rulers": [
+    100
+  ],
+  "dotnet-test-explorer.testProjectPath": "tests",
+  "omnisharp.enableRoslynAnalyzers": true
 }

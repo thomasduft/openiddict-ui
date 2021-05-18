@@ -24,7 +24,7 @@ namespace tomware.OpenIddict.UI.Core
 
     public async Task<ClaimTypeInfo> GetAsync(Guid id)
     {
-      if (id == null) throw new ArgumentNullException(nameof(id));
+      if (id == Guid.Empty) throw new InvalidOperationException(nameof(id));
 
       var entity = await _repository.GetByIdAsync(id);
 
@@ -52,7 +52,7 @@ namespace tomware.OpenIddict.UI.Core
 
       // update existing entity
       model.Id = entity.Id;
-      SimpleMapper.Map<ClaimTypeParam, ClaimType>(model, entity);
+      SimpleMapper.Map(model, entity);
       await _repository.UpdateAsync(entity);
 
       return entity.Id;
@@ -60,11 +60,11 @@ namespace tomware.OpenIddict.UI.Core
 
     public async Task UpdateAsync(ClaimTypeParam model)
     {
-      if (!model.Id.HasValue) throw new ArgumentNullException(nameof(model.Id));
+      if (!model.Id.HasValue) throw new InvalidOperationException(nameof(model.Id));
 
       var entity = await _repository.GetByIdAsync(model.Id.Value);
 
-      SimpleMapper.Map<ClaimTypeParam, ClaimType>(model, entity);
+      SimpleMapper.Map(model, entity);
 
       await _repository.UpdateAsync(entity);
     }
@@ -74,14 +74,14 @@ namespace tomware.OpenIddict.UI.Core
       // TODO: check correct removals of claimtypes!
       // Consider an interaction service
 
-      if (id == null) throw new ArgumentNullException(nameof(id));
+      if (id == Guid.Empty) throw new InvalidOperationException(nameof(id));
 
       var entity = await _repository.GetByIdAsync(id);
 
       await _repository.DeleteAsync(entity);
     }
 
-    private ClaimTypeInfo ToInfo(ClaimType entity)
+    private static ClaimTypeInfo ToInfo(ClaimType entity)
     {
       return SimpleMapper.From<ClaimType, ClaimTypeInfo>(entity);
     }

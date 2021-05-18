@@ -68,7 +68,7 @@ namespace tomware.OpenIddict.UI.Api
     public async Task UpdateAsync(RoleViewModel model)
     {
       if (model == null) throw new ArgumentNullException(nameof(model));
-      if (string.IsNullOrWhiteSpace(model.Id)) throw new ArgumentNullException(nameof(model.Id));
+      if (string.IsNullOrWhiteSpace(model.Id)) throw new InvalidOperationException(nameof(model.Id));
 
       var role = await _manager.FindByIdAsync(model.Id);
       role.Name = model.Name;
@@ -85,7 +85,7 @@ namespace tomware.OpenIddict.UI.Api
       await _manager.DeleteAsync(role);
     }
 
-    private RoleViewModel ToModel(IdentityRole entity)
+    private static RoleViewModel ToModel(IdentityRole entity)
     {
       return new RoleViewModel
       {

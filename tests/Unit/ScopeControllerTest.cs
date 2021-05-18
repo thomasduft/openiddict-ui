@@ -126,7 +126,7 @@ namespace tomware.OpenIddict.UI.Tests.Unit
       Assert.IsType<BadRequestResult>(result);
     }
 
-    private ScopeController GetController(Mock<IScopeApiService> service = null)
+    private static ScopeController GetController(Mock<IScopeApiService> service = null)
     {
       service ??= new Mock<IScopeApiService>();
 

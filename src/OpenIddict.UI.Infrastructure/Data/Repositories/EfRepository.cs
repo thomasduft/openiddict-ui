@@ -34,7 +34,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
 
     public async Task<TEntity> AddAsync(TEntity entity)
     {
-      Context.Set<TEntity>().Add(entity);
+      await Context.Set<TEntity>().AddAsync(entity);
 
       await Context.SaveChangesAsync();
 

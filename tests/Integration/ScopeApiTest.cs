@@ -29,10 +29,10 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       HttpVerb verb
     )
     {
-      // Arrange
-      HttpResponseMessage response = null;
       var authorized = false;
 
+      // Arrange
+      HttpResponseMessage response = null;
       // Act
       switch (verb)
       {
@@ -45,7 +45,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
         case HttpVerb.Delete:
           response = await DeleteAsync(endpoint, authorized);
           break;
-        default:
+        case HttpVerb.Get:
           response = await GetAsync(endpoint, authorized);
           break;
       }
@@ -70,7 +70,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 
       var model = await response.Content.ReadAsJson<List<ScopeViewModel>>();
       Assert.NotNull(model);
-      Assert.True(model.Count() >= 0);
+      Assert.True(model.Count >= 0);
     }
 
     [Fact]
@@ -88,7 +88,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 
       var model = await response.Content.ReadAsJson<List<string>>();
       Assert.NotNull(model);
-      Assert.True(model.Count() >= 0);
+      Assert.True(model.Count >= 0);
     }
 
     [Fact]

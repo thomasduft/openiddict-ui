@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Identity;
 using Mvc.Server;
 using Mvc.Server.Models;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -14,10 +13,6 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 {
   public class AccountApiTest : IntegrationContext
   {
-    private const string TEST_ROLE = "test_role";
-    private const string NEW_ROLE = "new_role";
-    private const string UPDATE_ROLE = "update_role";
-
     public AccountApiTest(IntegrationApplicationFactory<Startup> fixture)
       : base(fixture)
     { }
@@ -48,7 +43,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
         case HttpVerb.Delete:
           response = await DeleteAsync(endpoint, authorized);
           break;
-        default:
+        case HttpVerb.Get:
           response = await GetAsync(endpoint, authorized);
           break;
       }
@@ -92,7 +87,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 
       var model = await response.Content.ReadAsJson<List<UserViewModel>>();
       Assert.NotNull(model);
-      Assert.True(model.Count() > 0);
+      Assert.True(model.Count > 0);
     }
 
     [Fact]

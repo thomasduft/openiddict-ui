@@ -35,19 +35,17 @@ namespace tomware.OpenIddict.UI.Tests
 
     public void EnsureMigration(IServiceProvider sp)
     {
-      using (var scope = sp.CreateScope())
+      using var scope = sp.CreateScope();
+      var services = scope.ServiceProvider;
+      try
       {
-        var services = scope.ServiceProvider;
-        try
-        {
-          var migrator = services.GetRequiredService<IMigrationService>();
-          migrator.EnsureMigrationAsync().GetAwaiter().GetResult();
-        }
-        catch (Exception ex)
-        {
-          var logger = services.GetRequiredService<ILogger<IntegrationApplicationFactory<TStartup>>>();
-          logger.LogError(ex, "An error occurred while migrating the testing database.");
-        }
+        var migrator = services.GetRequiredService<IMigrationService>();
+        migrator.EnsureMigrationAsync().GetAwaiter().GetResult();
+      }
+      catch (Exception ex)
+      {
+        var logger = services.GetRequiredService<ILogger<IntegrationApplicationFactory<TStartup>>>();
+        logger.LogError(ex, "An error occurred while migrating the testing database.");
       }
     }
 

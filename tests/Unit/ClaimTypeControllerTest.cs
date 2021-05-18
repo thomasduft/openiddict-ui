@@ -129,7 +129,7 @@ namespace tomware.OpenIddict.UI.Tests.Unit
       Assert.IsType<BadRequestResult>(result);
     }
 
-    private ClaimTypeController GetController(Mock<IClaimTypeApiService> service = null)
+    private static ClaimTypeController GetController(Mock<IClaimTypeApiService> service = null)
     {
       service ??= new Mock<IClaimTypeApiService>();
 

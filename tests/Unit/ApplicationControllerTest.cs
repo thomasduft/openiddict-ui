@@ -126,7 +126,7 @@ namespace tomware.OpenIddict.UI.Tests.Unit
       Assert.IsType<BadRequestResult>(result);
     }
 
-    private ApplicationController GetController(Mock<IApplicationApiService> service = null)
+    private static ApplicationController GetController(Mock<IApplicationApiService> service = null)
     {
       service ??= new Mock<IApplicationApiService>();
 

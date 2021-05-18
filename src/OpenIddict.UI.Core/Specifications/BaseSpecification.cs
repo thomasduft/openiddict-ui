@@ -68,7 +68,9 @@ namespace tomware.OpenIddict.UI.Core
       OrderBy = orderByExpression;
     }
 
-    protected virtual void ApplyOrderByDescending(Expression<Func<T, object>> orderByDescendingExpression)
+    protected virtual void ApplyOrderByDescending(
+      Expression<Func<T, object>> orderByDescendingExpression
+    )
     {
       OrderByDescending = orderByDescendingExpression;
     }

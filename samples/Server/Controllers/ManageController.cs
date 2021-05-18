@@ -100,7 +100,7 @@ namespace Mvc.Server.Controllers
       var user = await GetCurrentUserAsync();
       var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.PhoneNumber);
       await _smsSender.SendSmsAsync(model.PhoneNumber, "Your security code is: " + code);
-      return RedirectToAction(nameof(VerifyPhoneNumber), new { PhoneNumber = model.PhoneNumber });
+      return RedirectToAction(nameof(VerifyPhoneNumber), new { model.PhoneNumber });
     }
 
     //
@@ -140,7 +140,7 @@ namespace Mvc.Server.Controllers
     [HttpGet]
     public async Task<IActionResult> VerifyPhoneNumber(string phoneNumber)
     {
-      var code = await _userManager.GenerateChangePhoneNumberTokenAsync(await GetCurrentUserAsync(), phoneNumber);
+      await _userManager.GenerateChangePhoneNumberTokenAsync(await GetCurrentUserAsync(), phoneNumber);
       // Send an SMS to verify the phone number
       return phoneNumber is null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
     }

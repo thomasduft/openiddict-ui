@@ -47,7 +47,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
         case HttpVerb.Delete:
           response = await DeleteAsync(endpoint, authorized);
           break;
-        default:
+        case HttpVerb.Get:
           response = await GetAsync(endpoint, authorized);
           break;
       }
@@ -72,7 +72,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 
       var model = await response.Content.ReadAsJson<List<RoleViewModel>>();
       Assert.NotNull(model);
-      Assert.True(model.Count() > 0);
+      Assert.True(model.Count > 0);
     }
 
     [Fact]

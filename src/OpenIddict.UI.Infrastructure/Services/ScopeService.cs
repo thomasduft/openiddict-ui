@@ -53,7 +53,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
         {
           Name = model.Name,
           DisplayName = model.DisplayName,
-          Description = model.Description
+          Description = model.Description,
         };
 
         HandleCustomProperties(model, newEntity);
@@ -72,7 +72,8 @@ namespace tomware.OpenIddict.UI.Infrastructure
 
     public async Task UpdateAsync(ScopeParam model)
     {
-      if (string.IsNullOrWhiteSpace(model.Id)) throw new ArgumentNullException(nameof(model.Id));
+      if (string.IsNullOrWhiteSpace(model.Id)) 
+        throw new InvalidOperationException(nameof(model.Id));
 
       var entity = await _manager.FindByIdAsync(model.Id);
 
@@ -92,7 +93,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
       await _manager.DeleteAsync(entity);
     }
 
-    private ScopeInfo ToInfo(OpenIddictEntityFrameworkCoreScope entity)
+    private static ScopeInfo ToInfo(OpenIddictEntityFrameworkCoreScope entity)
     {
       var info = SimpleMapper
         .From<OpenIddictEntityFrameworkCoreScope, ScopeInfo>(entity);
@@ -104,7 +105,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
       return info;
     }
 
-    private void HandleCustomProperties(
+    private static void HandleCustomProperties(
       ScopeParam model,
       OpenIddictEntityFrameworkCoreScope entity
     )

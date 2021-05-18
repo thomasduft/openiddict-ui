@@ -8,13 +8,13 @@ namespace tomware.OpenIddict.UI.Core
 {
   public class SimpleMapper
   {
-    private static ConcurrentDictionary<string, PropertyMap[]> maps
-      = new ConcurrentDictionary<string, PropertyMap[]>();
+    private static readonly ConcurrentDictionary<string, PropertyMap[]> maps
+      = new(StringComparer.Ordinal);
 
     private static SimpleMapper Create<TSource, TTarget>()
     {
       var mapper = new SimpleMapper();
-      mapper.MapTypes(typeof(TSource), typeof(TTarget));
+      MapTypes(typeof(TSource), typeof(TTarget));
       return mapper;
     }
 
@@ -31,7 +31,7 @@ namespace tomware.OpenIddict.UI.Core
       Create<TSource, TTarget>().Copy(source, target);
     }
 
-    private void MapTypes(Type source, Type target)
+    private static void MapTypes(Type source, Type target)
     {
       var key = GetMapKey(source, target);
       if (maps.ContainsKey(key)) return;
@@ -56,30 +56,30 @@ namespace tomware.OpenIddict.UI.Core
       for (var i = 0; i < propMap.Length; i++)
       {
         var prop = propMap[i];
-        var sourceValue = prop.SourceProperty.GetValue(source, null);
-        prop.TargetProperty.SetValue(target, sourceValue, null);
+        var sourceValue = prop.SourceProperty.GetValue(source, index: null);
+        prop.TargetProperty.SetValue(target, sourceValue, index: null);
       }
     }
 
-    private IList<PropertyMap> GetMatchingProperties(Type source, Type target)
+    private static IList<PropertyMap> GetMatchingProperties(Type source, Type target)
     {
       var sourceProperties = source.GetProperties();
       var targetProperties = target.GetProperties();
 
       return (from s in sourceProperties
               from t in targetProperties
-              where s.Name == t.Name &&
+              where string.Equals(s.Name, t.Name, StringComparison.Ordinal) &&
                     s.CanRead &&
                     t.CanWrite &&
                     s.PropertyType == t.PropertyType
               select new PropertyMap
               {
                 SourceProperty = s,
-                TargetProperty = t
+                TargetProperty = t,
               }).ToList();
     }
 
-    private string GetMapKey(Type source, Type target)
+    private static string GetMapKey(Type source, Type target)
     {
       return $"{source.GetHashCode()}_{target.GetHashCode()}";
     }

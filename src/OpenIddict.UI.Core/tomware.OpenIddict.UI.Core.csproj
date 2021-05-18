@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>tomware.OpenIddict.UI.Core</AssemblyName>
     <RootNamespace>tomware.OpenIddict.UI.Core</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <None Include="..\..\LICENSE.md" Pack="true" PackagePath="" />
-    <None Include="..\..\icon.png" Pack="true" PackagePath=""/>
+    <None Include="..\..\icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>

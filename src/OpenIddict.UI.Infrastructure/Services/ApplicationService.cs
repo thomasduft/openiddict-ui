@@ -73,7 +73,8 @@ namespace tomware.OpenIddict.UI.Infrastructure
 
     public async Task UpdateAsync(ApplicationParam model)
     {
-      if (string.IsNullOrWhiteSpace(model.Id)) throw new ArgumentNullException(nameof(model.Id));
+      if (string.IsNullOrWhiteSpace(model.Id))
+        throw new InvalidOperationException(nameof(model.Id));
 
       var entity = await _manager.FindByIdAsync(model.Id);
 
@@ -93,12 +94,12 @@ namespace tomware.OpenIddict.UI.Infrastructure
       await _manager.DeleteAsync(entity);
     }
 
-    private ApplicationInfo ToListInfo(OpenIddictEntityFrameworkCoreApplication entity)
+    private static ApplicationInfo ToListInfo(OpenIddictEntityFrameworkCoreApplication entity)
     {
       return SimpleMapper.From<OpenIddictEntityFrameworkCoreApplication, ApplicationInfo>(entity);
     }
 
-    private ApplicationInfo ToInfo(OpenIddictEntityFrameworkCoreApplication entity)
+    private static ApplicationInfo ToInfo(OpenIddictEntityFrameworkCoreApplication entity)
     {
       var info = SimpleMapper
         .From<OpenIddictEntityFrameworkCoreApplication, ApplicationInfo>(entity);
@@ -113,10 +114,9 @@ namespace tomware.OpenIddict.UI.Infrastructure
       info.PostLogoutRedirectUris = entity.PostLogoutRedirectUris != null
         ? JsonSerializer.Deserialize<List<string>>(entity.PostLogoutRedirectUris)
         : new List<string>();
-      info.RequirePkce = entity.Requirements != null
-        ? JsonSerializer.Deserialize<List<string>>(entity.Requirements)
-        .Contains(Requirements.Features.ProofKeyForCodeExchange)
-        : false;
+      info.RequirePkce = entity.Requirements != null && JsonSerializer
+        .Deserialize<List<string>>(entity.Requirements)
+        .Contains(Requirements.Features.ProofKeyForCodeExchange);
 
       return info;
     }

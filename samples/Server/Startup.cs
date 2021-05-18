@@ -227,8 +227,7 @@ namespace Mvc.Server
               return new[] { api.GroupName };
             }
 
-            var controllerActionDescriptor = api.ActionDescriptor as ControllerActionDescriptor;
-            if (controllerActionDescriptor != null)
+            if (api.ActionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
             {
               return new[] { controllerActionDescriptor.ControllerName };
             }

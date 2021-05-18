@@ -57,7 +57,7 @@ namespace tomware.OpenIddict.UI.Api
     public async Task UpdateAsync(ClaimTypeViewModel model)
     {
       if (model == null) throw new ArgumentNullException(nameof(model));
-      if (!model.Id.HasValue) throw new ArgumentNullException(nameof(model.Id));
+      if (!model.Id.HasValue) throw new InvalidOperationException(nameof(model.Id));
 
       var param = ToParam(model);
 
@@ -71,12 +71,12 @@ namespace tomware.OpenIddict.UI.Api
       await _service.DeleteAsync(id);
     }
 
-    private ClaimTypeParam ToParam(ClaimTypeViewModel model)
+    private static ClaimTypeParam ToParam(ClaimTypeViewModel model)
     {
       return SimpleMapper.From<ClaimTypeViewModel, ClaimTypeParam>(model);
     }
 
-    private ClaimTypeViewModel ToModel(ClaimTypeInfo info)
+    private static ClaimTypeViewModel ToModel(ClaimTypeInfo info)
     {
       var vm = SimpleMapper.From<ClaimTypeInfo, ClaimTypeViewModel>(info);
       vm.Id = info.Id;

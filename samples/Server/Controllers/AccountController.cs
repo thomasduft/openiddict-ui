@@ -63,7 +63,7 @@ namespace Mvc.Server.Controllers
         }
         if (result.RequiresTwoFactor)
         {
-          return RedirectToAction(nameof(SendCode), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+          return RedirectToAction(nameof(SendCode), new { ReturnUrl = returnUrl, model.RememberMe });
         }
         if (result.IsLockedOut)
         {
@@ -372,7 +372,7 @@ namespace Mvc.Server.Controllers
         await _smsSender.SendSmsAsync(await _userManager.GetPhoneNumberAsync(user), message);
       }
 
-      return RedirectToAction(nameof(VerifyCode), new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+      return RedirectToAction(nameof(VerifyCode), new { Provider = model.SelectedProvider, model.ReturnUrl, model.RememberMe });
     }
 
     //

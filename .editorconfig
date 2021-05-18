@@ -12,21 +12,12 @@ indent_size = 2
 insert_final_newline = false
 trim_trailing_whitespace = true
 
-# XML Project Files
-[*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
-indent_size = 2
-
-# Configuration Files
-[*.{json,xml,yml,config,props,targets,nuspec,resx,ruleset,vsixmanifest,vsct}]
-indent_size = 2
-
 # Markdown Files
 [*.md]
 trim_trailing_whitespace = false
 
 # Web Files
 [*.{htm,html,js,ts,css,scss,less}]
-indent_size = 2
 insert_final_newline = true
 
 # Bash Files
@@ -45,10 +36,10 @@ dotnet_style_null_propagation = true:warning
 dotnet_style_object_initializer = true:warning
 dotnet_style_predefined_type_for_locals_parameters_members = true:warning
 dotnet_style_predefined_type_for_member_access = true:warning
-dotnet_style_qualification_for_event = true:warning
-dotnet_style_qualification_for_field = true:warning
-dotnet_style_qualification_for_method = true:warning
-dotnet_style_qualification_for_property = true:warning
+dotnet_style_qualification_for_event = false:warning
+dotnet_style_qualification_for_field = false:warning
+dotnet_style_qualification_for_method = false:warning
+dotnet_style_qualification_for_property = false:warning
 
 # Naming Symbols
 # constant_fields - Define constant fields
@@ -104,11 +95,11 @@ dotnet_naming_rule.non_private_readonly_fields_must_be_pascal_case.style = pasca
 # Static readonly fields must be PascalCase
 dotnet_naming_rule.static_readonly_fields_must_be_pascal_case.severity = warning
 dotnet_naming_rule.static_readonly_fields_must_be_pascal_case.symbols = static_readonly_fields
-dotnet_naming_rule.static_readonly_fields_must_be_pascal_case.style = pascal_case
+dotnet_naming_rule.static_readonly_fields_must_be_pascal_case.style = 
 # Private readonly fields must be camelCase
 dotnet_naming_rule.private_readonly_fields_must_be_camel_case.severity = warning
 dotnet_naming_rule.private_readonly_fields_must_be_camel_case.symbols = private_readonly_fields
-dotnet_naming_rule.private_readonly_fields_must_be_camel_case.style = camel_case
+dotnet_naming_rule.private_readonly_fields_must_be_camel_case.style = 
 # Public and internal fields must be PascalCase
 dotnet_naming_rule.public_internal_fields_must_be_pascal_case.severity = warning
 dotnet_naming_rule.public_internal_fields_must_be_pascal_case.symbols = public_internal_fields
@@ -116,7 +107,7 @@ dotnet_naming_rule.public_internal_fields_must_be_pascal_case.style = pascal_cas
 # Private and protected fields must be camelCase
 dotnet_naming_rule.private_protected_fields_must_be_camel_case.severity = warning
 dotnet_naming_rule.private_protected_fields_must_be_camel_case.symbols = private_protected_fields
-dotnet_naming_rule.private_protected_fields_must_be_camel_case.style = camel_case
+dotnet_naming_rule.private_protected_fields_must_be_camel_case.style = 
 # Public members must be capitalized
 dotnet_naming_rule.public_members_must_be_capitalized.severity = warning
 dotnet_naming_rule.public_members_must_be_capitalized.symbols = public_symbols
@@ -165,8 +156,7 @@ csharp_new_line_before_else = true:warning
 csharp_new_line_before_finally = true:warning
 csharp_new_line_before_members_in_anonymous_types = true:warning
 csharp_new_line_before_members_in_object_initializers = true:warning
-# BUG: Warning level cannot be set https://github.com/dotnet/roslyn/issues/18010
-csharp_new_line_before_open_brace = all
+csharp_new_line_before_open_brace = all:warning
 csharp_new_line_between_query_expression_clauses = true:warning
 # Spacing Options
 csharp_space_after_cast = false:warning
@@ -194,3 +184,6 @@ csharp_space_between_square_brackets = false:warning
 # Wrapping Options
 csharp_preserve_single_line_blocks = true:warning
 csharp_preserve_single_line_statements = false:warning
+
+# Analyzers
+dotnet_diagnostic.MA0048.severity = none  # MA0048: File name must match type name

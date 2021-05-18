@@ -126,7 +126,7 @@ namespace tomware.OpenIddict.UI.Tests.Unit
       Assert.IsType<BadRequestResult>(result);
     }
 
-    private RoleController GetController(Mock<IRoleService> service = null)
+    private static RoleController GetController(Mock<IRoleService> service = null)
     {
       service ??= new Mock<IRoleService>();
 

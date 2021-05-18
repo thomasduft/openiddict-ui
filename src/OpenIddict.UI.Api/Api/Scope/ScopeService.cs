@@ -66,7 +66,8 @@ namespace tomware.OpenIddict.UI.Api
     public async Task UpdateAsync(ScopeViewModel model)
     {
       if (model == null) throw new ArgumentNullException(nameof(model));
-      if (string.IsNullOrWhiteSpace(model.Id)) throw new ArgumentNullException(nameof(model.Id));
+      if (string.IsNullOrWhiteSpace(model.Id))
+        throw new InvalidOperationException(nameof(model.Id));
 
       var param = ToParam(model);
 
@@ -80,12 +81,12 @@ namespace tomware.OpenIddict.UI.Api
       await _service.DeleteAsync(id);
     }
 
-    private ScopeParam ToParam(ScopeViewModel model)
+    private static ScopeParam ToParam(ScopeViewModel model)
     {
       return SimpleMapper.From<ScopeViewModel, ScopeParam>(model);
     }
 
-    private ScopeViewModel ToModel(ScopeInfo info)
+    private static ScopeViewModel ToModel(ScopeInfo info)
     {
       return SimpleMapper.From<ScopeInfo, ScopeViewModel>(info);
     }

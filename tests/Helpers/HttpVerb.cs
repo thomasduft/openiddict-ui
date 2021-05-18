@@ -5,7 +5,6 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
     Get,
     Post,
     Put,
-    Delete,
-    Head
+    Delete
   }
 }
