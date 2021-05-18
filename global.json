@@ -1,5 +1,6 @@
 {
   "tools": {
-    "dotnet": "5.0.101"
+    "dotnet": "5.0.101",
+    "rollForward": "patch"
   }
 }
