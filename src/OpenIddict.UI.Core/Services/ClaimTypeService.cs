@@ -36,7 +36,7 @@ namespace tomware.OpenIddict.UI.Core
       if (model == null) throw new ArgumentNullException(nameof(model));
 
       var items = await _repository.ListAsync(new ClaimTypeByName(model.Name));
-      var entity = items.FirstOrDefault();
+      var entity = items.Count > 0 ? items[0] : null;
       if (entity == null)
       {
         // create new entity

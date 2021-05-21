@@ -17,6 +17,7 @@
     <PackageTags>OpenIddict</PackageTags>
     <PackageProjectUrl>https://github.com/thomasduft/openiddict-ui</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
 
   <ItemGroup>

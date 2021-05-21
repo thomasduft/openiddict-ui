@@ -44,7 +44,8 @@ namespace tomware.OpenIddict.UI.Tests
       }
       catch (Exception ex)
       {
-        var logger = services.GetRequiredService<ILogger<IntegrationApplicationFactory<TStartup>>>();
+        var logger = services
+          .GetRequiredService<ILogger<IntegrationApplicationFactory<TStartup>>>();
         logger.LogError(ex, "An error occurred while migrating the testing database.");
       }
     }
@@ -59,10 +60,10 @@ namespace tomware.OpenIddict.UI.Tests
         };
         var identity = new ClaimsIdentity(claims);
 
-        IOptions<OpenIddictServerOptions> options
-          = (IOptions<OpenIddictServerOptions>)sp.GetService(typeof(IOptions<OpenIddictServerOptions>));
-        ILogger<OpenIddictServerDispatcher> logger
-          = (ILogger<OpenIddictServerDispatcher>)sp.GetService(typeof(ILogger<OpenIddictServerDispatcher>));
+        IOptions<OpenIddictServerOptions> options = (IOptions<OpenIddictServerOptions>)sp
+          .GetService(typeof(IOptions<OpenIddictServerOptions>));
+        ILogger<OpenIddictServerDispatcher> logger = (ILogger<OpenIddictServerDispatcher>)sp
+          .GetService(typeof(ILogger<OpenIddictServerDispatcher>));
 
         var transaction = new OpenIddictServerTransaction
         {
@@ -77,7 +78,9 @@ namespace tomware.OpenIddict.UI.Tests
         };
 
         var generator = new GenerateIdentityModelAccessToken();
+#pragma warning disable CA2012
         generator.HandleAsync(context).GetAwaiter().GetResult();
+#pragma warning restore CA2012
 
         return context.AccessToken;
       }

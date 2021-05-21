@@ -27,28 +27,17 @@ namespace tomware.OpenIddict.UI.Infrastructure
 
   public class OpenIddictUIContext : OpenIddictUIContext<OpenIddictUIContext>
   {
-    public OpenIddictUIContext(
-      DbContextOptions<OpenIddictUIContext> options,
-      OpenIddictUIStoreOptions storeOptions
-    ) : base(options, storeOptions)
-    {
-    }
+    public OpenIddictUIContext(DbContextOptions<OpenIddictUIContext> options)
+      : base(options)
+    { }
   }
 
   public class OpenIddictUIContext<TContext> : DbContext, IOpenIddictUIContext
     where TContext : DbContext, IOpenIddictUIContext
   {
-    private readonly OpenIddictUIStoreOptions _storeOptions;
-
-    public OpenIddictUIContext(
-      DbContextOptions<TContext> options,
-      OpenIddictUIStoreOptions storeOptions
-    )
+    public OpenIddictUIContext(DbContextOptions<TContext> options)
       : base(options)
-    {
-      _storeOptions = storeOptions
-        ?? throw new ArgumentNullException(nameof(storeOptions));
-    }
+    { }
 
     public DbSet<ClaimType> ClaimTypes { get; set; }
 

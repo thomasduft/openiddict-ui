@@ -11,24 +11,26 @@ namespace tomware.OpenIddict.UI.Core
     private static readonly ConcurrentDictionary<string, PropertyMap[]> maps
       = new(StringComparer.Ordinal);
 
-    private static SimpleMapper Create<TSource, TTarget>()
-    {
-      var mapper = new SimpleMapper();
-      MapTypes(typeof(TSource), typeof(TTarget));
-      return mapper;
-    }
-
     public static TTarget From<TSource, TTarget>(TSource source)
     {
       var target = (TTarget)Activator.CreateInstance(typeof(TTarget));
-      Create<TSource, TTarget>().Copy(source, target);
+      var mapper = Create<TSource, TTarget>();
+      mapper.Copy(source, target);
 
       return target;
     }
 
     public static void Map<TSource, TTarget>(TSource source, TTarget target)
     {
-      Create<TSource, TTarget>().Copy(source, target);
+      var mapper = Create<TSource, TTarget>();
+      mapper.Copy(source, target);
+    }
+
+    private static SimpleMapper Create<TSource, TTarget>()
+    {
+      var mapper = new SimpleMapper();
+      MapTypes(typeof(TSource), typeof(TTarget));
+      return mapper;
     }
 
     private static void MapTypes(Type source, Type target)
@@ -40,6 +42,7 @@ namespace tomware.OpenIddict.UI.Core
       maps.TryAdd(key, props.ToArray());
     }
 
+#pragma warning disable CA1822
     private void Copy(object source, object target)
     {
       var sourceType = source.GetType();
@@ -60,6 +63,7 @@ namespace tomware.OpenIddict.UI.Core
         prop.TargetProperty.SetValue(target, sourceValue, index: null);
       }
     }
+#pragma warning restore CA1822
 
     private static IList<PropertyMap> GetMatchingProperties(Type source, Type target)
     {
