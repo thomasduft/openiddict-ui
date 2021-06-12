@@ -8,9 +8,9 @@
     <Description>Infrastructure types for openiddict UI</Description>
     <RepositoryUrl>https://github.com/thomasduft/openiddict-ui</RepositoryUrl>
     <Authors>Thomas Duft</Authors>
-    <Company>tomWare SOLUTIONS</Company>
+    <Company>tomware SOLUTIONS</Company>
     <RepositoryType>git</RepositoryType>
-    <Copyright>2020 tomWare SOLUTIONS</Copyright>
+    <Copyright>2020 tomware SOLUTIONS</Copyright>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
