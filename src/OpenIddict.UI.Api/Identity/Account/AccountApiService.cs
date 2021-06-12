@@ -49,8 +49,7 @@ namespace tomware.OpenIddict.UI.Api
       var items = await _manager.Users
         .OrderBy(u => u.UserName)
         .AsNoTracking()
-        .ToListAsync()
-        ;
+        .ToListAsync();
 
       return items.Select(u => new UserViewModel
       {
@@ -88,7 +87,7 @@ namespace tomware.OpenIddict.UI.Api
     public async Task<IdentityResult> UpdateAsync(UserViewModel model)
     {
       if (model == null) throw new ArgumentNullException(nameof(model));
-      if (string.IsNullOrWhiteSpace(model.Id)) 
+      if (string.IsNullOrWhiteSpace(model.Id))
         throw new InvalidOperationException(nameof(model.Id));
 
       var user = await _manager.FindByIdAsync(model.Id);
