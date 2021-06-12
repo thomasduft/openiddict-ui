@@ -389,9 +389,9 @@ namespace Mvc.Server
         authenticationSchemes: OpenIddictServerAspNetCoreDefaults.AuthenticationScheme,
         properties: new AuthenticationProperties()
         {
-              // This property points to the address OpenIddict will automatically
-              // redirect the user to after rejecting the authorization demand.
-              RedirectUri = "/"
+          // This property points to the address OpenIddict will automatically
+          // redirect the user to after rejecting the authorization demand.
+          RedirectUri = "/"
         });
     #endregion
 

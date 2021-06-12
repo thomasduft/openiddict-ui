@@ -39,7 +39,7 @@ namespace tomware.OpenIddict.UI.Api
 
     private static OpenIddictBuilder AddOpenIddictUIRoutePrefix(
       this OpenIddictBuilder builder,
-      string routePrefix = "api/"
+      string routePrefix
     )
     {
       builder.Services.AddControllers(options =>
@@ -59,7 +59,7 @@ namespace tomware.OpenIddict.UI.Api
 
       services.AddApiServices<TApplicationUser>();
 
-      services.Configure<OpenIddictUIApiOptions>(uiApiOptions);
+      services.Configure(uiApiOptions);
 
       return services;
     }
