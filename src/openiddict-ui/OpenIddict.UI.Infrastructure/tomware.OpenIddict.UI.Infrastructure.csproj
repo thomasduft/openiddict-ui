@@ -4,8 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>tomware.OpenIddict.UI.Infrastructure</AssemblyName>
     <RootNamespace>tomware.OpenIddict.UI.Infrastructure</RootNamespace>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Description>Infrastructure types for openiddict UI</Description>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RepositoryUrl>https://github.com/thomasduft/openiddict-ui</RepositoryUrl>
     <Authors>Thomas Duft</Authors>
     <Company>tomware SOLUTIONS</Company>
@@ -36,8 +36,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\LICENSE.md" Pack="true" PackagePath="" />
-    <None Include="..\..\icon.png" Pack="true" PackagePath="" />
+    <None Include="..\..\..\LICENSE.md" Pack="true" PackagePath="" />
+    <None Include="..\..\..\icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
