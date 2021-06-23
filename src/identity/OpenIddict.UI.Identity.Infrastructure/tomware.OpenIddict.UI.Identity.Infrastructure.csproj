@@ -1,11 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+<Import Project="..\..\Directory.Build.props" />
+
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>tomware.OpenIddict.UI.Identity.Infrastructure</AssemblyName>
     <RootNamespace>tomware.OpenIddict.UI.Identity.Infrastructure</RootNamespace>
     <Description>Infrastructure types for openiddict UI Identity</Description>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
