@@ -1,6 +1,6 @@
 using System;
 
-namespace tomware.OpenIddict.UI.Core
+namespace tomware.OpenIddict.UI.Identity.Core
 {
   public class ClaimType
   {

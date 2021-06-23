@@ -1,10 +1,10 @@
 using System;
 
-namespace tomware.OpenIddict.UI.Core
+namespace tomware.OpenIddict.UI.Identity.Core
 {
-  public class ClaimTypeParam
+  public class ClaimTypeInfo
   {
-    public Guid? Id { get; set; }
+    public Guid Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public string ClaimValueType { get; set; }

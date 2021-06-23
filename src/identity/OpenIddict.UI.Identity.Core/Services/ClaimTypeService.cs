@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using tomware.OpenIddict.UI.Core;
 
-namespace tomware.OpenIddict.UI.Core
+namespace tomware.OpenIddict.UI.Identity.Core
 {
   public class ClaimTypeService : IClaimTypeService
   {

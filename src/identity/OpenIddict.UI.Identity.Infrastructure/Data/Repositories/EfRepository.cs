@@ -4,14 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using tomware.OpenIddict.UI.Core;
 
-namespace tomware.OpenIddict.UI.Infrastructure
+namespace tomware.OpenIddict.UI.Identity.Infrastructure
 {
   public class EfRepository<TEntity, TKey> : IAsyncRepository<TEntity, TKey>
     where TEntity : class
   {
-    protected readonly OpenIddictUIContext Context;
+    protected readonly OpenIddictUIIdentityContext Context;
 
-    public EfRepository(OpenIddictUIContext context)
+    public EfRepository(OpenIddictUIIdentityContext context)
     {
       Context = context;
     }

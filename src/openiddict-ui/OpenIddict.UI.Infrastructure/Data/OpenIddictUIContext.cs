@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OpenIddict.EntityFrameworkCore.Models;
 using System;
-using tomware.OpenIddict.UI.Core;
-using tomware.OpenIddict.UI.Infrastructure.Configuration;
 
 namespace tomware.OpenIddict.UI.Infrastructure
 {
@@ -14,8 +12,6 @@ namespace tomware.OpenIddict.UI.Infrastructure
 
   public interface IOpenIddictUIContext
   {
-    DbSet<ClaimType> ClaimTypes { get; set; }
-
     DbSet<OpenIddictEntityFrameworkCoreApplication> Applications { get; set; }
 
     DbSet<OpenIddictEntityFrameworkCoreAuthorization> Authorizations { get; set; }
@@ -39,8 +35,6 @@ namespace tomware.OpenIddict.UI.Infrastructure
       : base(options)
     { }
 
-    public DbSet<ClaimType> ClaimTypes { get; set; }
-
     public DbSet<OpenIddictEntityFrameworkCoreApplication> Applications { get; set; }
 
     public DbSet<OpenIddictEntityFrameworkCoreAuthorization> Authorizations { get; set; }
@@ -53,9 +47,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
     {
       base.OnModelCreating(builder);
 
-      builder
-        .ApplyConfiguration(new ClaimTypeEntityConfiguration())
-        .UseOpenIddict();
+      builder.UseOpenIddict();
       // .ApplyConfiguration(new OpenIddictEntityFrameworkCoreApplicationConfiguration<TApplication, TAuthorization, TToken, TKey>())
       // .ApplyConfiguration(new OpenIddictEntityFrameworkCoreAuthorizationConfiguration<TAuthorization, TApplication, TToken, TKey>())
       // .ApplyConfiguration(new OpenIddictEntityFrameworkCoreScopeConfiguration<TScope, TKey>())

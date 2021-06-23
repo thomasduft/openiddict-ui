@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace tomware.OpenIddict.UI.Core
+namespace tomware.OpenIddict.UI.Identity.Core
 {
   public interface IClaimTypeService
   {

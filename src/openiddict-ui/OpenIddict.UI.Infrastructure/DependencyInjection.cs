@@ -12,7 +12,6 @@ namespace tomware.OpenIddict.UI.Infrastructure
       Action<OpenIddictUIStoreOptions> storeOptionsAction = null
     )
     {
-      builder.Services.AddOpenIddictUICoreServices();
       builder.Services.AddOpenIddictUIInfrastructureServices();
 
       var coreBuilder = new OpenIddictCoreBuilder(builder.Services)
@@ -40,7 +39,6 @@ namespace tomware.OpenIddict.UI.Infrastructure
     {
       services.AddScoped(typeof(IAsyncRepository<,>), typeof(EfRepository<,>));
 
-      services.AddTransient<IClaimTypeRepository, ClaimTypeRepository<OpenIddictUIContext>>();
       services.AddTransient<IScopeRepository, ScopeRepository<OpenIddictUIContext>>();
       services.AddTransient<IApplicationRepository, ApplicationRepository<OpenIddictUIContext>>();
 

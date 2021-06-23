@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using tomware.OpenIddict.UI.Core;
 
-namespace tomware.OpenIddict.UI.Infrastructure
+namespace tomware.OpenIddict.UI.Identity.Infrastructure
 {
   internal class SpecificationEvaluator<T> where T : class
   {
