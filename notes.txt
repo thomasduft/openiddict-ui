@@ -22,6 +22,9 @@ TODO:
 
 - ??? authorizations, tokens
 
+
+-  <Import Project="..\..\Common.props" />
+
 ----------------------------------------------------------------------------------------------------
 DEV Containers:
 - https://hub.docker.com/_/microsoft-vscode-devcontainers

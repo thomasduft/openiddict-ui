@@ -27,14 +27,20 @@ echo ----
 if [ $2 = "r" ];
 then
   echo Packaging solution with Version = $1
-  dotnet pack src/OpenIddict.UI.Core -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
-  dotnet pack src/OpenIddict.UI.Infrastructure -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
-  dotnet pack src/OpenIddict.UI.Api -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
+  dotnet pack src/openiddict-ui/OpenIddict.UI.Core -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
+  dotnet pack src/openiddict-ui/OpenIddict.UI.Infrastructure -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
+  dotnet pack src/openiddict-ui/OpenIddict.UI.Api -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
+  dotnet pack src/identity/OpenIddict.UI.Identity.Core -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
+  dotnet pack src/identity/OpenIddict.UI.Identity.Infrastructure -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
+  dotnet pack src/identity/OpenIddict.UI.Identity.Api -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
 else
   echo Packaging solution with PackageVersion = $1
-  dotnet pack src/OpenIddict.UI.Core -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
-  dotnet pack src/OpenIddict.UI.Infrastructure -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
-  dotnet pack src/OpenIddict.UI.Api -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
+  dotnet pack src/openiddict-ui/OpenIddict.UI.Core -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
+  dotnet pack src/openiddict-ui/OpenIddict.UI.Infrastructure -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
+  dotnet pack src/openiddict-ui/OpenIddict.UI.Api -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
+  dotnet pack src/identity/OpenIddict.UI.Identity.Core -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
+  dotnet pack src/identity/OpenIddict.UI.Identity.Infrastructure -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
+  dotnet pack src/identity/OpenIddict.UI.Identity.Api -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
 fi
 
 if [ -z "$3" ];
