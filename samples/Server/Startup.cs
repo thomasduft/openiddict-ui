@@ -192,7 +192,6 @@ namespace Mvc.Server
             Permissions.Endpoints.Introspection,
             Permissions.GrantTypes.AuthorizationCode,
             Permissions.GrantTypes.DeviceCode,
-            Permissions.GrantTypes.Password,
             Permissions.GrantTypes.RefreshToken,
             Permissions.ResponseTypes.Code,
             Permissions.Scopes.Email,
