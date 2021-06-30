@@ -106,7 +106,20 @@ services.AddOpenIddict()
       Permissions.Scopes.Roles,
       Permissions.Prefixes.Scope + "demo_api"
     }
-  });
+  })
+  // Register the EF based OpenIddict Identity Store
+  .AddUIIdentityStore(options =>
+  {
+    options.OpenIddictUIIdentityContext = builder =>
+     builder.UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
+       sql => sql.MigrationsAssembly(typeof(Startup)
+                 .GetTypeInfo()
+                 .Assembly
+                 .GetName()
+                 .Name));
+  })
+  // Register the Api for the EF based OpenIddict Identity Store
+  .AddUIIdentityApis<ApplicationUser>();
   
 ...
 ```

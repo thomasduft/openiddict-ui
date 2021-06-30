@@ -33,7 +33,10 @@ const ROUTES: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(ROUTES, {
+      useHash: false,
+      relativeLinkResolution: 'legacy'
+    }),
     OAuthModule.forRoot(),
     SharedModule,
     CoreModule,

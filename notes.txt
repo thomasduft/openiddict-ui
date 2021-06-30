@@ -1,4 +1,26 @@
 TODO:
+- structuring
+  - suite (openiddict-ui-suite)
+    - Core
+    - Infrastructure
+    - Infrastructure.EF
+    - Infrastructure.EF.Sqlite
+    - Api (WebApplication)
+  - ui (openiddict-ui)
+    - Core
+    - Infrastructure.EF
+    - Api
+  - identity (openiddict-ui-identity)
+    - Core
+    - Infrastructure.EF
+    - API
+  - policy (openiddict-ui-policy)
+    - Core
+    - Infrastructure.EF
+    - API
+    - PolicyClient
+
+
 - better Client deployment
   - introduce deploy.js
   - check server stylings not removed
@@ -22,8 +44,6 @@ TODO:
 
 - ??? authorizations, tokens
 
-
--  <Import Project="..\..\Common.props" />
 
 ----------------------------------------------------------------------------------------------------
 DEV Containers:
