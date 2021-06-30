@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using tomware.OpenIddict.UI.Api;
+using tomware.OpenIddict.UI.Identity.Api;
 using Xunit;
 
 namespace tomware.OpenIddict.UI.Tests.Unit
