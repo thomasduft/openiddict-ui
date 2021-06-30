@@ -89,7 +89,7 @@ services.AddOpenIddict()
                   .Name));
   })
   // Register the API for the EF and ASP.NET Identity based UI Store
-  .AddUIApis<ApplicationUser>(options =>
+  .AddUIApis(options =>
   {
     // Tell the system about the allowed Permissions it is built/configured for.
     options.Permissions = new List<string>
