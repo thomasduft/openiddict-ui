@@ -21,6 +21,9 @@ TODO:
     - PolicyClient
 
 
+- own Server based on ASP.NET Razor Pages
+
+
 - laod options.Permissions from database instead of configuring it
 
 
