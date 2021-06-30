@@ -8,13 +8,12 @@ namespace tomware.OpenIddict.UI.Infrastructure
   public static class OpenIddictUIInfrastructureServicesExtensions
   {
     // TODO: better naming
-
     public static OpenIddictBuilder AddUIStore(
       this OpenIddictBuilder builder,
       Action<OpenIddictUIStoreOptions> storeOptionsAction = null
     )
     {
-      builder.Services.AddOpenIddictUIInfrastructureServices();
+      builder.Services.AddInfrastructureServices();
 
       var coreBuilder = new OpenIddictCoreBuilder(builder.Services)
         .UseEFCoreUIStore<OpenIddictUIContext>();
@@ -25,7 +24,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
       return builder;
     }
 
-    private static IServiceCollection AddOpenIddictUIInfrastructureServices(
+    private static IServiceCollection AddInfrastructureServices(
       this IServiceCollection services
     )
     {

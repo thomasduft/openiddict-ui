@@ -14,10 +14,7 @@ namespace tomware.OpenIddict.UI.Identity.Infrastructure
       Action<OpenIddictUIIdentityStoreOptions> storeOptionsAction = null
     )
     {
-      builder.Services.AddOpenIddictUIIdentityInfrastructureServices();
-
-      var coreBuilder = new OpenIddictCoreBuilder(builder.Services)
-        .UseEFCoreUIStore<OpenIddictUIIdentityContext>();
+      builder.Services.AddInfrastructureServices();
 
       builder.Services
         .AddOpenIddictUIIdentityStore<OpenIddictUIIdentityContext>(storeOptionsAction);
@@ -25,7 +22,7 @@ namespace tomware.OpenIddict.UI.Identity.Infrastructure
       return builder;
     }
 
-    private static IServiceCollection AddOpenIddictUIIdentityInfrastructureServices(
+    private static IServiceCollection AddInfrastructureServices(
       this IServiceCollection services
     )
     {
@@ -36,17 +33,6 @@ namespace tomware.OpenIddict.UI.Identity.Infrastructure
       services.AddTransient<IClaimTypeRepository, ClaimTypeRepository<OpenIddictUIIdentityContext>>();
 
       return services;
-    }
-
-    private static OpenIddictEntityFrameworkCoreBuilder UseEFCoreUIStore<TContext>(
-      this OpenIddictCoreBuilder builder
-    ) where TContext : IOpenIddictUIIdentityContext
-    {
-      builder
-        .UseEntityFrameworkCore()
-        .UseDbContext(typeof(TContext));
-
-      return new OpenIddictEntityFrameworkCoreBuilder(builder.Services);
     }
 
     private static IServiceCollection AddOpenIddictUIIdentityStore<TContext>(
