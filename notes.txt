@@ -21,6 +21,9 @@ TODO:
     - PolicyClient
 
 
+- laod options.Permissions from database instead of configuring it
+
+
 - better Client deployment
   - introduce deploy.js
   - check server stylings not removed
