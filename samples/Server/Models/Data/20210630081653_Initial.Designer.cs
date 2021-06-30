@@ -9,14 +9,14 @@ using Mvc.Server.Models;
 namespace Mvc.Server.Models.Data
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201120093103_Initial")]
+    [Migration("20210630081653_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.7");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {

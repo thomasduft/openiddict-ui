@@ -5,11 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace tomware.OpenIddict.UI.Api
+namespace tomware.OpenIddict.UI.Identity.Api
 {
   internal static class RoutePrefixExtension
   {
-    internal static void UseOpenIddictUIRoutePrefix(this MvcOptions opts, string prefix)
+    internal static void UseOpenIddictUIIdentityRoutePrefix(this MvcOptions opts, string prefix)
     {
       opts.Conventions.Insert(0, new RoutePrefixConvention(new RouteAttribute(prefix)));
     }
@@ -28,8 +28,9 @@ namespace tomware.OpenIddict.UI.Api
     {
       var controllerTypes = new List<Type>
       {
-        typeof(ApplicationController),
-        typeof(ScopeController)
+        typeof(AccountController),
+        typeof(ClaimTypeController),
+        typeof(RoleController)
       };
 
       var controllers = application.Controllers

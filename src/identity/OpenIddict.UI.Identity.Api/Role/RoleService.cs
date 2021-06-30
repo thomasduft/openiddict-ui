@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace tomware.OpenIddict.UI.Api
+namespace tomware.OpenIddict.UI.Identity.Api
 {
   public interface IRoleService
   {

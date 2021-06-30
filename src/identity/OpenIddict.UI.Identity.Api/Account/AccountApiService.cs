@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace tomware.OpenIddict.UI.Api
+namespace tomware.OpenIddict.UI.Identity.Api
 {
   public interface IAccountApiService
   {
@@ -20,6 +20,9 @@ namespace tomware.OpenIddict.UI.Api
   public class AccountApiService<TIdentityUser> : IAccountApiService
     where TIdentityUser : IdentityUser, new()
   {
+    // TODO: move UserManager down to Infrastructure
+    // using Microsoft.EntityFrameworkCore is wrong in the Api layer!
+    // remove package dependency <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="3.0.5" />
     private readonly UserManager<TIdentityUser> _manager;
     private readonly IUserCreationStrategy<TIdentityUser> _userCreationStrategy;
 

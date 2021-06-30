@@ -5,8 +5,8 @@ using Mvc.Server.Helpers;
 using Mvc.Server.Models;
 using OpenIddict.Abstractions;
 using System;
-using System.Globalization;
 using System.Threading.Tasks;
+using tomware.OpenIddict.UI.Identity.Infrastructure;
 using tomware.OpenIddict.UI.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
@@ -31,10 +31,13 @@ namespace Mvc.Server.Services
       using var scope = _serviceProvider.CreateScope();
 
       var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-      var uIContext = scope.ServiceProvider.GetRequiredService<OpenIddictUIContext>();
-
       await context.Database.MigrateAsync();
-      await uIContext.Database.MigrateAsync();
+
+      var uiContext = scope.ServiceProvider.GetRequiredService<OpenIddictUIContext>();
+      await uiContext.Database.MigrateAsync();
+
+      var uiIdentityContext = scope.ServiceProvider.GetRequiredService<OpenIddictUIIdentityContext>();
+      await uiIdentityContext.Database.MigrateAsync();
 
       await RegisterApplicationsAsync(scope.ServiceProvider);
       await RegisterScopesAsync(scope.ServiceProvider);

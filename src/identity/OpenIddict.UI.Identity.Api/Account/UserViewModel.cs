@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace tomware.OpenIddict.UI.Api
+namespace tomware.OpenIddict.UI.Identity.Api
 {
   public class ClaimViewModel
   {

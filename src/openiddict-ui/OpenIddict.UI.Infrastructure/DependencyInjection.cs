@@ -1,12 +1,14 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 using tomware.OpenIddict.UI.Core;
 
 namespace tomware.OpenIddict.UI.Infrastructure
 {
   public static class OpenIddictUIInfrastructureServicesExtensions
   {
+    // TODO: better naming
+
     public static OpenIddictBuilder AddUIStore(
       this OpenIddictBuilder builder,
       Action<OpenIddictUIStoreOptions> storeOptionsAction = null
@@ -16,21 +18,11 @@ namespace tomware.OpenIddict.UI.Infrastructure
 
       var coreBuilder = new OpenIddictCoreBuilder(builder.Services)
         .UseEFCoreUIStore<OpenIddictUIContext>();
-      
-      builder.Services.AddOpenIddictUIStore<OpenIddictUIContext>(storeOptionsAction);
+
+      builder.Services
+        .AddOpenIddictUIStore<OpenIddictUIContext>(storeOptionsAction);
 
       return builder;
-    }
-
-    private static OpenIddictEntityFrameworkCoreBuilder UseEFCoreUIStore<TContext>(
-      this OpenIddictCoreBuilder builder
-    ) where TContext : IOpenIddictUIContext
-    {
-      builder
-        .UseEntityFrameworkCore()
-        .UseDbContext(typeof(TContext));
-
-      return new OpenIddictEntityFrameworkCoreBuilder(builder.Services);
     }
 
     private static IServiceCollection AddOpenIddictUIInfrastructureServices(
@@ -46,6 +38,17 @@ namespace tomware.OpenIddict.UI.Infrastructure
       services.AddTransient<IApplicationService, ApplicationService>();
 
       return services;
+    }
+
+    private static OpenIddictEntityFrameworkCoreBuilder UseEFCoreUIStore<TContext>(
+      this OpenIddictCoreBuilder builder
+    ) where TContext : IOpenIddictUIContext
+    {
+      builder
+        .UseEntityFrameworkCore()
+        .UseDbContext(typeof(TContext));
+
+      return new OpenIddictEntityFrameworkCoreBuilder(builder.Services);
     }
 
     private static IServiceCollection AddOpenIddictUIStore<TContext>(

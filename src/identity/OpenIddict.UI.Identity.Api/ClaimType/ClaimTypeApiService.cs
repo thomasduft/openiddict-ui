@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using tomware.OpenIddict.UI.Core;
+using tomware.OpenIddict.UI.Identity.Core;
 
-namespace tomware.OpenIddict.UI.Api
+namespace tomware.OpenIddict.UI.Identity.Api
 {
   public interface IClaimTypeApiService
   {

@@ -1,6 +1,6 @@
 using System;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using tomware.OpenIddict.UI.Core;
 
 namespace tomware.OpenIddict.UI.Api
 {
@@ -9,57 +9,31 @@ namespace tomware.OpenIddict.UI.Api
     /// <summary>
     /// Register the Api for the EF based UI Store.
     /// </summary>
-    public static OpenIddictBuilder AddUIApis<TApplicationUser>(
+    public static OpenIddictBuilder AddUIApis(
       this OpenIddictBuilder builder,
       Action<OpenIddictUIApiOptions> uiApiOptions = null
-    ) where TApplicationUser : IdentityUser, new()
-    {
-      builder.Services
-        .AddOpenIddictUIApiServices<TApplicationUser>(uiApiOptions);
-
-      var options = new OpenIddictUIApiOptions();
-      uiApiOptions?.Invoke(options);
-      builder.AddOpenIddictUIRoutePrefix(options.RoutePrefix);
-
-      return builder;
-    }
-
-    /// <summary>
-    /// Registers the UserName to UserName UserCreationStrategy.
-    /// </summary>
-    public static OpenIddictBuilder AddUserNameUserCreationStrategy<TApplicationUser>(
-      this OpenIddictBuilder builder
-    ) where TApplicationUser : IdentityUser, new()
-    {
-      builder.Services
-        .AddTransient<IUserCreationStrategy<TApplicationUser>, UserNameUserCreationStrategy<TApplicationUser>>();
-
-      return builder;
-    }
-
-    private static OpenIddictBuilder AddOpenIddictUIRoutePrefix(
-      this OpenIddictBuilder builder,
-      string routePrefix
     )
     {
-      builder.Services.AddControllers(options =>
-      {
-        options.UseOpenIddictUIRoutePrefix(routePrefix);
-      });
+      var options = new OpenIddictUIApiOptions();
+      uiApiOptions?.Invoke(options);
+      builder.AddRoutePrefix(options.RoutePrefix);
+
+      builder.Services.AddApiServices(uiApiOptions);
 
       return builder;
     }
 
-    private static IServiceCollection AddOpenIddictUIApiServices<TApplicationUser>(
+    private static IServiceCollection AddApiServices(
       this IServiceCollection services,
-      Action<OpenIddictUIApiOptions> uiApiOptions = null
-    ) where TApplicationUser : IdentityUser, new()
+      Action<OpenIddictUIApiOptions> options = null
+    )
     {
+      services.Configure(options);
+
+      services.AddTransient<IScopeApiService, ScopeApiService>();
+      services.AddTransient<IApplicationApiService, ApplicationApiService>();
+
       services.AddAuthorizationServices();
-
-      services.AddApiServices<TApplicationUser>();
-
-      services.Configure(uiApiOptions);
 
       return services;
     }
@@ -81,21 +55,17 @@ namespace tomware.OpenIddict.UI.Api
       return services;
     }
 
-    private static IServiceCollection AddApiServices<TApplicationUser>(
-      this IServiceCollection services
-    ) where TApplicationUser : IdentityUser, new()
+    private static OpenIddictBuilder AddRoutePrefix(
+      this OpenIddictBuilder builder,
+      string routePrefix
+    )
     {
-      // Identity services
-      services.AddTransient<IUserCreationStrategy<TApplicationUser>, EmailUserCreationStrategy<TApplicationUser>>();
-      services.AddTransient<IAccountApiService, AccountApiService<TApplicationUser>>();
-      services.AddTransient<IRoleService, RoleService>();
-      services.AddTransient<IClaimTypeApiService, ClaimTypeApiService>();
+      builder.Services.AddControllers(options =>
+      {
+        options.UseOpenIddictUIRoutePrefix(routePrefix);
+      });
 
-      // OpenIddict services
-      services.AddTransient<IScopeApiService, ScopeApiService>();
-      services.AddTransient<IApplicationApiService, ApplicationApiService>();
-
-      return services;
+      return builder;
     }
   }
 }

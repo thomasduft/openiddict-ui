@@ -16,6 +16,8 @@ using Quartz;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using tomware.OpenIddict.UI.Api;
 using tomware.OpenIddict.UI.Infrastructure;
+using tomware.OpenIddict.UI.Identity.Api;
+using tomware.OpenIddict.UI.Identity.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Mvc.Server
@@ -179,7 +181,7 @@ namespace Mvc.Server
                        .Name));
         })
         // Register the Api for the EF based UI Store
-        .AddUIApis<ApplicationUser>(options =>
+        .AddUIApis(options =>
         {
           // Tell the system about the allowed Permissions it is built/configured for.
           options.Permissions = new List<string>
@@ -199,7 +201,20 @@ namespace Mvc.Server
             Permissions.Prefixes.Scope + "server_scope",
             Permissions.Prefixes.Scope + "api_scope"
           };
-        });
+        })
+        // Register the EF based OpenIddict Identity Store
+        .AddUIIdentityStore(options =>
+        {
+          options.OpenIddictUIIdentityContext = builder =>
+           builder.UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
+             sql => sql.MigrationsAssembly(typeof(Startup)
+                       .GetTypeInfo()
+                       .Assembly
+                       .GetName()
+                       .Name));
+        })
+        // Register the Api for the EF based OpenIddict Identity Store
+        .AddUIIdentityApis<ApplicationUser>();
 
       if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
       {

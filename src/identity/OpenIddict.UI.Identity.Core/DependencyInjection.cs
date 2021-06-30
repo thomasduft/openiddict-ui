@@ -2,7 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace tomware.OpenIddict.UI.Identity.Core
 {
-  public static class OpenIddictUICoreServicesExtensions
+  public static class OpenIddictUIIdentityCoreServicesExtensions
   {
     public static IServiceCollection AddOpenIddictUIIdentityCoreServices(
       this IServiceCollection services

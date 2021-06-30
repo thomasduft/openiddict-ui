@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace tomware.OpenIddict.UI.Api
+namespace tomware.OpenIddict.UI.Identity.Api
 {
   public interface IUserCreationStrategy<TIdentityUser>
     where TIdentityUser : IdentityUser

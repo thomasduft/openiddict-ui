@@ -36,6 +36,10 @@
     <ProjectReference Include="..\..\src\openiddict-ui\OpenIddict.UI.Core\tomware.OpenIddict.UI.Core.csproj" />
     <ProjectReference Include="..\..\src\openiddict-ui\OpenIddict.UI.Infrastructure\tomware.OpenIddict.UI.Infrastructure.csproj" />
     <ProjectReference Include="..\..\src\openiddict-ui\OpenIddict.UI.Api\tomware.OpenIddict.UI.Api.csproj" />
+
+    <ProjectReference Include="..\..\src\identity\OpenIddict.UI.Identity.Core\tomware.OpenIddict.UI.Identity.Core.csproj" />
+    <ProjectReference Include="..\..\src\identity\OpenIddict.UI.Identity.Infrastructure\tomware.OpenIddict.UI.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\identity\OpenIddict.UI.Identity.Api\tomware.OpenIddict.UI.Identity.Api.csproj" />
   </ItemGroup>
 
 </Project>
