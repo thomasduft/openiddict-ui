@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\samples\Server\Mvc.Server.csproj" />
+    <ProjectReference Include="..\samples\Server\Server.csproj" />
   </ItemGroup>
 
   <ItemGroup>

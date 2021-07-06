@@ -203,11 +203,15 @@ namespace Server
 
         // In every other case, render the consent form.
         default:
-          return View(new AuthorizeViewModel
-          {
-            ApplicationName = await _applicationManager.GetLocalizedDisplayNameAsync(application),
-            Scope = request.Scope
-          });
+
+          // TODO: sample at the moment comes without any consent page...
+          throw new NotImplementedException("Consent screen not yet implemented!");
+
+          // return View(new AuthorizeViewModel
+          // {
+          //   ApplicationName = await _applicationManager.GetLocalizedDisplayNameAsync(application),
+          //   Scope = request.Scope
+          // });
       }
     }
 

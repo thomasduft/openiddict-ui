@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
-using Mvc.Server;
-using Mvc.Server.Models;
+using Server;
+using Server.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
