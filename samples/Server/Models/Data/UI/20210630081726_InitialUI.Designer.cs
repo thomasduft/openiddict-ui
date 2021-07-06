@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tomware.OpenIddict.UI.Infrastructure;
 
-namespace Mvc.Server.Models.Data.UI
+namespace Server.Models.Data.UI
 {
     [DbContext(typeof(OpenIddictUIContext))]
     [Migration("20210630081726_InitialUI")]

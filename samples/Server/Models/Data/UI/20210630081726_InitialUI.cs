@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Mvc.Server.Models.Data.UI
+namespace Server.Models.Data.UI
 {
     public partial class InitialUI : Migration
     {

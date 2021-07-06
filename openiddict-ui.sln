@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tomware.OpenIddict.UI.Api",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{46B1FFC8-4718-4C96-A1B0-8A93C3B3B32B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvc.Server", "samples\Server\Mvc.Server.csproj", "{B20AFF8D-CB26-44CE-BBB8-E71E56F1A255}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "samples\Server\Server.csproj", "{B20AFF8D-CB26-44CE-BBB8-E71E56F1A255}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenIddict.UI.Tests", "tests\OpenIddict.UI.Tests.csproj", "{895A9934-CF2C-4A45-BF68-36C867F21A88}"
 EndProject

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Mvc.Server.Services
+namespace Server.Services
 {
   public interface ISmsSender
   {

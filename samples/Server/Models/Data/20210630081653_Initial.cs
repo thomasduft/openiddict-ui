@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Mvc.Server.Models.Data
+namespace Server.Models.Data
 {
     public partial class Initial : Migration
     {

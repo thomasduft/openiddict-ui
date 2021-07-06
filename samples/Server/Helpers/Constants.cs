@@ -1,4 +1,4 @@
-namespace Mvc.Server.Helpers
+namespace Server.Helpers
 {
   public static class Constants
   {

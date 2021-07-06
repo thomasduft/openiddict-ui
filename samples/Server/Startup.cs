@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Mvc.Server.Models;
-using Mvc.Server.Services;
+using Server.Models;
+using Server.Services;
 using Quartz;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using tomware.OpenIddict.UI.Api;
@@ -20,7 +20,7 @@ using tomware.OpenIddict.UI.Identity.Api;
 using tomware.OpenIddict.UI.Identity.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Mvc.Server
+namespace Server
 {
   public class Startup
   {
@@ -111,18 +111,14 @@ namespace Mvc.Server
 
           // Enable the authorization, device, logout, token, userinfo and verification endpoints.
           options.SetAuthorizationEndpointUris("/connect/authorize")
-                 .SetDeviceEndpointUris("/connect/device")
                  .SetLogoutEndpointUris("/connect/logout")
                  .SetTokenEndpointUris("/connect/token")
                  .SetIntrospectionEndpointUris("/connect/introspect")
-                 .SetUserinfoEndpointUris("/connect/userinfo")
-                 .SetVerificationEndpointUris("/connect/verify");
+                 .SetUserinfoEndpointUris("/connect/userinfo");
 
           // Note: this sample uses the code, device, password and refresh token flows, but you
           // can enable the other flows if you need to support implicit or client credentials.
           options.AllowAuthorizationCodeFlow()
-                 .AllowDeviceCodeFlow()
-                 // .AllowPasswordFlow()
                  .AllowRefreshTokenFlow();
 
           // Mark the "email", "profile", "roles" and "demo_api" scopes as supported scopes.
@@ -156,8 +152,7 @@ namespace Mvc.Server
                  .EnableAuthorizationEndpointPassthrough()
                  .EnableLogoutEndpointPassthrough()
                  .EnableTokenEndpointPassthrough()
-                 .EnableUserinfoEndpointPassthrough()
-                 .EnableVerificationEndpointPassthrough();
+                 .EnableUserinfoEndpointPassthrough();
           // .DisableTransportSecurityRequirement(); // During development, you can disable the HTTPS requirement.
         })
         // Register the OpenIddict validation components.

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Mvc.Server.Models.Data.Identity
+namespace Server.Models.Data.Identity
 {
     public partial class InitialIdentity : Migration
     {

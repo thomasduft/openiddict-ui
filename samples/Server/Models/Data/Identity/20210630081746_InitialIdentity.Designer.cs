@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tomware.OpenIddict.UI.Identity.Infrastructure;
 
-namespace Mvc.Server.Models.Data.Identity
+namespace Server.Models.Data.Identity
 {
     [DbContext(typeof(OpenIddictUIIdentityContext))]
     [Migration("20210630081746_InitialIdentity")]

@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Mvc.Server.Services;
+using Server.Services;
 
-namespace Mvc.Server
+namespace Server
 {
   public class Program
   {

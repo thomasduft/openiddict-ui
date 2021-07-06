@@ -6,9 +6,9 @@
 
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
-using Mvc.Server.ViewModels.Shared;
+using Server.ViewModels.Shared;
 
-namespace Mvc.Server
+namespace Server
 {
   [ApiExplorerSettings(GroupName = "sample-server")]
   public class ErrorController : Controller

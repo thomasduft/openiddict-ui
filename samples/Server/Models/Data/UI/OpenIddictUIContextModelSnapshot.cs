@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tomware.OpenIddict.UI.Infrastructure;
 
-namespace Mvc.Server.Models.Data.UI
+namespace Server.Models.Data.UI
 {
     [DbContext(typeof(OpenIddictUIContext))]
     partial class OpenIddictUIContextModelSnapshot : ModelSnapshot

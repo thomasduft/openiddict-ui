@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Mvc.Server.Helpers;
-using Mvc.Server.Models;
+using Server.Helpers;
+using Server.Models;
 using OpenIddict.Abstractions;
 using System;
 using System.Threading.Tasks;
@@ -10,7 +10,7 @@ using tomware.OpenIddict.UI.Identity.Infrastructure;
 using tomware.OpenIddict.UI.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Mvc.Server.Services
+namespace Server.Services
 {
   public interface IMigrationService
   {

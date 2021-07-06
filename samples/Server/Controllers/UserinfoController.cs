@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Mvc.Server.Models;
+using Server.Models;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Mvc.Server.Controllers
+namespace Server.Controllers
 {
   [ApiExplorerSettings(GroupName = "sample-server")]
   public class UserinfoController : Controller

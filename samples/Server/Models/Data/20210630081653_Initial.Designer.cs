@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Mvc.Server.Models;
+using Server.Models;
 
-namespace Mvc.Server.Models.Data
+namespace Server.Models.Data
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20210630081653_Initial")]
