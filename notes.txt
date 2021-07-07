@@ -21,9 +21,6 @@ TODO:
     - PolicyClient
 
 
-- own Server based on ASP.NET Razor Pages
-
-
 - laod options.Permissions from database instead of configuring it
 
 
@@ -49,12 +46,6 @@ TODO:
 
 
 - ??? authorizations, tokens
-
-
-----------------------------------------------------------------------------------------------------
-DEV Containers:
-- https://hub.docker.com/_/microsoft-vscode-devcontainers
-- https://github.com/microsoft/vscode-dev-containers/tree/master/containers/dotnet
 
 
 ----------------------------------------------------------------------------------------------------
