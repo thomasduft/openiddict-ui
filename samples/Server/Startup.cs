@@ -35,20 +35,6 @@ namespace Server
 
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddCors(o =>
-      {
-        o.AddPolicy("AllowAllOrigins", builder =>
-        {
-          builder
-            .WithOrigins("http://localhost:4200")
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
-        });
-      });
-
-      services.AddControllersWithViews();
-
       services.AddDbContext<ApplicationDbContext>(options =>
       {
         // Configure the context to use Microsoft SQL Server.
@@ -57,11 +43,11 @@ namespace Server
 
       // Register the Identity services.
       services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-        {
-          options.User.RequireUniqueEmail = true;
-        })
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+      {
+        options.User.RequireUniqueEmail = true;
+      })
+      .AddEntityFrameworkStores<ApplicationDbContext>()
+      .AddDefaultTokenProviders();
 
       // Configure Identity to use the same JWT claims as OpenIddict instead
       // of the legacy WS-Federation claims it uses by default (ClaimTypes),
@@ -251,11 +237,20 @@ namespace Server
       services.AddTransient<ISmsSender, AuthMessageSender>();
 
       services.AddScoped<IMigrationService, MigrationService>();
+
+      services.AddMvc();
     }
 
     public void Configure(IApplicationBuilder app)
     {
-      app.UseCors("AllowAllOrigins");
+      app.UseCors(builder =>
+      {
+        builder
+          .WithOrigins("http://localhost:4200")
+          .AllowAnyHeader()
+          .AllowAnyMethod()
+          .AllowCredentials();
+      });
 
       if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
       {
@@ -269,13 +264,6 @@ namespace Server
 
       app.UseDeveloperExceptionPage();
 
-      app.UseRequestLocalization(options =>
-      {
-        options.AddSupportedCultures("en-US", "fr-FR");
-        options.AddSupportedUICultures("en-US", "fr-FR");
-        options.SetDefaultCulture("en-US");
-      });
-
       app.UseDefaultFiles();
       app.UseStaticFiles();
 
@@ -286,10 +274,11 @@ namespace Server
       app.UseAuthentication();
       app.UseAuthorization();
 
-      app.UseEndpoints(options =>
+      app.UseEndpoints(builder =>
       {
-        options.MapControllers();
-        options.MapDefaultControllerRoute();
+        builder.MapControllers();
+        builder.MapRazorPages();
+        builder.MapDefaultControllerRoute();
       });
     }
   }

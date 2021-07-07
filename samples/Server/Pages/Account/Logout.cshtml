@@ -1,0 +1,29 @@
+@page
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@model LogoutModel
+@{
+  ViewData["Title"] = "Logout";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+  <section>
+    <p>Would you like to logout of the application?</p>
+    <form class="form" id="logout" method="post">
+      <input type="hidden" name="logoutId" value="@Model.LogoutId" />
+      <div class="form-group">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </section>
+}
+else
+{
+  <section>
+    <p>You have successfully logged out of the application.</p>
+  </section>
+}
