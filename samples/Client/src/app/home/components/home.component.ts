@@ -34,8 +34,8 @@ export class HomeComponent {
   public openProfile(): void {
     window.location.replace(
       isDevMode()
-        ? 'https://localhost:5000/manage'
-        : window.location.origin + '/manage'
+        ? 'https://localhost:5000/account/manage'
+        : window.location.origin + '/account/manage'
     );
   }
 

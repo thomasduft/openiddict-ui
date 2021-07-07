@@ -294,7 +294,14 @@ namespace Server
     public IActionResult Deny() => Forbid(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
 
     [HttpGet("~/connect/logout")]
-    public IActionResult Logout() => View();
+    public IActionResult Logout(string id_token_hint, string post_logout_redirect_uri)
+    {
+      return RedirectToPage("/Account/Logout", new
+      {
+        logoutId = id_token_hint,
+        redirectUri = post_logout_redirect_uri
+      });
+    }
 
     [ValidateAntiForgeryToken]
     [ActionName(nameof(Logout))]
