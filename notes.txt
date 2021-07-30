@@ -21,7 +21,7 @@ TODO:
     - PolicyClient
 
 
-- laod options.Permissions from database instead of configuring it
+- load options.Permissions from database instead of configuring it
 
 
 - better Client deployment
