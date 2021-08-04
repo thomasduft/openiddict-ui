@@ -6,14 +6,14 @@ TODO:
     - Infrastructure.EF
     - Infrastructure.EF.Sqlite
     - Api (WebApplication)
-  - ui (openiddict-ui)
-    - Core
-    - Infrastructure.EF
-    - Api
   - identity (openiddict-ui-identity)
     - Core
     - Infrastructure.EF
     - API
+  - openiddict (openiddict-ui)
+    - Core
+    - Infrastructure.EF
+    - Api
   - policy (openiddict-ui-policy)
     - Core
     - Infrastructure.EF

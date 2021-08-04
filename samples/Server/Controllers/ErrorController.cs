@@ -5,7 +5,7 @@ namespace Server
   [ApiExplorerSettings(GroupName = "sample-server")]
   public class ErrorController : Controller
   {
-    // TODO: enaple Error page again!
+    // TODO: enable Error page again!
 
     // [HttpGet, HttpPost, Route("~/error")]
     // public IActionResult Error()
