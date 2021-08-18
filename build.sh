@@ -2,7 +2,7 @@
 
 if [ -z "$1" ];
 then
-  echo No version specified! Please specify a valid version like 1.2.3!
+  echo No version specified! Please specify a valid version like 1.2.3 or 1.2.3-rc1!
   exit 1
 fi
 
@@ -27,17 +27,23 @@ echo ----
 if [ $2 = "r" ];
 then
   echo Packaging solution with Version = $1
-  dotnet pack src/openiddict-ui/OpenIddict.UI.Core -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
-  dotnet pack src/openiddict-ui/OpenIddict.UI.Infrastructure -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
-  dotnet pack src/openiddict-ui/OpenIddict.UI.Api -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
+  dotnet pack src/suite/OpenIddict.UI.Suite.Core -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
+  dotnet pack src/suite/OpenIddict.UI.Suite.Api -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
+
+  dotnet pack src/openiddict/OpenIddict.UI.Infrastructure -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
+  dotnet pack src/openiddict/OpenIddict.UI.Api -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
+
   dotnet pack src/identity/OpenIddict.UI.Identity.Core -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
   dotnet pack src/identity/OpenIddict.UI.Identity.Infrastructure -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
   dotnet pack src/identity/OpenIddict.UI.Identity.Api -c Release -p:PackageVersion=$1 -p:Version=$1 -o ./dist/nupkgs/
 else
   echo Packaging solution with PackageVersion = $1
-  dotnet pack src/openiddict-ui/OpenIddict.UI.Core -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
-  dotnet pack src/openiddict-ui/OpenIddict.UI.Infrastructure -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
-  dotnet pack src/openiddict-ui/OpenIddict.UI.Api -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
+  dotnet pack src/suite/OpenIddict.UI.Suite.Core -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
+  dotnet pack src/suite/OpenIddict.UI.Suite.Api -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
+
+  dotnet pack src/openiddict/OpenIddict.UI.Infrastructure -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
+  dotnet pack src/openiddict/OpenIddict.UI.Api -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
+
   dotnet pack src/identity/OpenIddict.UI.Identity.Core -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
   dotnet pack src/identity/OpenIddict.UI.Identity.Infrastructure -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
   dotnet pack src/identity/OpenIddict.UI.Identity.Api -c Release -p:PackageVersion=$1 -o ./dist/nupkgs/
