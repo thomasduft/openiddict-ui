@@ -18,7 +18,8 @@ As a goodie the samples demonstrates this features by an Angular SPA client that
 
 Assuming you downloaded the sources and opened [VS Code](https://code.visualstudio.com/) in the root repo directory you should be good to go! Ahh and of course you need [.NET Core](https://dotnet.microsoft.com/download) and [node.js](https://nodejs.org/en/) installed on your development environment.
 
-### Running the Server
+### Running the sample Server
+
 1. Open the integrated terminal in VS Code and type
 
 ```bash
@@ -28,6 +29,14 @@ dotnet build
 That ensures you are able to build the dotnet related stuff!
 
 2. Go to the VS Code Debug tab (Ctrl+Shift+D) and run the Server project.
+
+### Develop the sample Client (Angular based frontend)
+
+1. Make sure you installed [Node.js](https://nodejs.org/en/). 
+
+> If you develop in a [devcontainer](https://code.visualstudio.com/docs/remote/containers) then you are already good to go!
+
+2. First run the backend (see previous chapter)
 
 3. After the Server is running navigate within your favorite command line to the `Client` directory and type:
 
@@ -57,7 +66,7 @@ You should see now the login screen. You can now login with the pre-configured a
 
 ## Using it
 
-Follow the original setup of the OpenIddict in the `Startup.ConfigureServices(...)` - method and add the two additional extension hooks `AddUIStore(...)` and `AddUIApis<TIdentityUser>(...)` and you should be good to go.
+Follow the original setup of the OpenIddict in the `Startup.ConfigureServices(...)` - method and add your required additional extension hooks `AddUIStore(...)`, `AddUIApis(...)`, `AddUIIdentityStore(...)` and `AddUIIdentityApis<TIdentityUser>()`.
 
 ```csharp
 ...
