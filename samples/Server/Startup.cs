@@ -233,9 +233,6 @@ namespace Server
         });
       }
 
-      services.AddTransient<IEmailSender, AuthMessageSender>();
-      services.AddTransient<ISmsSender, AuthMessageSender>();
-
       services.AddScoped<IMigrationService, MigrationService>();
 
       services.AddMvc();

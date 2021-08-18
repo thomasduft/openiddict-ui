@@ -9,14 +9,14 @@ using tomware.OpenIddict.UI.Identity.Infrastructure;
 namespace Server.Models.Data.Identity
 {
     [DbContext(typeof(OpenIddictUIIdentityContext))]
-    [Migration("20210630081746_InitialIdentity")]
+    [Migration("20210818083337_InitialIdentity")]
     partial class InitialIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.7");
+                .HasAnnotation("ProductVersion", "5.0.9");
 
             modelBuilder.Entity("tomware.OpenIddict.UI.Identity.Core.ClaimType", b =>
                 {

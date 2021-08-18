@@ -9,14 +9,14 @@ using tomware.OpenIddict.UI.Infrastructure;
 namespace Server.Models.Data.UI
 {
     [DbContext(typeof(OpenIddictUIContext))]
-    [Migration("20210630081726_InitialUI")]
+    [Migration("20210818083326_InitialUI")]
     partial class InitialUI
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.7");
+                .HasAnnotation("ProductVersion", "5.0.9");
 
             modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication", b =>
                 {

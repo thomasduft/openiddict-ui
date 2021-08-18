@@ -1,4 +1,7 @@
 TODO:
+
+- add RequireConsent-property for application detail
+
 - structuring
   - suite (openiddict-ui-suite)
     - Core
@@ -64,5 +67,6 @@ dotnet test /p:ParallelizeTestCollections=false /p:CollectCoverage=true /p:Inclu
 
 ----------------------------------------------------------------------------------------------------
 Tips:
+- dotnet tool install --global dotnet-ef
 - dotnet tool install --global dotnet-outdated-tool
   export PATH="$PATH:/home/vscode/.dotnet/tools"
