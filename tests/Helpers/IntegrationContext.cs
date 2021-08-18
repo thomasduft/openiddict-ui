@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
-using Mvc.Server;
+using Server;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -17,7 +17,7 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
     private readonly HttpClient _client;
     private readonly string _accessToken;
 
-    protected IntegrationContext(IntegrationApplicationFactory<Mvc.Server.Startup> factory)
+    protected IntegrationContext(IntegrationApplicationFactory<Server.Startup> factory)
     {
       _factory = factory;
 

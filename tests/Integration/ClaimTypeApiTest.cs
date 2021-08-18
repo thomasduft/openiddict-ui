@@ -1,11 +1,11 @@
-using Mvc.Server;
+using Server;
 using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using tomware.OpenIddict.UI.Api;
+using tomware.OpenIddict.UI.Identity.Api;
 using tomware.OpenIddict.UI.Tests.Helpers;
 using Xunit;
 

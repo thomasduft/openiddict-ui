@@ -1,16 +1,16 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Mvc.Server.Helpers;
-using Mvc.Server.Models;
+using Server.Helpers;
+using Server.Models;
 using OpenIddict.Abstractions;
 using System;
-using System.Globalization;
 using System.Threading.Tasks;
+using tomware.OpenIddict.UI.Identity.Infrastructure;
 using tomware.OpenIddict.UI.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Mvc.Server.Services
+namespace Server.Services
 {
   public interface IMigrationService
   {
@@ -31,10 +31,13 @@ namespace Mvc.Server.Services
       using var scope = _serviceProvider.CreateScope();
 
       var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-      var uIContext = scope.ServiceProvider.GetRequiredService<OpenIddictUIContext>();
-
       await context.Database.MigrateAsync();
-      await uIContext.Database.MigrateAsync();
+
+      var uiContext = scope.ServiceProvider.GetRequiredService<OpenIddictUIContext>();
+      await uiContext.Database.MigrateAsync();
+
+      var uiIdentityContext = scope.ServiceProvider.GetRequiredService<OpenIddictUIIdentityContext>();
+      await uiIdentityContext.Database.MigrateAsync();
 
       await RegisterApplicationsAsync(scope.ServiceProvider);
       await RegisterScopesAsync(scope.ServiceProvider);
@@ -52,7 +55,7 @@ namespace Mvc.Server.Services
           {
             ClientId = "spa_client",
             // ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
-            ConsentType = ConsentTypes.Explicit,
+            ConsentType = ConsentTypes.Implicit,
             DisplayName = "SPA Client Application",
             PostLogoutRedirectUris =
             {

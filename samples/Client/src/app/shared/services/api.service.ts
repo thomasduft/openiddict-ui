@@ -4,11 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'api';
-
-  public get apiUrl(): string {
-    return `${this.baseUrl}`;
-  }
+  private baseUrl = '/api';
 
   public createRawUrl(endpoint: string): string {
     return `${endpoint}`;

@@ -10,15 +10,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Mvc.Server.Models;
-using Mvc.Server.Services;
+using Server.Models;
+using Server.Services;
 using Quartz;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using tomware.OpenIddict.UI.Api;
 using tomware.OpenIddict.UI.Infrastructure;
+using tomware.OpenIddict.UI.Identity.Api;
+using tomware.OpenIddict.UI.Identity.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Mvc.Server
+namespace Server
 {
   public class Startup
   {
@@ -33,20 +35,6 @@ namespace Mvc.Server
 
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddCors(o =>
-      {
-        o.AddPolicy("AllowAllOrigins", builder =>
-        {
-          builder
-            .WithOrigins("http://localhost:4200")
-            .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
-        });
-      });
-
-      services.AddControllersWithViews();
-
       services.AddDbContext<ApplicationDbContext>(options =>
       {
         // Configure the context to use Microsoft SQL Server.
@@ -55,11 +43,11 @@ namespace Mvc.Server
 
       // Register the Identity services.
       services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-        {
-          options.User.RequireUniqueEmail = true;
-        })
-        .AddEntityFrameworkStores<ApplicationDbContext>()
-        .AddDefaultTokenProviders();
+      {
+        options.User.RequireUniqueEmail = true;
+      })
+      .AddEntityFrameworkStores<ApplicationDbContext>()
+      .AddDefaultTokenProviders();
 
       // Configure Identity to use the same JWT claims as OpenIddict instead
       // of the legacy WS-Federation claims it uses by default (ClaimTypes),
@@ -109,18 +97,14 @@ namespace Mvc.Server
 
           // Enable the authorization, device, logout, token, userinfo and verification endpoints.
           options.SetAuthorizationEndpointUris("/connect/authorize")
-                 .SetDeviceEndpointUris("/connect/device")
                  .SetLogoutEndpointUris("/connect/logout")
                  .SetTokenEndpointUris("/connect/token")
                  .SetIntrospectionEndpointUris("/connect/introspect")
-                 .SetUserinfoEndpointUris("/connect/userinfo")
-                 .SetVerificationEndpointUris("/connect/verify");
+                 .SetUserinfoEndpointUris("/connect/userinfo");
 
           // Note: this sample uses the code, device, password and refresh token flows, but you
           // can enable the other flows if you need to support implicit or client credentials.
           options.AllowAuthorizationCodeFlow()
-                 .AllowDeviceCodeFlow()
-                 // .AllowPasswordFlow()
                  .AllowRefreshTokenFlow();
 
           // Mark the "email", "profile", "roles" and "demo_api" scopes as supported scopes.
@@ -154,8 +138,7 @@ namespace Mvc.Server
                  .EnableAuthorizationEndpointPassthrough()
                  .EnableLogoutEndpointPassthrough()
                  .EnableTokenEndpointPassthrough()
-                 .EnableUserinfoEndpointPassthrough()
-                 .EnableVerificationEndpointPassthrough();
+                 .EnableUserinfoEndpointPassthrough();
           // .DisableTransportSecurityRequirement(); // During development, you can disable the HTTPS requirement.
         })
         // Register the OpenIddict validation components.
@@ -179,7 +162,7 @@ namespace Mvc.Server
                        .Name));
         })
         // Register the Api for the EF based UI Store
-        .AddUIApis<ApplicationUser>(options =>
+        .AddUIApis(options =>
         {
           // Tell the system about the allowed Permissions it is built/configured for.
           options.Permissions = new List<string>
@@ -190,7 +173,6 @@ namespace Mvc.Server
             Permissions.Endpoints.Introspection,
             Permissions.GrantTypes.AuthorizationCode,
             Permissions.GrantTypes.DeviceCode,
-            Permissions.GrantTypes.Password,
             Permissions.GrantTypes.RefreshToken,
             Permissions.ResponseTypes.Code,
             Permissions.Scopes.Email,
@@ -199,7 +181,20 @@ namespace Mvc.Server
             Permissions.Prefixes.Scope + "server_scope",
             Permissions.Prefixes.Scope + "api_scope"
           };
-        });
+        })
+        // Register the EF based OpenIddict Identity Store
+        .AddUIIdentityStore(options =>
+        {
+          options.OpenIddictUIIdentityContext = builder =>
+           builder.UseSqlite(Configuration.GetConnectionString("DefaultConnection"),
+             sql => sql.MigrationsAssembly(typeof(Startup)
+                       .GetTypeInfo()
+                       .Assembly
+                       .GetName()
+                       .Name));
+        })
+        // Register the Api for the EF based OpenIddict Identity Store
+        .AddUIIdentityApis<ApplicationUser>();
 
       if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
       {
@@ -238,15 +233,21 @@ namespace Mvc.Server
         });
       }
 
-      services.AddTransient<IEmailSender, AuthMessageSender>();
-      services.AddTransient<ISmsSender, AuthMessageSender>();
-
       services.AddScoped<IMigrationService, MigrationService>();
+
+      services.AddMvc();
     }
 
     public void Configure(IApplicationBuilder app)
     {
-      app.UseCors("AllowAllOrigins");
+      app.UseCors(builder =>
+      {
+        builder
+          .WithOrigins("http://localhost:4200")
+          .AllowAnyHeader()
+          .AllowAnyMethod()
+          .AllowCredentials();
+      });
 
       if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
       {
@@ -260,13 +261,6 @@ namespace Mvc.Server
 
       app.UseDeveloperExceptionPage();
 
-      app.UseRequestLocalization(options =>
-      {
-        options.AddSupportedCultures("en-US", "fr-FR");
-        options.AddSupportedUICultures("en-US", "fr-FR");
-        options.SetDefaultCulture("en-US");
-      });
-
       app.UseDefaultFiles();
       app.UseStaticFiles();
 
@@ -277,10 +271,11 @@ namespace Mvc.Server
       app.UseAuthentication();
       app.UseAuthorization();
 
-      app.UseEndpoints(options =>
+      app.UseEndpoints(builder =>
       {
-        options.MapControllers();
-        options.MapDefaultControllerRoute();
+        builder.MapControllers();
+        builder.MapRazorPages();
+        builder.MapDefaultControllerRoute();
       });
     }
   }

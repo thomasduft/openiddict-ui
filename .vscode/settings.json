@@ -1,8 +1,16 @@
 {
+  "dotnet-test-explorer.testProjectPath": "tests",
   "editor.tabSize": 2,
   "editor.rulers": [
     100
   ],
-  "dotnet-test-explorer.testProjectPath": "tests",
-  "omnisharp.enableRoslynAnalyzers": true
+  "omnisharp.enableRoslynAnalyzers": true,
+  "TodoParser": {
+    "include": ["cs, cshtml, ts"],
+    "folderExclude": ["node_modules", ".vscode", ".devcontainer", ".github"],
+    "only": ["samples", "src", "tests"],
+    "showInProblems": false,
+    "markers": ["NOTE:", "REMINDER:", "TODO:", ["FIXME", "Warning"]],
+    "autoDefaultMarkers": true
+  }
 }

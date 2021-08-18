@@ -1,4 +1,32 @@
 TODO:
+
+- add RequireConsent-property for application detail
+
+- structuring
+  - suite (openiddict-ui-suite)
+    - Core
+    - Infrastructure
+    - Infrastructure.EF
+    - Infrastructure.EF.Sqlite
+    - Api (WebApplication)
+  - identity (openiddict-ui-identity)
+    - Core
+    - Infrastructure.EF
+    - API
+  - openiddict (openiddict-ui)
+    - Core
+    - Infrastructure.EF
+    - Api
+  - policy (openiddict-ui-policy)
+    - Core
+    - Infrastructure.EF
+    - API
+    - PolicyClient
+
+
+- load options.Permissions from database instead of configuring it
+
+
 - better Client deployment
   - introduce deploy.js
   - check server stylings not removed
@@ -22,11 +50,6 @@ TODO:
 
 - ??? authorizations, tokens
 
-----------------------------------------------------------------------------------------------------
-DEV Containers:
-- https://hub.docker.com/_/microsoft-vscode-devcontainers
-- https://github.com/microsoft/vscode-dev-containers/tree/master/containers/dotnet
-
 
 ----------------------------------------------------------------------------------------------------
 EF:
@@ -36,6 +59,7 @@ EF:
 
 - dotnet ef migrations add Initial -c ApplicationDbContext -o Models/Data
 - dotnet ef migrations add InitialUI -c OpenIddictUIContext -o Models/Data/UI
+- dotnet ef migrations add InitialIdentity -c OpenIddictUIIdentityContext -o Models/Data/Identity
 
 ----------------------------------------------------------------------------------------------------
 Tests:
@@ -43,5 +67,6 @@ dotnet test /p:ParallelizeTestCollections=false /p:CollectCoverage=true /p:Inclu
 
 ----------------------------------------------------------------------------------------------------
 Tips:
+- dotnet tool install --global dotnet-ef
 - dotnet tool install --global dotnet-outdated-tool
   export PATH="$PATH:/home/vscode/.dotnet/tools"

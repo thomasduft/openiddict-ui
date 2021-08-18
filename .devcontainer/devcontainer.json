@@ -17,9 +17,10 @@
   },
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [
+    "formulahendry.dotnet-test-explorer",
+    "minhthai.vscode-todo-parser",
     "ms-dotnettools.csharp",
-    "ryanluker.vscode-coverage-gutters",
-    "formulahendry.dotnet-test-explorer"
+    "ryanluker.vscode-coverage-gutters"
   ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [

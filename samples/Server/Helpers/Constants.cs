@@ -1,4 +1,4 @@
-namespace Mvc.Server.Helpers
+namespace Server.Helpers
 {
   public static class Constants
   {
@@ -8,7 +8,7 @@ namespace Mvc.Server.Helpers
 
     public static bool IsTestingEnvironment(string environmentName)
     {
-      return environmentName == Mvc.Server.Helpers.Constants.TESTING_ENVIRONMENT;
+      return environmentName == Server.Helpers.Constants.TESTING_ENVIRONMENT;
     }
   }
 

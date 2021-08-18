@@ -1,10 +1,4 @@
-﻿/*
- * Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
- * See https://github.com/openiddict/openiddict-core for more information concerning
- * the license and the contributors participating to this project.
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -16,14 +10,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
-using Mvc.Server.Helpers;
-using Mvc.Server.Models;
-using Mvc.Server.ViewModels.Authorization;
+using Server.Helpers;
+using Server.Models;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Mvc.Server
+namespace Server
 {
   [ApiExplorerSettings(GroupName = "sample-server")]
   public class AuthorizationController : Controller
@@ -48,13 +41,9 @@ namespace Mvc.Server
       _userManager = userManager;
     }
 
-    #region Authorization code, implicit and hybrid flows
-    // Note: to support interactive flows like the code flow,
-    // you must provide your own authorization endpoint action:
-
+    [IgnoreAntiforgeryToken]
     [HttpGet("~/connect/authorize")]
     [HttpPost("~/connect/authorize")]
-    [IgnoreAntiforgeryToken]
     public async Task<IActionResult> Authorize()
     {
       var request = HttpContext.GetOpenIddictServerRequest() ??
@@ -214,16 +203,22 @@ namespace Mvc.Server
 
         // In every other case, render the consent form.
         default:
-          return View(new AuthorizeViewModel
-          {
-            ApplicationName = await _applicationManager.GetLocalizedDisplayNameAsync(application),
-            Scope = request.Scope
-          });
+
+          // TODO: sample at the moment comes without any consent page...
+          throw new NotImplementedException("Consent screen not yet implemented!");
+
+          // return View(new AuthorizeViewModel
+          // {
+          //   ApplicationName = await _applicationManager.GetLocalizedDisplayNameAsync(application),
+          //   Scope = request.Scope
+          // });
       }
     }
 
-    [Authorize, FormValueRequired("submit.Accept")]
-    [HttpPost("~/connect/authorize"), ValidateAntiForgeryToken]
+    [Authorize]
+    [ValidateAntiForgeryToken]
+    [HttpPost("~/connect/authorize")]
+    [FormValueRequired("submit.Accept")]
     public async Task<IActionResult> Accept()
     {
       var request = HttpContext.GetOpenIddictServerRequest() ??
@@ -292,117 +287,25 @@ namespace Mvc.Server
       return SignIn(principal, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
     }
 
-    [Authorize, FormValueRequired("submit.Deny")]
-    [HttpPost("~/connect/authorize"), ValidateAntiForgeryToken]
-    // Notify OpenIddict that the authorization grant has been denied by the resource owner
-    // to redirect the user agent to the client application using the appropriate response_mode.
+    [Authorize]
+    [ValidateAntiForgeryToken]
+    [HttpPost("~/connect/authorize")]
+    [FormValueRequired("submit.Deny")]
     public IActionResult Deny() => Forbid(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
-    #endregion
-
-    #region Device flow
-    // Note: to support the device flow, you must provide your own verification endpoint action:
-    [Authorize, HttpGet("~/connect/verify")]
-    public async Task<IActionResult> Verify()
-    {
-      var request = HttpContext.GetOpenIddictServerRequest() ??
-          throw new InvalidOperationException("The OpenID Connect request cannot be retrieved.");
-
-      // If the user code was not specified in the query string (e.g as part of the verification_uri_complete),
-      // render a form to ask the user to enter the user code manually (non-digit chars are automatically ignored).
-      if (string.IsNullOrEmpty(request.UserCode))
-      {
-        return View(new VerifyViewModel());
-      }
-
-      // Retrieve the claims principal associated with the user code.
-      var result = await HttpContext.AuthenticateAsync(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
-      if (result.Succeeded)
-      {
-        // Retrieve the application details from the database using the client_id stored in the principal.
-        var application = await _applicationManager.FindByClientIdAsync(result.Principal.GetClaim(Claims.ClientId)) ??
-            throw new InvalidOperationException("Details concerning the calling client application cannot be found.");
-
-        // Render a form asking the user to confirm the authorization demand.
-        return View(new VerifyViewModel
-        {
-          ApplicationName = await _applicationManager.GetLocalizedDisplayNameAsync(application),
-          Scope = string.Join(" ", result.Principal.GetScopes()),
-          UserCode = request.UserCode
-        });
-      }
-
-      // Redisplay the form when the user code is not valid.
-      return View(new VerifyViewModel
-      {
-        Error = result.Properties?.GetString(OpenIddictServerAspNetCoreConstants.Properties.Error),
-        ErrorDescription = result.Properties?.GetString(OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription)
-      });
-    }
-
-    [Authorize, FormValueRequired("submit.Accept")]
-    [HttpPost("~/connect/verify"), ValidateAntiForgeryToken]
-    public async Task<IActionResult> VerifyAccept()
-    {
-      // Retrieve the profile of the logged in user.
-      var user = await _userManager.GetUserAsync(User) ??
-          throw new InvalidOperationException("The user details cannot be retrieved.");
-
-      // Retrieve the claims principal associated with the user code.
-      var result = await HttpContext.AuthenticateAsync(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
-      if (result.Succeeded)
-      {
-        var principal = await _signInManager.CreateUserPrincipalAsync(user);
-
-        // Note: in this sample, the granted scopes match the requested scope
-        // but you may want to allow the user to uncheck specific scopes.
-        // For that, simply restrict the list of scopes before calling SetScopes.
-        principal.SetScopes(result.Principal.GetScopes());
-        principal.SetResources(await _scopeManager.ListResourcesAsync(principal.GetScopes()).ToListAsync());
-
-        foreach (var claim in principal.Claims)
-        {
-          claim.SetDestinations(GetDestinations(claim, principal));
-        }
-
-        var properties = new AuthenticationProperties
-        {
-          // This property points to the address OpenIddict will automatically
-          // redirect the user to after validating the authorization demand.
-          RedirectUri = "/"
-        };
-
-        return SignIn(principal, properties, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
-      }
-
-      // Redisplay the form when the user code is not valid.
-      return View(new VerifyViewModel
-      {
-        Error = result.Properties?.GetString(OpenIddictServerAspNetCoreConstants.Properties.Error),
-        ErrorDescription = result.Properties?.GetString(OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription)
-      });
-    }
-
-    [Authorize, FormValueRequired("submit.Deny")]
-    [HttpPost("~/connect/verify"), ValidateAntiForgeryToken]
-    // Notify OpenIddict that the authorization grant has been denied by the resource owner.
-    public IActionResult VerifyDeny() => Forbid(
-        authenticationSchemes: OpenIddictServerAspNetCoreDefaults.AuthenticationScheme,
-        properties: new AuthenticationProperties()
-        {
-          // This property points to the address OpenIddict will automatically
-          // redirect the user to after rejecting the authorization demand.
-          RedirectUri = "/"
-        });
-    #endregion
-
-    #region Logout support for interactive flows like code and implicit
-    // Note: the logout action is only useful when implementing interactive
-    // flows like the authorization code flow or the implicit flow.
 
     [HttpGet("~/connect/logout")]
-    public IActionResult Logout() => View();
+    public IActionResult Logout(string id_token_hint, string post_logout_redirect_uri)
+    {
+      return RedirectToPage("/Account/Logout", new
+      {
+        logoutId = id_token_hint,
+        redirectUri = post_logout_redirect_uri
+      });
+    }
 
-    [ActionName(nameof(Logout)), HttpPost("~/connect/logout"), ValidateAntiForgeryToken]
+    [ValidateAntiForgeryToken]
+    [ActionName(nameof(Logout))]
+    [HttpPost("~/connect/logout")]
     public async Task<IActionResult> LogoutPost()
     {
       // Ask ASP.NET Core Identity to delete the local and external cookies created
@@ -420,13 +323,9 @@ namespace Mvc.Server
             RedirectUri = "/"
           });
     }
-    #endregion
 
-    #region Password, authorization code, device and refresh token flows
-    // Note: to support non-interactive flows like password,
-    // you must provide your own token endpoint action:
-
-    [HttpPost("~/connect/token"), Produces("application/json")]
+    [Produces("application/json")]
+    [HttpPost("~/connect/token")]
     public async Task<IActionResult> Exchange()
     {
       var request = HttpContext.GetOpenIddictServerRequest() ??
@@ -520,7 +419,6 @@ namespace Mvc.Server
 
       throw new InvalidOperationException("The specified grant type is not supported.");
     }
-    #endregion
 
     private static IEnumerable<string> GetDestinations(Claim claim, ClaimsPrincipal principal)
     {

@@ -6,7 +6,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build-server",
-      "program": "${workspaceFolder}/samples/Server/bin/Debug/net5.0/Mvc.Server.dll",
+      "program": "${workspaceFolder}/samples/Server/bin/Debug/net5.0/Server.dll",
       "args": [],
       "cwd": "${workspaceFolder}/samples/Server",
       "stopAtEntry": false,

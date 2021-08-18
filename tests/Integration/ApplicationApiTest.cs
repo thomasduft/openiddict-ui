@@ -1,4 +1,4 @@
-using Mvc.Server;
+using Server;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -37,10 +37,10 @@ namespace tomware.OpenIddict.UI.Tests.Integration
       switch (verb)
       {
         case HttpVerb.Post:
-          response = await PostAsync(endpoint, new RoleViewModel(), authorized);
+          response = await PostAsync(endpoint, new ApplicationViewModel(), authorized);
           break;
         case HttpVerb.Put:
-          response = await PutAsync(endpoint, new RoleViewModel(), authorized);
+          response = await PutAsync(endpoint, new ApplicationViewModel(), authorized);
           break;
         case HttpVerb.Delete:
           response = await DeleteAsync(endpoint, authorized);
