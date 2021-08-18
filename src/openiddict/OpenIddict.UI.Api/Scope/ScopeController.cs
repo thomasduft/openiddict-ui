@@ -4,30 +4,39 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using tomware.OpenIddict.UI.Suite.Api;
 
-namespace tomware.OpenIddict.UI.Identity.Api
+namespace tomware.OpenIddict.UI.Api
 {
-  [Route("roles")]
-  [ApiExplorerSettings(GroupName = "openiddict-ui-identity")]
-  public class RoleController : ApiControllerBase
+  [Route("scopes")]
+  [ApiExplorerSettings(GroupName = "openiddict-ui-api")]
+  public class ScopeController : ApiControllerBase
   {
-    private readonly IRoleService _service;
+    private readonly IScopeApiService _service;
 
-    public RoleController(IRoleService service)
+    public ScopeController(IScopeApiService service)
     {
       _service = service;
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<RoleViewModel>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetRolesAsync()
+    [ProducesResponseType(typeof(IEnumerable<ScopeViewModel>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetScopesAsync()
     {
-      var result = await _service.GetRolesAsync();
+      var result = await _service.GetScopesAsync();
+
+      return Ok(result);
+    }
+
+    [HttpGet("names")]
+    [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetScopeNamesAsync()
+    {
+      var result = await _service.GetScopeNamesAsync();
 
       return Ok(result);
     }
 
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(RoleViewModel), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ScopeViewModel), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAsync(string id)
     {
       if (id == null) return BadRequest();
@@ -39,20 +48,20 @@ namespace tomware.OpenIddict.UI.Identity.Api
     }
 
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<IActionResult> CreateAsync([FromBody] RoleViewModel model)
+    [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
+    public async Task<IActionResult> CreateAsync([FromBody] ScopeViewModel model)
     {
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
 
       var result = await _service.CreateAsync(model);
 
-      return Created($"roles/{result}", result);
+      return Created($"scopes/{result}", result);
     }
 
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> UpdateAsync([FromBody] RoleViewModel model)
+    public async Task<IActionResult> UpdateAsync([FromBody] ScopeViewModel model)
     {
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);

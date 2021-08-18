@@ -4,9 +4,9 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>tomware.OpenIddict.UI.Identity.Infrastructure</AssemblyName>
-    <RootNamespace>tomware.OpenIddict.UI.Identity.Infrastructure</RootNamespace>
-    <Description>Infrastructure types for openiddict UI Identity</Description>
+    <AssemblyName>tomware.OpenIddict.UI.Infrastructure</AssemblyName>
+    <RootNamespace>tomware.OpenIddict.UI.Infrastructure</RootNamespace>
+    <Description>Infrastructure types for openiddict UI</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,15 +16,12 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-    <PackageReference Include="OpenIddict.Abstractions" Version="3.1.0" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="3.1.0" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore.Models" Version="3.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\suite\OpenIddict.UI.Suite.Core\tomware.OpenIddict.UI.Suite.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\OpenIddict.UI.Identity.Core\tomware.OpenIddict.UI.Identity.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

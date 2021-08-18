@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using tomware.OpenIddict.UI.Core;
+using tomware.OpenIddict.UI.Suite.Core;
 using tomware.OpenIddict.UI.Identity.Core;
 
 namespace tomware.OpenIddict.UI.Identity.Api

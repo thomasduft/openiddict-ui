@@ -24,6 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\suite\OpenIddict.UI.Suite.Api\tomware.OpenIddict.UI.Suite.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OpenIddict.UI.Identity.Core\tomware.OpenIddict.UI.Identity.Core.csproj" />
   </ItemGroup>
 

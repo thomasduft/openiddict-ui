@@ -1,14 +1,13 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using tomware.OpenIddict.UI.Core;
+using tomware.OpenIddict.UI.Suite.Core;
 using tomware.OpenIddict.UI.Identity.Core;
 
 namespace tomware.OpenIddict.UI.Identity.Infrastructure
 {
   public static class OpenIddictUIIdentityInfrastructureServicesExtensions
   {
-    // TODO: better naming
     public static OpenIddictBuilder AddUIIdentityStore(
       this OpenIddictBuilder builder,
       Action<OpenIddictUIIdentityStoreOptions> storeOptionsAction = null

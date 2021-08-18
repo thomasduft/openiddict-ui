@@ -1,7 +1,9 @@
 using System;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using tomware.OpenIddict.UI.Core;
+using tomware.OpenIddict.UI.Suite.Core;
+using tomware.OpenIddict.UI.Suite.Api;
+using System.Collections.Generic;
 
 namespace tomware.OpenIddict.UI.Identity.Api
 {
@@ -64,7 +66,7 @@ namespace tomware.OpenIddict.UI.Identity.Api
 
       return services;
     }
-    
+
     private static OpenIddictBuilder AddRoutePrefix(
       this OpenIddictBuilder builder,
       string routePrefix
@@ -72,7 +74,12 @@ namespace tomware.OpenIddict.UI.Identity.Api
     {
       builder.Services.AddControllers(options =>
       {
-        options.UseOpenIddictUIIdentityRoutePrefix(routePrefix);
+        options.UseOpenIddictUIRoutePrefix(routePrefix, new List<Type>
+        {
+          typeof(AccountController),
+          typeof(ClaimTypeController),
+          typeof(RoleController)
+        });
       });
 
       return builder;

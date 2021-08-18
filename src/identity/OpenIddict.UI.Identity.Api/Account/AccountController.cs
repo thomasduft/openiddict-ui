@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using tomware.OpenIddict.UI.Suite.Api;
 
 namespace tomware.OpenIddict.UI.Identity.Api
 {
   [Route("accounts")]
+  [ApiExplorerSettings(GroupName = "openiddict-ui-identity")]
   public class AccountController : ApiControllerBase
   {
     private readonly IAccountApiService _service;

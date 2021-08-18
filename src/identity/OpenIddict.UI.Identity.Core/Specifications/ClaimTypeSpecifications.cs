@@ -1,4 +1,4 @@
-using tomware.OpenIddict.UI.Core;
+using tomware.OpenIddict.UI.Suite.Core;
 
 namespace tomware.OpenIddict.UI.Identity.Core
 {

@@ -1,33 +1,36 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using tomware.OpenIddict.UI.Suite.Api;
 
-namespace tomware.OpenIddict.UI.Identity.Api
+namespace tomware.OpenIddict.UI.Api
 {
-  [Route("roles")]
-  [ApiExplorerSettings(GroupName = "openiddict-ui-identity")]
-  public class RoleController : ApiControllerBase
+  [Route("application")]
+  [ApiExplorerSettings(GroupName = "openiddict-ui-api")]
+  public class ApplicationController : ApiControllerBase
   {
-    private readonly IRoleService _service;
+    private readonly IApplicationApiService _service;
 
-    public RoleController(IRoleService service)
+    public ApplicationController(
+      IApplicationApiService service
+    )
     {
       _service = service;
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<RoleViewModel>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetRolesAsync()
+    [ProducesResponseType(typeof(IEnumerable<ApplicationViewModel>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetAsync()
     {
-      var result = await _service.GetRolesAsync();
+      var result = await _service.GetApplicationsAsync();
 
       return Ok(result);
     }
 
     [HttpGet("{id}")]
-    [ProducesResponseType(typeof(RoleViewModel), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApplicationViewModel), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAsync(string id)
     {
       if (id == null) return BadRequest();
@@ -39,20 +42,20 @@ namespace tomware.OpenIddict.UI.Identity.Api
     }
 
     [HttpPost]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<IActionResult> CreateAsync([FromBody] RoleViewModel model)
+    [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
+    public async Task<IActionResult> CreateAsync([FromBody] ApplicationViewModel model)
     {
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
 
       var result = await _service.CreateAsync(model);
 
-      return Created($"roles/{result}", result);
+      return Created($"clients/{result}", result);
     }
 
     [HttpPut]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> UpdateAsync([FromBody] RoleViewModel model)
+    public async Task<IActionResult> UpdateAsync([FromBody] ApplicationViewModel model)
     {
       if (model == null) return BadRequest();
       if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -71,6 +74,16 @@ namespace tomware.OpenIddict.UI.Identity.Api
       await _service.DeleteAsync(id);
 
       return NoContent();
+    }
+
+    [HttpGet("options")]
+    [AllowAnonymous]
+    [ProducesResponseType(typeof(ApplicationOptionsViewModel), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetOptionsAsync()
+    {
+      var result = await _service.GetOptionsAsync();
+
+      return Ok(result);
     }
   }
 }
