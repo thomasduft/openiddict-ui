@@ -86,7 +86,7 @@ services.AddOpenIddict()
   {
     ...
   })
-  // Register the EF based UI Store
+  // Register the EF based UI Store for OpenIddict related entities.
   .AddUIStore(options =>
   {
     options.OpenIddictUIContext = builder =>
@@ -97,7 +97,7 @@ services.AddOpenIddict()
                   .GetName()
                   .Name));
   })
-  // Register the API for the EF and ASP.NET Identity based UI Store
+  // Register the APIs for the EF based UI Store based on OpenIddict.
   .AddUIApis(options =>
   {
     // Tell the system about the allowed Permissions it is built/configured for.
@@ -116,7 +116,7 @@ services.AddOpenIddict()
       Permissions.Prefixes.Scope + "demo_api"
     }
   })
-  // Register the EF based OpenIddict Identity Store
+  // Register the EF based UI Store for the ASP.NET Identity related entities.
   .AddUIIdentityStore(options =>
   {
     options.OpenIddictUIIdentityContext = builder =>
@@ -127,7 +127,7 @@ services.AddOpenIddict()
                  .GetName()
                  .Name));
   })
-  // Register the Api for the EF based OpenIddict Identity Store
+  // Register the APIs for the EF based UI Store based on ASP.NET Identity.
   .AddUIIdentityApis<ApplicationUser>();
   
 ...

@@ -150,7 +150,7 @@ namespace Server
           // Register the ASP.NET Core host.
           options.UseAspNetCore();
         })
-        // Register the EF based UI Store
+        // Register the EF based UI Store for OpenIddict related entities.
         .AddUIStore(options =>
         {
           options.OpenIddictUIContext = builder =>
@@ -161,7 +161,7 @@ namespace Server
                        .GetName()
                        .Name));
         })
-        // Register the Api for the EF based UI Store
+        // Register the APIs for the EF based UI Store based on OpenIddict.
         .AddUIApis(options =>
         {
           // Tell the system about the allowed Permissions it is built/configured for.
@@ -182,7 +182,7 @@ namespace Server
             Permissions.Prefixes.Scope + "api_scope"
           };
         })
-        // Register the EF based OpenIddict Identity Store
+        // Register the EF based UI Store for the ASP.NET Identity related entities.
         .AddUIIdentityStore(options =>
         {
           options.OpenIddictUIIdentityContext = builder =>
@@ -193,7 +193,7 @@ namespace Server
                        .GetName()
                        .Name));
         })
-        // Register the Api for the EF based OpenIddict Identity Store
+        // Register the APIs for the EF based UI Store based on ASP.NET Identity.
         .AddUIIdentityApis<ApplicationUser>();
 
       if (!Helpers.Constants.IsTestingEnvironment(Environment.EnvironmentName))
