@@ -1,6 +1,6 @@
 TODO:
 
-- add RequireConsent-property for application detail
+- extract logic in AuthorizationController to service 
 
 - structuring
   - suite (openiddict-ui-suite)
