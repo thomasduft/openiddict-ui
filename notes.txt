@@ -1,6 +1,6 @@
 TODO:
 
-- extract logic in AuthorizationController to service 
+- extract logic in AuthorizationController to service
 
 - structuring
   - suite (openiddict-ui-suite)
@@ -64,6 +64,13 @@ EF:
 ----------------------------------------------------------------------------------------------------
 Tests:
 dotnet test /p:ParallelizeTestCollections=false /p:CollectCoverage=true /p:Include=[tomware.*]tomware.OpenIddict.UI.* /p:CoverletOutputFormat=lcov /p:CoverletOutput=./../lcov
+
+----------------------------------------------------------------------------------------------------
+Deploy:
+
+Windows:
+- dotnet publish samples/Server/Server.csproj -c Release -r win-x64 --self-contained=true -o publish/server
+- dotnet Server.dll --environment=Development --urls "https://localhost:5000"
 
 ----------------------------------------------------------------------------------------------------
 Tips:
