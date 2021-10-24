@@ -112,6 +112,38 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     }
 
     [Fact]
+    public async Task ChangePassword_PasswordChanged()
+    {
+      // Arrange
+      var email = "userToChangePassword@openiddict.com";
+      await DeleteUser(email);
+
+      await PostAsync("/api/accounts/register", new RegisterUserViewModel
+      {
+        UserName = "username",
+        Email = email,
+        Password = "Pass123$",
+        ConfirmPassword = "Pass123$"
+      });
+
+      var user = await FindUserByEmail(email);
+      Assert.NotNull(user);
+
+      // Act
+      var response = await PostAsync($"/api/accounts/changepassword", new ChangePasswordViewModel
+      {
+        UserName = user.UserName,
+        CurrentPassword = "Pass123$",
+        NewPassword = "Pass1234$",
+        ConfirmPassword = "Pass1234$"
+      });
+
+      // Assert
+      Assert.NotNull(response);
+      Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    [Fact]
     public async Task GetAsync_UserReceived()
     {
       // Arrange

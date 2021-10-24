@@ -24,9 +24,29 @@ namespace tomware.OpenIddict.UI.Identity.Api
     [ProducesResponseType(typeof(IdentityResult), StatusCodes.Status200OK)]
     public async Task<IActionResult> Register([FromBody] RegisterUserViewModel model)
     {
+      if (model == null) return BadRequest();
       if (ModelState.IsValid)
       {
         var result = await _service.RegisterAsync(model);
+        if (result.Succeeded)
+        {
+          return Ok(result);
+        }
+
+        AddErrors(result);
+      }
+
+      return BadRequest(ModelState);
+    }
+
+    [HttpPost("changepassword")]
+    [ProducesResponseType(typeof(IdentityResult), StatusCodes.Status200OK)]
+    public async Task<IActionResult> ChangePassword([FromBody]ChangePasswordViewModel model)
+    {
+      if (model == null) return BadRequest();
+      if (ModelState.IsValid)
+      {
+        var result = await _service.ChangePasswordAsync(model);
         if (result.Succeeded)
         {
           return Ok(result);

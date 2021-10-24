@@ -10,6 +10,35 @@ namespace tomware.OpenIddict.UI.Tests.Unit
   public class AccountControllerTest
   {
     [Fact]
+    public async Task Register_WithNullModel_ReturnsBadRequest()
+    {
+      // Arrange
+      var controller = GetController();
+
+      // Act
+      var result = await controller.Register(null);
+
+      // Assert
+      Assert.NotNull(result);
+      Assert.IsType<BadRequestResult>(result);
+    }
+
+
+    [Fact]
+    public async Task ChangePassword_WithNullModel_ReturnsBadRequest()
+    {
+      // Arrange
+      var controller = GetController();
+
+      // Act
+      var result = await controller.ChangePassword(null);
+
+      // Assert
+      Assert.NotNull(result);
+      Assert.IsType<BadRequestResult>(result);
+    }
+
+    [Fact]
     public async Task GetUser_WithNullId_ReturnsBadRequest()
     {
       // Arrange
