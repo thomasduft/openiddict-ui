@@ -1,6 +1,14 @@
 TODO:
 
+- organize APIs a bit more by feature
+  - i.e. identity -> AccountController
+    - AccountController
+    - RegisterUserController
+    - ChangePasswordController
+
+
 - extract logic in AuthorizationController to service
+
 
 - structuring
   - suite (openiddict-ui-suite)
