@@ -44,30 +44,31 @@ namespace Server.Services
 
       await EnsureAdministratorRole(scope.ServiceProvider);
       await EnsureAdministratorUser(scope.ServiceProvider);
+    }
 
-      static async Task RegisterApplicationsAsync(IServiceProvider provider)
+    private static async Task RegisterApplicationsAsync(IServiceProvider provider)
+    {
+      var manager = provider.GetRequiredService<IOpenIddictApplicationManager>();
+
+      if (await manager.FindByClientIdAsync("spa_client") is null)
       {
-        var manager = provider.GetRequiredService<IOpenIddictApplicationManager>();
-
-        if (await manager.FindByClientIdAsync("spa_client") is null)
+        await manager.CreateAsync(new OpenIddictApplicationDescriptor
         {
-          await manager.CreateAsync(new OpenIddictApplicationDescriptor
-          {
-            ClientId = "spa_client",
-            // ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
-            ConsentType = ConsentTypes.Implicit,
-            DisplayName = "SPA Client Application",
-            PostLogoutRedirectUris =
+          ClientId = "spa_client",
+          // ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
+          ConsentType = ConsentTypes.Implicit,
+          DisplayName = "SPA Client Application",
+          PostLogoutRedirectUris =
             {
               new Uri("https://localhost:5000"),
               new Uri("http://localhost:4200")
             },
-            RedirectUris =
+          RedirectUris =
             {
               new Uri("https://localhost:5000"),
               new Uri("http://localhost:4200")
             },
-            Permissions =
+          Permissions =
             {
               Permissions.Endpoints.Authorization,
               Permissions.Endpoints.Logout,
@@ -81,95 +82,94 @@ namespace Server.Services
               Permissions.Prefixes.Scope + "server_scope",
               Permissions.Prefixes.Scope + "api_scope"
             },
-            Requirements =
+          Requirements =
             {
               Requirements.Features.ProofKeyForCodeExchange
             }
-          });
-        }
+        });
+      }
 
-        if (await manager.FindByClientIdAsync("api_service") == null)
+      if (await manager.FindByClientIdAsync("api_service") == null)
+      {
+        var descriptor = new OpenIddictApplicationDescriptor
         {
-          var descriptor = new OpenIddictApplicationDescriptor
-          {
-            ClientId = "api_service",
-            DisplayName = "API Service",
-            ClientSecret = "my-api-secret",
-            Permissions =
+          ClientId = "api_service",
+          DisplayName = "API Service",
+          ClientSecret = "my-api-secret",
+          Permissions =
             {
               Permissions.Endpoints.Introspection
             }
-          };
+        };
 
-          await manager.CreateAsync(descriptor);
-        }
+        await manager.CreateAsync(descriptor);
       }
+    }
 
-      static async Task RegisterScopesAsync(IServiceProvider provider)
+    private static async Task RegisterScopesAsync(IServiceProvider provider)
+    {
+      var manager = provider.GetRequiredService<IOpenIddictScopeManager>();
+
+      if (await manager.FindByNameAsync("server_scope") is null)
       {
-        var manager = provider.GetRequiredService<IOpenIddictScopeManager>();
-
-        if (await manager.FindByNameAsync("server_scope") is null)
+        await manager.CreateAsync(new OpenIddictScopeDescriptor
         {
-          await manager.CreateAsync(new OpenIddictScopeDescriptor
-          {
-            Name = "server_scope",
-            DisplayName = "Server scope access",
-            Resources =
+          Name = "server_scope",
+          DisplayName = "Server scope access",
+          Resources =
             {
               "server"
             }
-          });
-        }
+        });
+      }
 
-        if (await manager.FindByNameAsync("api_scope") == null)
+      if (await manager.FindByNameAsync("api_scope") == null)
+      {
+        var descriptor = new OpenIddictScopeDescriptor
         {
-          var descriptor = new OpenIddictScopeDescriptor
-          {
-            Name = "api_scope",
-            DisplayName = "API Scope access",
-            Resources =
+          Name = "api_scope",
+          DisplayName = "API Scope access",
+          Resources =
             {
               "api_service"
             }
-          };
-
-          await manager.CreateAsync(descriptor);
-        }
-      }
-
-      static async Task EnsureAdministratorRole(IServiceProvider provider)
-      {
-        var manager = provider.GetRequiredService<RoleManager<IdentityRole>>();
-
-        var role = Roles.ADMINISTRATOR_ROLE;
-        var roleExists = await manager.RoleExistsAsync(role);
-        if (!roleExists)
-        {
-          var newRole = new IdentityRole(role);
-          await manager.CreateAsync(newRole);
-        }
-      }
-
-      static async Task EnsureAdministratorUser(IServiceProvider provider)
-      {
-        var manager = provider.GetRequiredService<UserManager<ApplicationUser>>();
-
-        var user = await manager.FindByNameAsync(Constants.ADMIN_MAILADDRESS);
-        if (user != null) return;
-
-        var applicationUser = new ApplicationUser
-        {
-          UserName = Constants.ADMIN_MAILADDRESS,
-          Email = Constants.ADMIN_MAILADDRESS
         };
 
-        var userResult = await manager.CreateAsync(applicationUser, "Pass123$");
-        if (!userResult.Succeeded) return;
-
-        await manager.SetLockoutEnabledAsync(applicationUser, false);
-        await manager.AddToRoleAsync(applicationUser, Roles.ADMINISTRATOR_ROLE);
+        await manager.CreateAsync(descriptor);
       }
+    }
+
+    private static async Task EnsureAdministratorRole(IServiceProvider provider)
+    {
+      var manager = provider.GetRequiredService<RoleManager<IdentityRole>>();
+
+      var role = Roles.ADMINISTRATOR_ROLE;
+      var roleExists = await manager.RoleExistsAsync(role);
+      if (!roleExists)
+      {
+        var newRole = new IdentityRole(role);
+        await manager.CreateAsync(newRole);
+      }
+    }
+
+    private static async Task EnsureAdministratorUser(IServiceProvider provider)
+    {
+      var manager = provider.GetRequiredService<UserManager<ApplicationUser>>();
+
+      var user = await manager.FindByNameAsync(Constants.ADMIN_MAILADDRESS);
+      if (user != null) return;
+
+      var applicationUser = new ApplicationUser
+      {
+        UserName = Constants.ADMIN_MAILADDRESS,
+        Email = Constants.ADMIN_MAILADDRESS
+      };
+
+      var userResult = await manager.CreateAsync(applicationUser, "Pass123$");
+      if (!userResult.Succeeded) return;
+
+      await manager.SetLockoutEnabledAsync(applicationUser, false);
+      await manager.AddToRoleAsync(applicationUser, Roles.ADMINISTRATOR_ROLE);
     }
   }
 }
