@@ -1,7 +1,7 @@
 
 
 | Type                        | Description                                                  | Badge                                                        |
-| --------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| :-------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | Build                       | Build status                                                 | [![build](https://github.com/thomasduft/openiddict-ui/workflows/build/badge.svg)](https://github.com/thomasduft/openiddict-ui/actions) |
 | OpenIddict-UI API           | API's for managing OpentIddict `Scopes` and `Applications`.  | [![NuGet Release](https://img.shields.io/nuget/vpre/tomware.OpenIddict.UI.Api.svg)](https://www.nuget.org/packages/tomware.OpenIddict.UI.Api) |
 | OpentIddict-UI Identity API | API's for managing [ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-5.0&tabs=visual-studio) types (Accounts, Roles, etc.). | [![NuGet Release](https://img.shields.io/nuget/vpre/tomware.OpenIddict.UI.Identity.Api.svg)](https://www.nuget.org/packages/tomware.OpenIddict.UI.Identity.Api) |
