@@ -5,8 +5,7 @@ import {
   Input,
   ComponentRef,
   ViewChild,
-  ViewContainerRef,
-  ComponentFactoryResolver
+  ViewContainerRef
 } from '@angular/core';
 import {
   FormGroup
@@ -41,15 +40,8 @@ export class SlotHostComponent implements OnInit, OnDestroy {
       const context = this.registry.get(slotType);
 
       if (context) {
-        const factory = this.slotContent.injector
-          .get(ComponentFactoryResolver)
-          .resolveComponentFactory(context.component);
-
         this.slotContentRef = this.slotContent
-          .createComponent<BaseSlotDirective>(
-            factory,
-            this.slotContent.length
-          );
+          .createComponent<BaseSlotDirective>(context.component);
 
         // @Input bindings
         this.slotContentRef.instance.slot = this.slot;
