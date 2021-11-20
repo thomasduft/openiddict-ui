@@ -12,6 +12,7 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Server.Controllers
 {
+  [Produces("application/json")]
   [ApiExplorerSettings(GroupName = "sample-server")]
   public class UserinfoController : Controller
   {
@@ -20,10 +21,8 @@ namespace Server.Controllers
     public UserinfoController(UserManager<ApplicationUser> userManager)
         => _userManager = userManager;
 
-    //
-    // GET: /api/userinfo
     [Authorize(AuthenticationSchemes = OpenIddictServerAspNetCoreDefaults.AuthenticationScheme)]
-    [HttpGet("~/connect/userinfo"), Produces("application/json")]
+    [HttpGet("~/connect/userinfo")]
     public async Task<IActionResult> Userinfo()
     {
       var user = await _userManager.GetUserAsync(User);
