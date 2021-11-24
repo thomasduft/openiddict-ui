@@ -61,7 +61,7 @@ export class AppComponent implements OnInit {
       ? 'http://localhost:4200'
       : window.location.origin;
 
-    const devModeIssuer = 'https://localhost:5000/';
+    const devModeIssuer = 'https://localhost:5001/';
 
     this.oauthService.configure({
       clientId: 'spa_client',

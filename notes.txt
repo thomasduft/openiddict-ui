@@ -1,5 +1,9 @@
 TODO:
 
+- go full razor pages
+  - https://github.com/openiddict/openiddict-samples/tree/dev/samples/Contruum/Contruum.Server
+
+
 - organize APIs a bit more by feature
   - i.e. identity -> AccountController
     - AccountController
@@ -78,7 +82,7 @@ Deploy:
 
 Windows:
 - dotnet publish samples/Server/Server.csproj -c Release -r win-x64 --self-contained=true -o publish/server
-- dotnet Server.dll --environment=Development --urls "https://localhost:5000"
+- dotnet Server.dll --environment=Development --urls "https://localhost:5001"
 
 ----------------------------------------------------------------------------------------------------
 Tips:

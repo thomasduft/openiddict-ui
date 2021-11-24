@@ -60,12 +60,12 @@ namespace Server.Services
           DisplayName = "SPA Client Application",
           PostLogoutRedirectUris =
             {
-              new Uri("https://localhost:5000"),
+              new Uri("https://localhost:5001"),
               new Uri("http://localhost:4200")
             },
           RedirectUris =
             {
-              new Uri("https://localhost:5000"),
+              new Uri("https://localhost:5001"),
               new Uri("http://localhost:4200")
             },
           Permissions =

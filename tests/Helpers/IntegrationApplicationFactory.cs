@@ -73,7 +73,7 @@ namespace tomware.OpenIddict.UI.Tests
 
         var context = new ProcessSignInContext(transaction)
         {
-          Issuer = new Uri("https://localhost:5000/"),
+          Issuer = new Uri("https://localhost:5001/"),
           AccessTokenPrincipal = new ClaimsPrincipal(identity)
         };
 

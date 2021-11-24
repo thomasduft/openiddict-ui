@@ -40,7 +40,7 @@ namespace Api
         {
           // Note: the validation handler uses OpenID Connect discovery
           // to retrieve the address of the introspection endpoint.
-          options.SetIssuer("https://localhost:5000/");
+          options.SetIssuer("https://localhost:5001/");
           options.AddAudiences("api_service");
 
           // Configure the validation handler to use introspection and register the client
@@ -72,7 +72,7 @@ namespace Api
       {
         app.UseCors(builder =>
         {
-          builder.WithOrigins("http://localhost:4200", "https://localhost:5000");
+          builder.WithOrigins("http://localhost:4200", "https://localhost:5001");
           builder.WithMethods("GET");
           builder.WithHeaders("Authorization");
         });

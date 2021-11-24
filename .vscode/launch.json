@@ -6,8 +6,11 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build-server",
-      "program": "${workspaceFolder}/samples/Server/bin/Debug/net5.0/Server.dll",
-      "args": [],
+      "program": "${workspaceFolder}/samples/Server/bin/Debug/net6.0/Server.dll",
+      "args": [
+        "--urls",
+        "https://localhost:5001"
+      ],
       "cwd": "${workspaceFolder}/samples/Server",
       "stopAtEntry": false,
       "serverReadyAction": {
@@ -26,7 +29,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build-api",
-      "program": "${workspaceFolder}/samples/Api/bin/Debug/net5.0/Api.dll",
+      "program": "${workspaceFolder}/samples/Api/bin/Debug/net6.0/Api.dll",
       "args": [],
       "cwd": "${workspaceFolder}/samples/Api",
       "stopAtEntry": false,

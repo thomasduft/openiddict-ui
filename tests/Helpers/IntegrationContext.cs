@@ -23,7 +23,7 @@ namespace tomware.OpenIddict.UI.Tests.Helpers
 
       _client = factory.CreateClient(new WebApplicationFactoryClientOptions
       {
-        BaseAddress = new Uri("https://localhost:5000"),
+        BaseAddress = new Uri("https://localhost:5001"),
         AllowAutoRedirect = false
       });
 
