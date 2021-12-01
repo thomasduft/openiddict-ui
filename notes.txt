@@ -79,6 +79,8 @@ dotnet test /p:ParallelizeTestCollections=false /p:CollectCoverage=true /p:Inclu
 
 ----------------------------------------------------------------------------------------------------
 Deploy:
+- dotnet publish samples/Server/Server.csproj -c Release -r linux-x64 --self-contained true -o publish/server/bin
+- dotnet Server.dll --environment=Development --urls "https://localhost:5001"
 
 Windows:
 - dotnet publish samples/Server/Server.csproj -c Release -r win-x64 --self-contained=true -o publish/server
