@@ -140,6 +140,8 @@ namespace Server
                  .EnableTokenEndpointPassthrough()
                  .EnableUserinfoEndpointPassthrough();
           // .DisableTransportSecurityRequirement(); // During development, you can disable the HTTPS requirement.
+
+          // options.DisableAccessTokenEncryption();
         })
         // Register the OpenIddict validation components.
         .AddValidation(options =>
