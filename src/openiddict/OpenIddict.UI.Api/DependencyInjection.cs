@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
+
 using tomware.OpenIddict.UI.Suite.Core;
 using tomware.OpenIddict.UI.Suite.Api;
 
 namespace tomware.OpenIddict.UI.Api
 {
+  [ExcludeFromCodeCoverage]
   public static class OpenIddictUIServicesExtensions
   {
     /// <summary>

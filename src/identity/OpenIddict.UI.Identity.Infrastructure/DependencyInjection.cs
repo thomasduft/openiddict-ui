@@ -1,11 +1,14 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+
 using tomware.OpenIddict.UI.Suite.Core;
 using tomware.OpenIddict.UI.Identity.Core;
 
 namespace tomware.OpenIddict.UI.Identity.Infrastructure
 {
+  [ExcludeFromCodeCoverage]
   public static class OpenIddictUIIdentityInfrastructureServicesExtensions
   {
     public static OpenIddictBuilder AddUIIdentityStore(

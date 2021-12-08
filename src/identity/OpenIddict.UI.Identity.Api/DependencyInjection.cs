@@ -1,12 +1,15 @@
 using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+
 using tomware.OpenIddict.UI.Suite.Core;
 using tomware.OpenIddict.UI.Suite.Api;
-using System.Collections.Generic;
 
 namespace tomware.OpenIddict.UI.Identity.Api
 {
+  [ExcludeFromCodeCoverage]
   public static class OpenIddictUIIdentityApiServicesExtensions
   {
     public static OpenIddictBuilder AddUIIdentityApis<TApplicationUser>(
