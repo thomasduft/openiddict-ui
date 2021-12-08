@@ -6,6 +6,7 @@ using tomware.OpenIddict.UI.Suite.Core;
 
 namespace tomware.OpenIddict.UI.Suite.Api
 {
+  [ApiController]
   [Authorize(
     Policies.ADMIN_POLICY,
     AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
