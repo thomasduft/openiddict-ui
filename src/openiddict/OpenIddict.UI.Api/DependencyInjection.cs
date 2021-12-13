@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
-
-using tomware.OpenIddict.UI.Suite.Core;
 using tomware.OpenIddict.UI.Suite.Api;
 
 namespace tomware.OpenIddict.UI.Api
@@ -25,6 +24,8 @@ namespace tomware.OpenIddict.UI.Api
 
       builder.Services.AddApiServices(uiApiOptions);
 
+      builder.Services.AddAuthorizationServices(options.Policy);
+
       return builder;
     }
 
@@ -38,22 +39,19 @@ namespace tomware.OpenIddict.UI.Api
       services.AddTransient<IScopeApiService, ScopeApiService>();
       services.AddTransient<IApplicationApiService, ApplicationApiService>();
 
-      services.AddAuthorizationServices();
-
       return services;
     }
 
     private static IServiceCollection AddAuthorizationServices(
-      this IServiceCollection services
+      this IServiceCollection services,
+      Action<AuthorizationPolicyBuilder> policy
     )
     {
       services.AddAuthorization(options =>
       {
         options.AddPolicy(
-          Policies.ADMIN_POLICY,
-          policy => policy
-            .RequireAuthenticatedUser()
-            .RequireRole(Roles.ADMINISTRATOR_ROLE)
+          Policies.OPENIDDICT_UI_API_POLICY,
+          policy
         );
       });
 

@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OpenIddict.Validation.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,6 +11,10 @@ namespace tomware.OpenIddict.UI.Identity.Api
 {
   [Route("claimtypes")]
   [ApiExplorerSettings(GroupName = "openiddict-ui-identity")]
+  [Authorize(
+    Policies.OPENIDDICT_UI_IDENTITY_API_POLICY,
+    AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
+  )]
   public class ClaimTypeController : ApiControllerBase
   {
     private readonly IClaimTypeApiService _service;

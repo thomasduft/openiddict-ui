@@ -1,3 +1,7 @@
+using System;
+using Microsoft.AspNetCore.Authorization;
+using tomware.OpenIddict.UI.Suite.Core;
+
 namespace tomware.OpenIddict.UI.Identity.Api
 {
   public class OpenIddictUIIdentityApiOptions
@@ -6,5 +10,14 @@ namespace tomware.OpenIddict.UI.Identity.Api
     /// Registers a conventional route prefix for the API controllers. Defaults to "api/".
     /// </summary>
     public string RoutePrefix { get; set; } = "api/";
+
+    /// <summary>
+    /// Allows to register custom authorization policies for accessing OpenIddict-UI Identity API's.
+    /// Note: Defaults to .RequireAuthenticatedUser().RequireRole(Roles.ADMINISTRATOR_ROLE)
+    /// </summary>
+    public Action<AuthorizationPolicyBuilder> Policy { get; set; } = policy =>
+      policy
+        .RequireAuthenticatedUser()
+        .RequireRole(Roles.ADMINISTRATOR_ROLE);
   }
 }

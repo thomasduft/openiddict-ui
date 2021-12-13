@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using OpenIddict.Validation.AspNetCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using tomware.OpenIddict.UI.Suite.Api;
@@ -9,6 +11,10 @@ namespace tomware.OpenIddict.UI.Identity.Api
 {
   [Route("accounts")]
   [ApiExplorerSettings(GroupName = "openiddict-ui-identity")]
+  [Authorize(
+    Policies.OPENIDDICT_UI_IDENTITY_API_POLICY,
+    AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
+  )]
   public class AccountController : ApiControllerBase
   {
     private readonly IAccountApiService _service;
@@ -41,7 +47,7 @@ namespace tomware.OpenIddict.UI.Identity.Api
 
     [HttpPost("changepassword")]
     [ProducesResponseType(typeof(IdentityResult), StatusCodes.Status200OK)]
-    public async Task<IActionResult> ChangePassword([FromBody]ChangePasswordViewModel model)
+    public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordViewModel model)
     {
       if (model == null) return BadRequest();
       if (ModelState.IsValid)
