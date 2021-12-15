@@ -19,7 +19,14 @@ namespace tomware.OpenIddict.UI.Api
 
     /// <summary>
     /// Allows to register custom authorization policies for accessing OpenIddict-UI API's.
-    /// Note: Defaults to .RequireAuthenticatedUser().RequireRole(Roles.ADMINISTRATOR_ROLE)
+    /// <example>Defaults to:
+    /// <code>
+    /// policy
+    ///   .RequireAuthenticatedUser()
+    ///   .RequireRole(Roles.ADMINISTRATOR_ROLE);
+    /// </code>
+    /// </example>
+    /// </summary>
     /// </summary>
     public Action<AuthorizationPolicyBuilder> Policy { get; set; } = policy =>
       policy
