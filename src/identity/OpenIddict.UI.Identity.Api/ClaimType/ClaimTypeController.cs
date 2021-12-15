@@ -3,13 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using tomware.OpenIddict.UI.Suite.Api;
 
 namespace tomware.OpenIddict.UI.Identity.Api
 {
   [Route("claimtypes")]
-  [ApiExplorerSettings(GroupName = "openiddict-ui-identity")]
-  public class ClaimTypeController : ApiControllerBase
+  public class ClaimTypeController : IdentityApiController
   {
     private readonly IClaimTypeApiService _service;
 

@@ -2,13 +2,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using tomware.OpenIddict.UI.Suite.Api;
 
 namespace tomware.OpenIddict.UI.Identity.Api
 {
   [Route("roles")]
-  [ApiExplorerSettings(GroupName = "openiddict-ui-identity")]
-  public class RoleController : ApiControllerBase
+  public class RoleController : IdentityApiController
   {
     private readonly IRoleService _service;
 

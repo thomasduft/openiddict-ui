@@ -4,6 +4,20 @@ TODO:
   - https://github.com/openiddict/openiddict-samples/tree/dev/samples/Contruum/Contruum.Server
 
 
+- migrate to .net Program.cs file
+  - refactor DB-migrations in sample server
+  
+
+- load options.Permissions from database instead of configuring it
+
+
+- client refactoring
+  - split identity, openiddict => create libs
+  - better Client deployment
+    - introduce deploy.js
+    - check server stylings not removed
+
+
 - organize APIs a bit more by feature
   - i.e. identity -> AccountController
     - AccountController
@@ -34,14 +48,6 @@ TODO:
     - Infrastructure.EF
     - API
     - PolicyClient
-
-
-- load options.Permissions from database instead of configuring it
-
-
-- better Client deployment
-  - introduce deploy.js
-  - check server stylings not removed
 
 
 - better ux for applications.permissions

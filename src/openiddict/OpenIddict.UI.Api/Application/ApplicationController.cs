@@ -3,13 +3,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using tomware.OpenIddict.UI.Suite.Api;
 
 namespace tomware.OpenIddict.UI.Api
 {
   [Route("application")]
-  [ApiExplorerSettings(GroupName = "openiddict-ui-api")]
-  public class ApplicationController : ApiControllerBase
+  public class ApplicationController : OpenIddictApiController
   {
     private readonly IApplicationApiService _service;
 
