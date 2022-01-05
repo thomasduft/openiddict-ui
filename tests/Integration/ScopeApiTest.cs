@@ -13,7 +13,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
   {
     private const string TEST_SCOPE = "test_scope";
 
-    public ScopeApiTest(IntegrationApplicationFactory<Startup> fixture)
+    public ScopeApiTest(IntegrationApplicationFactory<Testing> fixture)
       : base(fixture)
     { }
 

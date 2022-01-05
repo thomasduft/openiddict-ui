@@ -11,13 +11,13 @@ using Xunit;
 
 namespace tomware.OpenIddict.UI.Tests.Helpers
 {
-  public class IntegrationContext : IClassFixture<IntegrationApplicationFactory<Startup>>
+  public class IntegrationContext : IClassFixture<IntegrationApplicationFactory<Testing>>
   {
-    private readonly IntegrationApplicationFactory<Startup> _factory;
+    private readonly IntegrationApplicationFactory<Testing> _factory;
     private readonly HttpClient _client;
     private readonly string _accessToken;
 
-    protected IntegrationContext(IntegrationApplicationFactory<Server.Startup> factory)
+    protected IntegrationContext(IntegrationApplicationFactory<Testing> factory)
     {
       _factory = factory;
 

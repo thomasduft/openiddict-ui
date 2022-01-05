@@ -13,7 +13,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
 {
   public class AccountApiTest : IntegrationContext
   {
-    public AccountApiTest(IntegrationApplicationFactory<Startup> fixture)
+    public AccountApiTest(IntegrationApplicationFactory<Testing> fixture)
       : base(fixture)
     { }
 

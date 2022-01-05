@@ -3,7 +3,6 @@
   <Import Project="..\..\Common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>tomware.OpenIddict.UI.Suite.Core</AssemblyName>
     <RootNamespace>tomware.OpenIddict.UI.Suite.Core</RootNamespace>
     <Description>Commone core types for openiddict UI suite</Description>

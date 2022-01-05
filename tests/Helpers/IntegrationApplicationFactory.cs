@@ -15,8 +15,8 @@ using static OpenIddict.Server.OpenIddictServerHandlers;
 
 namespace tomware.OpenIddict.UI.Tests
 {
-  public class IntegrationApplicationFactory<TStartup>
-  : WebApplicationFactory<TStartup> where TStartup : class
+  public class IntegrationApplicationFactory<TEntryPoint>
+    : WebApplicationFactory<TEntryPoint> where TEntryPoint : class
   {
     public string AccessToken { get; set; }
 
@@ -45,7 +45,7 @@ namespace tomware.OpenIddict.UI.Tests
       catch (Exception ex)
       {
         var logger = services
-          .GetRequiredService<ILogger<IntegrationApplicationFactory<TStartup>>>();
+          .GetRequiredService<ILogger<IntegrationApplicationFactory<TEntryPoint>>>();
         logger.LogError(ex, "An error occurred while migrating the testing database.");
       }
     }

@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <IsShipping>false</IsShipping>
     <SignAssembly>false</SignAssembly>
-    <TypeScriptEnabled>false</TypeScriptEnabled>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
   </PropertyGroup>

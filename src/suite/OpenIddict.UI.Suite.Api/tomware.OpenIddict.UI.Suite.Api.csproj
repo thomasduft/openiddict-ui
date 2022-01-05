@@ -3,7 +3,6 @@
   <Import Project="..\..\Common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>tomware.OpenIddict.UI.Suite.Api</AssemblyName>
     <RootNamespace>tomware.OpenIddict.UI.Suite.Api</RootNamespace>
     <Description>Common Api types for openiddict UI Suite</Description>

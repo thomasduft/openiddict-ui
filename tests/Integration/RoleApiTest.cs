@@ -15,7 +15,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
     private const string NEW_ROLE = "new_role";
     private const string UPDATE_ROLE = "update_role";
 
-    public RoleApiTest(IntegrationApplicationFactory<Startup> fixture)
+    public RoleApiTest(IntegrationApplicationFactory<Testing> fixture)
       : base(fixture)
     { }
 

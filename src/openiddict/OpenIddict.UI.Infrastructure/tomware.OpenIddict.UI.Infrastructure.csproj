@@ -3,7 +3,6 @@
   <Import Project="..\..\Common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>tomware.OpenIddict.UI.Infrastructure</AssemblyName>
     <RootNamespace>tomware.OpenIddict.UI.Infrastructure</RootNamespace>
     <Description>Infrastructure types for openiddict UI</Description>

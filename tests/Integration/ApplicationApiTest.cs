@@ -14,7 +14,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
   {
     private const string TEST_APPLICATION = "test_application";
 
-    public ApplicationApiTest(IntegrationApplicationFactory<Startup> fixture)
+    public ApplicationApiTest(IntegrationApplicationFactory<Testing> fixture)
       : base(fixture)
     { }
 

@@ -3,12 +3,17 @@ namespace Server.Helpers
   public static class Constants
   {
     public const string ADMIN_MAILADDRESS = "admin@openiddict.com";
-
+    public const string DEVELOPMENT_ENVIRONMENT = "Development";
     public const string TESTING_ENVIRONMENT = "Testing";
+
+    public static bool IsDevelopmentEnvironment(string environmentName)
+    {
+      return environmentName == DEVELOPMENT_ENVIRONMENT;
+    }
 
     public static bool IsTestingEnvironment(string environmentName)
     {
-      return environmentName == Server.Helpers.Constants.TESTING_ENVIRONMENT;
+      return environmentName == TESTING_ENVIRONMENT;
     }
   }
 

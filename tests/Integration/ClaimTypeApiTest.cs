@@ -15,7 +15,7 @@ namespace tomware.OpenIddict.UI.Tests.Integration
   {
     private const string TEST_CLAIMTYPE = "test_claimtype";
 
-    public ClaimTypeApiTest(IntegrationApplicationFactory<Startup> fixture)
+    public ClaimTypeApiTest(IntegrationApplicationFactory<Testing> fixture)
       : base(fixture)
     { }
 
