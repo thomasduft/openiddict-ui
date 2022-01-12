@@ -1,35 +1,37 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D5141C8A-53D8-47F1-90B5-276875B2F954}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "suite", "suite", "{15505AC0-01ED-481A-94B8-757854976DE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tomware.OpenIddict.UI.Suite.Core", "src\suite\OpenIddict.UI.Suite.Core\tomware.OpenIddict.UI.Suite.Core.csproj", "{ADDAD36A-C2A2-48BC-BDD5-4FCD528B4A96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tomware.OpenIddict.UI.Suite.Core", "src\suite\OpenIddict.UI.Suite.Core\tomware.OpenIddict.UI.Suite.Core.csproj", "{ADDAD36A-C2A2-48BC-BDD5-4FCD528B4A96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tomware.OpenIddict.UI.Suite.Api", "src\suite\OpenIddict.UI.Suite.Api\tomware.OpenIddict.UI.Suite.Api.csproj", "{C87FC87A-2BB1-4D5A-B784-D00B438D0165}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tomware.OpenIddict.UI.Suite.Api", "src\suite\OpenIddict.UI.Suite.Api\tomware.OpenIddict.UI.Suite.Api.csproj", "{C87FC87A-2BB1-4D5A-B784-D00B438D0165}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "openiddict", "openiddict", "{F58A9DDC-6166-4169-A9B8-65601D8BCA9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tomware.OpenIddict.UI.Infrastructure", "src\openiddict\OpenIddict.UI.Infrastructure\tomware.OpenIddict.UI.Infrastructure.csproj", "{3D30A744-0CFA-4788-BC4B-386F3DA90D7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tomware.OpenIddict.UI.Infrastructure", "src\openiddict\OpenIddict.UI.Infrastructure\tomware.OpenIddict.UI.Infrastructure.csproj", "{3D30A744-0CFA-4788-BC4B-386F3DA90D7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tomware.OpenIddict.UI.Api", "src\openiddict\OpenIddict.UI.Api\tomware.OpenIddict.UI.Api.csproj", "{FCE1E2ED-8897-4097-B1A5-B206C7F85F6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tomware.OpenIddict.UI.Api", "src\openiddict\OpenIddict.UI.Api\tomware.OpenIddict.UI.Api.csproj", "{FCE1E2ED-8897-4097-B1A5-B206C7F85F6C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "identity", "identity", "{EE96B966-7F77-4E35-BD2D-F80243693D87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tomware.OpenIddict.UI.Identity.Core", "src\identity\OpenIddict.UI.Identity.Core\tomware.OpenIddict.UI.Identity.Core.csproj", "{8FC5F913-B4FE-4C35-9199-7295C1C09337}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tomware.OpenIddict.UI.Identity.Core", "src\identity\OpenIddict.UI.Identity.Core\tomware.OpenIddict.UI.Identity.Core.csproj", "{8FC5F913-B4FE-4C35-9199-7295C1C09337}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tomware.OpenIddict.UI.Identity.Infrastructure", "src\identity\OpenIddict.UI.Identity.Infrastructure\tomware.OpenIddict.UI.Identity.Infrastructure.csproj", "{ABF6DF6C-846B-49EB-B5F5-22C876F9AC5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tomware.OpenIddict.UI.Identity.Infrastructure", "src\identity\OpenIddict.UI.Identity.Infrastructure\tomware.OpenIddict.UI.Identity.Infrastructure.csproj", "{ABF6DF6C-846B-49EB-B5F5-22C876F9AC5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tomware.OpenIddict.UI.Identity.Api", "src\identity\OpenIddict.UI.Identity.Api\tomware.OpenIddict.UI.Identity.Api.csproj", "{30B7D5F1-E9BF-4E62-99DE-63A54929B3AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tomware.OpenIddict.UI.Identity.Api", "src\identity\OpenIddict.UI.Identity.Api\tomware.OpenIddict.UI.Identity.Api.csproj", "{30B7D5F1-E9BF-4E62-99DE-63A54929B3AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenIddict.UI.Tests", "tests\OpenIddict.UI.Tests.csproj", "{7FA885DC-025C-4ABD-89EA-9A4EBEFCA425}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenIddict.UI.Tests", "tests\OpenIddict.UI.Tests.csproj", "{7FA885DC-025C-4ABD-89EA-9A4EBEFCA425}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{36BC6CE4-67E7-40B0-B117-08637D7CB87A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "samples\Server\Server.csproj", "{1DF2B3A1-A6EA-428B-98FB-6FA02E503E01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "samples\Server\Server.csproj", "{1DF2B3A1-A6EA-428B-98FB-6FA02E503E01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{213222C7-2F94-40BC-ADBF-4B2AE43D8043}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +41,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{ADDAD36A-C2A2-48BC-BDD5-4FCD528B4A96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -153,6 +152,9 @@ Global
 		{1DF2B3A1-A6EA-428B-98FB-6FA02E503E01}.Release|x86.ActiveCfg = Release|Any CPU
 		{1DF2B3A1-A6EA-428B-98FB-6FA02E503E01}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{15505AC0-01ED-481A-94B8-757854976DE8} = {D5141C8A-53D8-47F1-90B5-276875B2F954}
 		{ADDAD36A-C2A2-48BC-BDD5-4FCD528B4A96} = {15505AC0-01ED-481A-94B8-757854976DE8}
@@ -164,6 +166,10 @@ Global
 		{8FC5F913-B4FE-4C35-9199-7295C1C09337} = {EE96B966-7F77-4E35-BD2D-F80243693D87}
 		{ABF6DF6C-846B-49EB-B5F5-22C876F9AC5C} = {EE96B966-7F77-4E35-BD2D-F80243693D87}
 		{30B7D5F1-E9BF-4E62-99DE-63A54929B3AA} = {EE96B966-7F77-4E35-BD2D-F80243693D87}
+		{7FA885DC-025C-4ABD-89EA-9A4EBEFCA425} = {213222C7-2F94-40BC-ADBF-4B2AE43D8043}
 		{1DF2B3A1-A6EA-428B-98FB-6FA02E503E01} = {36BC6CE4-67E7-40B0-B117-08637D7CB87A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3F5427BA-2C47-4399-A082-3653383D71C2}
 	EndGlobalSection
 EndGlobal
