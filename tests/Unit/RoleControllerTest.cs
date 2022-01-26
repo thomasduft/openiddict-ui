@@ -26,7 +26,7 @@ namespace tomware.OpenIddict.UI.Tests.Unit
     public async Task GetAsync_WithNotExistingId_ReturnsNotFound()
     {
       // Arrange
-      var serviceMock = new Mock<IRoleService>();
+      var serviceMock = new Mock<IRoleApiService>();
       var controller = GetController(serviceMock);
       var id = "id";
 
@@ -126,9 +126,9 @@ namespace tomware.OpenIddict.UI.Tests.Unit
       Assert.IsType<BadRequestResult>(result);
     }
 
-    private static RoleController GetController(Mock<IRoleService> service = null)
+    private static RoleController GetController(Mock<IRoleApiService> service = null)
     {
-      service ??= new Mock<IRoleService>();
+      service ??= new Mock<IRoleApiService>();
 
       return new RoleController(service.Object);
     }

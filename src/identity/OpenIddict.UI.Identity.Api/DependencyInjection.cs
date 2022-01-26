@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authorization;
 using tomware.OpenIddict.UI.Suite.Api;
+using tomware.OpenIddict.UI.Identity.Core;
 
 namespace tomware.OpenIddict.UI.Identity.Api
 {
@@ -35,7 +36,7 @@ namespace tomware.OpenIddict.UI.Identity.Api
     ) where TApplicationUser : IdentityUser, new()
     {
       builder.Services
-        .AddTransient<IUserCreationStrategy<TApplicationUser>, UserNameUserCreationStrategy<TApplicationUser>>();
+        .AddUserNameUserCreationStrategy<TApplicationUser>();
 
       return builder;
     }
@@ -44,9 +45,8 @@ namespace tomware.OpenIddict.UI.Identity.Api
       this IServiceCollection services
     ) where TApplicationUser : IdentityUser, new()
     {
-      services.AddTransient<IUserCreationStrategy<TApplicationUser>, EmailUserCreationStrategy<TApplicationUser>>();
       services.AddTransient<IAccountApiService, AccountApiService<TApplicationUser>>();
-      services.AddTransient<IRoleService, RoleService>();
+      services.AddTransient<IRoleApiService, RoleApiService>();
       services.AddTransient<IClaimTypeApiService, ClaimTypeApiService>();
 
       return services;

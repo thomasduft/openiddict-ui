@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace tomware.OpenIddict.UI.Identity.Api
 {
-  public interface IRoleService
+  public interface IRoleApiService
   {
     Task<IEnumerable<RoleViewModel>> GetRolesAsync();
 
@@ -19,11 +19,11 @@ namespace tomware.OpenIddict.UI.Identity.Api
     Task DeleteAsync(string id);
   }
 
-  public class RoleService : IRoleService
+  public class RoleApiService : IRoleApiService
   {
     private readonly RoleManager<IdentityRole> _manager;
 
-    public RoleService(RoleManager<IdentityRole> manager)
+    public RoleApiService(RoleManager<IdentityRole> manager)
     {
       _manager = manager;
     }

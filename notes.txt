@@ -1,14 +1,7 @@
 TODO:
 
-- go full razor pages
-  - https://github.com/openiddict/openiddict-samples/tree/dev/samples/Contruum/Contruum.Server
-
-
-- migrate to .net Program.cs file
-  - refactor DB-migrations in sample server
-  
-
-- load options.Permissions from database instead of configuring it
+- for next release 1.5.0
+  - mention small API change when registering .AddUIIdentityStore<ApplicationUser> the TApplicationUser is not mandatory!
 
 
 - client refactoring
@@ -17,6 +10,13 @@ TODO:
     - introduce deploy.js
     - check server stylings not removed
 
+
+- load options.Permissions from database instead of configuring it
+
+
+- go full razor pages
+  - https://github.com/openiddict/openiddict-samples/tree/dev/samples/Contruum/Contruum.Server
+ 
 
 - organize APIs a bit more by feature
   - i.e. identity -> AccountController

@@ -1,13 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace tomware.OpenIddict.UI.Identity.Api
+namespace tomware.OpenIddict.UI.Identity.Core
 {
-  public interface IUserCreationStrategy<TIdentityUser>
-    where TIdentityUser : IdentityUser
-  {
-    TIdentityUser CreateUser(RegisterUserViewModel model);
-  }
-
   /// <summary>
   /// <para>Maps the Email property to the IdentityUser.UserName property.</para>
   /// <para>Note: If you use the ASP.NET Core Identity UI this will be the default.</para>
@@ -17,7 +11,7 @@ namespace tomware.OpenIddict.UI.Identity.Api
     : IUserCreationStrategy<TIdentityUser>
     where TIdentityUser : IdentityUser, new()
   {
-    public TIdentityUser CreateUser(RegisterUserViewModel model)
+    public TIdentityUser CreateUser(RegisterUserParam model)
     {
       return new TIdentityUser
       {
@@ -35,7 +29,7 @@ namespace tomware.OpenIddict.UI.Identity.Api
     : IUserCreationStrategy<TIdentityUser>
     where TIdentityUser : IdentityUser, new()
   {
-    public TIdentityUser CreateUser(RegisterUserViewModel model)
+    public TIdentityUser CreateUser(RegisterUserParam model)
     {
       return new TIdentityUser
       {

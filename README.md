@@ -123,7 +123,7 @@ services.AddOpenIddict()
     }
   })
   // Register the EF based UI Store for the ASP.NET Identity related entities.
-  .AddUIIdentityStore(options =>
+  .AddUIIdentityStore<ApplicationUser>(options =>
   {
     options.OpenIddictUIIdentityContext = builder =>
      builder.UseSqlite(Configuration.GetConnectionString("DefaultConnection"),

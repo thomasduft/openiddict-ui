@@ -8,9 +8,9 @@ namespace tomware.OpenIddict.UI.Identity.Api
   [Route("roles")]
   public class RoleController : IdentityApiController
   {
-    private readonly IRoleService _service;
+    private readonly IRoleApiService _service;
 
-    public RoleController(IRoleService service)
+    public RoleController(IRoleApiService service)
     {
       _service = service;
     }

@@ -5,18 +5,19 @@ using Microsoft.Extensions.DependencyInjection;
 
 using tomware.OpenIddict.UI.Suite.Core;
 using tomware.OpenIddict.UI.Identity.Core;
+using Microsoft.AspNetCore.Identity;
 
 namespace tomware.OpenIddict.UI.Identity.Infrastructure
 {
   [ExcludeFromCodeCoverage]
   public static class OpenIddictUIIdentityInfrastructureServicesExtensions
   {
-    public static OpenIddictBuilder AddUIIdentityStore(
+    public static OpenIddictBuilder AddUIIdentityStore<TApplicationUser>(
       this OpenIddictBuilder builder,
       Action<OpenIddictUIIdentityStoreOptions> storeOptionsAction = null
-    )
+    ) where TApplicationUser : IdentityUser, new()
     {
-      builder.Services.AddInfrastructureServices();
+      builder.Services.AddInfrastructureServices<TApplicationUser>();
 
       builder.Services
         .AddOpenIddictUIIdentityStore<OpenIddictUIIdentityContext>(storeOptionsAction);
@@ -24,15 +25,17 @@ namespace tomware.OpenIddict.UI.Identity.Infrastructure
       return builder;
     }
 
-    private static IServiceCollection AddInfrastructureServices(
+    private static IServiceCollection AddInfrastructureServices<TApplicationUser>(
       this IServiceCollection services
-    )
+    ) where TApplicationUser : IdentityUser, new()
     {
-      services.AddOpenIddictUIIdentityCoreServices();
+      // core services
+      services.AddOpenIddictUIIdentityCoreServices<TApplicationUser>();
 
+      // own services
       services.AddScoped(typeof(IAsyncRepository<,>), typeof(EfRepository<,>));
-
       services.AddTransient<IClaimTypeRepository, ClaimTypeRepository<OpenIddictUIIdentityContext>>();
+      services.AddTransient<IAccountService, AccountService<TApplicationUser>>();
 
       return services;
     }
