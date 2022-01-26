@@ -32,9 +32,21 @@
   }
 
   &__item {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     color: @workspace-color;
-    margin-top: 10px;
+    padding: 10px 5px;
+
+    > div {
+      line-height: 1.5em;
+      text-overflow: ellipsis;
+    }
+
+    > div:nth-child(1) {
+      font-weight: bold;
+    }
 
     &--right {
       float: right;
