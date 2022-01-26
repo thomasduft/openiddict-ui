@@ -42,11 +42,11 @@ export class UserService {
   public loadProfile(): void {
     if (!this.isAuthenticated) {
       this.oauth.loadUserProfile()
-        .then((info: UserInfo) => {
-          this.username = info.name || info.email;
-          this.claims = Array.isArray(info.role)
-            ? info.role
-            : [info.role];
+        .then((user: UserInfo) => {
+          this.username = user.info.name || user.info.email;
+          this.claims = Array.isArray(user.info.role)
+            ? user.info.role
+            : [user.info.role];
 
           // if (jwt.tw && Array.isArray(jwt.tw)) {
           //   this.claims.push(...jwt.tw);
