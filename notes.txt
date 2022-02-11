@@ -1,7 +1,6 @@
 TODO:
 
-- for next release 1.5.0
-  - mention small API change when registering .AddUIIdentityStore<ApplicationUser> the TApplicationUser is not mandatory!
+- load options.Permissions from database instead of configuring it
 
 
 - client refactoring
@@ -9,9 +8,6 @@ TODO:
   - better Client deployment
     - introduce deploy.js
     - check server stylings not removed
-
-
-- load options.Permissions from database instead of configuring it
 
 
 - go full razor pages
@@ -68,7 +64,6 @@ TODO:
 
 - ??? authorizations, tokens
 
-
 ----------------------------------------------------------------------------------------------------
 EF:
 - Contexts:
@@ -81,7 +76,7 @@ EF:
 
 ----------------------------------------------------------------------------------------------------
 Tests:
-dotnet test /p:ParallelizeTestCollections=false /p:CollectCoverage=true /p:Include=[tomware.*]tomware.OpenIddict.UI.* /p:CoverletOutputFormat=lcov /p:CoverletOutput=./../lcov
+- dotnet test /p:ParallelizeTestCollections=false /p:CollectCoverage=true /p:Include=[tomware.*]tomware.OpenIddict.UI.* /p:CoverletOutputFormat=lcov /p:CoverletOutput=./../lcov
 
 ----------------------------------------------------------------------------------------------------
 Deploy:

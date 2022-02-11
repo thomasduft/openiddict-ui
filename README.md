@@ -72,7 +72,7 @@ You should see now the login screen. You can now login with the pre-configured a
 
 ## Using it
 
-Follow the original setup of the OpenIddict in the `Startup.ConfigureServices(...)` - method and add your required additional extension hooks `AddUIStore(...)`, `AddUIApis(...)`, `AddUIIdentityStore(...)` and `AddUIIdentityApis<TIdentityUser>()`.
+Follow the original setup of the OpenIddict in the `Startup.ConfigureServices(...)` - method and add your required additional extension hooks `AddUIStore(...)`, `AddUIApis(...)`, `AddUIIdentityStore<TIdentityUser>(...)` and `AddUIIdentityApis<TIdentityUser>()`.
 
 ```csharp
 ...
