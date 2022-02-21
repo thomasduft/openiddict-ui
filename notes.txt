@@ -1,5 +1,8 @@
 TODO:
 
+- configure Serilog for Server
+
+
 - load options.Permissions from database instead of configuring it
 
 
@@ -12,7 +15,7 @@ TODO:
 
 - go full razor pages
   - https://github.com/openiddict/openiddict-samples/tree/dev/samples/Contruum/Contruum.Server
- 
+
 
 - organize APIs a bit more by feature
   - i.e. identity -> AccountController
