@@ -1,11 +1,5 @@
-export interface Application {
-  id: string;
-  clientId: string;
-  displayName: string;
-  type: string;
-  clientSecret: string;
-  requirePkce: boolean;
-  requireConsent: boolean;
+import { RegisterApplication } from './register-application.model';
+export interface Application extends RegisterApplication  {
   redirectUris: Array<string>;
   postLogoutRedirectUris: Array<string>;
   permissions: Array<string>;

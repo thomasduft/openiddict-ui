@@ -7,7 +7,8 @@ import { HttpWrapperService } from '../../shared/services/index';
 
 import {
   Application,
-  ApplicationOptions
+  ApplicationOptions,
+  RegisterApplication
 } from '../models/index';
 
 @Injectable()
@@ -31,6 +32,13 @@ export class ApplicationService {
   public application(id: string): Observable<Application> {
     return this.http
       .get<Application>(`application/${id}`)
+      .pipe(catchError(this.http.handleError));
+  }
+
+  public register(model: RegisterApplication): Observable<string> {
+    model.id = undefined;
+    return this.http
+      .post<string>('application', model)
       .pipe(catchError(this.http.handleError));
   }
 

@@ -12,7 +12,7 @@ import {
 } from '../../shared/formdef';
 
 export class ApplicationDetailSlot implements Slot {
-  public static KEY = 'ClientDetailSlot';
+  public static KEY = 'ApplicationDetailSlot';
 
   public key = ApplicationDetailSlot.KEY;
   public type = SINGLE_SLOT;

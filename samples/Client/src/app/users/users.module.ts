@@ -13,6 +13,7 @@ import { UserDashboardComponent } from './components/dashboard/user-dashboard.co
 import { UserListComponent } from './components/list/user-list.component';
 import { UserDetailComponent } from './components/detail/user-detail.component';
 import { RegisterUserComponent } from './components/register/register-user.component';
+
 import { RegisterUserSlot } from './models/register-user-slot.model';
 
 const ROUTES: Routes = [

@@ -19,7 +19,6 @@ import { AccountService } from '../../services';
 @Component({
   selector: 'tw-register-user',
   templateUrl: './register-user.component.html',
-  styleUrls: ['./register-user.component.less'],
   providers: [
     AccountService
   ]

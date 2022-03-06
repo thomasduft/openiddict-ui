@@ -6,7 +6,6 @@ import { IconModule } from './icon/icon.module';
 import { ListModule } from './list/list.module';
 import { PaneModule } from './pane/pane.module';
 import { PopoverModule } from './popover/popover.module';
-import { TabModule } from './tab/tab.module';
 
 import { ForbiddenComponent } from './components/forbidden.component';
 import { PageNotFoundComponent } from './components/page-not-found.component';
@@ -20,8 +19,7 @@ import { FilterPipe } from './pipes';
     IconModule,
     ListModule,
     PaneModule,
-    PopoverModule,
-    TabModule
+    PopoverModule
   ],
   declarations: [
     ForbiddenComponent,
@@ -35,7 +33,6 @@ import { FilterPipe } from './pipes';
     ListModule,
     PaneModule,
     PopoverModule,
-    TabModule,
     FilterPipe
   ]
 })

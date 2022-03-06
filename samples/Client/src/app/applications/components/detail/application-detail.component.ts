@@ -204,8 +204,14 @@ export class ApplicationDetailComponent implements OnInit {
           form.get('clientSecret').enable();
           form.get('clientSecret').setValidators(Validators.required);
 
+          form.get('requirePkce').disable();
+          form.get('requirePkce').setValidators(null);
           form.get('requirePkce').setValue(false);
+          form.get('requireConsent').disable();
+          form.get('requireConsent').setValidators(null);
           form.get('requireConsent').setValue(false);
+          
+          // clearing values
           form.get('redirectUris').setValue([]);
           form.get('postLogoutRedirectUris').setValue([]);
           form.get('permissions').setValue([]);

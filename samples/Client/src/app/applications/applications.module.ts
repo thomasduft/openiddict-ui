@@ -11,6 +11,7 @@ import { ApplicationService } from './services';
 import { ApplicationListComponent } from './components/list/application-list.component';
 import { ApplicationDetailComponent } from './components/detail/application-detail.component';
 import { ApplicationDashboardComponent } from './components/dashboard/application-dashboard.component';
+import { RegisterApplicationComponent } from './components/register/register-application.component';
 
 const ROUTES: Routes = [
   {
@@ -18,6 +19,10 @@ const ROUTES: Routes = [
     component: ApplicationDashboardComponent,
     canActivate: [AuthGuard],
     children: [
+      {
+        path: 'register',
+        component: RegisterApplicationComponent
+      },
       {
         path: ':id',
         component: ApplicationDetailComponent
@@ -37,10 +42,11 @@ const ROUTES: Routes = [
   declarations: [
     ApplicationListComponent,
     ApplicationDetailComponent,
-    ApplicationDashboardComponent
+    ApplicationDashboardComponent,
+    RegisterApplicationComponent
   ],
   providers: [
     ApplicationService
   ]
 })
-export class ApplicationsModule { }
+export class ApplicationsModule {}
