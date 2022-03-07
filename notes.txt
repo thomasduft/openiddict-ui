@@ -1,6 +1,8 @@
 TODO:
 
 - configure Serilog for Server
+  - https://www.claudiobernasconi.ch/2022/01/28/how-to-use-serilog-in-asp-net-core-web-api/
+  - https://github.com/rstropek/htl-leo-pro-5/tree/master/lectures/0500-api-error-handling/WebApiErrorHandling.Server
 
 
 - load options.Permissions from database instead of configuring it
