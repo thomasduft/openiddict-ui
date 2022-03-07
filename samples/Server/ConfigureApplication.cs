@@ -9,7 +9,6 @@ namespace Server
       string environmentName
     )
     {
-      // Configure the HTTP request pipeline.
       if (Helpers.Constants.IsDevelopmentEnvironment(environmentName))
       {
         app.UseCors(builder =>
