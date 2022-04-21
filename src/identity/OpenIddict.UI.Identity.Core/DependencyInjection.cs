@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,12 +8,14 @@ namespace tomware.OpenIddict.UI.Identity.Core
   [ExcludeFromCodeCoverage]
   public static class OpenIddictUIIdentityCoreServicesExtensions
   {
-    public static IServiceCollection AddOpenIddictUIIdentityCoreServices<TApplicationUser>(
+    public static IServiceCollection AddOpenIddictUIIdentityCoreServices<TApplicationUser, TKey>(
       this IServiceCollection services
-    ) where TApplicationUser : IdentityUser, new()
+    ) 
+      where TKey: IEquatable<TKey>
+      where TApplicationUser : IdentityUser<TKey>, new()
     {
       services.AddTransient<IClaimTypeService, ClaimTypeService>();
-      services.AddTransient<IUserCreationStrategy<TApplicationUser>, EmailUserCreationStrategy<TApplicationUser>>();
+      services.AddTransient<IUserCreationStrategy<TApplicationUser, TKey>, EmailUserCreationStrategy<TApplicationUser, TKey>>();
 
       return services;
     }
@@ -20,12 +23,14 @@ namespace tomware.OpenIddict.UI.Identity.Core
     /// <summary>
     /// Registers the UserName to UserName UserCreationStrategy.
     /// </summary>
-    public static IServiceCollection AddUserNameUserCreationStrategy<TApplicationUser>(
+    public static IServiceCollection AddUserNameUserCreationStrategy<TApplicationUser, TKey>(
       this IServiceCollection services
-    ) where TApplicationUser : IdentityUser, new()
+    ) 
+      where TKey: IEquatable<TKey>
+      where TApplicationUser : IdentityUser<TKey>, new()
     {
       services
-        .AddTransient<IUserCreationStrategy<TApplicationUser>, UserNameUserCreationStrategy<TApplicationUser>>();
+        .AddTransient<IUserCreationStrategy<TApplicationUser, TKey>, UserNameUserCreationStrategy<TApplicationUser, TKey>>();
 
       return services;
     }

@@ -15,13 +15,23 @@ namespace tomware.OpenIddict.UI.Identity.Api
     public static OpenIddictBuilder AddUIIdentityApis<TApplicationUser>(
       this OpenIddictBuilder builder,
       Action<OpenIddictUIIdentityApiOptions> uiApiOptions = null
-    ) where TApplicationUser : IdentityUser, new()
+    ) 
+      where TApplicationUser : IdentityUser, new()
+    {
+      return AddUIIdentityApis<TApplicationUser, string>(builder, uiApiOptions);
+    }
+    public static OpenIddictBuilder AddUIIdentityApis<TApplicationUser, TKey>(
+      this OpenIddictBuilder builder,
+      Action<OpenIddictUIIdentityApiOptions> uiApiOptions = null
+    ) 
+      where TKey: IEquatable<TKey>
+      where TApplicationUser : IdentityUser<TKey>, new()
     {
       var options = new OpenIddictUIIdentityApiOptions();
       uiApiOptions?.Invoke(options);
       builder.AddRoutePrefix(options.RoutePrefix);
 
-      builder.Services.AddApiServices<TApplicationUser>();
+      builder.Services.AddApiServices<TApplicationUser, TKey>();
 
       builder.Services.AddAuthorizationServices(options.Policy);
 
@@ -31,21 +41,25 @@ namespace tomware.OpenIddict.UI.Identity.Api
     /// <summary>
     /// Registers the UserName to UserName UserCreationStrategy.
     /// </summary>
-    public static OpenIddictBuilder AddUserNameUserCreationStrategy<TApplicationUser>(
+    public static OpenIddictBuilder AddUserNameUserCreationStrategy<TApplicationUser, TKey>(
       this OpenIddictBuilder builder
-    ) where TApplicationUser : IdentityUser, new()
+    ) 
+      where TKey: IEquatable<TKey>
+      where TApplicationUser : IdentityUser<TKey>, new()
     {
       builder.Services
-        .AddUserNameUserCreationStrategy<TApplicationUser>();
+        .AddUserNameUserCreationStrategy<TApplicationUser, TKey>();
 
       return builder;
     }
 
-    private static IServiceCollection AddApiServices<TApplicationUser>(
+    private static IServiceCollection AddApiServices<TApplicationUser, TKey>(
       this IServiceCollection services
-    ) where TApplicationUser : IdentityUser, new()
+    ) 
+      where TKey: IEquatable<TKey>
+      where TApplicationUser : IdentityUser<TKey>, new()
     {
-      services.AddTransient<IAccountApiService, AccountApiService<TApplicationUser>>();
+      services.AddTransient<IAccountApiService, AccountApiService<TApplicationUser, TKey>>();
       services.AddTransient<IRoleApiService, RoleApiService>();
       services.AddTransient<IClaimTypeApiService, ClaimTypeApiService>();
 

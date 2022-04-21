@@ -139,6 +139,21 @@ services.AddOpenIddict()
 ...
 ```
 
+## Change the type of primary key used for Identity User
+
+If your ApplicationUser class derives from an IdentityUser class where the key type is specified (e.g. IdentityUser<Guid>) this key must also be supplied to AddUIIdentityStore and AddUIIdentityApis. e.g.
+
+```
+  .AddUIIdentityStore<ApplicationUser, Guid>(options =>
+  {
+    ...
+  })
+  // Register the APIs for the EF based UI Store based on ASP.NET Identity.
+  .AddUIIdentityApis<ApplicationUser, Guid>();
+  
+...
+```
+
 ## Thoughts and ideas
 
 The project is still very young and there are a lot of ideas like:

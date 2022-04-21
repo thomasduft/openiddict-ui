@@ -17,7 +17,17 @@ namespace tomware.OpenIddict.UI.Identity.Infrastructure
       Action<OpenIddictUIIdentityStoreOptions> storeOptionsAction = null
     ) where TApplicationUser : IdentityUser, new()
     {
-      builder.Services.AddInfrastructureServices<TApplicationUser>();
+      return AddUIIdentityStore<TApplicationUser, string>(builder, storeOptionsAction);
+    }
+
+    public static OpenIddictBuilder AddUIIdentityStore<TApplicationUser, TKey>(
+      this OpenIddictBuilder builder,
+      Action<OpenIddictUIIdentityStoreOptions> storeOptionsAction = null
+    ) 
+      where TKey: IEquatable<TKey>
+      where TApplicationUser : IdentityUser<TKey>, new()
+    {
+      builder.Services.AddInfrastructureServices<TApplicationUser, TKey>();
 
       builder.Services
         .AddOpenIddictUIIdentityStore<OpenIddictUIIdentityContext>(storeOptionsAction);
@@ -25,17 +35,19 @@ namespace tomware.OpenIddict.UI.Identity.Infrastructure
       return builder;
     }
 
-    private static IServiceCollection AddInfrastructureServices<TApplicationUser>(
+    private static IServiceCollection AddInfrastructureServices<TApplicationUser, TKey>(
       this IServiceCollection services
-    ) where TApplicationUser : IdentityUser, new()
+    ) 
+      where TKey: IEquatable<TKey>
+      where TApplicationUser : IdentityUser<TKey>, new()
     {
       // core services
-      services.AddOpenIddictUIIdentityCoreServices<TApplicationUser>();
+      services.AddOpenIddictUIIdentityCoreServices<TApplicationUser, TKey>();
 
       // own services
       services.AddScoped(typeof(IAsyncRepository<,>), typeof(EfRepository<,>));
       services.AddTransient<IClaimTypeRepository, ClaimTypeRepository<OpenIddictUIIdentityContext>>();
-      services.AddTransient<IAccountService, AccountService<TApplicationUser>>();
+      services.AddTransient<IAccountService, AccountService<TApplicationUser, TKey>>();
 
       return services;
     }

@@ -9,15 +9,16 @@ using tomware.OpenIddict.UI.Identity.Core;
 
 namespace tomware.OpenIddict.UI.Identity.Infrastructure
 {
-  public class AccountService<TIdentityUser> : IAccountService
-   where TIdentityUser : IdentityUser, new()
+  public class AccountService<TIdentityUser, TKey> : IAccountService
+    where TKey: IEquatable<TKey>
+    where TIdentityUser : IdentityUser<TKey>, new()
   {
     private readonly UserManager<TIdentityUser> _manager;
-    private readonly IUserCreationStrategy<TIdentityUser> _userCreationStrategy;
+    private readonly IUserCreationStrategy<TIdentityUser, TKey> _userCreationStrategy;
 
     public AccountService(
       UserManager<TIdentityUser> manager,
-      IUserCreationStrategy<TIdentityUser> userCreationStrategy
+      IUserCreationStrategy<TIdentityUser, TKey> userCreationStrategy
     )
     {
       _manager = manager
@@ -56,7 +57,7 @@ namespace tomware.OpenIddict.UI.Identity.Infrastructure
 
       return items.Select(u => new UserInfo
       {
-        Id = u.Id,
+        Id = u.Id.ToString(),
         UserName = u.UserName,
         Email = u.Email,
         LockoutEnabled = u.LockoutEnabled
@@ -73,7 +74,7 @@ namespace tomware.OpenIddict.UI.Identity.Infrastructure
 
       return new UserInfo
       {
-        Id = user.Id,
+        Id = user.Id.ToString(),
         UserName = user.UserName,
         Email = user.Email,
         LockoutEnabled = user.LockoutEnabled,
