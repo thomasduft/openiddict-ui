@@ -14,6 +14,18 @@
       "problemMatcher": "$msCompile"
     },
     {
+      "label": "build-server-with-custom-key",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/samples/ServerWithCustomKey/ServerWithCustomKey.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
       "label": "build-api",
       "command": "dotnet",
       "type": "process",

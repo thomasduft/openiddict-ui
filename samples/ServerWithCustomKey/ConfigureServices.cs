@@ -175,7 +175,7 @@ namespace ServerWithCustomKey
           };
         })
         // Register the EF based UI Store for the ASP.NET Identity related entities.
-        .AddUIIdentityStore<ApplicationUser, Guid>(options =>
+        .AddUIIdentityStore<ApplicationUser, int>(options =>
         {
           options.OpenIddictUIIdentityContext = builder =>
            builder.UseSqlite(configuration.GetConnectionString("DefaultConnection"),
@@ -186,7 +186,7 @@ namespace ServerWithCustomKey
                        .Name));
         })
         // Register the APIs for the EF based UI Store based on ASP.NET Identity.
-        .AddUIIdentityApis<ApplicationUser, Guid>();
+        .AddUIIdentityApis<ApplicationUser, ApplicationRole, int>();
 
       if (!Helpers.Constants.IsTestingEnvironment(environmentName))
       {
