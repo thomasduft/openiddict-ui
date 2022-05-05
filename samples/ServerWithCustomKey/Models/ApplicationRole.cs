@@ -3,5 +3,9 @@
 namespace ServerWithCustomKey.Models
 {
   // Add profile data for application users by adding properties to the ApplicationUser class
-  public class ApplicationRole : IdentityRole<Guid> { }
+  public class ApplicationRole : IdentityRole<Guid>
+  {
+    public ApplicationRole() { }
+    public ApplicationRole(string name) { Name = name; }
+  }
 }

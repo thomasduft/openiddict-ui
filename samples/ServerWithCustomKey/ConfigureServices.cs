@@ -29,7 +29,7 @@ namespace ServerWithCustomKey
       });
 
       // Register the Identity services.
-      services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+      services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
       {
         options.User.RequireUniqueEmail = true;
       })

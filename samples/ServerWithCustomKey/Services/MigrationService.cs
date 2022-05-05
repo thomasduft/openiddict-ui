@@ -138,13 +138,13 @@ namespace ServerWithCustomKey.Services
 
     private static async Task EnsureAdministratorRole(IServiceProvider provider)
     {
-      var manager = provider.GetRequiredService<RoleManager<IdentityRole>>();
+      var manager = provider.GetRequiredService<RoleManager<ApplicationRole>>();
 
       var role = Roles.ADMINISTRATOR_ROLE;
       var roleExists = await manager.RoleExistsAsync(role);
       if (!roleExists)
       {
-        var newRole = new IdentityRole(role);
+        var newRole = new ApplicationRole(role);
         await manager.CreateAsync(newRole);
       }
     }
