@@ -19,11 +19,13 @@ namespace tomware.OpenIddict.UI.Identity.Api
     Task DeleteAsync(string id);
   }
 
-  public class RoleApiService : IRoleApiService
+  public class RoleApiService<TIdentityRole, TKey> : IRoleApiService
+    where TKey : IEquatable<TKey>
+    where TIdentityRole : IdentityRole<TKey>, new()
   {
-    private readonly RoleManager<IdentityRole> _manager;
+    private readonly RoleManager<TIdentityRole> _manager;
 
-    public RoleApiService(RoleManager<IdentityRole> manager)
+    public RoleApiService(RoleManager<TIdentityRole> manager)
     {
       _manager = manager;
     }
@@ -52,17 +54,19 @@ namespace tomware.OpenIddict.UI.Identity.Api
     {
       if (model == null) throw new ArgumentNullException(nameof(model));
 
-      var newRole = new IdentityRole(model.Name);
+      var newRole = new TIdentityRole
+      {
+        Name = model.Name
+      };
       if (!await _manager.RoleExistsAsync(model.Name))
       {
         await _manager.CreateAsync(newRole);
-
-        return newRole.Id;
+        return newRole.Id.ToString();
       }
 
       var role = await _manager.FindByNameAsync(model.Name);
 
-      return role.Id;
+      return role.Id.ToString();
     }
 
     public async Task UpdateAsync(RoleViewModel model)
@@ -85,11 +89,11 @@ namespace tomware.OpenIddict.UI.Identity.Api
       await _manager.DeleteAsync(role);
     }
 
-    private static RoleViewModel ToModel(IdentityRole entity)
+    private static RoleViewModel ToModel(IdentityRole<TKey> entity)
     {
       return new RoleViewModel
       {
-        Id = entity.Id,
+        Id = entity.Id.ToString(),
         Name = entity.Name
       };
     }

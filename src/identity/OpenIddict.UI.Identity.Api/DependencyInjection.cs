@@ -18,20 +18,21 @@ namespace tomware.OpenIddict.UI.Identity.Api
     ) 
       where TApplicationUser : IdentityUser, new()
     {
-      return AddUIIdentityApis<TApplicationUser, string>(builder, uiApiOptions);
+      return AddUIIdentityApis<TApplicationUser, IdentityRole, string>(builder, uiApiOptions);
     }
-    public static OpenIddictBuilder AddUIIdentityApis<TApplicationUser, TKey>(
+    public static OpenIddictBuilder AddUIIdentityApis<TApplicationUser, TApplicationRole, TKey>(
       this OpenIddictBuilder builder,
       Action<OpenIddictUIIdentityApiOptions> uiApiOptions = null
     ) 
       where TKey: IEquatable<TKey>
       where TApplicationUser : IdentityUser<TKey>, new()
+      where TApplicationRole : IdentityRole<TKey>, new()
     {
       var options = new OpenIddictUIIdentityApiOptions();
       uiApiOptions?.Invoke(options);
       builder.AddRoutePrefix(options.RoutePrefix);
 
-      builder.Services.AddApiServices<TApplicationUser, TKey>();
+      builder.Services.AddApiServices<TApplicationUser, TApplicationRole, TKey>();
 
       builder.Services.AddAuthorizationServices(options.Policy);
 
@@ -53,14 +54,15 @@ namespace tomware.OpenIddict.UI.Identity.Api
       return builder;
     }
 
-    private static IServiceCollection AddApiServices<TApplicationUser, TKey>(
+    private static IServiceCollection AddApiServices<TApplicationUser, TApplicationRole, TKey>(
       this IServiceCollection services
     ) 
       where TKey: IEquatable<TKey>
       where TApplicationUser : IdentityUser<TKey>, new()
+      where TApplicationRole : IdentityRole<TKey>, new()
     {
       services.AddTransient<IAccountApiService, AccountApiService<TApplicationUser, TKey>>();
-      services.AddTransient<IRoleApiService, RoleApiService>();
+      services.AddTransient<IRoleApiService, RoleApiService<TApplicationRole, TKey>>();
       services.AddTransient<IClaimTypeApiService, ClaimTypeApiService>();
 
       return services;
