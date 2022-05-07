@@ -15,16 +15,17 @@ namespace tomware.OpenIddict.UI.Identity.Api
     public static OpenIddictBuilder AddUIIdentityApis<TApplicationUser>(
       this OpenIddictBuilder builder,
       Action<OpenIddictUIIdentityApiOptions> uiApiOptions = null
-    ) 
+    )
       where TApplicationUser : IdentityUser, new()
     {
       return AddUIIdentityApis<TApplicationUser, IdentityRole, string>(builder, uiApiOptions);
     }
+
     public static OpenIddictBuilder AddUIIdentityApis<TApplicationUser, TApplicationRole, TKey>(
       this OpenIddictBuilder builder,
       Action<OpenIddictUIIdentityApiOptions> uiApiOptions = null
-    ) 
-      where TKey: IEquatable<TKey>
+    )
+      where TKey : IEquatable<TKey>
       where TApplicationUser : IdentityUser<TKey>, new()
       where TApplicationRole : IdentityRole<TKey>, new()
     {
@@ -44,8 +45,8 @@ namespace tomware.OpenIddict.UI.Identity.Api
     /// </summary>
     public static OpenIddictBuilder AddUserNameUserCreationStrategy<TApplicationUser, TKey>(
       this OpenIddictBuilder builder
-    ) 
-      where TKey: IEquatable<TKey>
+    )
+      where TKey : IEquatable<TKey>
       where TApplicationUser : IdentityUser<TKey>, new()
     {
       builder.Services
@@ -56,8 +57,8 @@ namespace tomware.OpenIddict.UI.Identity.Api
 
     private static IServiceCollection AddApiServices<TApplicationUser, TApplicationRole, TKey>(
       this IServiceCollection services
-    ) 
-      where TKey: IEquatable<TKey>
+    )
+      where TKey : IEquatable<TKey>
       where TApplicationUser : IdentityUser<TKey>, new()
       where TApplicationRole : IdentityRole<TKey>, new()
     {

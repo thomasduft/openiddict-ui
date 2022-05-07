@@ -23,8 +23,8 @@ namespace tomware.OpenIddict.UI.Identity.Infrastructure
     public static OpenIddictBuilder AddUIIdentityStore<TApplicationUser, TKey>(
       this OpenIddictBuilder builder,
       Action<OpenIddictUIIdentityStoreOptions> storeOptionsAction = null
-    ) 
-      where TKey: IEquatable<TKey>
+    )
+      where TKey : IEquatable<TKey>
       where TApplicationUser : IdentityUser<TKey>, new()
     {
       builder.Services.AddInfrastructureServices<TApplicationUser, TKey>();
@@ -37,8 +37,8 @@ namespace tomware.OpenIddict.UI.Identity.Infrastructure
 
     private static IServiceCollection AddInfrastructureServices<TApplicationUser, TKey>(
       this IServiceCollection services
-    ) 
-      where TKey: IEquatable<TKey>
+    )
+      where TKey : IEquatable<TKey>
       where TApplicationUser : IdentityUser<TKey>, new()
     {
       // core services
