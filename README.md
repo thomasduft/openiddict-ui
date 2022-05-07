@@ -143,15 +143,15 @@ services.AddOpenIddict()
 
 If your ApplicationUser class derives from an IdentityUser class where the key type is specified (e.g. IdentityUser<Guid>) this key must also be supplied to AddUIIdentityStore and AddUIIdentityApis. e.g.
 
-An example project using INT as the primary key is included in the samples/ServerWithCustomKey project
+An example project using INT as the primary key is included in the samples/ServerWithCustomKey project.
 
 ```
-  .AddUIIdentityStore<ApplicationUser, Guid>(options =>
+  .AddUIIdentityStore<ApplicationUser, int>(options =>
   {
     ...
   })
   // Register the APIs for the EF based UI Store based on ASP.NET Identity.
-  .AddUIIdentityApis<ApplicationUser, Guid>();
+  .AddUIIdentityApis<ApplicationUser, int>();
   
 ...
 ```
