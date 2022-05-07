@@ -19,8 +19,9 @@ namespace tomware.OpenIddict.UI.Identity.Api
     Task<IdentityResult> DeleteAsync(string id);
   }
 
-  public class AccountApiService<TIdentityUser> : IAccountApiService
-    where TIdentityUser : IdentityUser, new()
+  public class AccountApiService<TIdentityUser, TKey> : IAccountApiService
+    where TKey: IEquatable<TKey>
+    where TIdentityUser : IdentityUser<TKey>, new()
   {
     private readonly IAccountService _accountService;
 

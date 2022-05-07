@@ -1,0 +1,18 @@
+@page
+@model IndexModel
+
+@{
+  ViewData["Title"] = "Profile";
+  ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<form class="form" id="profile-form" method="post">
+  <div class="form__group">
+    <label asp-for="Username">Username</label>
+    <input asp-for="Username" disabled />
+  </div>
+  <div class="form__group">
+    <label asp-for="PhoneNumber">Phone number</label>
+    <input asp-for="PhoneNumber" disabled/>
+  </div>
+</form>

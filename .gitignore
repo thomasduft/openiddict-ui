@@ -264,5 +264,5 @@ dist/
 lcov.info
 tests/coverage.json
 samples/**/*.sqlite
-samples/Server/server.sqlite-wal
-samples/Server/server.sqlite-shm
+samples/**/*.sqlite-wal
+samples/**/*.sqlite-shm
