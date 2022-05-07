@@ -139,9 +139,9 @@ services.AddOpenIddict()
 ...
 ```
 
-## Change the type of primary key used for Identity User
+## Change the type of primary key used for IdentityUser
 
-If your ApplicationUser class derives from an IdentityUser class where the key type is specified (e.g. IdentityUser<Guid>) this key must also be supplied to AddUIIdentityStore and AddUIIdentityApis. e.g.
+If your ApplicationUser class derives from an IdentityUser class where the key type is specified (e.g. `IdentityUser<Guid>`) this key must also be supplied to AddUIIdentityStore and AddUIIdentityApis. e.g.
 
 An example project using INT as the primary key is included in the samples/ServerWithCustomKey project.
 
