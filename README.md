@@ -135,7 +135,6 @@ services.AddOpenIddict()
   })
   // Register the APIs for the EF based UI Store based on ASP.NET Identity.
   .AddUIIdentityApis<ApplicationUser>();
-  
 ...
 ```
 
@@ -145,14 +144,14 @@ If your ApplicationUser class derives from an IdentityUser class where the key t
 
 An example project using INT as the primary key is included in the samples/ServerWithCustomKey project.
 
-```
+```csharp
+...
   .AddUIIdentityStore<ApplicationUser, int>(options =>
   {
     ...
   })
   // Register the APIs for the EF based UI Store based on ASP.NET Identity.
   .AddUIIdentityApis<ApplicationUser, int>();
-  
 ...
 ```
 
