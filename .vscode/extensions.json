@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "hediet.vscode-drawio",
+    "eamodio.gitlens",
+    "editorconfig.editorconfig",
+    "formulahendry.dotnet-test-explorer",
+    "github.vscode-pull-request-github",
+    "mikestead.dotenv",
+    "minhthai.vscode-todo-parser",
+    "ms-dotnettools.csharp",
+    "ms-vscode-remote.remote-containers",
+    "rangav.vscode-thunder-client",
+    "ryanluker.vscode-coverage-gutters",
+  ]
+}
