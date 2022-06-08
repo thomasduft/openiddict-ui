@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import {
-  FormGroup,
-  FormArray,
-  FormControl,
-  FormBuilder
+  UntypedFormGroup,
+  UntypedFormArray,
+  UntypedFormControl,
+  UntypedFormBuilder
 } from '@angular/forms';
 
 import { FormdefValidator, Editor, Slot } from './models';
@@ -52,12 +52,12 @@ import { SlotComponent } from './slot.component';
   </fieldset>`
 })
 export class ArraySlotComponent extends SlotComponent {
-  public get rows(): FormArray {
-    return this.form as FormArray;
+  public get rows(): UntypedFormArray {
+    return this.form as UntypedFormArray;
   }
 
   public constructor(
-    private _fb: FormBuilder
+    private _fb: UntypedFormBuilder
   ) {
     super();
   }
@@ -71,11 +71,11 @@ export class ArraySlotComponent extends SlotComponent {
     this.rows.removeAt(idx);
   }
 
-  protected createRow(arraySlot: Slot): FormGroup {
+  protected createRow(arraySlot: Slot): UntypedFormGroup {
     const row = this._fb.group({});
 
     arraySlot.editors.forEach((e: Editor) => {
-      row.addControl(e.key, new FormControl(undefined, FormdefValidator.getValidators(e)));
+      row.addControl(e.key, new UntypedFormControl(undefined, FormdefValidator.getValidators(e)));
     });
 
     return row;

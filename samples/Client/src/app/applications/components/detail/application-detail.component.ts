@@ -2,7 +2,7 @@ import { Subscription, forkJoin } from 'rxjs';
 
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Validators, FormGroup } from '@angular/forms';
+import { Validators, UntypedFormGroup } from '@angular/forms';
 
 import {
   AutoUnsubscribe,
@@ -40,7 +40,7 @@ export class ApplicationDetailComponent implements OnInit {
   public viewModel: Application;
   public errors: Array<string> = [];
   public isNew = false;
-  public form = new FormGroup({});
+  public form = new UntypedFormGroup({});
 
   public constructor(
     private router: Router,
@@ -192,7 +192,7 @@ export class ApplicationDetailComponent implements OnInit {
     this.messageBus.publish(new RefreshMessage('application'));
   }
 
-  private applyFormBehavior(form: FormGroup): void {
+  private applyFormBehavior(form: UntypedFormGroup): void {
     if (form === undefined) { return; }
 
     const typeControl = form.get('type');

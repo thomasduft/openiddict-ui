@@ -8,7 +8,7 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import {
-  FormGroup
+  UntypedFormGroup
 } from '@angular/forms';
 
 import { Slot, SINGLE_SLOT, BaseSlotDirective } from './models';
@@ -25,7 +25,7 @@ export class SlotHostComponent implements OnInit, OnDestroy {
   public slot: Slot;
 
   @Input()
-  public form: FormGroup;
+  public form: UntypedFormGroup;
 
   @ViewChild('slotContent', { read: ViewContainerRef, static: true })
   protected slotContent: ViewContainerRef;

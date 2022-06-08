@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  FormArray
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  UntypedFormControl,
+  UntypedFormArray
 } from '@angular/forms';
 
 import {
@@ -16,30 +16,30 @@ import { FormdefRegistry } from './formdefRegistry.service';
 @Injectable()
 export class FormdefService {
   public constructor(
-    private _fb: FormBuilder,
+    private _fb: UntypedFormBuilder,
     private _slotRegistry: FormdefRegistry
   ) { }
 
-  public toGroup(key: string, viewModel: any): FormGroup {
+  public toGroup(key: string, viewModel: any): UntypedFormGroup {
     const slot = this.getSlot(key);
 
     const fg = this.toGroupRecursive(slot, viewModel);
 
-    return <FormGroup>fg;
+    return <UntypedFormGroup>fg;
   }
 
   public getSlot(key: string): Slot {
     return this._slotRegistry.get(key);
   }
 
-  private toGroupRecursive(slot: Slot, viewModel: any): FormGroup | FormArray {
+  private toGroupRecursive(slot: Slot, viewModel: any): UntypedFormGroup | UntypedFormArray {
     const fg = this._fb.group({});
 
     const isArray = Array.isArray(viewModel);
 
     if (!isArray) {
       slot.editors.forEach((e: Editor) => {
-        fg.addControl(e.key, new FormControl(
+        fg.addControl(e.key, new UntypedFormControl(
           { value: viewModel[e.key], disabled: e.isReadOnly === true },
           FormdefValidator.getValidators(e)
         ));
@@ -51,7 +51,7 @@ export class FormdefService {
         const row = this._fb.group({});
 
         slot.editors.forEach((e: Editor) => {
-          row.addControl(e.key, new FormControl(
+          row.addControl(e.key, new UntypedFormControl(
             { value: viewModel[i][e.key], disabled: e.isReadOnly === true },
             FormdefValidator.getValidators(e)
           ));

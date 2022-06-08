@@ -2,7 +2,7 @@ import { Subscription } from 'rxjs';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, Validators } from '@angular/forms';
+import { UntypedFormGroup, Validators } from '@angular/forms';
 
 import {
   AutoUnsubscribe,
@@ -32,7 +32,7 @@ export class RegisterApplicationComponent implements OnInit {
   public key = RegisterApplicationSlot.KEY;
   public viewModel: RegisterApplication;
   public errors: Array<string> = [];
-  public form = new FormGroup({});
+  public form = new UntypedFormGroup({});
 
   public constructor(
     private router: Router,
@@ -91,7 +91,7 @@ export class RegisterApplicationComponent implements OnInit {
     this.applyFormBehavior(this.form);
   }
 
-  private applyFormBehavior(form: FormGroup): void {
+  private applyFormBehavior(form: UntypedFormGroup): void {
     const typeControl = form.get('type');
     if (typeControl) {
       typeControl.valueChanges.subscribe(type => {
