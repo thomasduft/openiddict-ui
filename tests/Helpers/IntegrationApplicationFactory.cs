@@ -7,7 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OpenIddict.Server;
-using Server.Services;
 using tomware.OpenIddict.UI.Suite.Core;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 using static OpenIddict.Server.OpenIddictServerEvents;
@@ -27,17 +26,8 @@ public class IntegrationApplicationFactory<TEntryPoint>
     builder.ConfigureServices(services =>
     {
       var sp = services.BuildServiceProvider();
-      EnsureMigration(sp);
-
       AccessToken = GenerateAccessToken(sp);
     });
-  }
-
-  public void EnsureMigration(IServiceProvider sp)
-  {
-    using var scope = sp.CreateScope();
-    var migrator = scope.ServiceProvider.GetRequiredService<IMigrationService>();
-    migrator.EnsureMigrationAsync().GetAwaiter().GetResult();
   }
 
   public string GenerateAccessToken(IServiceProvider sp)
