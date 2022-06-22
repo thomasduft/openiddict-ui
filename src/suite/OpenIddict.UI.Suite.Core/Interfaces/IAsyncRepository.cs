@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace tomware.OpenIddict.UI.Suite.Core
 {
-  public interface IAsyncRepository<TEntity, TKey> 
+  public interface IAsyncRepository<TEntity, TKey>
     where TEntity : class
   {
     Task<TEntity> GetByIdAsync(TKey id);

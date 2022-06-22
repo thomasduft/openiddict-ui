@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using tomware.OpenIddict.UI.Suite.Core;
 using tomware.OpenIddict.UI.Infrastructure;
+using tomware.OpenIddict.UI.Suite.Core;
 
 namespace tomware.OpenIddict.UI.Api
 {

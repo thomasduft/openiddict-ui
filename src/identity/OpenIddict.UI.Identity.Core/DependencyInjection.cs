@@ -10,8 +10,8 @@ namespace tomware.OpenIddict.UI.Identity.Core
   {
     public static IServiceCollection AddOpenIddictUIIdentityCoreServices<TApplicationUser, TKey>(
       this IServiceCollection services
-    ) 
-      where TKey: IEquatable<TKey>
+    )
+      where TKey : IEquatable<TKey>
       where TApplicationUser : IdentityUser<TKey>, new()
     {
       services.AddTransient<IClaimTypeService, ClaimTypeService>();
@@ -25,8 +25,8 @@ namespace tomware.OpenIddict.UI.Identity.Core
     /// </summary>
     public static IServiceCollection AddUserNameUserCreationStrategy<TApplicationUser, TKey>(
       this IServiceCollection services
-    ) 
-      where TKey: IEquatable<TKey>
+    )
+      where TKey : IEquatable<TKey>
       where TApplicationUser : IdentityUser<TKey>, new()
     {
       services

@@ -10,7 +10,7 @@ namespace tomware.OpenIddict.UI.Identity.Core
   /// </summary>
   public class EmailUserCreationStrategy<TIdentityUser, TKey>
     : IUserCreationStrategy<TIdentityUser, TKey>
-    where TKey: IEquatable<TKey>
+    where TKey : IEquatable<TKey>
     where TIdentityUser : IdentityUser<TKey>, new()
   {
     public TIdentityUser CreateUser(RegisterUserParam model)
@@ -29,7 +29,7 @@ namespace tomware.OpenIddict.UI.Identity.Core
   /// </summary>
   public class UserNameUserCreationStrategy<TIdentityUser, TKey>
     : IUserCreationStrategy<TIdentityUser, TKey>
-    where TKey: IEquatable<TKey>
+    where TKey : IEquatable<TKey>
     where TIdentityUser : IdentityUser<TKey>, new()
   {
     public TIdentityUser CreateUser(RegisterUserParam model)

@@ -1,4 +1,4 @@
-﻿using Serilog;
+using Serilog;
 using ServerWithCustomKey;
 using ServerWithCustomKey.Services;
 

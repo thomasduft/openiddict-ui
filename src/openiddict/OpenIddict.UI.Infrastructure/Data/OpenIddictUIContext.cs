@@ -1,6 +1,6 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using OpenIddict.EntityFrameworkCore.Models;
-using System;
 
 namespace tomware.OpenIddict.UI.Infrastructure
 {

@@ -1,8 +1,8 @@
-using Server;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Server;
 using tomware.OpenIddict.UI.Identity.Api;
 using tomware.OpenIddict.UI.Tests.Helpers;
 using Xunit;

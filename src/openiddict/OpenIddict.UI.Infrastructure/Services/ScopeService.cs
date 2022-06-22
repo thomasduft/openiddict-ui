@@ -1,10 +1,10 @@
-using OpenIddict.Core;
-using OpenIddict.EntityFrameworkCore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using OpenIddict.Core;
+using OpenIddict.EntityFrameworkCore.Models;
 using tomware.OpenIddict.UI.Suite.Core;
 
 namespace tomware.OpenIddict.UI.Infrastructure
@@ -72,7 +72,7 @@ namespace tomware.OpenIddict.UI.Infrastructure
 
     public async Task UpdateAsync(ScopeParam model)
     {
-      if (string.IsNullOrWhiteSpace(model.Id)) 
+      if (string.IsNullOrWhiteSpace(model.Id))
         throw new InvalidOperationException(nameof(model.Id));
 
       var entity = await _manager.FindByIdAsync(model.Id);

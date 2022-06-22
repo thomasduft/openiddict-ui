@@ -1,4 +1,4 @@
-﻿namespace ServerWithCustomKey.Helpers
+namespace ServerWithCustomKey.Helpers
 {
   public static class AsyncEnumerableExtensions
   {

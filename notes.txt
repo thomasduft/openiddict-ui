@@ -91,4 +91,5 @@ Windows:
 Tips:
 - dotnet tool install --global dotnet-ef
 - dotnet tool install --global dotnet-outdated-tool
+- dotnet tool install -g dotnet-format
   export PATH="$PATH:/home/vscode/.dotnet/tools"

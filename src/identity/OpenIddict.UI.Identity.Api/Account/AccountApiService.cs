@@ -1,9 +1,8 @@
-using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Identity;
 using tomware.OpenIddict.UI.Identity.Core;
 using tomware.OpenIddict.UI.Suite.Core;
 
@@ -20,7 +19,7 @@ namespace tomware.OpenIddict.UI.Identity.Api
   }
 
   public class AccountApiService<TIdentityUser, TKey> : IAccountApiService
-    where TKey: IEquatable<TKey>
+    where TKey : IEquatable<TKey>
     where TIdentityUser : IdentityUser<TKey>, new()
   {
     private readonly IAccountService _accountService;

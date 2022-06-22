@@ -1,16 +1,16 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using tomware.OpenIddict.UI.Identity.Core;
 
 namespace tomware.OpenIddict.UI.Identity.Infrastructure
 {
   public class AccountService<TIdentityUser, TKey> : IAccountService
-    where TKey: IEquatable<TKey>
+    where TKey : IEquatable<TKey>
     where TIdentityUser : IdentityUser<TKey>, new()
   {
     private readonly UserManager<TIdentityUser> _manager;

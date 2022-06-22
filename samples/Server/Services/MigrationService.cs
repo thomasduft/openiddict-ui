@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OpenIddict.Abstractions;
 using Server.Helpers;
 using Server.Models;
-using OpenIddict.Abstractions;
 using tomware.OpenIddict.UI.Identity.Infrastructure;
 using tomware.OpenIddict.UI.Infrastructure;
 using static OpenIddict.Abstractions.OpenIddictConstants;

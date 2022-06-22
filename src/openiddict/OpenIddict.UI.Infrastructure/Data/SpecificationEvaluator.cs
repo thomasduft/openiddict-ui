@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using tomware.OpenIddict.UI.Suite.Core;
 
 namespace tomware.OpenIddict.UI.Infrastructure

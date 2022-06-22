@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Authorization;
-using tomware.OpenIddict.UI.Suite.Api;
 using tomware.OpenIddict.UI.Identity.Core;
+using tomware.OpenIddict.UI.Suite.Api;
 
 namespace tomware.OpenIddict.UI.Identity.Api
 {

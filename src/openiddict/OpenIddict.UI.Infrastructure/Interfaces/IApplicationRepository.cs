@@ -3,7 +3,7 @@ using tomware.OpenIddict.UI.Suite.Core;
 
 namespace tomware.OpenIddict.UI.Infrastructure
 {
-  public interface IApplicationRepository 
+  public interface IApplicationRepository
     : IAsyncRepository<OpenIddictEntityFrameworkCoreApplication, string>
   { }
 }

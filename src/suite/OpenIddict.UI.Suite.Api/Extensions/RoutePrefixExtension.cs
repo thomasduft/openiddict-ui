@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.AspNetCore.Mvc.Routing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace tomware.OpenIddict.UI.Suite.Api
 {
@@ -30,7 +30,7 @@ namespace tomware.OpenIddict.UI.Suite.Api
     public RoutePrefixConvention(IRouteTemplateProvider route, IEnumerable<Type> controllerTypes)
     {
       _routePrefix = new AttributeRouteModel(route);
-      _controllerTypes = controllerTypes 
+      _controllerTypes = controllerTypes
         ?? throw new ArgumentNullException(nameof(controllerTypes));
     }
 

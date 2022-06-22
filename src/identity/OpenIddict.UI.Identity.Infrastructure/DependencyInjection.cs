@@ -1,11 +1,10 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-
-using tomware.OpenIddict.UI.Suite.Core;
 using tomware.OpenIddict.UI.Identity.Core;
-using Microsoft.AspNetCore.Identity;
+using tomware.OpenIddict.UI.Suite.Core;
 
 namespace tomware.OpenIddict.UI.Identity.Infrastructure
 {

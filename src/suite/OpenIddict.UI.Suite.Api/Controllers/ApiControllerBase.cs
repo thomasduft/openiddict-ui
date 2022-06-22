@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
+using Microsoft.AspNetCore.Mvc;
 
 namespace tomware.OpenIddict.UI.Suite.Api
 {

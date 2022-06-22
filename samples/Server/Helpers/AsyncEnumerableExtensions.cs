@@ -1,4 +1,4 @@
-﻿namespace Server.Helpers
+namespace Server.Helpers
 {
   public static class AsyncEnumerableExtensions
   {

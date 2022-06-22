@@ -1,8 +1,8 @@
-using ServerWithCustomKey;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ServerWithCustomKey;
 using tomware.OpenIddict.UI.Identity.Api;
 using tomware.OpenIddict.UI.Tests.Helpers;
 using Xunit;

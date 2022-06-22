@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Server.Pages.Account
 {
@@ -10,4 +10,3 @@ namespace Server.Pages.Account
     }
   }
 }
-

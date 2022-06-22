@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Identity;
-using ServerWithCustomKey;
-using ServerWithCustomKey.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using ServerWithCustomKey;
+using ServerWithCustomKey.Models;
 using tomware.OpenIddict.UI.Identity.Api;
 using tomware.OpenIddict.UI.Tests.Helpers;
 using Xunit;
