@@ -1,5 +1,4 @@
-namespace Server
-{
-  // Marker class for Integration Tests
-  public class Testing { }
-}
+namespace Server;
+
+// Marker class for Integration Tests
+public class Testing { }

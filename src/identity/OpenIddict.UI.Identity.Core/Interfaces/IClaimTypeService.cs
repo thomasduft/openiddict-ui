@@ -2,18 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace tomware.OpenIddict.UI.Identity.Core
+namespace tomware.OpenIddict.UI.Identity.Core;
+
+public interface IClaimTypeService
 {
-  public interface IClaimTypeService
-  {
-    Task<IEnumerable<ClaimTypeInfo>> GetClaimTypesAsync();
+  Task<IEnumerable<ClaimTypeInfo>> GetClaimTypesAsync();
 
-    Task<ClaimTypeInfo> GetAsync(Guid id);
+  Task<ClaimTypeInfo> GetAsync(Guid id);
 
-    Task<Guid> CreateAsync(ClaimTypeParam model);
+  Task<Guid> CreateAsync(ClaimTypeParam model);
 
-    Task UpdateAsync(ClaimTypeParam model);
+  Task UpdateAsync(ClaimTypeParam model);
 
-    Task DeleteAsync(Guid id);
-  }
+  Task DeleteAsync(Guid id);
 }

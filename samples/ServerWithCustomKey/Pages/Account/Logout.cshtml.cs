@@ -4,52 +4,51 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ServerWithCustomKey.Models;
 
-namespace ServerWithCustomKey.Pages.Account
+namespace ServerWithCustomKey.Pages.Account;
+
+[AllowAnonymous]
+public class LogoutModel : PageModel
 {
-  [AllowAnonymous]
-  public class LogoutModel : PageModel
+  private readonly ILogger<LogoutModel> _logger;
+  private readonly SignInManager<ApplicationUser> _signInManager;
+
+  [BindProperty]
+  public string LogoutId { get; set; }
+
+  [BindProperty]
+  public string RedirectUri { get; set; }
+
+  public LogoutModel(
+    ILogger<LogoutModel> logger,
+    SignInManager<ApplicationUser> signInManager
+  )
   {
-    private readonly ILogger<LogoutModel> _logger;
-    private readonly SignInManager<ApplicationUser> _signInManager;
+    _logger = logger;
+    _signInManager = signInManager;
+  }
 
-    [BindProperty]
-    public string LogoutId { get; set; }
+  public void OnGet(string logoutId, string redirectUri)
+  {
+    LogoutId = logoutId;
+    RedirectUri = redirectUri;
+  }
 
-    [BindProperty]
-    public string RedirectUri { get; set; }
-
-    public LogoutModel(
-      ILogger<LogoutModel> logger,
-      SignInManager<ApplicationUser> signInManager
-    )
+  public async Task<IActionResult> OnPost()
+  {
+    if (User?.Identity.IsAuthenticated == true)
     {
-      _logger = logger;
-      _signInManager = signInManager;
+      await _signInManager.SignOutAsync();
+
+      _logger.LogInformation("User logged out.");
     }
 
-    public void OnGet(string logoutId, string redirectUri)
+    if (RedirectUri != null)
     {
-      LogoutId = logoutId;
-      RedirectUri = redirectUri;
+      return Redirect(RedirectUri);
     }
-
-    public async Task<IActionResult> OnPost()
+    else
     {
-      if (User?.Identity.IsAuthenticated == true)
-      {
-        await _signInManager.SignOutAsync();
-
-        _logger.LogInformation("User logged out.");
-      }
-
-      if (RedirectUri != null)
-      {
-        return Redirect(RedirectUri);
-      }
-      else
-      {
-        return RedirectToPage();
-      }
+      return RedirectToPage();
     }
   }
 }

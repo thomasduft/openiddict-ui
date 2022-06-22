@@ -1,10 +1,9 @@
-namespace tomware.OpenIddict.UI.Tests.Helpers
+namespace tomware.OpenIddict.UI.Tests.Helpers;
+
+public enum HttpVerb
 {
-  public enum HttpVerb
-  {
-    Get,
-    Post,
-    Put,
-    Delete
-  }
+  Get,
+  Post,
+  Put,
+  Delete
 }

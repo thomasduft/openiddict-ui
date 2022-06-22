@@ -6,103 +6,120 @@ using Microsoft.AspNetCore.Identity;
 using tomware.OpenIddict.UI.Identity.Core;
 using tomware.OpenIddict.UI.Suite.Core;
 
-namespace tomware.OpenIddict.UI.Identity.Api
+namespace tomware.OpenIddict.UI.Identity.Api;
+
+public interface IAccountApiService
 {
-  public interface IAccountApiService
+  Task<IdentityResult> RegisterAsync(RegisterUserViewModel model);
+  Task<IdentityResult> ChangePasswordAsync(ChangePasswordViewModel model);
+  Task<IEnumerable<UserViewModel>> GetUsersAsync();
+  Task<UserViewModel> GetUserAsync(string id);
+  Task<IdentityResult> UpdateAsync(UserViewModel model);
+  Task<IdentityResult> DeleteAsync(string id);
+}
+
+public class AccountApiService<TIdentityUser, TKey> : IAccountApiService
+  where TKey : IEquatable<TKey>
+  where TIdentityUser : IdentityUser<TKey>, new()
+{
+  private readonly IAccountService _accountService;
+
+  public AccountApiService(
+    IAccountService accountService
+  )
   {
-    Task<IdentityResult> RegisterAsync(RegisterUserViewModel model);
-    Task<IdentityResult> ChangePasswordAsync(ChangePasswordViewModel model);
-    Task<IEnumerable<UserViewModel>> GetUsersAsync();
-    Task<UserViewModel> GetUserAsync(string id);
-    Task<IdentityResult> UpdateAsync(UserViewModel model);
-    Task<IdentityResult> DeleteAsync(string id);
+    _accountService = accountService
+      ?? throw new ArgumentNullException(nameof(accountService));
   }
 
-  public class AccountApiService<TIdentityUser, TKey> : IAccountApiService
-    where TKey : IEquatable<TKey>
-    where TIdentityUser : IdentityUser<TKey>, new()
+  public async Task<IdentityResult> RegisterAsync(
+    RegisterUserViewModel model
+  )
   {
-    private readonly IAccountService _accountService;
+    var param = SimpleMapper.From<RegisterUserViewModel, RegisterUserParam>(model);
 
-    public AccountApiService(
-      IAccountService accountService
-    )
+    return await _accountService.RegisterAsync(param);
+  }
+
+  public async Task<IdentityResult> ChangePasswordAsync(ChangePasswordViewModel model)
+  {
+    var param = SimpleMapper.From<ChangePasswordViewModel, ChangePasswordParam>(model);
+
+    return await _accountService.ChangePasswordAsync(param);
+  }
+
+  public async Task<IEnumerable<UserViewModel>> GetUsersAsync()
+  {
+    // TODO: Paging ???
+    var items = await _accountService.GetUsersAsync();
+
+    return items.Select(u =>
     {
-      _accountService = accountService
-        ?? throw new ArgumentNullException(nameof(accountService));
-    }
-
-    public async Task<IdentityResult> RegisterAsync(
-      RegisterUserViewModel model
-    )
-    {
-      var param = SimpleMapper.From<RegisterUserViewModel, RegisterUserParam>(model);
-
-      return await _accountService.RegisterAsync(param);
-    }
-
-    public async Task<IdentityResult> ChangePasswordAsync(ChangePasswordViewModel model)
-    {
-      var param = SimpleMapper.From<ChangePasswordViewModel, ChangePasswordParam>(model);
-
-      return await _accountService.ChangePasswordAsync(param);
-    }
-
-    public async Task<IEnumerable<UserViewModel>> GetUsersAsync()
-    {
-      // TODO: Paging ???
-      var items = await _accountService.GetUsersAsync();
-
-      return items.Select(u => new UserViewModel
+      return new UserViewModel
       {
         Id = u.Id,
         UserName = u.UserName,
         Email = u.Email,
         LockoutEnabled = u.LockoutEnabled
-      });
-    }
+      };
+    });
+  }
 
-    public async Task<UserViewModel> GetUserAsync(string id)
+  public async Task<UserViewModel> GetUserAsync(string id)
+  {
+    var user = await _accountService.GetUserAsync(id);
+
+    return new UserViewModel
     {
-      var user = await _accountService.GetUserAsync(id);
-
-      return new UserViewModel
+      Id = user.Id,
+      UserName = user.UserName,
+      Email = user.Email,
+      LockoutEnabled = user.LockoutEnabled,
+      IsLockedOut = user.IsLockedOut,
+      Claims = new List<ClaimViewModel>(user.Claims.Select(x =>
       {
-        Id = user.Id,
-        UserName = user.UserName,
-        Email = user.Email,
-        LockoutEnabled = user.LockoutEnabled,
-        IsLockedOut = user.IsLockedOut,
-        Claims = new List<ClaimViewModel>(user.Claims.Select(x => new ClaimViewModel
+        return new ClaimViewModel
         {
           Type = x.Type,
           Value = x.Value
-        })),
-        Roles = user.Roles
-      };
+        };
+      })),
+      Roles = user.Roles
+    };
+  }
+
+  public async Task<IdentityResult> UpdateAsync(UserViewModel model)
+  {
+    if (model == null)
+    {
+      throw new ArgumentNullException(nameof(model));
     }
 
-    public async Task<IdentityResult> UpdateAsync(UserViewModel model)
+    if (string.IsNullOrWhiteSpace(model.Id))
     {
-      if (model == null) throw new ArgumentNullException(nameof(model));
-      if (string.IsNullOrWhiteSpace(model.Id))
-        throw new InvalidOperationException(nameof(model.Id));
+      throw new InvalidOperationException(nameof(model.Id));
+    }
 
-      var param = SimpleMapper.From<UserViewModel, UserParam>(model);
-      param.Claims = new List<ClaimInfo>(model.Claims.Select(c => new ClaimInfo
+    var param = SimpleMapper.From<UserViewModel, UserParam>(model);
+    param.Claims = new List<ClaimInfo>(model.Claims.Select(c =>
+    {
+      return new ClaimInfo
       {
         Type = c.Type,
         Value = c.Value
-      }));
+      };
+    }));
 
-      return await _accountService.UpdateAsync(param);
-    }
+    return await _accountService.UpdateAsync(param);
+  }
 
-    public async Task<IdentityResult> DeleteAsync(string id)
+  public async Task<IdentityResult> DeleteAsync(string id)
+  {
+    if (string.IsNullOrWhiteSpace(id))
     {
-      if (string.IsNullOrWhiteSpace(id)) throw new InvalidOperationException(nameof(id));
-
-      return await _accountService.DeleteAsync(id);
+      throw new InvalidOperationException(nameof(id));
     }
+
+    return await _accountService.DeleteAsync(id);
   }
 }

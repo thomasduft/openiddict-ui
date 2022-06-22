@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
   }
 
   public logout(): void {
-    this.oauthService.logOut(false);
+    this.oauthService.logOut();
     this.user.reset();
     this.router.navigate(['/']);
   }

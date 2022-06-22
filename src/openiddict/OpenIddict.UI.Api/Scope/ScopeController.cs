@@ -3,81 +3,103 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace tomware.OpenIddict.UI.Api
+namespace tomware.OpenIddict.UI.Api;
+
+[Route("scopes")]
+public class ScopeController : OpenIddictApiController
 {
-  [Route("scopes")]
-  public class ScopeController : OpenIddictApiController
+  private readonly IScopeApiService _service;
+
+  public ScopeController(IScopeApiService service)
   {
-    private readonly IScopeApiService _service;
+    _service = service;
+  }
 
-    public ScopeController(IScopeApiService service)
+  [HttpGet]
+  [ProducesResponseType(typeof(IEnumerable<ScopeViewModel>), StatusCodes.Status200OK)]
+  public async Task<IActionResult> GetScopesAsync()
+  {
+    var result = await _service.GetScopesAsync();
+
+    return Ok(result);
+  }
+
+  [HttpGet("names")]
+  [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
+  public async Task<IActionResult> GetScopeNamesAsync()
+  {
+    var result = await _service.GetScopeNamesAsync();
+
+    return Ok(result);
+  }
+
+  [HttpGet("{id}")]
+  [ProducesResponseType(typeof(ScopeViewModel), StatusCodes.Status200OK)]
+  public async Task<IActionResult> GetAsync(string id)
+  {
+    if (id == null)
     {
-      _service = service;
+      return BadRequest();
     }
 
-    [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<ScopeViewModel>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetScopesAsync()
+    var result = await _service.GetAsync(id);
+    if (result == null)
     {
-      var result = await _service.GetScopesAsync();
-
-      return Ok(result);
+      return NotFound();
     }
 
-    [HttpGet("names")]
-    [ProducesResponseType(typeof(IEnumerable<string>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetScopeNamesAsync()
-    {
-      var result = await _service.GetScopeNamesAsync();
+    return Ok(result);
+  }
 
-      return Ok(result);
+  [HttpPost]
+  [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
+  public async Task<IActionResult> CreateAsync([FromBody] ScopeViewModel model)
+  {
+    if (model == null)
+    {
+      return BadRequest();
     }
 
-    [HttpGet("{id}")]
-    [ProducesResponseType(typeof(ScopeViewModel), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAsync(string id)
+    if (!ModelState.IsValid)
     {
-      if (id == null) return BadRequest();
-
-      var result = await _service.GetAsync(id);
-      if (result == null) return NotFound();
-
-      return Ok(result);
+      return BadRequest(ModelState);
     }
 
-    [HttpPost]
-    [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
-    public async Task<IActionResult> CreateAsync([FromBody] ScopeViewModel model)
+    var result = await _service.CreateAsync(model);
+
+    return Created($"scopes/{result}", result);
+  }
+
+  [HttpPut]
+  [ProducesResponseType(StatusCodes.Status204NoContent)]
+  public async Task<IActionResult> UpdateAsync([FromBody] ScopeViewModel model)
+  {
+    if (model == null)
     {
-      if (model == null) return BadRequest();
-      if (!ModelState.IsValid) return BadRequest(ModelState);
-
-      var result = await _service.CreateAsync(model);
-
-      return Created($"scopes/{result}", result);
+      return BadRequest();
     }
 
-    [HttpPut]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> UpdateAsync([FromBody] ScopeViewModel model)
+    if (!ModelState.IsValid)
     {
-      if (model == null) return BadRequest();
-      if (!ModelState.IsValid) return BadRequest(ModelState);
-
-      await _service.UpdateAsync(model);
-
-      return NoContent();
+      return BadRequest(ModelState);
     }
 
-    [HttpDelete("{id}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> DeleteAsync(string id)
+    await _service.UpdateAsync(model);
+
+    return NoContent();
+  }
+
+  [HttpDelete("{id}")]
+  [ProducesResponseType(StatusCodes.Status204NoContent)]
+  public async Task<IActionResult> DeleteAsync(string id)
+  {
+    if (id == null)
     {
-      if (id == null) return BadRequest();
-
-      await _service.DeleteAsync(id);
-
-      return NoContent();
+      return BadRequest();
     }
+
+    await _service.DeleteAsync(id);
+
+    return NoContent();
   }
 }

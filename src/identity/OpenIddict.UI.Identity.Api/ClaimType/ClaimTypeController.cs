@@ -4,72 +4,94 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace tomware.OpenIddict.UI.Identity.Api
+namespace tomware.OpenIddict.UI.Identity.Api;
+
+[Route("claimtypes")]
+public class ClaimTypeController : IdentityApiController
 {
-  [Route("claimtypes")]
-  public class ClaimTypeController : IdentityApiController
+  private readonly IClaimTypeApiService _service;
+
+  public ClaimTypeController(IClaimTypeApiService service)
   {
-    private readonly IClaimTypeApiService _service;
+    _service = service;
+  }
 
-    public ClaimTypeController(IClaimTypeApiService service)
+  [HttpGet]
+  [ProducesResponseType(typeof(IEnumerable<ClaimTypeViewModel>), StatusCodes.Status200OK)]
+  public async Task<IActionResult> GetClaimTypesAsync()
+  {
+    var result = await _service.GetClaimTypesAsync();
+
+    return Ok(result);
+  }
+
+  [HttpGet("{id}")]
+  [ProducesResponseType(typeof(ClaimTypeViewModel), StatusCodes.Status200OK)]
+  public async Task<IActionResult> GetAsync(Guid id)
+  {
+    if (id == Guid.Empty)
     {
-      _service = service;
+      return BadRequest();
     }
 
-    [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<ClaimTypeViewModel>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetClaimTypesAsync()
+    var result = await _service.GetAsync(id);
+    if (result == null)
     {
-      var result = await _service.GetClaimTypesAsync();
-
-      return Ok(result);
+      return NotFound();
     }
 
-    [HttpGet("{id}")]
-    [ProducesResponseType(typeof(ClaimTypeViewModel), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAsync(Guid id)
+    return Ok(result);
+  }
+
+  [HttpPost]
+  [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
+  public async Task<IActionResult> CreateAsync([FromBody] ClaimTypeViewModel model)
+  {
+    if (model == null)
     {
-      if (id == Guid.Empty) return BadRequest();
-
-      var result = await _service.GetAsync(id);
-      if (result == null) return NotFound();
-
-      return Ok(result);
+      return BadRequest();
     }
 
-    [HttpPost]
-    [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
-    public async Task<IActionResult> CreateAsync([FromBody] ClaimTypeViewModel model)
+    if (!ModelState.IsValid)
     {
-      if (model == null) return BadRequest();
-      if (!ModelState.IsValid) return BadRequest(ModelState);
-
-      var result = await _service.CreateAsync(model);
-
-      return Created($"claimtypes/{result}", result);
+      return BadRequest(ModelState);
     }
 
-    [HttpPut]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> UpdateAsync([FromBody] ClaimTypeViewModel model)
+    var result = await _service.CreateAsync(model);
+
+    return Created($"claimtypes/{result}", result);
+  }
+
+  [HttpPut]
+  [ProducesResponseType(StatusCodes.Status204NoContent)]
+  public async Task<IActionResult> UpdateAsync([FromBody] ClaimTypeViewModel model)
+  {
+    if (model == null)
     {
-      if (model == null) return BadRequest();
-      if (!ModelState.IsValid) return BadRequest(ModelState);
-
-      await _service.UpdateAsync(model);
-
-      return NoContent();
+      return BadRequest();
     }
 
-    [HttpDelete("{id}")]
-    [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> DeleteAsync(Guid id)
+    if (!ModelState.IsValid)
     {
-      if (id == Guid.Empty) return BadRequest();
-
-      await _service.DeleteAsync(id);
-
-      return NoContent();
+      return BadRequest(ModelState);
     }
+
+    await _service.UpdateAsync(model);
+
+    return NoContent();
+  }
+
+  [HttpDelete("{id}")]
+  [ProducesResponseType(StatusCodes.Status204NoContent)]
+  public async Task<IActionResult> DeleteAsync(Guid id)
+  {
+    if (id == Guid.Empty)
+    {
+      return BadRequest();
+    }
+
+    await _service.DeleteAsync(id);
+
+    return NoContent();
   }
 }

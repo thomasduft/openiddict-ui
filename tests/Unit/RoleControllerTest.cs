@@ -4,133 +4,132 @@ using Moq;
 using tomware.OpenIddict.UI.Identity.Api;
 using Xunit;
 
-namespace tomware.OpenIddict.UI.Tests.Unit
+namespace tomware.OpenIddict.UI.Tests.Unit;
+
+public class RoleControllerTest
 {
-  public class RoleControllerTest
+  [Fact]
+  public async Task GetAsyncWithNullIdReturnsBadRequest()
   {
-    [Fact]
-    public async Task GetAsync_WithNullId_ReturnsBadRequest()
+    // Arrange
+    var controller = GetController();
+
+    // Act
+    var result = await controller.GetAsync(null);
+
+    // Assert
+    Assert.NotNull(result);
+    Assert.IsType<BadRequestResult>(result);
+  }
+
+  [Fact]
+  public async Task GetAsyncWithNotExistingIdReturnsNotFound()
+  {
+    // Arrange
+    var serviceMock = new Mock<IRoleApiService>();
+    var controller = GetController(serviceMock);
+    var id = "id";
+
+    serviceMock
+      .Setup(r => r.GetAsync(id))
+      .Returns(Task.FromResult<RoleViewModel>(null));
+
+    // Act
+    var result = await controller.GetAsync(id);
+
+    // Assert
+    Assert.NotNull(result);
+    Assert.IsType<NotFoundResult>(result);
+  }
+
+  [Fact]
+  public async Task CreateAsyncWithNullModelReturnsBadRequest()
+  {
+    // Arrange
+    var controller = GetController();
+
+    // Act
+    var result = await controller.CreateAsync(null);
+
+    // Assert
+    Assert.NotNull(result);
+    Assert.IsType<BadRequestResult>(result);
+  }
+
+  [Fact]
+  public async Task CreateAsyncWithInvalidModelReturnsBadRequest()
+  {
+    // Arrange
+    var controller = GetController();
+    var model = new RoleViewModel
     {
-      // Arrange
-      var controller = GetController();
+      // Name // required
+    };
 
-      // Act
-      var result = await controller.GetAsync(null);
+    // ModelState must be manually adjusted
+    controller.ModelState.AddModelError(string.Empty, "Name required!");
 
-      // Assert
-      Assert.NotNull(result);
-      Assert.IsType<BadRequestResult>(result);
-    }
+    // Act
+    var result = await controller.CreateAsync(model);
 
-    [Fact]
-    public async Task GetAsync_WithNotExistingId_ReturnsNotFound()
+    // Assert
+    Assert.NotNull(result);
+    Assert.IsType<BadRequestObjectResult>(result);
+  }
+
+  [Fact]
+  public async Task UpdateAsyncWithNullModelReturnsBadRequest()
+  {
+    // Arrange
+    var controller = GetController();
+
+    // Act
+    var result = await controller.UpdateAsync(null);
+
+    // Assert
+    Assert.NotNull(result);
+    Assert.IsType<BadRequestResult>(result);
+  }
+
+  [Fact]
+  public async Task UpdateAsyncWithInvalidModelReturnsBadRequest()
+  {
+    // Arrange
+    var controller = GetController();
+    var model = new RoleViewModel
     {
-      // Arrange
-      var serviceMock = new Mock<IRoleApiService>();
-      var controller = GetController(serviceMock);
-      var id = "id";
+      // Name // required
+    };
 
-      serviceMock
-        .Setup(r => r.GetAsync(id))
-        .Returns(Task.FromResult<RoleViewModel>(null));
+    // ModelState must be manually adjusted
+    controller.ModelState.AddModelError(string.Empty, "Name required!");
 
-      // Act
-      var result = await controller.GetAsync(id);
+    // Act
+    var result = await controller.UpdateAsync(model);
 
-      // Assert
-      Assert.NotNull(result);
-      Assert.IsType<NotFoundResult>(result);
-    }
+    // Assert
+    Assert.NotNull(result);
+    Assert.IsType<BadRequestObjectResult>(result);
+  }
 
-    [Fact]
-    public async Task CreateAsync_WithNullModel_ReturnsBadRequest()
-    {
-      // Arrange
-      var controller = GetController();
+  [Fact]
+  public async Task DeleteAsyncWithNullModelReturnsBadRequest()
+  {
+    // Arrange
+    var controller = GetController();
 
-      // Act
-      var result = await controller.CreateAsync(null);
+    // Act
+    var result = await controller.DeleteAsync(null);
 
-      // Assert
-      Assert.NotNull(result);
-      Assert.IsType<BadRequestResult>(result);
-    }
+    // Assert
+    Assert.NotNull(result);
+    Assert.IsType<BadRequestResult>(result);
+  }
 
-    [Fact]
-    public async Task CreateAsync_WithInvalidModel_ReturnsBadRequest()
-    {
-      // Arrange
-      var controller = GetController();
-      var model = new RoleViewModel
-      {
-        // Name // required
-      };
+  private static RoleController GetController(Mock<IRoleApiService> service = null)
+  {
+    service ??= new Mock<IRoleApiService>();
 
-      // ModelState must be manually adjusted
-      controller.ModelState.AddModelError(string.Empty, "Name required!");
-
-      // Act
-      var result = await controller.CreateAsync(model);
-
-      // Assert
-      Assert.NotNull(result);
-      Assert.IsType<BadRequestObjectResult>(result);
-    }
-
-    [Fact]
-    public async Task UpdateAsync_WithNullModel_ReturnsBadRequest()
-    {
-      // Arrange
-      var controller = GetController();
-
-      // Act
-      var result = await controller.UpdateAsync(null);
-
-      // Assert
-      Assert.NotNull(result);
-      Assert.IsType<BadRequestResult>(result);
-    }
-
-    [Fact]
-    public async Task UpdateAsync_WithInvalidModel_ReturnsBadRequest()
-    {
-      // Arrange
-      var controller = GetController();
-      var model = new RoleViewModel
-      {
-        // Name // required
-      };
-
-      // ModelState must be manually adjusted
-      controller.ModelState.AddModelError(string.Empty, "Name required!");
-
-      // Act
-      var result = await controller.UpdateAsync(model);
-
-      // Assert
-      Assert.NotNull(result);
-      Assert.IsType<BadRequestObjectResult>(result);
-    }
-
-    [Fact]
-    public async Task DeleteAsync_WithNullModel_ReturnsBadRequest()
-    {
-      // Arrange
-      var controller = GetController();
-
-      // Act
-      var result = await controller.DeleteAsync(null);
-
-      // Assert
-      Assert.NotNull(result);
-      Assert.IsType<BadRequestResult>(result);
-    }
-
-    private static RoleController GetController(Mock<IRoleApiService> service = null)
-    {
-      service ??= new Mock<IRoleApiService>();
-
-      return new RoleController(service.Object);
-    }
+    return new RoleController(service.Object);
   }
 }

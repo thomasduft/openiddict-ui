@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\samples\Server\Server.csproj" />
-    <ProjectReference Include="..\samples\ServerWithCustomKey\ServerWithCustomKey.csproj" />
   </ItemGroup>
 
   <ItemGroup>

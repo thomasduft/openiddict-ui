@@ -1,5 +1,4 @@
-namespace ServerWithCustomKey
-{
-  // Marker class for Integration Tests
-  public class Testing { }
-}
+namespace ServerWithCustomKey;
+
+// Marker class for Integration Tests
+public class Testing { }

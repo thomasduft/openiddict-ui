@@ -5,90 +5,104 @@ using System.Threading.Tasks;
 using tomware.OpenIddict.UI.Infrastructure;
 using tomware.OpenIddict.UI.Suite.Core;
 
-namespace tomware.OpenIddict.UI.Api
+namespace tomware.OpenIddict.UI.Api;
+
+public interface IScopeApiService
 {
-  public interface IScopeApiService
+  Task<IEnumerable<ScopeViewModel>> GetScopesAsync();
+
+  Task<IEnumerable<string>> GetScopeNamesAsync();
+
+  Task<ScopeViewModel> GetAsync(string id);
+
+  Task<string> CreateAsync(ScopeViewModel model);
+
+  Task UpdateAsync(ScopeViewModel model);
+
+  Task DeleteAsync(string id);
+}
+
+public class ScopeApiService : IScopeApiService
+{
+  private readonly IScopeService _service;
+
+  public ScopeApiService(IScopeService service)
   {
-    Task<IEnumerable<ScopeViewModel>> GetScopesAsync();
-
-    Task<IEnumerable<string>> GetScopeNamesAsync();
-
-    Task<ScopeViewModel> GetAsync(string id);
-
-    Task<string> CreateAsync(ScopeViewModel model);
-
-    Task UpdateAsync(ScopeViewModel model);
-
-    Task DeleteAsync(string id);
+    _service = service;
   }
 
-  public class ScopeApiService : IScopeApiService
+  public async Task<IEnumerable<ScopeViewModel>> GetScopesAsync()
   {
-    private readonly IScopeService _service;
+    var items = await _service.GetScopesAsync();
 
-    public ScopeApiService(IScopeService service)
+    return items.Select(c =>
     {
-      _service = service;
-    }
-
-    public async Task<IEnumerable<ScopeViewModel>> GetScopesAsync()
-    {
-      var items = await _service.GetScopesAsync();
-
-      return items.Select(c => ToModel(c));
-    }
-
-    public async Task<IEnumerable<string>> GetScopeNamesAsync()
-    {
-      var items = await _service.GetScopesAsync();
-
-      return items.Select(i => i.Name);
-    }
-
-    public async Task<ScopeViewModel> GetAsync(string id)
-    {
-      if (id == null) throw new ArgumentNullException(nameof(id));
-
-      var claimType = await _service.GetAsync(id);
-
-      return claimType != null ? ToModel(claimType) : null;
-    }
-
-    public async Task<string> CreateAsync(ScopeViewModel model)
-    {
-      if (model == null) throw new ArgumentNullException(nameof(model));
-
-      var param = ToParam(model);
-
-      return await _service.CreateAsync(param);
-    }
-
-    public async Task UpdateAsync(ScopeViewModel model)
-    {
-      if (model == null) throw new ArgumentNullException(nameof(model));
-      if (string.IsNullOrWhiteSpace(model.Id))
-        throw new InvalidOperationException(nameof(model.Id));
-
-      var param = ToParam(model);
-
-      await _service.UpdateAsync(param);
-    }
-
-    public async Task DeleteAsync(string id)
-    {
-      if (id == null) throw new ArgumentNullException(nameof(id));
-
-      await _service.DeleteAsync(id);
-    }
-
-    private static ScopeParam ToParam(ScopeViewModel model)
-    {
-      return SimpleMapper.From<ScopeViewModel, ScopeParam>(model);
-    }
-
-    private static ScopeViewModel ToModel(ScopeInfo info)
-    {
-      return SimpleMapper.From<ScopeInfo, ScopeViewModel>(info);
-    }
+      return ToModel(c);
+    });
   }
+
+  public async Task<IEnumerable<string>> GetScopeNamesAsync()
+  {
+    var items = await _service.GetScopesAsync();
+
+    return items.Select(i =>
+    {
+      return i.Name;
+    });
+  }
+
+  public async Task<ScopeViewModel> GetAsync(string id)
+  {
+    if (id == null)
+    {
+      throw new ArgumentNullException(nameof(id));
+    }
+
+    var claimType = await _service.GetAsync(id);
+
+    return claimType != null ? ToModel(claimType) : null;
+  }
+
+  public async Task<string> CreateAsync(ScopeViewModel model)
+  {
+    if (model == null)
+    {
+      throw new ArgumentNullException(nameof(model));
+    }
+
+    var param = ToParam(model);
+
+    return await _service.CreateAsync(param);
+  }
+
+  public async Task UpdateAsync(ScopeViewModel model)
+  {
+    if (model == null)
+    {
+      throw new ArgumentNullException(nameof(model));
+    }
+
+    if (string.IsNullOrWhiteSpace(model.Id))
+    {
+      throw new InvalidOperationException(nameof(model.Id));
+    }
+
+    var param = ToParam(model);
+
+    await _service.UpdateAsync(param);
+  }
+
+  public async Task DeleteAsync(string id)
+  {
+    if (id == null)
+    {
+      throw new ArgumentNullException(nameof(id));
+    }
+
+    await _service.DeleteAsync(id);
+  }
+
+  private static ScopeParam ToParam(ScopeViewModel model) => SimpleMapper.From<ScopeViewModel, ScopeParam>(model);
+
+  private static ScopeViewModel ToModel(ScopeInfo info) => SimpleMapper.From<ScopeInfo, ScopeViewModel>(info);
 }

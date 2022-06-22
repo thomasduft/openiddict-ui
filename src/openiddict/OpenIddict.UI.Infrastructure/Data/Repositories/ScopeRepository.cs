@@ -1,13 +1,12 @@
 using OpenIddict.EntityFrameworkCore.Models;
 
-namespace tomware.OpenIddict.UI.Infrastructure
+namespace tomware.OpenIddict.UI.Infrastructure;
+
+public class ScopeRepository<TContext>
+  : EfRepository<OpenIddictEntityFrameworkCoreScope, string>, IScopeRepository
+  where TContext : OpenIddictUIContext
 {
-  public class ScopeRepository<TContext>
-    : EfRepository<OpenIddictEntityFrameworkCoreScope, string>, IScopeRepository
-    where TContext : OpenIddictUIContext
+  public ScopeRepository(TContext dbContext) : base(dbContext)
   {
-    public ScopeRepository(TContext dbContext) : base(dbContext)
-    {
-    }
   }
 }

@@ -2,7 +2,6 @@ using Serilog;
 using ServerWithCustomKey;
 using ServerWithCustomKey.Services;
 
-
 var loggerConfiguration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
     .Build();

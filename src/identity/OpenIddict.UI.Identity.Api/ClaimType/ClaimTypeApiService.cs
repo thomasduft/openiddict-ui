@@ -5,83 +5,98 @@ using System.Threading.Tasks;
 using tomware.OpenIddict.UI.Identity.Core;
 using tomware.OpenIddict.UI.Suite.Core;
 
-namespace tomware.OpenIddict.UI.Identity.Api
+namespace tomware.OpenIddict.UI.Identity.Api;
+
+public interface IClaimTypeApiService
 {
-  public interface IClaimTypeApiService
+  Task<IEnumerable<ClaimTypeViewModel>> GetClaimTypesAsync();
+
+  Task<ClaimTypeViewModel> GetAsync(Guid id);
+
+  Task<Guid> CreateAsync(ClaimTypeViewModel model);
+
+  Task UpdateAsync(ClaimTypeViewModel model);
+
+  Task DeleteAsync(Guid id);
+}
+
+public class ClaimTypeApiService : IClaimTypeApiService
+{
+  private readonly IClaimTypeService _service;
+
+  public ClaimTypeApiService(IClaimTypeService service)
   {
-    Task<IEnumerable<ClaimTypeViewModel>> GetClaimTypesAsync();
-
-    Task<ClaimTypeViewModel> GetAsync(Guid id);
-
-    Task<Guid> CreateAsync(ClaimTypeViewModel model);
-
-    Task UpdateAsync(ClaimTypeViewModel model);
-
-    Task DeleteAsync(Guid id);
+    _service = service
+      ?? throw new ArgumentNullException(nameof(service));
   }
 
-  public class ClaimTypeApiService : IClaimTypeApiService
+  public async Task<IEnumerable<ClaimTypeViewModel>> GetClaimTypesAsync()
   {
-    private readonly IClaimTypeService _service;
+    var items = await _service.GetClaimTypesAsync();
 
-    public ClaimTypeApiService(IClaimTypeService service)
+    return items.Select(c =>
     {
-      _service = service
-        ?? throw new ArgumentNullException(nameof(service));
+      return ToModel(c);
+    });
+  }
+
+  public async Task<ClaimTypeViewModel> GetAsync(Guid id)
+  {
+    if (id == Guid.Empty)
+    {
+      throw new ArgumentNullException(nameof(id));
     }
 
-    public async Task<IEnumerable<ClaimTypeViewModel>> GetClaimTypesAsync()
-    {
-      var items = await _service.GetClaimTypesAsync();
+    var claimType = await _service.GetAsync(id);
 
-      return items.Select(c => ToModel(c));
+    return claimType != null ? ToModel(claimType) : null;
+  }
+
+  public async Task<Guid> CreateAsync(ClaimTypeViewModel model)
+  {
+    if (model == null)
+    {
+      throw new ArgumentNullException(nameof(model));
     }
 
-    public async Task<ClaimTypeViewModel> GetAsync(Guid id)
+    var param = ToParam(model);
+
+    return await _service.CreateAsync(param);
+  }
+
+  public async Task UpdateAsync(ClaimTypeViewModel model)
+  {
+    if (model == null)
     {
-      if (id == Guid.Empty) throw new ArgumentNullException(nameof(id));
-
-      var claimType = await _service.GetAsync(id);
-
-      return claimType != null ? ToModel(claimType) : null;
+      throw new ArgumentNullException(nameof(model));
     }
 
-    public async Task<Guid> CreateAsync(ClaimTypeViewModel model)
+    if (!model.Id.HasValue)
     {
-      if (model == null) throw new ArgumentNullException(nameof(model));
-
-      var param = ToParam(model);
-
-      return await _service.CreateAsync(param);
+      throw new InvalidOperationException(nameof(model.Id));
     }
 
-    public async Task UpdateAsync(ClaimTypeViewModel model)
+    var param = ToParam(model);
+
+    await _service.UpdateAsync(param);
+  }
+
+  public async Task DeleteAsync(Guid id)
+  {
+    if (id == Guid.Empty)
     {
-      if (model == null) throw new ArgumentNullException(nameof(model));
-      if (!model.Id.HasValue) throw new InvalidOperationException(nameof(model.Id));
-
-      var param = ToParam(model);
-
-      await _service.UpdateAsync(param);
+      throw new ArgumentNullException(nameof(id));
     }
 
-    public async Task DeleteAsync(Guid id)
-    {
-      if (id == Guid.Empty) throw new ArgumentNullException(nameof(id));
+    await _service.DeleteAsync(id);
+  }
 
-      await _service.DeleteAsync(id);
-    }
+  private static ClaimTypeParam ToParam(ClaimTypeViewModel model) => SimpleMapper.From<ClaimTypeViewModel, ClaimTypeParam>(model);
 
-    private static ClaimTypeParam ToParam(ClaimTypeViewModel model)
-    {
-      return SimpleMapper.From<ClaimTypeViewModel, ClaimTypeParam>(model);
-    }
-
-    private static ClaimTypeViewModel ToModel(ClaimTypeInfo info)
-    {
-      var vm = SimpleMapper.From<ClaimTypeInfo, ClaimTypeViewModel>(info);
-      vm.Id = info.Id;
-      return vm;
-    }
+  private static ClaimTypeViewModel ToModel(ClaimTypeInfo info)
+  {
+    var vm = SimpleMapper.From<ClaimTypeInfo, ClaimTypeViewModel>(info);
+    vm.Id = info.Id;
+    return vm;
   }
 }

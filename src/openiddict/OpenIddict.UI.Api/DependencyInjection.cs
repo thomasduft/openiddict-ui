@@ -5,74 +5,73 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using tomware.OpenIddict.UI.Suite.Api;
 
-namespace tomware.OpenIddict.UI.Api
+namespace tomware.OpenIddict.UI.Api;
+
+[ExcludeFromCodeCoverage]
+public static class OpenIddictUIServicesExtensions
 {
-  [ExcludeFromCodeCoverage]
-  public static class OpenIddictUIServicesExtensions
+  /// <summary>
+  /// Register the Api for the EF based UI Store.
+  /// </summary>
+  public static OpenIddictBuilder AddUIApis(
+    this OpenIddictBuilder builder,
+    Action<OpenIddictUIApiOptions> uiApiOptions = null
+  )
   {
-    /// <summary>
-    /// Register the Api for the EF based UI Store.
-    /// </summary>
-    public static OpenIddictBuilder AddUIApis(
-      this OpenIddictBuilder builder,
-      Action<OpenIddictUIApiOptions> uiApiOptions = null
-    )
+    var options = new OpenIddictUIApiOptions();
+    uiApiOptions?.Invoke(options);
+    builder.AddRoutePrefix(options.RoutePrefix);
+
+    builder.Services.AddApiServices(uiApiOptions);
+
+    builder.Services.AddAuthorizationServices(options.Policy);
+
+    return builder;
+  }
+
+  private static IServiceCollection AddApiServices(
+    this IServiceCollection services,
+    Action<OpenIddictUIApiOptions> options = null
+  )
+  {
+    services.Configure(options);
+
+    services.AddTransient<IScopeApiService, ScopeApiService>();
+    services.AddTransient<IApplicationApiService, ApplicationApiService>();
+
+    return services;
+  }
+
+  private static IServiceCollection AddAuthorizationServices(
+    this IServiceCollection services,
+    Action<AuthorizationPolicyBuilder> policy
+  )
+  {
+    services.AddAuthorization(options =>
     {
-      var options = new OpenIddictUIApiOptions();
-      uiApiOptions?.Invoke(options);
-      builder.AddRoutePrefix(options.RoutePrefix);
+      options.AddPolicy(
+        Policies.OPENIDDICTUIAPIPOLICY,
+        policy
+      );
+    });
 
-      builder.Services.AddApiServices(uiApiOptions);
+    return services;
+  }
 
-      builder.Services.AddAuthorizationServices(options.Policy);
-
-      return builder;
-    }
-
-    private static IServiceCollection AddApiServices(
-      this IServiceCollection services,
-      Action<OpenIddictUIApiOptions> options = null
-    )
+  private static OpenIddictBuilder AddRoutePrefix(
+    this OpenIddictBuilder builder,
+    string routePrefix
+  )
+  {
+    builder.Services.AddControllers(options =>
     {
-      services.Configure(options);
-
-      services.AddTransient<IScopeApiService, ScopeApiService>();
-      services.AddTransient<IApplicationApiService, ApplicationApiService>();
-
-      return services;
-    }
-
-    private static IServiceCollection AddAuthorizationServices(
-      this IServiceCollection services,
-      Action<AuthorizationPolicyBuilder> policy
-    )
-    {
-      services.AddAuthorization(options =>
+      options.UseOpenIddictUIRoutePrefix(routePrefix, new List<Type>
       {
-        options.AddPolicy(
-          Policies.OPENIDDICT_UI_API_POLICY,
-          policy
-        );
+        typeof(ApplicationController),
+        typeof(ScopeController)
       });
+    });
 
-      return services;
-    }
-
-    private static OpenIddictBuilder AddRoutePrefix(
-      this OpenIddictBuilder builder,
-      string routePrefix
-    )
-    {
-      builder.Services.AddControllers(options =>
-      {
-        options.UseOpenIddictUIRoutePrefix(routePrefix, new List<Type>
-        {
-          typeof(ApplicationController),
-          typeof(ScopeController)
-        });
-      });
-
-      return builder;
-    }
+    return builder;
   }
 }

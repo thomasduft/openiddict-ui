@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ServerWithCustomKey.Pages
+namespace ServerWithCustomKey.Pages;
+
+public class IndexModel : PageModel
 {
-  public class IndexModel : PageModel
+  public void OnGet()
   {
-    public void OnGet()
-    {
-    }
   }
 }
