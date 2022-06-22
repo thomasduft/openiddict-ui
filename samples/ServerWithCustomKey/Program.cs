@@ -18,6 +18,12 @@ try
   var configuration = builder.Configuration;
   var environmentName = builder.Environment.EnvironmentName;
 
+  // Configure Kestrel
+  builder.WebHost.ConfigureKestrel(serverOptions =>
+  {
+    serverOptions.AddServerHeader = false;
+  });
+
   // Configure services
   builder.Services.AddServer(configuration, environmentName);
 
