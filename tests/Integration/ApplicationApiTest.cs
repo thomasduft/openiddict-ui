@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -116,9 +117,9 @@ public class ApplicationApiTest : IntegrationContext
     Assert.Null(model.ClientSecret);
     Assert.False(model.RequirePkce);
     Assert.False(model.RequireConsent);
-    Assert.Empty(model.Permissions);
-    Assert.Empty(model.RedirectUris);
-    Assert.Empty(model.PostLogoutRedirectUris);
+    Assert.Single(model.Permissions);
+    Assert.Single(model.RedirectUris);
+    Assert.Single(model.PostLogoutRedirectUris);
     Assert.Equal(ClientTypes.Public, model.Type);
   }
 
@@ -182,9 +183,9 @@ public class ApplicationApiTest : IntegrationContext
       // ClientSecret = "clientsecret", // only when Type is confidential
       RequirePkce = false,
       RequireConsent = false,
-      Permissions = new List<string>(),
-      RedirectUris = new List<string>(),
-      PostLogoutRedirectUris = new List<string>(),
+      Permissions = new List<string> { "somePermission " },
+      RedirectUris = new List<string> { "https://tomware.ch/redirect" },
+      PostLogoutRedirectUris = new List<string> { "https://tomware.ch/postLogout" },
       Type = ClientTypes.Public
     };
   }
