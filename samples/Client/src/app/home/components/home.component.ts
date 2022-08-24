@@ -9,7 +9,7 @@ import { UserService } from '../../shared';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  public static API_SERVICE = 'https://localhost:5001';
+  public static API_SERVICE = 'https://localhost:5002';
 
   public privateInfo: ResourceInfo;
   public publicInfo: ResourceInfo;

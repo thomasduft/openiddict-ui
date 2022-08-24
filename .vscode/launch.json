@@ -25,6 +25,29 @@
       }
     },
     {
+      "name": "Api",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-api",
+      "program": "${workspaceFolder}/samples/Api/bin/Debug/net6.0/Api.dll",
+      "args": [
+        "--urls",
+        "https://localhost:5002"
+      ],
+      "cwd": "${workspaceFolder}/samples/Api",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
       "name": "ServerWithCustomKey",
       "type": "coreclr",
       "request": "launch",
@@ -46,27 +69,6 @@
       "sourceFileMap": {
         "/Views": "${workspaceFolder}/Views"
       }
-    },
-    {
-      "name": "Api",
-      "type": "coreclr",
-      "request": "launch",
-      "preLaunchTask": "build-api",
-      "program": "${workspaceFolder}/samples/Api/bin/Debug/net6.0/Api.dll",
-      "args": [],
-      "cwd": "${workspaceFolder}/samples/Api",
-      "stopAtEntry": false,
-      "serverReadyAction": {
-        "action": "openExternally",
-        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
-      },
-      "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "sourceFileMap": {
-        "/Views": "${workspaceFolder}/Views"
-      },
-      "console": "externalTerminal"
     }
   ]
 }
