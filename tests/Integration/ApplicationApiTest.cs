@@ -71,7 +71,7 @@ public class ApplicationApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    var model = await response.Content.ReadAsJson<List<ApplicationViewModel>>();
+    var model = await response.Content.ReadAsJsonAsync<List<ApplicationViewModel>>();
     Assert.NotNull(model);
     Assert.True(model.Count >= 0);
   }
@@ -83,13 +83,13 @@ public class ApplicationApiTest : IntegrationContext
     var endpoint = "/api/application";
 
     // Act
-    var response = await PostAsync(endpoint, GetViewModel());
+    var response = await PostAsync(endpoint, GetPublicApplicationViewModel());
 
     // Assert
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 
-    var id = await response.Content.ReadAsJson<string>();
+    var id = await response.Content.ReadAsJsonAsync<string>();
     Assert.NotNull(id);
   }
 
@@ -98,8 +98,8 @@ public class ApplicationApiTest : IntegrationContext
   {
     // Arrange
     var endpoint = "/api/application";
-    var createResponse = await PostAsync(endpoint, GetViewModel());
-    var id = await createResponse.Content.ReadAsJson<string>();
+    var createResponse = await PostAsync(endpoint, GetPublicApplicationViewModel());
+    var id = await createResponse.Content.ReadAsJsonAsync<string>();
 
     // Act
     var response = await GetAsync($"{endpoint}/{id}");
@@ -108,7 +108,7 @@ public class ApplicationApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    var model = await response.Content.ReadAsJson<ApplicationViewModel>();
+    var model = await response.Content.ReadAsJsonAsync<ApplicationViewModel>();
 
     Assert.NotNull(model);
     Assert.Equal(id, model.Id);
@@ -124,15 +124,36 @@ public class ApplicationApiTest : IntegrationContext
   }
 
   [Fact]
-  public async Task UpdateAsyncApplicationUpdated()
+  public async Task UpdatePublicApplicationApplicationUpdated()
   {
     // Arrange
     var endpoint = "/api/application";
-    var createResponse = await PostAsync(endpoint, GetViewModel());
-    var id = await createResponse.Content.ReadAsJson<string>();
+    var createResponse = await PostAsync(endpoint, GetPublicApplicationViewModel());
+    var id = await createResponse.Content.ReadAsJsonAsync<string>();
 
     // Act
-    var response = await PutAsync(endpoint, GetViewModel(id));
+    var response = await PutAsync(endpoint, GetPublicApplicationViewModel(id));
+
+    // Assert
+    Assert.NotNull(response);
+    Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+  }
+
+  [Fact]
+  public async Task UpdateConfidentialApplicationApplicationUpdated()
+  {
+    // Arrange
+    var endpoint = "/api/application";
+    var viewModel = GetConfidentialApplicationViewModel();
+    var createResponse = await PostAsync(endpoint, viewModel);
+    var id = await createResponse.Content.ReadAsJsonAsync<string>();
+
+    viewModel.Id = id;
+    viewModel.DisplayName = "updatedDisplayName";
+    viewModel.ClientSecret = "updatedclientsecret";
+
+    // Act
+    var response = await PutAsync(endpoint, viewModel);
 
     // Assert
     Assert.NotNull(response);
@@ -144,8 +165,8 @@ public class ApplicationApiTest : IntegrationContext
   {
     // Arrange
     var endpoint = "/api/application";
-    var createResponse = await PostAsync(endpoint, GetViewModel());
-    var id = await createResponse.Content.ReadAsJson<string>();
+    var createResponse = await PostAsync(endpoint, GetPublicApplicationViewModel());
+    var id = await createResponse.Content.ReadAsJsonAsync<string>();
 
     // Act
     var response = await DeleteAsync($"{endpoint}/{id}");
@@ -168,12 +189,12 @@ public class ApplicationApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    var model = await response.Content.ReadAsJson<ApplicationOptionsViewModel>();
+    var model = await response.Content.ReadAsJsonAsync<ApplicationOptionsViewModel>();
     Assert.NotNull(model);
     Assert.True(model.Types.Count == 2);
   }
 
-  private static ApplicationViewModel GetViewModel(string id = null)
+  private static ApplicationViewModel GetPublicApplicationViewModel(string id = null)
   {
     return new ApplicationViewModel
     {
@@ -187,6 +208,21 @@ public class ApplicationApiTest : IntegrationContext
       RedirectUris = new List<string> { "https://tomware.ch/redirect" },
       PostLogoutRedirectUris = new List<string> { "https://tomware.ch/postLogout" },
       Type = ClientTypes.Public
+    };
+  }
+
+  private static ApplicationViewModel GetConfidentialApplicationViewModel(string id = null)
+  {
+    return new ApplicationViewModel
+    {
+      Id = id,
+      ClientId = TEST_APPLICATION,
+      DisplayName = "displayname",
+      ClientSecret = "clientsecret", // only when Type is confidential
+      RequirePkce = false,
+      RequireConsent = false,
+      Permissions = new List<string> { "somePermission " },
+      Type = ClientTypes.Confidential
     };
   }
 }

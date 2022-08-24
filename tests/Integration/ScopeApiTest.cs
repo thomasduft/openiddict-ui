@@ -69,7 +69,7 @@ public class ScopeApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    var model = await response.Content.ReadAsJson<List<ScopeViewModel>>();
+    var model = await response.Content.ReadAsJsonAsync<List<ScopeViewModel>>();
     Assert.NotNull(model);
     Assert.True(model.Count >= 0);
   }
@@ -87,7 +87,7 @@ public class ScopeApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    var model = await response.Content.ReadAsJson<List<string>>();
+    var model = await response.Content.ReadAsJsonAsync<List<string>>();
     Assert.NotNull(model);
     Assert.True(model.Count >= 0);
   }
@@ -110,7 +110,7 @@ public class ScopeApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 
-    var id = await response.Content.ReadAsJson<string>();
+    var id = await response.Content.ReadAsJsonAsync<string>();
     Assert.NotNull(id);
   }
 
@@ -130,7 +130,7 @@ public class ScopeApiTest : IntegrationContext
         "resource2"
       }
     });
-    var id = await createResponse.Content.ReadAsJson<string>();
+    var id = await createResponse.Content.ReadAsJsonAsync<string>();
 
     // Act
     var response = await GetAsync($"{endpoint}/{id}");
@@ -139,7 +139,7 @@ public class ScopeApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    var model = await response.Content.ReadAsJson<ScopeViewModel>();
+    var model = await response.Content.ReadAsJsonAsync<ScopeViewModel>();
 
     Assert.NotNull(model);
     Assert.Equal(id, model.Id);
@@ -162,7 +162,7 @@ public class ScopeApiTest : IntegrationContext
       DisplayName = "displayname",
       Description = "description"
     });
-    var id = await createResponse.Content.ReadAsJson<string>();
+    var id = await createResponse.Content.ReadAsJsonAsync<string>();
 
     // Act
     var response = await PutAsync(endpoint, new ScopeViewModel
@@ -189,7 +189,7 @@ public class ScopeApiTest : IntegrationContext
       DisplayName = "displayname",
       Description = "description"
     });
-    var id = await createResponse.Content.ReadAsJson<string>();
+    var id = await createResponse.Content.ReadAsJsonAsync<string>();
 
     // Act
     var response = await DeleteAsync($"{endpoint}/{id}");

@@ -6,7 +6,7 @@ namespace tomware.OpenIddict.UI.Tests;
 
 public static class HttpExtensions
 {
-  public static async Task<T> ReadAsJson<T>(this HttpContent httpContent)
+  public static async Task<T> ReadAsJsonAsync<T>(this HttpContent httpContent)
   {
     var obj = await httpContent.ReadAsStringAsync();
 

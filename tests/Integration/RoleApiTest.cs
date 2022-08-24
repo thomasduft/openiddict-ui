@@ -71,7 +71,7 @@ public class RoleApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    var model = await response.Content.ReadAsJson<List<RoleViewModel>>();
+    var model = await response.Content.ReadAsJsonAsync<List<RoleViewModel>>();
     Assert.NotNull(model);
     Assert.True(model.Count > 0);
   }
@@ -92,7 +92,7 @@ public class RoleApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 
-    var id = await response.Content.ReadAsJson<string>();
+    var id = await response.Content.ReadAsJsonAsync<string>();
     Assert.NotNull(id);
   }
 
@@ -105,7 +105,7 @@ public class RoleApiTest : IntegrationContext
     {
       Name = NEW_ROLE
     });
-    var id = await createResponse.Content.ReadAsJson<string>();
+    var id = await createResponse.Content.ReadAsJsonAsync<string>();
 
     // Act
     var response = await GetAsync($"{endpoint}/{id}");
@@ -114,7 +114,7 @@ public class RoleApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    var model = await response.Content.ReadAsJson<RoleViewModel>();
+    var model = await response.Content.ReadAsJsonAsync<RoleViewModel>();
 
     Assert.NotNull(model);
     Assert.Equal(id, model.Id);
@@ -130,7 +130,7 @@ public class RoleApiTest : IntegrationContext
     {
       Name = NEW_ROLE
     });
-    var id = await createResponse.Content.ReadAsJson<string>();
+    var id = await createResponse.Content.ReadAsJsonAsync<string>();
 
     // Act
     var response = await PutAsync(endpoint, new RoleViewModel
@@ -153,7 +153,7 @@ public class RoleApiTest : IntegrationContext
     {
       Name = NEW_ROLE
     });
-    var id = await createResponse.Content.ReadAsJson<string>();
+    var id = await createResponse.Content.ReadAsJsonAsync<string>();
 
     // Act
     var response = await DeleteAsync($"{endpoint}/{id}");

@@ -93,7 +93,7 @@ public class ApplicationService : IApplicationService
 
     HandleCustomProperties(model, entity);
 
-    await _manager.UpdateAsync(entity, entity.ClientSecret);
+    await _manager.UpdateAsync(entity, model.ClientSecret);
   }
 
   public async Task DeleteAsync(string id)
@@ -108,7 +108,8 @@ public class ApplicationService : IApplicationService
     await _manager.DeleteAsync(entity);
   }
 
-  private static ApplicationInfo ToListInfo(OpenIddictEntityFrameworkCoreApplication entity) => SimpleMapper.From<OpenIddictEntityFrameworkCoreApplication, ApplicationInfo>(entity);
+  private static ApplicationInfo ToListInfo(OpenIddictEntityFrameworkCoreApplication entity)
+    => SimpleMapper.From<OpenIddictEntityFrameworkCoreApplication, ApplicationInfo>(entity);
 
   private static ApplicationInfo ToInfo(OpenIddictEntityFrameworkCoreApplication entity)
   {
@@ -141,8 +142,8 @@ public class ApplicationService : IApplicationService
     entity.Permissions = JsonSerializer.Serialize(model.Permissions);
     entity.RedirectUris = JsonSerializer.Serialize(model.RedirectUris);
     entity.PostLogoutRedirectUris = JsonSerializer.Serialize(model.PostLogoutRedirectUris);
-    entity.Requirements = model.RequirePkce ? JsonSerializer.Serialize(new List<string> {
-      Requirements.Features.ProofKeyForCodeExchange
-    }) : null;
+    entity.Requirements = model.RequirePkce
+      ? JsonSerializer.Serialize(new List<string> { Requirements.Features.ProofKeyForCodeExchange })
+      : null;
   }
 }

@@ -88,7 +88,7 @@ public class AccountApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    var model = await response.Content.ReadAsJson<List<UserViewModel>>();
+    var model = await response.Content.ReadAsJsonAsync<List<UserViewModel>>();
     Assert.NotNull(model);
     Assert.True(model.Count > 0);
   }
@@ -161,7 +161,7 @@ public class AccountApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    var model = await response.Content.ReadAsJson<UserViewModel>();
+    var model = await response.Content.ReadAsJsonAsync<UserViewModel>();
     Assert.NotNull(model);
     Assert.Equal(user.Id, model.Id);
     Assert.Equal(email, model.Email);

@@ -71,7 +71,7 @@ public class ClaimTypeApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    var model = await response.Content.ReadAsJson<List<ClaimTypeViewModel>>();
+    var model = await response.Content.ReadAsJsonAsync<List<ClaimTypeViewModel>>();
     Assert.NotNull(model);
     Assert.True(model.Count >= 0);
   }
@@ -94,7 +94,7 @@ public class ClaimTypeApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 
-    var id = await response.Content.ReadAsJson<Guid>();
+    var id = await response.Content.ReadAsJsonAsync<Guid>();
     Assert.True(id != Guid.Empty);
   }
 
@@ -109,7 +109,7 @@ public class ClaimTypeApiTest : IntegrationContext
       Description = "description",
       ClaimValueType = ClaimValueTypes.Boolean
     });
-    var id = await createResponse.Content.ReadAsJson<Guid>();
+    var id = await createResponse.Content.ReadAsJsonAsync<Guid>();
 
     // Act
     var response = await GetAsync($"{endpoint}/{id}");
@@ -118,7 +118,7 @@ public class ClaimTypeApiTest : IntegrationContext
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-    var model = await response.Content.ReadAsJson<ClaimTypeViewModel>();
+    var model = await response.Content.ReadAsJsonAsync<ClaimTypeViewModel>();
 
     Assert.NotNull(model);
     Assert.Equal(id, model.Id.Value);
@@ -138,7 +138,7 @@ public class ClaimTypeApiTest : IntegrationContext
       Description = "description",
       ClaimValueType = ClaimValueTypes.Boolean
     });
-    var id = await createResponse.Content.ReadAsJson<Guid>();
+    var id = await createResponse.Content.ReadAsJsonAsync<Guid>();
 
     // Act
     var response = await PutAsync(endpoint, new ClaimTypeViewModel
@@ -165,7 +165,7 @@ public class ClaimTypeApiTest : IntegrationContext
       Description = "description",
       ClaimValueType = ClaimValueTypes.Boolean
     });
-    var id = await createResponse.Content.ReadAsJson<Guid>();
+    var id = await createResponse.Content.ReadAsJsonAsync<Guid>();
 
     // Act
     var response = await DeleteAsync($"{endpoint}/{id}");
