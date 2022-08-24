@@ -112,7 +112,9 @@ public class ApplicationApiService : IApplicationApiService
     return await Task.FromResult(model);
   }
 
-  private static ApplicationParam ToParam(ApplicationViewModel model) => SimpleMapper.From<ApplicationViewModel, ApplicationParam>(model);
+  private static ApplicationParam ToParam(ApplicationViewModel model)
+    => SimpleMapper.From<ApplicationViewModel, ApplicationParam>(model);
 
-  private static ApplicationViewModel ToModel(ApplicationInfo info) => SimpleMapper.From<ApplicationInfo, ApplicationViewModel>(info);
+  private static ApplicationViewModel ToModel(ApplicationInfo info)
+    => SimpleMapper.From<ApplicationInfo, ApplicationViewModel>(info);
 }

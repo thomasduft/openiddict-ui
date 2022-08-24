@@ -210,11 +210,12 @@ export class ApplicationDetailComponent implements OnInit {
           form.get('requireConsent').disable();
           form.get('requireConsent').setValidators(null);
           form.get('requireConsent').setValue(false);
-          
-          // clearing values
+
+          // disabling and clearing values
+          form.get('redirectUris').disable();
           form.get('redirectUris').setValue([]);
+          form.get('postLogoutRedirectUris').disable();
           form.get('postLogoutRedirectUris').setValue([]);
-          form.get('permissions').setValue([]);
         } else {
           form.get('clientSecret').disable();
           form.get('clientSecret').setValidators(null);
@@ -226,7 +227,26 @@ export class ApplicationDetailComponent implements OnInit {
 
     const clientSecretControl = form.get('clientSecret');
     if (clientSecretControl && !this.isNew) {
-      clientSecretControl.disable();
+      const typeControl = form.get('type');
+      if (typeControl) {
+        if (typeControl.value === 'confidential') {
+          form.get('clientSecret').setValidators(Validators.required);
+
+          // disabling and clearing values
+          form.get('requirePkce').disable();
+          form.get('requirePkce').setValue(false);
+          form.get('requireConsent').disable();
+          form.get('requireConsent').setValue(false);
+          form.get('redirectUris').disable();
+          form.get('redirectUris').setValue([]);
+          form.get('postLogoutRedirectUris').disable();
+          form.get('postLogoutRedirectUris').setValue([]);
+        } else {
+          form.get('clientSecret').setValidators(null);
+        }
+
+        form.get('clientSecret').updateValueAndValidity();
+      }
     }
   }
 }

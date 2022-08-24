@@ -10,8 +10,6 @@ public class ApplicationInfo
 
   public string DisplayName { get; set; }
 
-  public string ClientSecret { get; set; }
-
   public bool RequirePkce { get; set; }
 
   public bool RequireConsent { get; set; }

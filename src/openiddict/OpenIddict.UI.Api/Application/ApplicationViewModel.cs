@@ -13,6 +13,9 @@ public class ApplicationViewModel
 
   public string DisplayName { get; set; }
 
+  public string Type { get; set; } = ClientTypes.Public;
+
+  [RequiredIfClientTypeIs(ClientTypes.Confidential)]
   public string ClientSecret { get; set; }
 
   public bool RequirePkce { get; set; }
@@ -22,6 +25,4 @@ public class ApplicationViewModel
   public List<string> Permissions { get; set; } = new List<string>();
   public List<string> RedirectUris { get; set; } = new List<string>();
   public List<string> PostLogoutRedirectUris { get; set; } = new List<string>();
-
-  public string Type { get; set; } = ClientTypes.Public;
 }

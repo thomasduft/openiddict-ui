@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
@@ -158,6 +157,27 @@ public class ApplicationApiTest : IntegrationContext
     // Assert
     Assert.NotNull(response);
     Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+  }
+
+  [Fact]
+  public async Task UpdateConfidentialApplicationApplicationIsNotUpdated()
+  {
+    // Arrange
+    var endpoint = "/api/application";
+    var viewModel = GetConfidentialApplicationViewModel();
+    var createResponse = await PostAsync(endpoint, viewModel);
+    var id = await createResponse.Content.ReadAsJsonAsync<string>();
+
+    viewModel.Id = id;
+    viewModel.DisplayName = "updatedDisplayName";
+    viewModel.ClientSecret = ""; // forgetting sending required ClientSecret
+
+    // Act
+    var response = await PutAsync(endpoint, viewModel);
+
+    // Assert
+    Assert.NotNull(response);
+    Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
   }
 
   [Fact]
