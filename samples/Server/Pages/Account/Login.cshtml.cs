@@ -41,8 +41,6 @@ public class LoginModel : PageModel
     [Required(ErrorMessage = "Password required")]
     [DataType(DataType.Password)]
     public string Password { get; set; }
-
-    public bool RememberMe { get; set; }
   }
 
   public async Task OnGetAsync(string returnUrl = null)
@@ -71,7 +69,7 @@ public class LoginModel : PageModel
       var result = await _signInManager.PasswordSignInAsync(
         Input.Username,
         Input.Password,
-        Input.RememberMe,
+        true,
         lockoutOnFailure: true
       );
       if (result.Succeeded)
@@ -85,7 +83,7 @@ public class LoginModel : PageModel
         return RedirectToPage("./LoginWith2fa", new
         {
           ReturnUrl = returnUrl,
-          Input.RememberMe
+          RememberMe = true
         });
       }
       if (result.IsLockedOut)
