@@ -50,7 +50,7 @@ public static class OpenIddictUIServicesExtensions
     services.AddAuthorization(options =>
     {
       options.AddPolicy(
-        Policies.OPENIDDICTUIAPIPOLICY,
+        Policies.OpenIddictUiApiPolicy,
         policy
       );
     });

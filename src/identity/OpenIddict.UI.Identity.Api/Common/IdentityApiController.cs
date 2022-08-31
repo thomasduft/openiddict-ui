@@ -5,9 +5,9 @@ using tomware.OpenIddict.UI.Suite.Api;
 
 namespace tomware.OpenIddict.UI.Identity.Api;
 
-[ApiExplorerSettings(GroupName = ApiGroups.OPENIDDICTUIIDENTITYGROUP)]
+[ApiExplorerSettings(GroupName = ApiGroups.OpenIddictUiIdentity)]
 [Authorize(
-  Policies.OPENIDDICTUIIDENTITYAPIPOLICY,
+  Policies.OpenIddictUiIdentityApiPolicy,
   AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme
 )]
 public class IdentityApiController : ApiControllerBase
