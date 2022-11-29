@@ -38,19 +38,6 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "watch",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "watch",
-        "run",
-        "${workspaceFolder}/samples/Server/Server.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
-    },
-    {
       "label": "test",
       "command": "dotnet",
       "type": "process",
@@ -66,6 +53,53 @@
       "problemMatcher": "$msCompile",
       "group": {
         "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "dev:be-watch",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "watch",
+        "run",
+        "${workspaceRoot}/samples/Server/Server.csproj",
+        "--environment",
+        "Development",
+        "--urls",
+        "https://localhost:5001",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile",
+      "options": {
+        "cwd": "${workspaceFolder}/samples/Server/"
+      }
+    },
+    {
+      "label": "dev:fe-start",
+      "type": "npm",
+      "script": "start",
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}/samples/Client/"
+      }
+    },
+    // Compound tasks
+    {
+      "label": "dev:be-fe 🚀",
+      "icon": {
+        "id": "play",
+        "color": "terminal.ansiGreen"
+      },
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "dev:be-watch",
+        "dev:fe-start"
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
         "isDefault": true
       }
     }

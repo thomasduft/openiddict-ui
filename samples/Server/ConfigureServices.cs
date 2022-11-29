@@ -22,7 +22,10 @@ public static class ConfigureServices
     string environmentName
   )
   {
-    services.AddRouting(options => options.LowercaseUrls = true);
+    services.AddRouting(options =>
+    {
+      options.LowercaseUrls = true;
+    });
 
     services.AddDbContext<ApplicationDbContext>(options =>
     {
@@ -150,7 +153,8 @@ public static class ConfigureServices
       // Register the EF based UI Store for OpenIddict related entities.
       .AddUIStore(options =>
       {
-        options.OpenIddictUIContext = builder => {
+        options.OpenIddictUIContext = builder =>
+        {
           builder.UseSqlite(configuration.GetConnectionString("DefaultConnection"),
             sql =>
             {
@@ -186,7 +190,8 @@ public static class ConfigureServices
       // Register the EF based UI Store for the ASP.NET Identity related entities.
       .AddUIIdentityStore<ApplicationUser>(options =>
       {
-        options.OpenIddictUIIdentityContext = builder => {
+        options.OpenIddictUIIdentityContext = builder =>
+        {
           builder.UseSqlite(configuration.GetConnectionString("DefaultConnection"),
             sql =>
             {
