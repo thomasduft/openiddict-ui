@@ -43,10 +43,7 @@ public class ApplicationApiService : IApplicationApiService
   {
     var items = await _service.GetApplicationsAsync();
 
-    return items.Select(c =>
-    {
-      return ToModel(c);
-    });
+    return items.Select(ToModel);
   }
 
   public async Task<ApplicationViewModel> GetAsync(string clientId)

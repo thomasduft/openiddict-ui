@@ -35,10 +35,7 @@ public class ScopeApiService : IScopeApiService
   {
     var items = await _service.GetScopesAsync();
 
-    return items.Select(c =>
-    {
-      return ToModel(c);
-    });
+    return items.Select(ToModel);
   }
 
   public async Task<IEnumerable<string>> GetScopeNamesAsync()

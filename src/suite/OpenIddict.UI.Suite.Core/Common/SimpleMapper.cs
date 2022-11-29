@@ -88,7 +88,7 @@ public class SimpleMapper
 
   private static string GetMapKey(Type source, Type target) => $"{source.GetHashCode()}_{target.GetHashCode()}";
 
-  private class PropertyMap
+  private sealed class PropertyMap
   {
     public PropertyInfo SourceProperty { get; set; }
     public PropertyInfo TargetProperty { get; set; }

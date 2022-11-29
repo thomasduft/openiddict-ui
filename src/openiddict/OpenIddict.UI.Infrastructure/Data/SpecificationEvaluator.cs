@@ -4,7 +4,7 @@ using tomware.OpenIddict.UI.Suite.Core;
 
 namespace tomware.OpenIddict.UI.Infrastructure;
 
-internal class SpecificationEvaluator<T> where T : class
+internal sealed class SpecificationEvaluator<T> where T : class
 {
   public static IQueryable<T> GetQuery(
     IQueryable<T> inputQuery,

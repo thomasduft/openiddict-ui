@@ -30,10 +30,7 @@ public class ApplicationService : IApplicationService
   {
     var items = await _repository.ListAsync(new AllApplications());
 
-    return items.Select(x =>
-    {
-      return ToListInfo(x);
-    });
+    return items.Select(ToListInfo);
   }
 
   public async Task<ApplicationInfo> GetAsync(string id)

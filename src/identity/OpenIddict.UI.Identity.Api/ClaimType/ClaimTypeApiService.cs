@@ -34,10 +34,7 @@ public class ClaimTypeApiService : IClaimTypeApiService
   {
     var items = await _service.GetClaimTypesAsync();
 
-    return items.Select(c =>
-    {
-      return ToModel(c);
-    });
+    return items.Select(ToModel);
   }
 
   public async Task<ClaimTypeViewModel> GetAsync(Guid id)

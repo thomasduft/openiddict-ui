@@ -29,10 +29,7 @@ public class ScopeService : IScopeService
   {
     var items = await _repository.ListAsync(new AllScopes());
 
-    return items.Select(x =>
-    {
-      return ToInfo(x);
-    });
+    return items.Select(ToInfo);
   }
 
   public async Task<ScopeInfo> GetAsync(string id)

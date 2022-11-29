@@ -170,15 +170,12 @@ public class AuthorizationController : Controller
         // Automatically create a permanent authorization to avoid requiring explicit consent
         // for future authorization or token requests containing the same scopes.
         var authorization = authorizations.LastOrDefault();
-        if (authorization is null)
-        {
-          authorization = await _authorizationManager.CreateAsync(
+        authorization ??= await _authorizationManager.CreateAsync(
               principal: principal,
               subject: await _userManager.GetUserIdAsync(user),
               client: await _applicationManager.GetIdAsync(application),
               type: AuthorizationTypes.Permanent,
               scopes: principal.GetScopes());
-        }
 
         principal.SetAuthorizationId(await _authorizationManager.GetIdAsync(authorization));
 
@@ -267,15 +264,12 @@ public class AuthorizationController : Controller
     // Automatically create a permanent authorization to avoid requiring explicit consent
     // for future authorization or token requests containing the same scopes.
     var authorization = authorizations.LastOrDefault();
-    if (authorization is null)
-    {
-      authorization = await _authorizationManager.CreateAsync(
+    authorization ??= await _authorizationManager.CreateAsync(
           principal: principal,
           subject: await _userManager.GetUserIdAsync(user),
           client: await _applicationManager.GetIdAsync(application),
           type: AuthorizationTypes.Permanent,
           scopes: principal.GetScopes());
-    }
 
     principal.SetAuthorizationId(await _authorizationManager.GetIdAsync(authorization));
 

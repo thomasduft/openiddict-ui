@@ -22,7 +22,7 @@ public static class RoutePrefixExtension
   }
 }
 
-internal class RoutePrefixConvention : IApplicationModelConvention
+internal sealed class RoutePrefixConvention : IApplicationModelConvention
 {
   private readonly AttributeRouteModel _routePrefix;
   private readonly IEnumerable<Type> _controllerTypes;

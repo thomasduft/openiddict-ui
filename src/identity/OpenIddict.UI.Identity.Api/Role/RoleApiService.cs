@@ -36,10 +36,7 @@ public class RoleApiService<TIdentityRole, TKey> : IRoleApiService
       .OrderBy(r => r.Name)
       .ToList();
 
-    var models = items.Select(c =>
-    {
-      return ToModel(c);
-    });
+    var models = items.Select(ToModel);
 
     return await Task.FromResult(models);
   }

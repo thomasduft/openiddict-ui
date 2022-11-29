@@ -20,10 +20,7 @@ public class ClaimTypeService : IClaimTypeService
   {
     var items = await _repository.ListAsync(new AllClaimTypes());
 
-    return items.Select(x =>
-    {
-      return ToInfo(x);
-    });
+    return items.Select(ToInfo);
   }
 
   public async Task<ClaimTypeInfo> GetAsync(Guid id)
