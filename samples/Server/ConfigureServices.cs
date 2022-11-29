@@ -22,6 +22,8 @@ public static class ConfigureServices
     string environmentName
   )
   {
+    services.AddRouting(options => options.LowercaseUrls = true);
+
     services.AddDbContext<ApplicationDbContext>(options =>
     {
       // Configure the context to use Microsoft SQL Server.

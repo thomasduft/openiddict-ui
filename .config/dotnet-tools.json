@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "tomware.releasy": {
+      "version": "0.4.0",
+      "commands": [
+        "releasy"
+      ]
+    },
+    "dotnet-outdated-tool": {
+      "version": "4.3.2",
+      "commands": [
+        "dotnet-outdated"
+      ]
+    }
+  }
+}
