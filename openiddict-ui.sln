@@ -35,6 +35,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{213222C7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerWithCustomKey", "samples\ServerWithCustomKey\ServerWithCustomKey.csproj", "{049B9CC7-E284-45A8-AD96-071DC21D887F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "targets", "build\targets.csproj", "{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -165,6 +167,18 @@ Global
 		{049B9CC7-E284-45A8-AD96-071DC21D887F}.Release|x64.Build.0 = Release|Any CPU
 		{049B9CC7-E284-45A8-AD96-071DC21D887F}.Release|x86.ActiveCfg = Release|Any CPU
 		{049B9CC7-E284-45A8-AD96-071DC21D887F}.Release|x86.Build.0 = Release|Any CPU
+		{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}.Debug|x64.Build.0 = Debug|Any CPU
+		{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}.Debug|x86.Build.0 = Debug|Any CPU
+		{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}.Release|x64.ActiveCfg = Release|Any CPU
+		{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}.Release|x64.Build.0 = Release|Any CPU
+		{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}.Release|x86.ActiveCfg = Release|Any CPU
+		{9397C4FC-56DB-4AD9-AB97-BCE4FF780FA0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
