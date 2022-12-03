@@ -29,6 +29,7 @@ internal static class Program
   private static class Targets
   {
     public const string RestoreTools = "restore-tools";
+    public const string InstallDependencies = "install-dependencies";
     public const string CleanBuildOutput = "clean-build-output";
     public const string CleanPackOutput = "clean-pack-output";
     public const string Build = "build";
@@ -170,6 +171,12 @@ internal static class Program
     #endregion
 
     #region Make life easier targets
+    Target(Targets.InstallDependencies, () =>
+    {
+      Run("dotnet", "tool restore");
+      Run("npm", "install", "samples/Client");
+    });
+
     Target(Targets.DeployClient, () =>
     {
       Run("npm", "install", "samples/Client");
