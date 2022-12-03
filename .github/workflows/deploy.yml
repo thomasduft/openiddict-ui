@@ -1,0 +1,26 @@
+name: deploy
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set env
+      run: |
+        RELEASE_VERSION=${GITHUB_REF#refs/*/}
+        echo "RELEASE_VERSION=${RELEASE_VERSION:1}" >> $GITHUB_ENV
+    - name: Echo RELEASE_VERSION
+      run: echo $RELEASE_VERSION
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 7.0.x
+    - name: Pack
+      run: ./build.sh "pack --version=$RELEASE_VERSION"
+    - name: Push
+      run:  dotnet nuget push ./artifacts/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET }}
