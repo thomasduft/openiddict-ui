@@ -37,7 +37,7 @@ internal static class Program
     public const string Release = "release";
     public const string Pack = "pack";
     public const string Deploy = "deploy";
-    public const string DeployWebClient = "deploy-webclient";
+    public const string DeployClient = "deploy-client";
   }
 
   static async Task Main(string[] args)
@@ -170,38 +170,27 @@ internal static class Program
     #endregion
 
     #region Make life easier targets
-    // Target(Targets.DeployWebClient, () =>
-    // {
-    //   Run("npm", "install", "samples/WebClient");
-    //   Run("npm", "run publish", "samples/WebClient");
+    Target(Targets.DeployClient, () =>
+    {
+      Run("npm", "install", "samples/Client");
+      Run("npm", "run publish", "samples/Client");
 
-    //   // delete all files, not directories in samples/WebApi/wwwroot
-    //   var files = Directory.GetFiles("samples/WebApi/wwwroot");
-    //   foreach (var file in files)
-    //   {
-    //     File.Delete(file);
-    //   }
+      // delete all files, not directories in samples/Server/wwwroot
+      var files = Directory.GetFiles("samples/Server/wwwroot");
+      foreach (var file in files)
+      {
+        File.Delete(file);
+      }
 
-    //   // copy files of samples/WebClient/dist to samples/WebApi/wwwroot
-    //   files = Directory.GetFiles("samples/WebClient/dist");
-    //   foreach (var file in files)
-    //   {
-    //     var info = new FileInfo(file);
-    //     var destFile = $"samples/WebApi/wwwroot/{info.Name}";
-    //     File.Copy(file, destFile);
-    //   }
-
-    //   // care about special assets
-    //   Directory.CreateDirectory("samples/WebApi/wwwroot/assets");
-    //   Directory.CreateDirectory("samples/WebApi/wwwroot/assets/js");
-    //   files = Directory.GetFiles("samples/WebClient/dist/assets/js");
-    //   foreach (var file in files)
-    //   {
-    //     var info = new FileInfo(file);
-    //     var destFile = $"samples/WebApi/wwwroot/assets/js/{info.Name}";
-    //     File.Copy(file, destFile);
-    //   }
-    // });
+      // copy files of samples/Client/dist to samples/Server/wwwroot
+      files = Directory.GetFiles("samples/Client/dist");
+      foreach (var file in files)
+      {
+        var info = new FileInfo(file);
+        var destFile = $"samples/Server/wwwroot/{info.Name}";
+        File.Copy(file, destFile);
+      }
+    });
     #endregion
 
     await RunTargetsAndExitAsync(
