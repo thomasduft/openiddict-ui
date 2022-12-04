@@ -5,9 +5,6 @@ TODO:
 
 - client refactoring
   - split identity, openiddict => create libs
-  - better Client deployment
-    - introduce deploy.js
-    - check server stylings not removed
 
 
 - go full razor pages
