@@ -190,13 +190,7 @@ internal static class Program
       }
 
       // copy files of samples/Client/dist to samples/Server/wwwroot
-      files = Directory.GetFiles("samples/Client/dist");
-      foreach (var file in files)
-      {
-        var info = new FileInfo(file);
-        var destFile = $"samples/Server/wwwroot/{info.Name}";
-        File.Copy(file, destFile);
-      }
+      CopyDirectory("samples/Client/dist", "samples/Server/wwwroot/");
     });
     #endregion
 
@@ -221,5 +215,28 @@ internal static class Program
     ));
 
     return files;
+  }
+
+  static void CopyDirectory(string sourceDir, string destinationDir, bool recursive = false)
+  {
+    var dir = new DirectoryInfo(sourceDir);
+    if (!dir.Exists)
+      throw new DirectoryNotFoundException($"Source directory not found: {dir.FullName}");
+
+    foreach (FileInfo file in dir.GetFiles())
+    {
+      Directory.CreateDirectory(destinationDir);
+      string targetFilePath = Path.Combine(destinationDir, file.Name);
+      file.CopyTo(targetFilePath, true);
+    }
+
+    if (recursive)
+    {
+      foreach (DirectoryInfo subDir in dir.GetDirectories())
+      {
+        string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
+        CopyDirectory(subDir.FullName, newDestinationDir, true);
+      }
+    }
   }
 }
