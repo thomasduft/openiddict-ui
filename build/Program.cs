@@ -93,7 +93,7 @@ internal static class Program
     {
       // ensure db migrations
       Run("dotnet", $"test {testProject} -c Release --environment=Testing -- --migrate");
-      File.Copy("./samples/Server/testing.sqlite", "./tests/bin/Release/net7.0/testing.sqlite", true);
+      File.Copy("samples/Server/testing.sqlite", "tests/bin/Release/net7.0/testing.sqlite", true);
 
       // execute the tests
       Run("dotnet", $"test {solution} -c Release --no-build --nologo");
