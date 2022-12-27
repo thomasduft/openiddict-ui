@@ -21,8 +21,8 @@ public class ScopeApiTest : IntegrationContext
   [InlineData("/api/scopes", HttpVerb.Get)]
   [InlineData("/api/scopes/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Get)]
   [InlineData("/api/scopes", HttpVerb.Post)]
-  // [InlineData("/api/scopes", HttpVerb.Put)]
-  // [InlineData("/api/scopes/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
+  [InlineData("/api/scopes", HttpVerb.Put)]
+  [InlineData("/api/scopes/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
   public async Task IsNotAuthenticatedReturnsUnauthorized(
     string endpoint,
     HttpVerb verb
