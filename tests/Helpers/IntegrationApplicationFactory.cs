@@ -26,17 +26,18 @@ public class IntegrationApplicationFactory<TEntryPoint>
     builder.ConfigureServices(services =>
     {
       var sp = services.BuildServiceProvider();
-      AccessToken = GenerateAccessToken(sp);
+      AccessToken = GetAccessToken(sp);
     });
   }
 
-  public string GenerateAccessToken(IServiceProvider sp)
+  public string GetAccessToken(IServiceProvider sp)
   {
     try
     {
       var claims = new List<Claim>
       {
-        new Claim(Claims.Role, Roles.Administrator)
+        new Claim(Claims.Role, Roles.Administrator),
+        new Claim(Claims.Issuer, "https://localhost:5001/")
       };
       var identity = new ClaimsIdentity(claims);
 
@@ -48,7 +49,7 @@ public class IntegrationApplicationFactory<TEntryPoint>
       var transaction = new OpenIddictServerTransaction
       {
         Options = options.Value,
-        Logger = logger
+        Logger = logger,
       };
 
       var context = new ProcessSignInContext(transaction)
@@ -56,11 +57,11 @@ public class IntegrationApplicationFactory<TEntryPoint>
         AccessTokenPrincipal = new ClaimsPrincipal(identity)
       };
 
-//       var generator = new GenerateIdentityModelAccessToken();
-// #pragma warning disable CA2012
-//       generator.HandleAsync(context).GetAwaiter().GetResult();
-// #pragma warning restore CA2012
-
+      var dispatcher = sp.GetRequiredService<IOpenIddictServerDispatcher>();
+      var generator = new GenerateAccessToken(dispatcher);
+#pragma warning disable CA2012
+      generator.HandleAsync(context).GetAwaiter().GetResult();
+#pragma warning restore CA2012
       return context.AccessToken;
     }
     catch (Exception)
