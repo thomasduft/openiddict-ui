@@ -22,8 +22,8 @@ public class ApplicationApiTest : IntegrationContext
   [InlineData("/api/application", HttpVerb.Get)]
   [InlineData("/api/application/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Get)]
   [InlineData("/api/application", HttpVerb.Post)]
-  // [InlineData("/api/application", HttpVerb.Put)]
-  // [InlineData("/api/application/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
+  [InlineData("/api/application", HttpVerb.Put)]
+  [InlineData("/api/application/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
   public async Task IsNotAuthenticatedReturnsUnauthorized(
     string endpoint,
     HttpVerb verb

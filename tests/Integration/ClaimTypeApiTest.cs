@@ -23,8 +23,8 @@ public class ClaimTypeApiTest : IntegrationContext
   [InlineData("/api/claimtypes", HttpVerb.Get)]
   [InlineData("/api/claimtypes/id", HttpVerb.Get)]
   [InlineData("/api/claimtypes", HttpVerb.Post)]
-  // [InlineData("/api/claimtypes", HttpVerb.Put)]
-  // [InlineData("/api/claimtypes/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
+  [InlineData("/api/claimtypes", HttpVerb.Put)]
+  [InlineData("/api/claimtypes/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
   public async Task IsNotAuthenticatedReturnsUnauthorized(
     string endpoint,
     HttpVerb verb

@@ -21,8 +21,8 @@ public class AccountApiTest : IntegrationContext
   [Theory]
   [InlineData("/api/accounts/users", HttpVerb.Get)]
   [InlineData("/api/accounts/user/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Get)]
-  // [InlineData("/api/accounts/user", HttpVerb.Put)]
-  // [InlineData("/api/accounts/user/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
+  [InlineData("/api/accounts/user", HttpVerb.Put)]
+  [InlineData("/api/accounts/user/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
   public async Task IsNotAuthenticatedForUsersReturnsUnauthorized(
     string endpoint,
     HttpVerb verb

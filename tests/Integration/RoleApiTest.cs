@@ -23,8 +23,8 @@ public class RoleApiTest : IntegrationContext
   [InlineData("/api/roles", HttpVerb.Get)]
   [InlineData("/api/roles/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Get)]
   [InlineData("/api/roles", HttpVerb.Post)]
-  // [InlineData("/api/roles", HttpVerb.Put)]
-  // [InlineData("/api/roles/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
+  [InlineData("/api/roles", HttpVerb.Put)]
+  [InlineData("/api/roles/01D7ACA3-575C-4E60-859F-DB95B70F8190", HttpVerb.Delete)]
   public async Task IsNotAuthenticatedReturnsUnauthorized(
     string endpoint,
     HttpVerb verb
