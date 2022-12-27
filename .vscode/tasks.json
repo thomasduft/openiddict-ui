@@ -26,29 +26,18 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "build-server-with-custom-key",
+      "label": "build:test-watch",
       "command": "dotnet",
       "type": "process",
       "args": [
-        "build",
-        "${workspaceFolder}/samples/ServerWithCustomKey/ServerWithCustomKey.csproj",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "test",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
+        "watch",
         "test",
-        "/p:ParallelizeTestCollections=false",
+        "--project",
+        "${workspaceFolder}/tests/OpenIddict.UI.Tests.csproj",
         "/p:CollectCoverage=true",
         "/p:CoverletOutputFormat=lcov",
         "/p:CoverletOutput=./../lcov",
         "/p:Include=[tomware.*]tomware.OpenIddict.UI.*",
-        "${workspaceFolder}/tests/OpenIddict.UI.Tests.csproj"
       ],
       "problemMatcher": "$msCompile",
       "group": {
