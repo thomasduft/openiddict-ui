@@ -53,14 +53,13 @@ public class IntegrationApplicationFactory<TEntryPoint>
 
       var context = new ProcessSignInContext(transaction)
       {
-        Issuer = new Uri("https://localhost:5001/"),
         AccessTokenPrincipal = new ClaimsPrincipal(identity)
       };
 
-      var generator = new GenerateIdentityModelAccessToken();
-#pragma warning disable CA2012
-      generator.HandleAsync(context).GetAwaiter().GetResult();
-#pragma warning restore CA2012
+//       var generator = new GenerateIdentityModelAccessToken();
+// #pragma warning disable CA2012
+//       generator.HandleAsync(context).GetAwaiter().GetResult();
+// #pragma warning restore CA2012
 
       return context.AccessToken;
     }
