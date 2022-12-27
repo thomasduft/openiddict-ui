@@ -1,12 +1,17 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using OpenIddict.Server;
+using Server.Models;
+using tomware.OpenIddict.UI.Identity.Infrastructure;
+using tomware.OpenIddict.UI.Infrastructure;
 using tomware.OpenIddict.UI.Suite.Core;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 using static OpenIddict.Server.OpenIddictServerEvents;
@@ -25,8 +30,26 @@ public class IntegrationApplicationFactory<TEntryPoint>
 
     builder.ConfigureServices(services =>
     {
+      FixDbContext<ApplicationDbContext>(services);
+      FixDbContext<OpenIddictUIContext>(services);
+      FixDbContext<OpenIddictUIIdentityContext>(services);
+
       var sp = services.BuildServiceProvider();
       AccessToken = GetAccessToken(sp);
+    });
+  }
+
+  public void FixDbContext<T>(IServiceCollection services)
+    where T : DbContext
+  {
+    var descriptor = services.SingleOrDefault(d =>
+    {
+      return d.ServiceType == typeof(DbContextOptions<T>);
+    });
+    services.Remove(descriptor);
+    services.AddDbContext<T>(options =>
+    {
+      options.UseInMemoryDatabase("InMemoryDbForTesting");
     });
   }
 

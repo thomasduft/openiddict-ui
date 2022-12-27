@@ -12,7 +12,6 @@ namespace targets;
 internal static class Program
 {
   private const string solution = "openiddict-ui.sln";
-  private const string testProject = "./samples/Server/Server.csproj";
   private const string packOutput = "./artifacts";
   private const string nugetSource = "https://api.nuget.org/v3/index.json";
   private const string envVarMissing = " environment variable is missing. Aborting.";
@@ -91,11 +90,6 @@ internal static class Program
 
     Target(Targets.Test, DependsOn(Targets.Build), () =>
     {
-      // ensure db migrations
-      Run("dotnet", $"test {testProject} -c Release --environment=Testing -- --migrate");
-      File.Copy("samples/Server/testing.sqlite", "tests/bin/Release/net7.0/testing.sqlite", true);
-
-      // execute the tests
       Run("dotnet", $"test {solution} -c Release --no-build --nologo");
     });
 

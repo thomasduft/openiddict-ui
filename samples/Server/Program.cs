@@ -32,10 +32,8 @@ try
   app.UseServer(environmentName);
 
   // Ensure DB migrations
-  if (args.Contains("--migrate"))
+  using (var scope = app.Services.CreateScope())
   {
-    Log.Information("Execute DB migrations...");
-    using var scope = app.Services.CreateScope();
     var services = scope.ServiceProvider;
     try
     {
@@ -46,12 +44,6 @@ try
     {
       app.Logger.LogError(ex, "An error occurred while migrating the database.");
     }
-  }
-
-  if (args.Contains("--migrate"))
-  {
-    // exit if only migrating reqested
-    return 0;
   }
 
   app.Run();
