@@ -144,7 +144,9 @@ internal static class Program
       foreach (var project in projects)
       {
         if (project.Contains(".Tests"))
+        {
           continue;
+        }
 
         if (packableProjects.Any(m => project.Contains(m)))
         {
@@ -196,9 +198,11 @@ internal static class Program
 
     await RunTargetsAndExitAsync(
       args,
-      ex => ex is SimpleExec.ExitCodeException
-        || ex.Message.EndsWith(envVarMissing, StringComparison.InvariantCultureIgnoreCase)
-    );
+      ex =>
+      {
+        return ex is SimpleExec.ExitCodeException
+            || ex.Message.EndsWith(envVarMissing, StringComparison.InvariantCultureIgnoreCase);
+      });
   }
 
   private static IEnumerable<string> GetFiles(
@@ -206,7 +210,7 @@ internal static class Program
       string filter
     )
   {
-    List<string> files = new List<string>();
+    var files = new List<string>();
 
     files.AddRange(Directory.GetFiles(
       directoryToScan,
@@ -217,24 +221,26 @@ internal static class Program
     return files;
   }
 
-  static void CopyDirectory(string sourceDir, string destinationDir, bool recursive = false)
+  private static void CopyDirectory(string sourceDir, string destinationDir, bool recursive = false)
   {
     var dir = new DirectoryInfo(sourceDir);
     if (!dir.Exists)
+    {
       throw new DirectoryNotFoundException($"Source directory not found: {dir.FullName}");
+    }
 
-    foreach (FileInfo file in dir.GetFiles())
+    foreach (var file in dir.GetFiles())
     {
       Directory.CreateDirectory(destinationDir);
-      string targetFilePath = Path.Combine(destinationDir, file.Name);
+      var targetFilePath = Path.Combine(destinationDir, file.Name);
       file.CopyTo(targetFilePath, true);
     }
 
     if (recursive)
     {
-      foreach (DirectoryInfo subDir in dir.GetDirectories())
+      foreach (var subDir in dir.GetDirectories())
       {
-        string newDestinationDir = Path.Combine(destinationDir, subDir.Name);
+        var newDestinationDir = Path.Combine(destinationDir, subDir.Name);
         CopyDirectory(subDir.FullName, newDestinationDir, true);
       }
     }
