@@ -68,6 +68,8 @@ dotnet_analyzer_diagnostic.severity = warning
 
 # CA1848: Use the LoggerMessage delegates (https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca1848)
 dotnet_diagnostic.CA1848.severity = none
+# CA1852: Type 'Program' can be sealed because it has no subtypes in its containing assembly and is not externally visible
+dotnet_diagnostic.CA1852.severity = none
 
 ##########################################
 # Language Rules

@@ -41,7 +41,7 @@ internal static class Program
     public const string DeployClient = "deploy-client";
   }
 
-  static async Task Main(string[] args)
+  public static async Task Main(string[] args)
   {
     // TODO: encapsulate with sth. like McMaster.Extensions.CommandLineUtils
     var version = string.Empty;
@@ -101,7 +101,7 @@ internal static class Program
       }
 
       // updating the changelog
-      Run("dotnet", $"tool run releasy update-changelog -v {version} -p https://github.com/thomasduft/microwf/issues/");
+      Run("dotnet", $"tool run releasy update-changelog -v {version} -p https://github.com/thomasduft/openiddict-ui/issues/");
 
       // committing the changelog changes
       Run("git", $"commit -am \"Committing changelog changes for v'{version}'\"");
