@@ -1,9 +1,0 @@
-{
-  "Id": "429b0b06-c4ab-42de-8a71-6fee66b1e268",
-  "IssueId": "",
-  "Prefix": "Removed",
-  "Tag": "",
-  "Message": "removed ServerWithCustomKey sample to remove heavy sample code duplication",
-  "CreatedAt": "2022-12-27T09:21:19.2983377+00:00",
-  "CreatedBy": "vscode"
-}

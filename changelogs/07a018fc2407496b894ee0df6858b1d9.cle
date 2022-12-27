@@ -1,9 +1,0 @@
-{
-  "Id": "07a018fc-2407-496b-894e-e0df6858b1d9",
-  "IssueId": "",
-  "Prefix": "Added",
-  "Tag": "",
-  "Message": "added support for OpenIddict v4.0",
-  "CreatedAt": "2022-12-27T09:20:18.1537358+00:00",
-  "CreatedBy": "vscode"
-}
