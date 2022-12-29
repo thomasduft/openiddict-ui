@@ -52,13 +52,12 @@
       "args": [
         "watch",
         "run",
+        "--project",
         "${workspaceRoot}/samples/Server/Server.csproj",
         "--environment",
         "Development",
         "--urls",
-        "https://localhost:5001",
-        "/property:GenerateFullPaths=true",
-        "/consoleloggerparameters:NoSummary"
+        "https://localhost:5001"
       ],
       "problemMatcher": "$msCompile",
       "options": {
