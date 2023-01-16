@@ -79,7 +79,7 @@ internal static class Program
       Run("dotnet", "tool restore");
     });
 
-    Target(AddChangelog, () =>
+    Target(Targets.AddChangelog, () =>
     {
       Run("dotnet", "tool run releasy add-changelog", "docs/Changelogs");
     });
