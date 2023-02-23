@@ -1,0 +1,9 @@
+{
+  "Id": "3906c6ca-bd1e-4470-971f-9bec3a07ef9a",
+  "IssueId": "22",
+  "Prefix": "Removed",
+  "Tag": "",
+  "Message": "Removed unused dependencies",
+  "CreatedAt": "2023-02-23T16:30:31.9026927+01:00",
+  "CreatedBy": "U23567"
+}
