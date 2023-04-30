@@ -15,7 +15,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
-    <PackageReference Include="OpenIddict.AspNetCore" Version="4.2.0" />
+    <PackageReference Include="OpenIddict.AspNetCore" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
