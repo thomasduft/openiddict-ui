@@ -3,13 +3,13 @@
   "isRoot": true,
   "tools": {
     "tomware.releasy": {
-      "version": "0.6.0",
+      "version": "0.8.0",
       "commands": [
         "releasy"
       ]
     },
     "dotnet-outdated-tool": {
-      "version": "4.5.1",
+      "version": "4.5.2",
       "commands": [
         "dotnet-outdated"
       ]
