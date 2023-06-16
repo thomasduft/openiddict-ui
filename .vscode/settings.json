@@ -12,5 +12,6 @@
     "showInProblems": false,
     "markers": ["NOTE:", "REMINDER:", "TODO:", ["FIXME", "Warning"]],
     "autoDefaultMarkers": true
-  }
+  },
+  "dotnet.defaultSolution": "openiddict-ui.sln"
 }
