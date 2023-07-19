@@ -10,14 +10,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="7.0.9" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.7" />
-    <PackageReference Include="OpenIddict.AspNetCore" Version="4.5.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.9" />
+    <PackageReference Include="OpenIddict.AspNetCore" Version="4.6.0" />
   </ItemGroup>
 
   <ItemGroup>
