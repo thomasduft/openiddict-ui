@@ -16,7 +16,7 @@ internal static class Program
   private const string nugetSource = "https://api.nuget.org/v3/index.json";
   private const string envVarMissing = " environment variable is missing. Aborting.";
 
-  private static IList<string> packableProjects = new List<string>{
+  private static readonly IList<string> packableProjects = new List<string>{
     "OpenIddict.UI.Suite.Core",
     "OpenIddict.UI.Suite.Api",
     "OpenIddict.UI.Infrastructure",
@@ -53,15 +53,27 @@ internal static class Program
       var firstArg = args[0].Split("--")[0].Trim();
       var customArgs = args[0].Split("--")[1].Trim().Split("&");
 
-      if (customArgs.Any(x => x.Contains("version")))
+      if (customArgs.Any(x =>
       {
-        var versionArgs = customArgs.First(x => x.Contains("version"));
+        return x.Contains("version");
+      }))
+      {
+        var versionArgs = customArgs.First(x =>
+        {
+          return x.Contains("version");
+        });
         version = versionArgs.Split('=')[1].Trim();
       }
 
-      if (customArgs.Any(x => x.Contains("key")))
+      if (customArgs.Any(x =>
       {
-        var keyArgs = customArgs.First(x => x.Contains("key"));
+        return x.Contains("key");
+      }))
+      {
+        var keyArgs = customArgs.First(x =>
+        {
+          return x.Contains("key");
+        });
         key = keyArgs.Split('=')[1].Trim();
       }
 
@@ -154,7 +166,10 @@ internal static class Program
           continue;
         }
 
-        if (packableProjects.Any(m => project.Contains(m)))
+        if (packableProjects.Any(m =>
+        {
+          return project.Contains(m);
+        }))
         {
           Run("dotnet", $"pack {project} -c Release -p:PackageVersion={version} -p:Version={version} -o {directory} --no-build --nologo");
         }

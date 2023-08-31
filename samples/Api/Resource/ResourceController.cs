@@ -1,46 +1,39 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Validation.AspNetCore;
 
-namespace Api.Resource
+namespace Api.Resource;
+
+[ApiController]
+[Route("api/Resource")]
+public class ResourceController : ControllerBase
 {
-  [ApiController]
-  [Route("api/Resource")]
-  public class ResourceController : ControllerBase
+  [HttpGet("private")]
+  [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
+  public IActionResult Private()
   {
-    [HttpGet("private")]
-    [Authorize(AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)]
-    public IActionResult Private()
+    if (User.Identity is not ClaimsIdentity identity)
     {
-      var identity = User.Identity as ClaimsIdentity;
-      if (identity == null)
-      {
-        return BadRequest();
-      }
-
-      var info = new ResourceInfo
-      {
-        Message = $"You have authorized access to resources belonging to {identity.Name} on Api."
-      };
-
-      return Ok(info);
+      return BadRequest();
     }
 
-    [HttpGet("public")]
-    public IActionResult Public()
+    var info = new ResourceInfo
     {
-      var info = new ResourceInfo
-      {
-        Message = "This is a public endpoint that is at Api - it does not require authorization."
-      };
+      Message = $"You have authorized access to resources belonging to {identity.Name} on Api."
+    };
 
-      return Ok(info);
-    }
+    return Ok(info);
+  }
+
+  [HttpGet("public")]
+  public IActionResult Public()
+  {
+    var info = new ResourceInfo
+    {
+      Message = "This is a public endpoint that is at Api - it does not require authorization."
+    };
+
+    return Ok(info);
   }
 }

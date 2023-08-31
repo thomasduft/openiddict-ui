@@ -3,12 +3,12 @@ using Server;
 using Server.Services;
 
 var loggerConfiguration = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json")
-    .Build();
+  .AddJsonFile("appsettings.json")
+  .Build();
 
 Log.Logger = new LoggerConfiguration()
-              .ReadFrom.Configuration(loggerConfiguration)
-              .CreateLogger();
+  .ReadFrom.Configuration(loggerConfiguration)
+  .CreateLogger();
 
 try
 {

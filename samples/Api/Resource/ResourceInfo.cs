@@ -1,7 +1,6 @@
-namespace Api.Resource
+namespace Api.Resource;
+
+public class ResourceInfo
 {
-  public class ResourceInfo
-  {
-    public string Message { get; set; }
-  }
+  public string Message { get; set; }
 }
