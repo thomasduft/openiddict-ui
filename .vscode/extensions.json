@@ -4,6 +4,8 @@
     "eamodio.gitlens",
     "editorconfig.editorconfig",
     "github.vscode-pull-request-github",
+    "github.copilot",
+    "github.copilot-chat",
     "mikestead.dotenv",
     "minhthai.vscode-todo-parser",
     "ms-dotnettools.csharp",
