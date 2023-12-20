@@ -59,8 +59,8 @@ public class IntegrationApplicationFactory<TEntryPoint>
     {
       var claims = new List<Claim>
       {
-        new Claim(Claims.Role, Roles.Administrator),
-        new Claim(Claims.Issuer, "https://localhost:5001/")
+        new(Claims.Role, Roles.Administrator),
+        new(Claims.Issuer, "https://localhost:5001/")
       };
       var identity = new ClaimsIdentity(claims);
 
