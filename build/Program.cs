@@ -226,7 +226,7 @@ internal static class Program
       });
   }
 
-  private static IEnumerable<string> GetFiles(
+  private static List<string> GetFiles(
       string directoryToScan,
       string filter
     )
