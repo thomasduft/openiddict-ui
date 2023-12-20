@@ -48,10 +48,7 @@ public class ApplicationApiService : IApplicationApiService
 
   public async Task<ApplicationViewModel> GetAsync(string clientId)
   {
-    if (clientId == null)
-    {
-      throw new ArgumentNullException(nameof(clientId));
-    }
+    ArgumentNullException.ThrowIfNull(clientId);
 
     var claimType = await _service.GetAsync(clientId);
 
@@ -60,10 +57,7 @@ public class ApplicationApiService : IApplicationApiService
 
   public async Task<string> CreateAsync(ApplicationViewModel model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     var param = ToParam(model);
 
@@ -72,10 +66,7 @@ public class ApplicationApiService : IApplicationApiService
 
   public async Task UpdateAsync(ApplicationViewModel model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     if (string.IsNullOrWhiteSpace(model.Id))
     {
@@ -89,10 +80,7 @@ public class ApplicationApiService : IApplicationApiService
 
   public async Task DeleteAsync(string clientId)
   {
-    if (clientId == null)
-    {
-      throw new ArgumentNullException(nameof(clientId));
-    }
+    ArgumentNullException.ThrowIfNull(clientId);
 
     await _service.DeleteAsync(clientId);
   }
@@ -110,8 +98,35 @@ public class ApplicationApiService : IApplicationApiService
   }
 
   private static ApplicationParam ToParam(ApplicationViewModel model)
-    => SimpleMapper.From<ApplicationViewModel, ApplicationParam>(model);
+  {
+    return new ApplicationParam
+    {
+      Id = model.Id,
+      ClientId = model.ClientId,
+      DisplayName = model.DisplayName,
+      ClientSecret = model.ClientSecret,
+      Type = model.Type,
+      RequirePkce = model.RequirePkce,
+      RequireConsent = model.RequireConsent,
+      Permissions = model.Permissions,
+      RedirectUris = model.RedirectUris,
+      PostLogoutRedirectUris = model.PostLogoutRedirectUris
+    };
+  }
 
   private static ApplicationViewModel ToModel(ApplicationInfo info)
-    => SimpleMapper.From<ApplicationInfo, ApplicationViewModel>(info);
+  {
+    return new ApplicationViewModel
+    {
+      Id = info.Id,
+      ClientId = info.ClientId,
+      DisplayName = info.DisplayName,
+      Type = info.Type,
+      RequirePkce = info.RequirePkce,
+      RequireConsent = info.RequireConsent,
+      Permissions = info.Permissions,
+      RedirectUris = info.RedirectUris,
+      PostLogoutRedirectUris = info.PostLogoutRedirectUris
+    };
+  }
 }

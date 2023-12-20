@@ -211,7 +211,7 @@ public class ApplicationApiTest : IntegrationContext
 
     var model = await response.Content.ReadAsJsonAsync<ApplicationOptionsViewModel>();
     Assert.NotNull(model);
-    Assert.True(model.Types.Count == 2);
+    Assert.Equal(2, model.Types.Count);
   }
 
   private static ApplicationViewModel GetPublicApplicationViewModel(string id = null)
@@ -224,9 +224,9 @@ public class ApplicationApiTest : IntegrationContext
       // ClientSecret = "clientsecret", // only when Type is confidential
       RequirePkce = false,
       RequireConsent = false,
-      Permissions = new List<string> { "somePermission " },
-      RedirectUris = new List<string> { "https://tomware.ch/redirect" },
-      PostLogoutRedirectUris = new List<string> { "https://tomware.ch/postLogout" },
+      Permissions = ["somePermission "],
+      RedirectUris = ["https://tomware.ch/redirect"],
+      PostLogoutRedirectUris = ["https://tomware.ch/postLogout"],
       Type = ClientTypes.Public
     };
   }
@@ -241,7 +241,7 @@ public class ApplicationApiTest : IntegrationContext
       ClientSecret = "clientsecret", // only when Type is confidential
       RequirePkce = false,
       RequireConsent = false,
-      Permissions = new List<string> { "somePermission " },
+      Permissions = ["somePermission "],
       Type = ClientTypes.Confidential
     };
   }

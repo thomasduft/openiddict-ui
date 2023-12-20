@@ -96,10 +96,7 @@ public class AccountService<TIdentityUser, TKey> : IAccountService
 
   public async Task<IdentityResult> UpdateAsync(UserParam model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     if (string.IsNullOrWhiteSpace(model.Id))
     {

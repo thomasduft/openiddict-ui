@@ -6,6 +6,7 @@ using Server.Models;
 using tomware.OpenIddict.UI.Identity.Infrastructure;
 using tomware.OpenIddict.UI.Infrastructure;
 using tomware.OpenIddict.UI.Suite.Core;
+
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Server.Services;

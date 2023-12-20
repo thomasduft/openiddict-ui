@@ -22,7 +22,7 @@ public class ApplicationViewModel
 
   public bool RequireConsent { get; set; }
 
-  public List<string> Permissions { get; set; } = new List<string>();
-  public List<string> RedirectUris { get; set; } = new List<string>();
-  public List<string> PostLogoutRedirectUris { get; set; } = new List<string>();
+  public List<string> Permissions { get; set; } = [];
+  public List<string> RedirectUris { get; set; } = [];
+  public List<string> PostLogoutRedirectUris { get; set; } = [];
 }

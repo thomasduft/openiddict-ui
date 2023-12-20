@@ -49,7 +49,7 @@ internal sealed class RoutePrefixConvention : IApplicationModelConvention
           return x.AttributeRouteModel != null;
         })
         .ToList();
-      if (matchedSelectors.Any())
+      if (matchedSelectors.Count != 0)
       {
         foreach (var selectorModel in matchedSelectors)
         {
@@ -64,7 +64,7 @@ internal sealed class RoutePrefixConvention : IApplicationModelConvention
           return x.AttributeRouteModel == null;
         })
         .ToList();
-      if (unmatchedSelectors.Any())
+      if (unmatchedSelectors.Count != 0)
       {
         foreach (var selectorModel in unmatchedSelectors)
         {

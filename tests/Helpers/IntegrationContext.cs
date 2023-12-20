@@ -13,6 +13,11 @@ namespace tomware.OpenIddict.UI.Tests.Helpers;
 
 public class IntegrationContext : IClassFixture<IntegrationApplicationFactory<Testing>>
 {
+  private static readonly JsonSerializerOptions JsonSerializerOptions = new()
+  {
+    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+  };
+
   private readonly IntegrationApplicationFactory<Testing> _factory;
   private readonly HttpClient _client;
   private readonly string _accessToken;
@@ -30,13 +35,8 @@ public class IntegrationContext : IClassFixture<IntegrationApplicationFactory<Te
     _accessToken = _factory.AccessToken;
   }
 
-  protected static T Deserialize<T>(string responseBody)
-  {
-    return JsonSerializer.Deserialize<T>(responseBody, new JsonSerializerOptions
-    {
-      PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-    });
-  }
+  protected static T Deserialize<T>(string responseBody) 
+    => JsonSerializer.Deserialize<T>(responseBody, JsonSerializerOptions);
 
   protected async Task<HttpResponseMessage> GetAsync(
     string endpoint,

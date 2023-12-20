@@ -43,10 +43,7 @@ public class RoleApiService<TIdentityRole, TKey> : IRoleApiService
 
   public async Task<RoleViewModel> GetAsync(string id)
   {
-    if (id == null)
-    {
-      throw new ArgumentNullException(nameof(id));
-    }
+    ArgumentNullException.ThrowIfNull(id);
 
     var role = await _manager.FindByIdAsync(id);
 
@@ -55,10 +52,7 @@ public class RoleApiService<TIdentityRole, TKey> : IRoleApiService
 
   public async Task<string> CreateAsync(RoleViewModel model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     var newRole = new TIdentityRole
     {
@@ -77,10 +71,7 @@ public class RoleApiService<TIdentityRole, TKey> : IRoleApiService
 
   public async Task UpdateAsync(RoleViewModel model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     if (string.IsNullOrWhiteSpace(model.Id))
     {
@@ -95,10 +86,7 @@ public class RoleApiService<TIdentityRole, TKey> : IRoleApiService
 
   public async Task DeleteAsync(string id)
   {
-    if (id == null)
-    {
-      throw new ArgumentNullException(nameof(id));
-    }
+    ArgumentNullException.ThrowIfNull(id);
 
     var role = await _manager.FindByIdAsync(id);
 

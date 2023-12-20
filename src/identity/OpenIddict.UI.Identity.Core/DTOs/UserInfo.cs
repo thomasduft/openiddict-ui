@@ -20,7 +20,7 @@ public class UserInfo
 
   public bool IsLockedOut { get; set; }
 
-  public List<ClaimInfo> Claims { get; set; } = new List<ClaimInfo>();
+  public List<ClaimInfo> Claims { get; set; } = [];
 
-  public List<string> Roles { get; set; } = new List<string>();
+  public List<string> Roles { get; set; } = [];
 }

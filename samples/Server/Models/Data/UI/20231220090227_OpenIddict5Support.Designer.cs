@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tomware.OpenIddict.UI.Infrastructure;
 
@@ -10,9 +11,11 @@ using tomware.OpenIddict.UI.Infrastructure;
 namespace Server.Models.Data.UI
 {
     [DbContext(typeof(OpenIddictUIContext))]
-    partial class OpenIddictUIContextModelSnapshot : ModelSnapshot
+    [Migration("20231220090227_OpenIddict5Support")]
+    partial class OpenIddict5Support
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");

@@ -90,10 +90,7 @@ public class AccountApiService<TIdentityUser, TKey> : IAccountApiService
 
   public async Task<IdentityResult> UpdateAsync(UserViewModel model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     if (string.IsNullOrWhiteSpace(model.Id))
     {

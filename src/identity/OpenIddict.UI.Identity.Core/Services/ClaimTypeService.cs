@@ -37,10 +37,7 @@ public class ClaimTypeService : IClaimTypeService
 
   public async Task<Guid> CreateAsync(ClaimTypeParam model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     var items = await _repository.ListAsync(new ClaimTypeByName(model.Name));
     var entity = items.Count > 0 ? items[0] : null;

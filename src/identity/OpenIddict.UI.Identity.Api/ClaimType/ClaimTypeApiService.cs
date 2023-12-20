@@ -51,10 +51,7 @@ public class ClaimTypeApiService : IClaimTypeApiService
 
   public async Task<Guid> CreateAsync(ClaimTypeViewModel model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     var param = ToParam(model);
 
@@ -63,10 +60,7 @@ public class ClaimTypeApiService : IClaimTypeApiService
 
   public async Task UpdateAsync(ClaimTypeViewModel model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     if (!model.Id.HasValue)
     {

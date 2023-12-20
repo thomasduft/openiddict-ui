@@ -42,7 +42,7 @@ public class SimpleMapper
     }
 
     var props = GetMatchingProperties(source, target);
-    Maps.TryAdd(key, props.ToArray());
+    Maps.TryAdd(key, [.. props]);
   }
 
 #pragma warning disable CA1822
@@ -68,7 +68,7 @@ public class SimpleMapper
   }
 #pragma warning restore CA1822
 
-  private static IList<PropertyMap> GetMatchingProperties(Type source, Type target)
+  private static List<PropertyMap> GetMatchingProperties(Type source, Type target)
   {
     var sourceProperties = source.GetProperties();
     var targetProperties = target.GetProperties();

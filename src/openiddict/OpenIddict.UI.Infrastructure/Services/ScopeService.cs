@@ -34,10 +34,7 @@ public class ScopeService : IScopeService
 
   public async Task<ScopeInfo> GetAsync(string id)
   {
-    if (id == null)
-    {
-      throw new ArgumentNullException(nameof(id));
-    }
+    ArgumentNullException.ThrowIfNull(id);
 
     var entity = await _manager.FindByIdAsync(id);
 
@@ -46,10 +43,7 @@ public class ScopeService : IScopeService
 
   public async Task<string> CreateAsync(ScopeParam model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     var entity = await _manager.FindByNameAsync(model.Name);
     if (entity == null)
@@ -94,10 +88,7 @@ public class ScopeService : IScopeService
 
   public async Task DeleteAsync(string id)
   {
-    if (id == null)
-    {
-      throw new ArgumentNullException(nameof(id));
-    }
+    ArgumentNullException.ThrowIfNull(id);
 
     var entity = await _manager.FindByIdAsync(id);
 
@@ -111,7 +102,7 @@ public class ScopeService : IScopeService
 
     info.Resources = entity.Resources != null
       ? JsonSerializer.Deserialize<List<string>>(entity.Resources)
-      : new List<string>();
+      : [];
 
     return info;
   }

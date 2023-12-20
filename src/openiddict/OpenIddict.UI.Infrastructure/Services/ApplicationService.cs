@@ -30,15 +30,12 @@ public class ApplicationService : IApplicationService
   {
     var items = await _repository.ListAsync(new AllApplications());
 
-    return items.Select(ToListInfo);
+    return items.Select(ToInfo);
   }
 
   public async Task<ApplicationInfo> GetAsync(string id)
   {
-    if (id == null)
-    {
-      throw new ArgumentNullException(nameof(id));
-    }
+    ArgumentNullException.ThrowIfNull(id);
 
     var entity = await _manager.FindByIdAsync(id);
 
@@ -47,23 +44,14 @@ public class ApplicationService : IApplicationService
 
   public async Task<string> CreateAsync(ApplicationParam model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     var entity = await _manager.FindByClientIdAsync(model.ClientId);
     if (entity == null)
     {
       // create new entity
-      var newEntity = new OpenIddictEntityFrameworkCoreApplication
-      {
-        ClientId = model.ClientId,
-        DisplayName = model.DisplayName,
-        Type = model.Type
-      };
-
-      HandleCustomProperties(model, newEntity);
+      var newEntity = new OpenIddictEntityFrameworkCoreApplication();
+      MapProperties(model, newEntity);
 
       await _manager.CreateAsync(newEntity, model.ClientSecret);
 
@@ -85,56 +73,52 @@ public class ApplicationService : IApplicationService
     }
 
     var entity = await _manager.FindByIdAsync(model.Id);
-
-    SimpleMapper.Map(model, entity);
-
-    HandleCustomProperties(model, entity);
+    MapProperties(model, entity);
 
     await _manager.UpdateAsync(entity, model.ClientSecret);
   }
 
   public async Task DeleteAsync(string id)
   {
-    if (id == null)
-    {
-      throw new ArgumentNullException(nameof(id));
-    }
+    ArgumentNullException.ThrowIfNull(id);
 
     var entity = await _manager.FindByIdAsync(id);
 
     await _manager.DeleteAsync(entity);
   }
 
-  private static ApplicationInfo ToListInfo(OpenIddictEntityFrameworkCoreApplication entity)
-    => SimpleMapper.From<OpenIddictEntityFrameworkCoreApplication, ApplicationInfo>(entity);
-
   private static ApplicationInfo ToInfo(OpenIddictEntityFrameworkCoreApplication entity)
   {
-    var info = SimpleMapper
-      .From<OpenIddictEntityFrameworkCoreApplication, ApplicationInfo>(entity);
-
-    info.RequireConsent = entity.ConsentType == ConsentTypes.Explicit;
-    info.Permissions = entity.Permissions != null
-      ? JsonSerializer.Deserialize<List<string>>(entity.Permissions)
-      : new List<string>();
-    info.RedirectUris = entity.RedirectUris != null
-      ? JsonSerializer.Deserialize<List<string>>(entity.RedirectUris)
-      : new List<string>();
-    info.PostLogoutRedirectUris = entity.PostLogoutRedirectUris != null
-      ? JsonSerializer.Deserialize<List<string>>(entity.PostLogoutRedirectUris)
-      : new List<string>();
-    info.RequirePkce = entity.Requirements != null && JsonSerializer
+    return new ApplicationInfo
+    {
+      Id = entity.Id,
+      ClientId = entity.ClientId,
+      DisplayName = entity.DisplayName,
+      Type = entity.ClientType,
+      RequirePkce = entity.Requirements != null && JsonSerializer
       .Deserialize<List<string>>(entity.Requirements)
-      .Contains(Requirements.Features.ProofKeyForCodeExchange);
-
-    return info;
+      .Contains(Requirements.Features.ProofKeyForCodeExchange),
+      RequireConsent = entity.ConsentType == ConsentTypes.Explicit,
+      Permissions = entity.Permissions != null
+      ? JsonSerializer.Deserialize<List<string>>(entity.Permissions)
+      : [],
+      RedirectUris = entity.RedirectUris != null
+      ? JsonSerializer.Deserialize<List<string>>(entity.RedirectUris)
+      : [],
+      PostLogoutRedirectUris = entity.PostLogoutRedirectUris != null
+      ? JsonSerializer.Deserialize<List<string>>(entity.PostLogoutRedirectUris)
+      : []
+    };
   }
 
-  private static void HandleCustomProperties(
+  private static void MapProperties(
     ApplicationParam model,
     OpenIddictEntityFrameworkCoreApplication entity
   )
   {
+    entity.ClientId = model.ClientId;
+    entity.DisplayName = model.DisplayName;
+    entity.ClientType = model.Type;
     entity.ConsentType = model.RequireConsent ? ConsentTypes.Explicit : ConsentTypes.Implicit;
     entity.Permissions = JsonSerializer.Serialize(model.Permissions);
     entity.RedirectUris = JsonSerializer.Serialize(model.RedirectUris);

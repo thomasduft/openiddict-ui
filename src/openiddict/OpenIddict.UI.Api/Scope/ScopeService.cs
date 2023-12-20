@@ -50,10 +50,7 @@ public class ScopeApiService : IScopeApiService
 
   public async Task<ScopeViewModel> GetAsync(string id)
   {
-    if (id == null)
-    {
-      throw new ArgumentNullException(nameof(id));
-    }
+    ArgumentNullException.ThrowIfNull(id);
 
     var claimType = await _service.GetAsync(id);
 
@@ -62,10 +59,7 @@ public class ScopeApiService : IScopeApiService
 
   public async Task<string> CreateAsync(ScopeViewModel model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     var param = ToParam(model);
 
@@ -74,10 +68,7 @@ public class ScopeApiService : IScopeApiService
 
   public async Task UpdateAsync(ScopeViewModel model)
   {
-    if (model == null)
-    {
-      throw new ArgumentNullException(nameof(model));
-    }
+    ArgumentNullException.ThrowIfNull(model);
 
     if (string.IsNullOrWhiteSpace(model.Id))
     {
@@ -91,10 +82,7 @@ public class ScopeApiService : IScopeApiService
 
   public async Task DeleteAsync(string id)
   {
-    if (id == null)
-    {
-      throw new ArgumentNullException(nameof(id));
-    }
+    ArgumentNullException.ThrowIfNull(id);
 
     await _service.DeleteAsync(id);
   }

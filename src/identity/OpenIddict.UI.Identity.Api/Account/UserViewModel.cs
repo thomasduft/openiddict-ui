@@ -24,7 +24,7 @@ public class UserViewModel
 
   public bool IsLockedOut { get; set; }
 
-  public List<ClaimViewModel> Claims { get; set; } = new List<ClaimViewModel>();
+  public List<ClaimViewModel> Claims { get; set; } = [];
 
-  public List<string> Roles { get; set; } = new List<string>();
+  public List<string> Roles { get; set; } = [];
 }

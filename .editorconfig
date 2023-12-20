@@ -71,6 +71,9 @@ dotnet_diagnostic.CA1848.severity = none
 # CA1852: Type 'Program' can be sealed because it has no subtypes in its containing assembly and is not externally visible
 dotnet_diagnostic.CA1852.severity = none
 
+# IDE0290: Use primary constructor (https://learn.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0290)
+dotnet_diagnostic.IDE0290.severity = none
+
 ##########################################
 # Language Rules
 # https://docs.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/language-rules
