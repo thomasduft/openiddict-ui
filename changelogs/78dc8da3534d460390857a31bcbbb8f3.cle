@@ -1,0 +1,9 @@
+{
+  "Id": "78dc8da3-534d-4603-9085-7a31bcbbb8f3",
+  "IssueId": "",
+  "Prefix": "Added",
+  "Tag": "",
+  "Message": "Added support for OpenIddict 5. Make sure to follow the official migration guide [here](https://documentation.openiddict.com/guides/migration/40-to-50.html).",
+  "CreatedAt": "2023-12-20T09:16:59.7476451+00:00",
+  "CreatedBy": "vscode"
+}
