@@ -5,7 +5,7 @@
 ### Added
 
 - Added support for net8.0
-- Added support for OpenIddict 5. Make sure to follow the official migration guide [here](https://documentation.openiddict.com/guides/migration/40-to-50.html).
+- Added support for OpenIddict v5.0. Make sure to follow the official migration guide [here](https://documentation.openiddict.com/guides/migration/40-to-50.html).
 
 ## [1.9.0] - 2023-02-23
 
