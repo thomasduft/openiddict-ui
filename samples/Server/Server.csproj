@@ -22,9 +22,9 @@
 
     <PackageReference Include="Quartz.Extensions.Hosting" Version="3.8.1" />
 
-    <PackageReference Include="OpenIddict.AspNetCore" Version="5.3.0" />
-    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="5.3.0" />
-    <PackageReference Include="OpenIddict.Quartz" Version="5.3.0" />
+    <PackageReference Include="OpenIddict.AspNetCore" Version="5.4.0" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="5.4.0" />
+    <PackageReference Include="OpenIddict.Quartz" Version="5.4.0" />
 
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.0" />
