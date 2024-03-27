@@ -169,8 +169,8 @@ public static class ConfigureServices
       .AddUIApis(options =>
       {
         // Tell the system about the allowed Permissions it is built/configured for.
-        options.Permissions = new List<string>
-        {
+        options.Permissions =
+        [
           Permissions.Endpoints.Authorization,
           Permissions.Endpoints.Logout,
           Permissions.Endpoints.Token,
@@ -184,7 +184,7 @@ public static class ConfigureServices
           Permissions.Scopes.Roles,
           Permissions.Prefixes.Scope + "server_scope",
           Permissions.Prefixes.Scope + "api_scope"
-        };
+        ];
       })
       // Register the EF based UI Store for the ASP.NET Identity related entities.
       .AddUIIdentityStore<ApplicationUser>(options =>

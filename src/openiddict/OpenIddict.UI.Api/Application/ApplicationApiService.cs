@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using tomware.OpenIddict.UI.Infrastructure;
-using tomware.OpenIddict.UI.Suite.Core;
 
 namespace tomware.OpenIddict.UI.Api;
 

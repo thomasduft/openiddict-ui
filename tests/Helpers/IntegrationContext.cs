@@ -35,7 +35,7 @@ public class IntegrationContext : IClassFixture<IntegrationApplicationFactory<Te
     _accessToken = _factory.AccessToken;
   }
 
-  protected static T Deserialize<T>(string responseBody) 
+  protected static T Deserialize<T>(string responseBody)
     => JsonSerializer.Deserialize<T>(responseBody, JsonSerializerOptions);
 
   protected async Task<HttpResponseMessage> GetAsync(

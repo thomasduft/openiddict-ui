@@ -14,5 +14,5 @@ public class ScopeViewModel
 
   public string Description { get; set; }
 
-  public List<string> Resources { get; set; } = new List<string>();
+  public List<string> Resources { get; set; } = [];
 }

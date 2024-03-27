@@ -124,11 +124,11 @@ public class ScopeApiTest : IntegrationContext
       Name = TEST_SCOPE,
       DisplayName = "displayname",
       Description = "description",
-      Resources = new List<string>
-      {
+      Resources =
+      [
         "resource1",
         "resource2"
-      }
+      ]
     });
     var id = await createResponse.Content.ReadAsJsonAsync<string>();
 

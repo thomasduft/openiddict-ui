@@ -47,13 +47,9 @@ public static class OpenIddictUIServicesExtensions
     Action<AuthorizationPolicyBuilder> policy
   )
   {
-    services.AddAuthorization(options =>
-    {
-      options.AddPolicy(
-        Policies.OpenIddictUiApiPolicy,
-        policy
-      );
-    });
+    services.AddAuthorizationBuilder()
+        .AddPolicy(Policies.OpenIddictUiApiPolicy, policy
+);
 
     return services;
   }

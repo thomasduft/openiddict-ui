@@ -90,7 +90,7 @@ public class AccountService<TIdentityUser, TKey> : IAccountService
           Value = x.Value
         };
       })),
-      Roles = roles.ToList()
+      Roles = [.. roles]
     };
   }
 

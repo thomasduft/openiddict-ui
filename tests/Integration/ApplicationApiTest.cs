@@ -180,7 +180,7 @@ public class ApplicationApiTest : IntegrationContext
     Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
   }
 
-  [Fact(Skip = "There seems to be a bug when using InMemoryDatabase.")]
+  [Fact]
   public async Task DeleteAsyncApplicationDeleted()
   {
     // Arrange
