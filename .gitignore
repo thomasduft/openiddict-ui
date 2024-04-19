@@ -266,3 +266,4 @@ tests/coverage.json
 samples/**/*.sqlite
 samples/**/*.sqlite-wal
 samples/**/*.sqlite-shm
+.mono
