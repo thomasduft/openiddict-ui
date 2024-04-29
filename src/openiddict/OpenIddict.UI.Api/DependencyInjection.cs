@@ -61,11 +61,13 @@ public static class OpenIddictUIServicesExtensions
   {
     builder.Services.AddControllers(options =>
     {
-      options.UseOpenIddictUIRoutePrefix(routePrefix, new List<Type>
-      {
-        typeof(ApplicationController),
-        typeof(ScopeController)
-      });
+      options.UseOpenIddictUIRoutePrefix(
+        routePrefix,
+        [
+          typeof(ApplicationController),
+          typeof(ScopeController)
+        ]
+      );
     });
 
     return builder;

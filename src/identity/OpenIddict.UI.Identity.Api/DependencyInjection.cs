@@ -85,12 +85,14 @@ public static class OpenIddictUIIdentityApiServicesExtensions
   {
     builder.Services.AddControllers(options =>
     {
-      options.UseOpenIddictUIRoutePrefix(routePrefix, new List<Type>
-      {
-        typeof(AccountController),
-        typeof(ClaimTypeController),
-        typeof(RoleController)
-      });
+      options.UseOpenIddictUIRoutePrefix(
+        routePrefix,
+        [
+          typeof(AccountController),
+          typeof(ClaimTypeController),
+          typeof(RoleController)
+        ]
+      );
     });
 
     return builder;
