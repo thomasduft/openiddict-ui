@@ -15,8 +15,8 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
-    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="5.7.1" />
-    <PackageReference Include="OpenIddict.EntityFrameworkCore.Models" Version="5.7.1" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="5.8.0" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore.Models" Version="5.8.0" />
   </ItemGroup>
 
   <ItemGroup>

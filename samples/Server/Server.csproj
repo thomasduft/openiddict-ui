@@ -22,15 +22,15 @@
 
     <PackageReference Include="Quartz.Extensions.Hosting" Version="3.13.0" />
 
-    <PackageReference Include="OpenIddict.AspNetCore" Version="5.7.1" />
-    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="5.7.1" />
-    <PackageReference Include="OpenIddict.Quartz" Version="5.7.1" />
+    <PackageReference Include="OpenIddict.AspNetCore" Version="5.8.0" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="5.8.0" />
+    <PackageReference Include="OpenIddict.Quartz" Version="5.8.0" />
 
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.2" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
     <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.1-dev-00771" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
   </ItemGroup>
 
   <ItemGroup>

@@ -17,7 +17,7 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.8" />
-    <PackageReference Include="OpenIddict.AspNetCore" Version="5.7.1" />
+    <PackageReference Include="OpenIddict.AspNetCore" Version="5.8.0" />
   </ItemGroup>
 
   <ItemGroup>
