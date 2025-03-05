@@ -13,7 +13,7 @@ public class SimpleMapper
 
   public static TTarget From<TSource, TTarget>(TSource source)
   {
-    var target = (TTarget)Activator.CreateInstance(typeof(TTarget));
+    var target = Activator.CreateInstance<TTarget>();
     var mapper = Create<TSource, TTarget>();
     mapper.Copy(source, target);
 

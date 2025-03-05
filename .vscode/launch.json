@@ -6,7 +6,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build-server",
-      "program": "${workspaceFolder}/samples/Server/bin/Debug/net8.0/Server.dll",
+      "program": "${workspaceFolder}/samples/Server/bin/Debug/net9.0/Server.dll",
       "args": [
         "--urls",
         "https://localhost:5001"
@@ -29,7 +29,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build-api",
-      "program": "${workspaceFolder}/samples/Api/bin/Debug/net8.0/Api.dll",
+      "program": "${workspaceFolder}/samples/Api/bin/Debug/net9.0/Api.dll",
       "args": [
         "--urls",
         "https://localhost:5002"

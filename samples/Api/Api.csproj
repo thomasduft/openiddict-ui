@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
-    <PackageReference Include="OpenIddict.Validation.AspNetCore" Version="5.8.0" />
-    <PackageReference Include="OpenIddict.Validation.SystemNetHttp" Version="5.8.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
+    <PackageReference Include="OpenIddict.Validation.AspNetCore" Version="6.1.1" />
+    <PackageReference Include="OpenIddict.Validation.SystemNetHttp" Version="6.1.1" />
   </ItemGroup>
 
 </Project>

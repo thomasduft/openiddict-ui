@@ -5,6 +5,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -42,9 +43,9 @@ public class IntegrationApplicationFactory<TEntryPoint>
   public void FixDbContext<T>(IServiceCollection services)
     where T : DbContext
   {
-    var descriptor = services.SingleOrDefault(d =>
+    var descriptor = services.Single(d =>
     {
-      return d.ServiceType == typeof(DbContextOptions<T>);
+      return d.ServiceType == typeof(IDbContextOptionsConfiguration<T>);
     });
     services.Remove(descriptor);
     services.AddDbContext<T>(options =>
