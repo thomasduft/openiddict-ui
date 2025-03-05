@@ -9,15 +9,15 @@ namespace tomware.OpenIddict.UI.Identity.Api;
 
 public interface IClaimTypeApiService
 {
-  Task<IEnumerable<ClaimTypeViewModel>> GetClaimTypesAsync();
+  public Task<IEnumerable<ClaimTypeViewModel>> GetClaimTypesAsync();
 
-  Task<ClaimTypeViewModel> GetAsync(Guid id);
+  public Task<ClaimTypeViewModel> GetAsync(Guid id);
 
-  Task<Guid> CreateAsync(ClaimTypeViewModel model);
+  public Task<Guid> CreateAsync(ClaimTypeViewModel model);
 
-  Task UpdateAsync(ClaimTypeViewModel model);
+  public Task UpdateAsync(ClaimTypeViewModel model);
 
-  Task DeleteAsync(Guid id);
+  public Task DeleteAsync(Guid id);
 }
 
 public class ClaimTypeApiService : IClaimTypeApiService

@@ -8,15 +8,15 @@ namespace tomware.OpenIddict.UI.Identity.Api;
 
 public interface IRoleApiService
 {
-  Task<IEnumerable<RoleViewModel>> GetRolesAsync();
+  public Task<IEnumerable<RoleViewModel>> GetRolesAsync();
 
-  Task<RoleViewModel> GetAsync(string id);
+  public Task<RoleViewModel> GetAsync(string id);
 
-  Task<string> CreateAsync(RoleViewModel model);
+  public Task<string> CreateAsync(RoleViewModel model);
 
-  Task UpdateAsync(RoleViewModel model);
+  public Task UpdateAsync(RoleViewModel model);
 
-  Task DeleteAsync(string id);
+  public Task DeleteAsync(string id);
 }
 
 public class RoleApiService<TIdentityRole, TKey> : IRoleApiService

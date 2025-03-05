@@ -9,17 +9,17 @@ namespace tomware.OpenIddict.UI.Api;
 
 public interface IScopeApiService
 {
-  Task<IEnumerable<ScopeViewModel>> GetScopesAsync();
+  public Task<IEnumerable<ScopeViewModel>> GetScopesAsync();
 
-  Task<IEnumerable<string>> GetScopeNamesAsync();
+  public Task<IEnumerable<string>> GetScopeNamesAsync();
 
-  Task<ScopeViewModel> GetAsync(string id);
+  public Task<ScopeViewModel> GetAsync(string id);
 
-  Task<string> CreateAsync(ScopeViewModel model);
+  public Task<string> CreateAsync(ScopeViewModel model);
 
-  Task UpdateAsync(ScopeViewModel model);
+  public Task UpdateAsync(ScopeViewModel model);
 
-  Task DeleteAsync(string id);
+  public Task DeleteAsync(string id);
 }
 
 public class ScopeApiService : IScopeApiService

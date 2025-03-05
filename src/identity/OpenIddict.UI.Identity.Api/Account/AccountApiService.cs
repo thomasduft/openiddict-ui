@@ -10,12 +10,12 @@ namespace tomware.OpenIddict.UI.Identity.Api;
 
 public interface IAccountApiService
 {
-  Task<IdentityResult> RegisterAsync(RegisterUserViewModel model);
-  Task<IdentityResult> ChangePasswordAsync(ChangePasswordViewModel model);
-  Task<IEnumerable<UserViewModel>> GetUsersAsync();
-  Task<UserViewModel> GetUserAsync(string id);
-  Task<IdentityResult> UpdateAsync(UserViewModel model);
-  Task<IdentityResult> DeleteAsync(string id);
+  public Task<IdentityResult> RegisterAsync(RegisterUserViewModel model);
+  public Task<IdentityResult> ChangePasswordAsync(ChangePasswordViewModel model);
+  public Task<IEnumerable<UserViewModel>> GetUsersAsync();
+  public Task<UserViewModel> GetUserAsync(string id);
+  public Task<IdentityResult> UpdateAsync(UserViewModel model);
+  public Task<IdentityResult> DeleteAsync(string id);
 }
 
 public class AccountApiService<TIdentityUser, TKey> : IAccountApiService

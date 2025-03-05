@@ -16,7 +16,7 @@ internal static class Program
   private const string nugetSource = "https://api.nuget.org/v3/index.json";
   private const string envVarMissing = " environment variable is missing. Aborting.";
 
-  private static readonly IList<string> packableProjects = new List<string>{
+  private static readonly IList<string> packableProjects = [
     "OpenIddict.UI.Suite.Core",
     "OpenIddict.UI.Suite.Api",
     "OpenIddict.UI.Infrastructure",
@@ -24,7 +24,7 @@ internal static class Program
     "OpenIddict.UI.Identity.Core",
     "OpenIddict.UI.Identity.Infrastructure",
     "OpenIddict.UI.Identity.Api"
-  };
+  ];
 
   private static class Targets
   {

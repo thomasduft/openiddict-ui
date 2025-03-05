@@ -9,17 +9,17 @@ namespace tomware.OpenIddict.UI.Api;
 
 public interface IApplicationApiService
 {
-  Task<IEnumerable<ApplicationViewModel>> GetApplicationsAsync();
+  public Task<IEnumerable<ApplicationViewModel>> GetApplicationsAsync();
 
-  Task<ApplicationViewModel> GetAsync(string clientId);
+  public Task<ApplicationViewModel> GetAsync(string clientId);
 
-  Task<string> CreateAsync(ApplicationViewModel model);
+  public Task<string> CreateAsync(ApplicationViewModel model);
 
-  Task UpdateAsync(ApplicationViewModel model);
+  public Task UpdateAsync(ApplicationViewModel model);
 
-  Task DeleteAsync(string clientId);
+  public Task DeleteAsync(string clientId);
 
-  Task<ApplicationOptionsViewModel> GetOptionsAsync();
+  public Task<ApplicationOptionsViewModel> GetOptionsAsync();
 }
 
 public class ApplicationApiService : IApplicationApiService
