@@ -99,7 +99,8 @@ public static class ConfigureServices
         // Note: this sample uses the code, device, password and refresh token flows, but you
         // can enable the other flows if you need to support implicit or client credentials.
         options.AllowAuthorizationCodeFlow()
-               .AllowRefreshTokenFlow();
+               .AllowRefreshTokenFlow()
+               .AllowClientCredentialsFlow();
 
         // Mark the "email", "profile", "roles" and "demo_api" scopes as supported scopes.
         options.RegisterScopes(
@@ -178,6 +179,7 @@ public static class ConfigureServices
           Permissions.GrantTypes.AuthorizationCode,
           Permissions.GrantTypes.DeviceCode,
           Permissions.GrantTypes.RefreshToken,
+          Permissions.GrantTypes.ClientCredentials,
           Permissions.ResponseTypes.Code,
           Permissions.Scopes.Email,
           Permissions.Scopes.Profile,

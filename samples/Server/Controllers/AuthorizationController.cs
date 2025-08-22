@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
+using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
 using Server.Helpers;
@@ -370,7 +371,44 @@ public class AuthorizationController : Controller
       return SignIn(principal, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
     }
 
-    else if (request.IsAuthorizationCodeGrantType() || request.IsDeviceCodeGrantType() || request.IsRefreshTokenGrantType())
+    else if (request.IsClientCredentialsGrantType())
+    {
+      // Note: the client credentials are automatically validated by OpenIddict:
+      // if client_id or client_secret are invalid, this action won't be invoked.
+
+      var application = await _applicationManager.FindByClientIdAsync(request.ClientId!)
+        ?? throw new InvalidOperationException("The application details cannot be found in the database.");
+
+      // Create the claims-based identity that will be used by OpenIddict to generate tokens.
+      var identity = new ClaimsIdentity(
+          authenticationType: TokenValidationParameters.DefaultAuthenticationType,
+          nameType: Claims.Name,
+          roleType: Claims.Role
+      );
+
+      // Add the claims that will be persisted in the tokens (use the client_id as the subject identifier).
+      identity.SetClaim(Claims.Subject, await _applicationManager.GetClientIdAsync(application));
+      identity.SetClaim(Claims.Name, await _applicationManager.GetDisplayNameAsync(application));
+
+      // Note: In the original OAuth 2.0 specification, the client credentials grant
+      // doesn't return an identity token, which is an OpenID Connect concept.
+      //
+      // As a non-standardized extension, OpenIddict allows returning an id_token
+      // to convey information about the client application when the "openid" scope
+      // is granted (i.e specified when calling principal.SetScopes()). When the "openid"
+      // scope is not explicitly set, no identity token is returned to the client application.
+
+      // Set the list of scopes granted to the client application in access_token.
+      identity.SetScopes(request.GetScopes());
+      identity.SetResources(await _scopeManager.ListResourcesAsync(identity.GetScopes()).ToListAsync());
+      identity.SetDestinations(GetDestinations);
+
+      return SignIn(new ClaimsPrincipal(identity), OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
+    }
+
+    else if (request.IsAuthorizationCodeGrantType()
+      || request.IsDeviceCodeGrantType()
+      || request.IsRefreshTokenGrantType())
     {
       // Retrieve the claims principal stored in the authorization code/device code/refresh token.
       var principal = (await HttpContext.AuthenticateAsync(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme)).Principal;
@@ -461,5 +499,19 @@ public class AuthorizationController : Controller
         yield return Destinations.AccessToken;
         yield break;
     }
+  }
+
+  private static IEnumerable<string> GetDestinations(Claim claim)
+  {
+    // Note: by default, claims are NOT automatically included in the access and identity tokens.
+    // To allow OpenIddict to serialize them, you must attach them a destination, that specifies
+    // whether they should be included in access tokens, in identity tokens or in both.
+
+    return claim.Type switch
+    {
+      Claims.Name or Claims.Subject => [Destinations.AccessToken, Destinations.IdentityToken],
+
+      _ => [Destinations.AccessToken],
+    };
   }
 }

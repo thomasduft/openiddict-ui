@@ -47,7 +47,7 @@ public static class OpenIddictUIInfrastructureServicesExtensions
   {
     builder
       .UseEntityFrameworkCore()
-      .UseDbContext(typeof(TContext));
+      .UseDbContext<OpenIddictUIContext>();
 
     return new OpenIddictEntityFrameworkCoreBuilder(builder.Services);
   }

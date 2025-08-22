@@ -101,12 +101,12 @@ internal static class Program
       Run("dotnet", $"clean {solution} -c Release -v m --nologo");
     });
 
-    Target(Targets.Build, DependsOn(Targets.CleanBuildOutput), () =>
+    Target(Targets.Build, dependsOn: [Targets.CleanBuildOutput], () =>
     {
       Run("dotnet", $"build {solution} -c Release --nologo");
     });
 
-    Target(Targets.Test, DependsOn(Targets.Build), () =>
+    Target(Targets.Test, dependsOn: [Targets.Build], () =>
     {
       Run("dotnet", $"test {solution} -c Release --no-build --nologo");
     });
@@ -125,7 +125,7 @@ internal static class Program
       Run("git", $"commit -am \"Committing changelog changes for v'{version}'\"");
     });
 
-    Target(Targets.Release, DependsOn(Targets.RestoreTools, Targets.Test, Targets.UpdateChangelog), () =>
+    Target(Targets.Release, dependsOn: [Targets.RestoreTools, Targets.Test, Targets.UpdateChangelog], () =>
     {
       if (string.IsNullOrWhiteSpace(version))
       {
@@ -149,7 +149,7 @@ internal static class Program
       }
     });
 
-    Target(Targets.Pack, DependsOn(Targets.Build, Targets.CleanPackOutput), () =>
+    Target(Targets.Pack, dependsOn: [Targets.Build, Targets.CleanPackOutput], () =>
     {
       if (string.IsNullOrWhiteSpace(version))
       {
@@ -176,7 +176,7 @@ internal static class Program
       }
     });
 
-    Target(Targets.Deploy, DependsOn(Targets.RestoreTools, Targets.Test, Targets.Pack), () =>
+    Target(Targets.Deploy, dependsOn: [Targets.RestoreTools, Targets.Test, Targets.Pack], () =>
     {
       if (string.IsNullOrWhiteSpace(key))
       {
