@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.12] - 2025-08-24
+
+### Added
+
+- Added support for ClientCredentials flow in sample server.
+- Added support for OpenIddict v7.0.
+
 ## [1.11.0] - 2025-03-05
 
 ### Added
