@@ -7,5 +7,5 @@ public interface IUserCreationStrategy<TIdentityUser, TKey>
   where TKey : IEquatable<TKey>
   where TIdentityUser : IdentityUser<TKey>
 {
-  TIdentityUser CreateUser(RegisterUserParam model);
+  public TIdentityUser CreateUser(RegisterUserParam model);
 }

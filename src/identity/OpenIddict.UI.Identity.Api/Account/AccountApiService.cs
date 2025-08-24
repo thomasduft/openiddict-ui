@@ -76,14 +76,14 @@ public class AccountApiService<TIdentityUser, TKey> : IAccountApiService
       Email = user.Email,
       LockoutEnabled = user.LockoutEnabled,
       IsLockedOut = user.IsLockedOut,
-      Claims = new List<ClaimViewModel>(user.Claims.Select(x =>
+      Claims = [.. user.Claims.Select(x =>
       {
         return new ClaimViewModel
         {
           Type = x.Type,
           Value = x.Value
         };
-      })),
+      })],
       Roles = user.Roles
     };
   }
@@ -98,14 +98,14 @@ public class AccountApiService<TIdentityUser, TKey> : IAccountApiService
     }
 
     var param = SimpleMapper.From<UserViewModel, UserParam>(model);
-    param.Claims = new List<ClaimInfo>(model.Claims.Select(c =>
+    param.Claims = [.. model.Claims.Select(c =>
     {
       return new ClaimInfo
       {
         Type = c.Type,
         Value = c.Value
       };
-    }));
+    })];
 
     return await _accountService.UpdateAsync(param);
   }

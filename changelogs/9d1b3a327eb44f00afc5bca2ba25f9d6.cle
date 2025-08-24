@@ -1,0 +1,9 @@
+{
+  "Id": "9d1b3a32-7eb4-4f00-afc5-bca2ba25f9d6",
+  "IssueId": "",
+  "Prefix": "Added",
+  "Tag": "",
+  "Message": "Addes support for ClientCredentials flow in sample server.",
+  "CreatedAt": "2025-08-24T09:15:29.6713415+00:00",
+  "CreatedBy": "thomasduft"
+}

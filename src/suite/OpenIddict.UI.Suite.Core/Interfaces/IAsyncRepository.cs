@@ -6,10 +6,10 @@ namespace tomware.OpenIddict.UI.Suite.Core;
 public interface IAsyncRepository<TEntity, TKey>
   where TEntity : class
 {
-  Task<TEntity> GetByIdAsync(TKey id);
-  Task<IReadOnlyList<TEntity>> ListAsync(ISpecification<TEntity> spec);
-  Task<TEntity> AddAsync(TEntity entity);
-  Task UpdateAsync(TEntity entity);
-  Task DeleteAsync(TEntity entity);
-  Task<int> CountAsync(ISpecification<TEntity> spec);
+  public Task<TEntity> GetByIdAsync(TKey id);
+  public Task<IReadOnlyList<TEntity>> ListAsync(ISpecification<TEntity> spec);
+  public Task<TEntity> AddAsync(TEntity entity);
+  public Task UpdateAsync(TEntity entity);
+  public Task DeleteAsync(TEntity entity);
+  public Task<int> CountAsync(ISpecification<TEntity> spec);
 }

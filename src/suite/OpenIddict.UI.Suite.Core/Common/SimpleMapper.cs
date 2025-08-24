@@ -73,7 +73,7 @@ public class SimpleMapper
     var sourceProperties = source.GetProperties();
     var targetProperties = target.GetProperties();
 
-    return (from s in sourceProperties
+    return [.. from s in sourceProperties
             from t in targetProperties
             where string.Equals(s.Name, t.Name, StringComparison.Ordinal) &&
                   s.CanRead &&
@@ -83,7 +83,7 @@ public class SimpleMapper
             {
               SourceProperty = s,
               TargetProperty = t,
-            }).ToList();
+            }];
   }
 
   private static string GetMapKey(Type source, Type target) => $"{source.GetHashCode()}_{target.GetHashCode()}";

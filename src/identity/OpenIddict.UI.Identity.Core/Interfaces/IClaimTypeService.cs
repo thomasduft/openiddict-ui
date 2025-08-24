@@ -6,13 +6,13 @@ namespace tomware.OpenIddict.UI.Identity.Core;
 
 public interface IClaimTypeService
 {
-  Task<IEnumerable<ClaimTypeInfo>> GetClaimTypesAsync();
+  public Task<IEnumerable<ClaimTypeInfo>> GetClaimTypesAsync();
 
-  Task<ClaimTypeInfo> GetAsync(Guid id);
+  public Task<ClaimTypeInfo> GetAsync(Guid id);
 
-  Task<Guid> CreateAsync(ClaimTypeParam model);
+  public Task<Guid> CreateAsync(ClaimTypeParam model);
 
-  Task UpdateAsync(ClaimTypeParam model);
+  public Task UpdateAsync(ClaimTypeParam model);
 
-  Task DeleteAsync(Guid id);
+  public Task DeleteAsync(Guid id);
 }

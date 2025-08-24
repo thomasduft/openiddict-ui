@@ -5,13 +5,13 @@ namespace tomware.OpenIddict.UI.Infrastructure;
 
 public interface IApplicationService
 {
-  Task<IEnumerable<ApplicationInfo>> GetApplicationsAsync();
+  public Task<IEnumerable<ApplicationInfo>> GetApplicationsAsync();
 
-  Task<ApplicationInfo> GetAsync(string id);
+  public Task<ApplicationInfo> GetAsync(string id);
 
-  Task<string> CreateAsync(ApplicationParam model);
+  public Task<string> CreateAsync(ApplicationParam model);
 
-  Task UpdateAsync(ApplicationParam model);
+  public Task UpdateAsync(ApplicationParam model);
 
-  Task DeleteAsync(string id);
+  public Task DeleteAsync(string id);
 }

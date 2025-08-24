@@ -12,13 +12,13 @@ public class OpenIddictUIStoreOptions
 
 public interface IOpenIddictUIContext
 {
-  DbSet<OpenIddictEntityFrameworkCoreApplication> Applications { get; set; }
+  public DbSet<OpenIddictEntityFrameworkCoreApplication> Applications { get; set; }
 
-  DbSet<OpenIddictEntityFrameworkCoreAuthorization> Authorizations { get; set; }
+  public DbSet<OpenIddictEntityFrameworkCoreAuthorization> Authorizations { get; set; }
 
-  DbSet<OpenIddictEntityFrameworkCoreScope> Scopes { get; set; }
+  public DbSet<OpenIddictEntityFrameworkCoreScope> Scopes { get; set; }
 
-  DbSet<OpenIddictEntityFrameworkCoreToken> Tokens { get; set; }
+  public DbSet<OpenIddictEntityFrameworkCoreToken> Tokens { get; set; }
 }
 
 public class OpenIddictUIContext : OpenIddictUIContext<OpenIddictUIContext>

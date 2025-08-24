@@ -82,14 +82,14 @@ public class AccountService<TIdentityUser, TKey> : IAccountService
       Email = user.Email,
       LockoutEnabled = user.LockoutEnabled,
       IsLockedOut = isLockedOut,
-      Claims = new List<ClaimInfo>(claims.ToList().Select(x =>
+      Claims = [.. claims.ToList().Select(x =>
       {
         return new ClaimInfo
         {
           Type = x.Type,
           Value = x.Value
         };
-      })),
+      })],
       Roles = [.. roles]
     };
   }
@@ -116,10 +116,10 @@ public class AccountService<TIdentityUser, TKey> : IAccountService
 
     result = await AssignClaimsAsync(
       user,
-      model.Claims.Select(x =>
+      [.. model.Claims.Select(x =>
       {
         return new Claim(x.Type, x.Value);
-      }).ToList()
+      })]
     );
     if (!result.Succeeded)
     {

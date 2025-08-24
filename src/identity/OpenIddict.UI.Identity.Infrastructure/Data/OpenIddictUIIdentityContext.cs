@@ -12,7 +12,7 @@ public class OpenIddictUIIdentityStoreOptions
 
 public interface IOpenIddictUIIdentityContext
 {
-  DbSet<ClaimType> ClaimTypes { get; set; }
+  public DbSet<ClaimType> ClaimTypes { get; set; }
 }
 
 public class OpenIddictUIIdentityContext : OpenIddictUIIdentityContext<OpenIddictUIIdentityContext>

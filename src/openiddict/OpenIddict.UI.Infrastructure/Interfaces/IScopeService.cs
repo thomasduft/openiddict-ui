@@ -5,13 +5,13 @@ namespace tomware.OpenIddict.UI.Infrastructure;
 
 public interface IScopeService
 {
-  Task<IEnumerable<ScopeInfo>> GetScopesAsync();
+  public Task<IEnumerable<ScopeInfo>> GetScopesAsync();
 
-  Task<ScopeInfo> GetAsync(string id);
+  public Task<ScopeInfo> GetAsync(string id);
 
-  Task<string> CreateAsync(ScopeParam model);
+  public Task<string> CreateAsync(ScopeParam model);
 
-  Task UpdateAsync(ScopeParam model);
+  public Task UpdateAsync(ScopeParam model);
 
-  Task DeleteAsync(string id);
+  public Task DeleteAsync(string id);
 }

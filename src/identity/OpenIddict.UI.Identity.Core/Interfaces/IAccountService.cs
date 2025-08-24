@@ -6,10 +6,10 @@ namespace tomware.OpenIddict.UI.Identity.Core;
 
 public interface IAccountService
 {
-  Task<IdentityResult> RegisterAsync(RegisterUserParam model);
-  Task<IdentityResult> ChangePasswordAsync(ChangePasswordParam model);
-  Task<IEnumerable<UserInfo>> GetUsersAsync();
-  Task<UserInfo> GetUserAsync(string id);
-  Task<IdentityResult> UpdateAsync(UserParam model);
-  Task<IdentityResult> DeleteAsync(string id);
+  public Task<IdentityResult> RegisterAsync(RegisterUserParam model);
+  public Task<IdentityResult> ChangePasswordAsync(ChangePasswordParam model);
+  public Task<IEnumerable<UserInfo>> GetUsersAsync();
+  public Task<UserInfo> GetUserAsync(string id);
+  public Task<IdentityResult> UpdateAsync(UserParam model);
+  public Task<IdentityResult> DeleteAsync(string id);
 }
