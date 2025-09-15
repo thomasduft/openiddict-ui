@@ -9,14 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.8" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.8" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.8" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.8" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.8" />
-    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="7.0.0" />
-    <PackageReference Include="OpenIddict.EntityFrameworkCore.Models" Version="7.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.9" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="7.1.0" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore.Models" Version="7.1.0" />
   </ItemGroup>
 
   <ItemGroup>
