@@ -11,7 +11,7 @@ namespace targets;
 
 internal static class Program
 {
-  private const string solution = "openiddict-ui.sln";
+  private const string solution = "openiddict-ui.slnx";
   private const string packOutput = "./artifacts";
   private const string nugetSource = "https://api.nuget.org/v3/index.json";
   private const string envVarMissing = " environment variable is missing. Aborting.";

@@ -1,0 +1,31 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/build/">
+    <Project Path="build/targets.csproj" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/Api/Api.csproj" />
+    <Project Path="samples/Server/Server.csproj" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/identity/">
+    <Project Path="src/identity/OpenIddict.UI.Identity.Api/tomware.OpenIddict.UI.Identity.Api.csproj" />
+    <Project Path="src/identity/OpenIddict.UI.Identity.Core/tomware.OpenIddict.UI.Identity.Core.csproj" />
+    <Project Path="src/identity/OpenIddict.UI.Identity.Infrastructure/tomware.OpenIddict.UI.Identity.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/openiddict/">
+    <Project Path="src/openiddict/OpenIddict.UI.Api/tomware.OpenIddict.UI.Api.csproj" />
+    <Project Path="src/openiddict/OpenIddict.UI.Infrastructure/tomware.OpenIddict.UI.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/suite/">
+    <Project Path="src/suite/OpenIddict.UI.Suite.Api/tomware.OpenIddict.UI.Suite.Api.csproj" />
+    <Project Path="src/suite/OpenIddict.UI.Suite.Core/tomware.OpenIddict.UI.Suite.Core.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/OpenIddict.UI.Tests.csproj" />
+  </Folder>
+</Solution>
