@@ -71,6 +71,9 @@ EF:
 - dotnet ef migrations add InitialUI -c OpenIddictUIContext -o Models/Data/UI
 - dotnet ef migrations add InitialIdentity -c OpenIddictUIIdentityContext -o Models/Data/Identity
 
+- OpenIddict7Support
+  - dotnet ef migrations add AddOpenIddict7Support -c OpenIddictUIContext -o Models/Data/UI
+
 ----------------------------------------------------------------------------------------------------
 Tests:
 - dotnet test /p:ParallelizeTestCollections=false /p:CollectCoverage=true /p:Include=[tomware.*]tomware.OpenIddict.UI.* /p:CoverletOutputFormat=lcov /p:CoverletOutput=./../lcov

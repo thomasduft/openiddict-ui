@@ -7,21 +7,21 @@
       "commands": [
         "releasy"
       ],
-      "rollForward": false
+      "rollForward": true
     },
     "dotnet-outdated-tool": {
       "version": "4.6.8",
       "commands": [
         "dotnet-outdated"
       ],
-      "rollForward": false
+      "rollForward": true
     },
     "dotnet-ef": {
       "version": "9.0.8",
       "commands": [
         "dotnet-ef"
       ],
-      "rollForward": false
+      "rollForward": true
     }
   }
 }

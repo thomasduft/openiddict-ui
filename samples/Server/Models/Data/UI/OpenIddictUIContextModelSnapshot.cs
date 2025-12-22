@@ -15,7 +15,7 @@ namespace Server.Models.Data.UI
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.11");
 
             modelBuilder.Entity("OpenIddict.EntityFrameworkCore.Models.OpenIddictEntityFrameworkCoreApplication", b =>
                 {
@@ -210,7 +210,7 @@ namespace Server.Models.Data.UI
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Type")
-                        .HasMaxLength(50)
+                        .HasMaxLength(150)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
