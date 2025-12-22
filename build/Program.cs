@@ -48,6 +48,7 @@ internal static class Program
     var version = string.Empty;
     var key = string.Empty;
 
+    // Sample: ./build.sh "release --version=1.13.0"
     if (args[0].Contains("--"))
     {
       var firstArg = args[0].Split("--")[0].Trim();
