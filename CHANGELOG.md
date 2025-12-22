@@ -5,7 +5,7 @@
 ### Added
 
 - Added support for .net10
-- Added support for OpenIddict v7.x. Make sure to follow the official migration guide [here](https://documentation.openiddict.com/guides/migration/60-to-70#add-and-apply-migrations-if-applicable).
+- Added support for OpenIddict v7.x. Make sure to follow the official migration guide [here](https://documentation.openiddict.com/guides/migration/60-to-70#add-and-apply-migrations-if-applicable).
 
 ## [1.12.1] - 2025-08-24
 
