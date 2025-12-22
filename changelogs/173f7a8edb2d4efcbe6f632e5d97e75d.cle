@@ -1,9 +1,0 @@
-{
-  "Id": "173f7a8e-db2d-4efc-be6f-632e5d97e75d",
-  "IssueId": "",
-  "Prefix": "Added",
-  "Tag": "",
-  "Message": "Added support for .net10",
-  "CreatedAt": "2025-12-22T10:33:51.3983764+00:00",
-  "CreatedBy": "thomasduft"
-}

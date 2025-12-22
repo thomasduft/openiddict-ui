@@ -1,9 +1,0 @@
-{
-  "Id": "faa26a1a-2670-4b72-ae27-697ee4fa2727",
-  "IssueId": "",
-  "Prefix": "Added",
-  "Tag": "",
-  "Message": "Added support for OpenIddict v7.x. Make sure to follow the official migration guide [here](\u0016https://documentation.openiddict.com/guides/migration/60-to-70#add-and-apply-migrations-if-applicable).",
-  "CreatedAt": "2025-12-22T10:34:53.0326496+00:00",
-  "CreatedBy": "thomasduft"
-}
