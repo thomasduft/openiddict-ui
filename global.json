@@ -1,6 +1,0 @@
-{
-  "tools": {
-    "dotnet": "7.0.100",
-    "rollForward": "patch"
-  }
-}

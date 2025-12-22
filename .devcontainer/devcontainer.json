@@ -1,6 +1,6 @@
 {
   "name": "openiddict-ui",
-  "image": "mcr.microsoft.com/devcontainers/dotnet:1-9.0-bookworm",
+  "image": "mcr.microsoft.com/devcontainers/dotnet",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "installNodeVersion": "lts/*"
